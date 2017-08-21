@@ -1,0 +1,46 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>添加时间</td>
+    <td>用户</td>
+    <td>标题</td>
+    <td>活动时间</td>
+    <td>地点</td>
+    <td>内容</td>
+    <td>类型</td>
+    <td>费用</td>
+    <td>图片</td>
+    <td>主办方</td>
+    <td>主办方简介</td>
+    <td>qq</td>
+    <td>手机</td>
+    <td>所属圈子</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="c">
+    <tr>
+      <td>{$c[id]}</td>
+      <td>{$c[add_time]}</td>
+      <td>{:M("mb_member")->where(['id'=>$c[member_id]])->getField("nickname")}</td>
+      <td>{$c[title]}</td>
+      <td>{$c[begin_time]}</td>
+      <td>{$c[address]}</td>
+      <td>{$c[content]}</td>
+      <td>{:C('activity_types')[$c[type]]}</td>
+      <td>{$c[price]}</td>
+      <td><image src='{$c[image]}'/></td>
+      <td>{$c[master_name]}</td>
+      <td>{$c[master_description]}</td>
+      <td>{$c[qq]}</td>
+      <td>{$c[phone]}</td>
+      <td>{:M("circle")->find($c[circle_id])['circle_name']}</td>
+      <td>
+        <a href="{:U('delete')}?id={$c['id']}"  class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<include file="Common:admin_footer" />

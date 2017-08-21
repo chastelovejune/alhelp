@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" id="body">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="renderer" content="webkit">
+<title>新助邦考研平台</title>
+<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/subpage.css" />
+<link rel="stylesheet" type="text/css" href="css/alhelp.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css" />
+    <link href="script/froala/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="script/froala/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+<script src="script/jquery.min.js"></script>
+<script src="script/jquery.form.min.js"></script>
+<script src="script/common.js"></script>
+<script src="script/TouchSlide.js"></script>
+<script src="script/jquery.qqFace.js"></script>
+<script type="text/javascript" src="script/jquery.cookie.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="js/datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="{:U('/home/common/js',[],'js')}"></script>
+<script src="script/layer/layer.js"></script>
+
+    <link href="script/froala/css/font-awesome.min.css?v=1.0.2" rel="stylesheet" type="text/css" media="none" media='all'" />
+
+    <!-- Include Editor style. -->
+    <link href="script/froala/css/froala_editor.min.css?v=1.0.2" rel="stylesheet">
+    <link href="script/froala/css/froala_style.min.css?v=1.0.2" rel="stylesheet">
+
+    <!-- Include Editor Plugins style. -->
+    <link href="script/froala/css/themes/gray.min.css" rel="stylesheet">
+    <link href="script/froala/css/plugins/image.min.css" rel="stylesheet">
+    <script src="script/froala/js/froala_editor.min.js?v=1.0.5"></script>
+
+    <!-- Include Plugins. -->
+    <script src="script/froala/js/plugins/align.min.js"></script>
+    <script src="script/froala/js/plugins/image.min.js"></script>
+   <!-- <script src="script/froala/js/languages/zh_cn.js"></script>-->
+
+
+
+
+
+    <style type="text/css">
+    p.comment{width: 500px;}
+    /**隐藏editor版权声明**/
+    .fr-wrapper + div{display:none}
+    .fr-popup{margin-left:20px; z-index:5px;}
+    .fr-arrow{display:block}
+</style>
+</head>
+<body>
+
+<header class="main_top">
+    <div class="g_container">
+        <button value="close" class="main_navbtn" onclick="top_onoff('main_nav','main_nav')"><i class="u_ico u_ico_bar"></i><i class="u_ico u_ico_bar"></i><i class="u_ico u_ico_bar"></i></button>
+        <h1 class="logo" title="新助邦考研平台"><a href="index.html"><span class="f_dn">新助邦考研平台</span></a></h1>
+        <div id="main_login" class="main_login">
+          <button onclick="top_onoff('main_loginbox','main_loginbox')" value="close" class="m_imgbox"><img src="{$m['avatar']}"></button>
+          <div id="main_loginbox" class="main_loginbox" data-href="{:U('/home/member/isLogined')}">
+            <!--未登录时显示P标签，登录时显示ul标签，用类名f_dn隐藏-->
+                 <notpresent name='_SESSION.id' value='0'>
+              <p class="main_loginlink ">
+                  <a href="{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}">登录</a>|<a href="{:U('/home/member/register')}">注册</a>
+              </p>
+              <else/>
+              <ul class="main_nav_personal">
+                <li class="item"><a href="#"><i class="ico ico0" title="进入锁定的圈子" style="background-color:#13bc98"></i><span>进入锁定的圈子</span></a></li>
+                <li class="item"><a href="{:U('/member/message/noRead')}"><i class="ico ico1" title="我的消息" style="background-color:#13bc98"></i><span>我的消息</span>
+                <php>
+                    $unMessages = M("message")->where(['to_member_id'=>session("id"),'readed'=>0])->count();
+
+
+
+                        $map['status']=0;
+                        $map['member']=session('id');
+                        $member_post_re= M('member_post')->where($map)->count();//说说的消息
+						 $mp = M("member_post")->where(['member_id'=>session('id'),'reward = 0','status = 1'])->field("id")->select();
+	                    foreach($mp as $i => $c){
+	                      $mpids[] = $c['id'];
+	                    }
+						if(count($mpids)){
+	                    $count0 =M("comment")->where(['comment_type = 3','object_id' => ['in', $mpids],'readed = 0'])->count();
+	                    $count1 =M("praise")->where(['type = 0','object_id' => ['in', $mpids],'readed = 0'])->count();
+	                    $mpcounts = $count0 + $count1;
+						}
+                    //总的消息数
+                    $sum= (int)$message_re+ (int)$mpcounts;
+                    </php>
+                <gt name='unMessages' value='0'>
+                <b class="u_tsh">{$unMessages}</b>
+                </gt>
+                </a>
+              <!--  <ul class="msg">
+               <li><a href="{:U('/member/message/noRead')}"><img src="images/icons/ico_sys.png" style="margin-right:10px;">未读消息<if condition="$unMessages"><i class="u_tsd" style="text-align: center">{$unMessages}</i></if></a></li>
+              <li><a href="{:U('/member/message')}"><img src="images/icons/ico_mss.png" style="margin-right:10px;">悄悄话<i class="u_tsd">0</i></a></li>
+
+              <li><a href="{:U('/member/memberPost')}"><img src="images/icons/ico_ms.png" style="margin-right:10px;">说说消息<if condition="$mpcounts"><i class="u_tsd">{$mpcounts}</i></if></a></li>
+              <li><a href="{:U('/member/message')}"><img src="images/icons/ico_brocast.png" style="margin-right:10px;">新助邦广播<i class="u_tsd">0</i></a></li>
+                    <li><a href="{:U('/member/message')}"><img src="images/icons/ico_love.png" style="margin-right:10px;">爱慕者消息<i class="u_tsd">0</i></a></li>
+					  
+            </ul>-->
+                </li>
+                
+                <li class="item"><a href="{:U('/home/cart/index')}">
+                <i class="ico ico2" title="我的购物车" style="background-color:#13bc98"></i>
+                <span>我的购物车</span>
+                <php>$cartnum = M("cart")->where(['member_id'=>session('id')])->sum('count');</php>
+                <i id="cartnum" style="<gt name='cartnum' value='0'>display:block;</gt>" class="u_cart">{$cartnum}</i>
+                </a>			
+				</li>
+				
+             <li style="float:left; position:absolute;"><i id="end"></i></li>
+                <li class="item">
+				  <php> $m = M("mb_member")->where(['id'=>session('id')])->find();</php>
+                  <a href="{:U('/member/center')}">
+                      <img src="{$m['avatar']}" alt="" title="个人中心" style="width:30px; height:30px; border-radius:50%;"><span>个人中心</span></a>
+                  <ul>
+
+                      <li>
+                          <a href="{:U('/member/center')}">
+                              <img src="/images/icons/ico_home.png" style=" margin-right:12px; margin-top:-5px;">
+                              个人中心
+                          </a>
+                      </li>
+                    <li>
+                        <a href="{:U('/home/member/setting')}">
+                            <img src="/images/icons/ico_ifo.png" style=" margin-right:12px; margin-top:-5px;">
+                            基本设置
+                        </a>
+                    </li>  
+                    <li id="logout"><a data-href="{:U('/home/member/logout')}" class="logout"><img src="/images/icons/ico_exit.png" style=" margin-right:12px; margin-top:-5px;">退出登录</a></li>
+                </ul>
+                </notpresent>
+            </div>
+        </div>
+        <nav id="main_nav" class="main_nav">
+            <ul class="main_nav_list f_clearfix">
+                <li class="item mdown">
+                  <a href="{:U('/home/demand/lists')}"  class="<eq name='CONTROLLER_NAME' value='Demand'>hover</eq>">找需求<i class="u_ico u_ico_cdown"></i></a>
+                  <ul class="menu">
+                    <li><a href="{:U('/home/demand/lists?de')}?demand_type=0" >资料</a></li>
+                    <li><a href="{:U('/home/demand/lists')}?demand_type=1" >答疑</a></li>
+                    <li><a href="{:U('/home/demand/lists')}?demand_type=2" >授课</a></li>
+                  </ul>
+                </li>
+                <li class="item mdown">
+                  <a href="{:U('/home/service/lists')}"   class="<eq name='CONTROLLER_NAME' value='Service'>hover</eq>">找服务<i class="u_ico u_ico_cdown"></i></a>
+          <ul class="menu">
+                    <li><a href="{:U('/home/service/lists')}?service_type=0" >资料</a></li>
+                    <li><a href="{:U('/home/service/lists')}?service_type=1" >答疑</a></li>
+                    <li><a href="{:U('/home/service/lists')}?service_type=2" >授课</a></li>
+          </ul>
+                </li>
+                <li class="item mdown"><a href="{:U("/home/OpenClass/index")}"  class="<eq name='CONTROLLER_NAME' value='OpenClass'>hover</eq>">慕课<i class="u_ico u_ico_cdown"></i></a>
+          <ul class="menu">
+                    <li><a href="{:U("/home/OpenClass/index")}" >直播课</a></li>
+                    <li><a href="http://xjr.alhelp.net/" >网校</a></li>
+          </ul>
+                </li>
+                <li class="item"><a href="{:U('/home/MemberPost')}"  class="<eq name='CONTROLLER_NAME' value='MemberPost'>hover</eq>">提问交流</a></li>
+                <li class="item mdown"><a href="{:U('/home/circle/index')}"   class="<eq name='CONTROLLER_NAME' value='Circle'>hover</eq>">社区<i class="u_ico u_ico_cdown"></i></a>
+          <ul class="menu">
+                    <li><a href="{:U('/home/circle/index')}" >圈子</a></li>
+                    <li><a href="{:U('/home/members/index')}" >找人</a></li>
+                 <!--   <li><a href="{:U('/home/activity/index')}" >活动</a></li>-->
+                   <!-- <li><a href="{:U('/home/MemberPost')}" >提问交流</a></li>-->
+          </ul>
+                </li>
+                <li class="item mdown"><a href="{:U('/home/information/index')}"  class="<eq name='CONTROLLER_NAME' value='Information'>hover</eq>">资讯<i class="u_ico u_ico_cdown"></i></a>
+          <ul class="menu">
+                    <li><a href="{:U('/home/information/index')}">下载</a></li>
+                    <li><a href="{:U('/home/information/index1')}">资讯</a></li>
+                    <li><a href="{:U('/home/information/index2')}">分享</a></li>
+                    <li><a href="{:U('/home/information/index3')}">公告</a></li>
+                    <li><a href="{:U('/home/information/index4')}">院校动态</a></li>
+          </ul>
+                </li>
+                <li class="item"><a href="{:U('/home/common/download')}"  class="<eq name='CONTROLLER_NAME' value='Common'>hover</eq>">APP下载</a></li>
+               <!-- <li class="item"><a href="{:U('/home/price')}"  class="<eq name='CONTROLLER_NAME' value='Price'>hover</eq>">奖品兑换</a></li>-->
+            </ul>
+        </nav>
+    </div>
+	<script>
+	$('#logout').click(function(){
+	$.post("{:U('/home/member/logout')}", function(data){
+   if(data.suc){
+		window.location=window.location;
+   }
+	});
+ });
+	</script>
+</header>
+<!--以上头部-->

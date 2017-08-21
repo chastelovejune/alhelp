@@ -1,0 +1,49 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+   <!-- <h2 class="logintop">找回密码</h2>-->
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+   <div class="pos_ct">  <h2 class="logintop" style="padding-bottom:0;">修改支付密码密码</h2></div>
+  <form method="post">
+ <div class="alert alert-danger" style="display:none;" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="err"></span>
+</div>
+	<ul class="login_ct f_dl">
+		<li class="lc_inp">老密码：<input name="old" type="password" class="u_inp_t" placeholder="没有就留空"></li>
+		<li class="lc_inp">新密码：<input name="new1" type="password" class="u_inp_t"></li>
+		<li class="lc_inp">确认密码：<input name="new2" type="password" class="u_inp_t"></li>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="提交"></li>
+	</ul>
+	</form>
+	<script type="text/javascript">
+		$("form").submit(function(){
+			function goErr(info){
+				$(".err").parent().show();
+				$(".err").html(info);
+			}
+			if (!$(this).find("input[name=new1]").val()) {
+				goErr("请输入新密码");
+				return false;
+			}
+			if ($(this).find("input[name=new1]").val() != $(this).find("input[name=new2]").val()) {
+				goErr("两次密码不一样");
+				return false;
+			}
+			$(this).ajaxSubmit(function(d){
+				if (d.suc) {
+					alert("重置密码成功");
+					window.location.href = "{:U('/home/member/setting')}";
+				}else{
+					alert(d.message);
+				}
+			})
+			return false;
+		})
+	</script>
+</div>
+<include file="Common/footer"/>

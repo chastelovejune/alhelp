@@ -1,0 +1,22 @@
+<div class="u_circlebar">
+  <div class="g_container">
+    <div class="cirbar_info">
+      <header>
+      <if condition="$circle['circle_type'] eq 0">
+      <php>
+      	$school = M("school")->where(["id"=>$circle['object_id']])->find();
+      </php>
+      <h2>{:M("school")->where(["id"=>$school['pid']])->getField("title")}</h2><h3>{$circle['circle_name']}</h3>
+      <else/>
+        <php>$res=M('mj_major')->where('id='.$circle['pid'])->find();</php>
+      <h2>{$res['mj_name']}</h2>
+        <h3>{:M("circle")->where(["id"=>$circle['id']])->getField("circle_name")}专业</h3>
+      </if>
+      <a href="">查看全部院校&gt;&gt;</a>
+      </header>
+    </div>
+    <div class="cirbar_link">
+    	<input type="button" class="u_btn_bb" value="报录比" href="{:U('/home/circle/ratio',['id'=>I('request.id')])}"><input type="button" class="u_btn_bb" value="重选圈子" href="{:U('home/circle/index')}">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<include file='Common/header'/>
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+  	<div class="g_cell_12 m_box pd_20 ret_g">
+  	  <header class="u_paytitle"><p><span><b>1</b>学生提交退货申请</span><span><b>2</b>等待退货</span><span class="on"><b>3</b>确认退货</span><span></p><h3>退货流程</h3></header>
+      <h4 class="pt_20" style="padding-left:10px;">学生已寄回资料，请注意查收！如果有问题，请在7天内联系对方，否则系统会默认退款给学生</h4>
+      <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit">快递公司:</div><span style="line-height:30px;">{$trans.transport_company}</span></li>
+        <li class="m_item"><div class="m_formtit">快递单号:</div><span style="line-height:30px;">{$trans.transport_number}</span></li>
+        <li class="m_item" style="text-align:center;">
+        <input type="button" onclick="ok();" class="u_btn_sl pl_10" value="确认收到货">
+        <input type="button" class="u_btn_sl pl_10" value="联系新助邦">
+        </li>
+      </ul>
+  	</div>
+  	<div class="g_cell_12 m_box mt_20"></div>
+  </div>
+</div>
+<include file='Common/footer'/>
+<script type="text/javascript">
+function ok(){
+  $.post("",function(){
+    window.location.href= "{:U('/member/order/index')}";
+  });
+}
+</script>

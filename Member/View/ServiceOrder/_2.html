@@ -1,0 +1,61 @@
+<div class="g_cell_3 mt_20">	
+<eq name='is_stu' value='true'>	  
+			<section class="indx6 m_box mb_20">
+				<h3 class="m_title">课程教师</h3>
+              <div class="teacher_box">
+                <div class="img_face mb_20">
+                <img src="images/test/50.jpg"/>
+                </div>
+                <div class="content_right">
+                <h4>{$s.nickname}</h4>
+                <p class="clear"><span>{$s.sign}</span></p>
+                </div>
+                <div class="te_link"><a href="" class="u_btn_sl">反馈老师</a></div>
+                <eq name='o.num' value='0'>
+                 <div  class="te_link"><a href="{:U('/member/contract/show',['id'=>M('contract')->where(['order_id'=>$o['id']])->order('id desc')->getField('id')])}" class="u_btn_sl">查看合同</a></div>
+                 </eq>
+               <div class="clear"></div>
+          </div>            
+			</section>
+<else/>
+<php>
+$stu = M("mb_member")->find($o['student_id']);
+$ss = M("service_order_view")->where(['service_id'=>$o[service_id]])->select();
+</php>
+  <section class="indx6 m_box mb_20">
+        <h3 class="m_title">辅导学员</h3>
+              <div class="teacher_box mb_20">
+                <div class="img_face mb_20">
+                <img src="images/test/50.jpg">
+                </div>
+                <div class="content_right">
+                <h4>{$stu.nickname}</h4>
+                <p class="clear"><span>{$stu.sign}</span></p>
+                </div>
+                <p class="clear student_con">备注：<span class="teacher_remark">{$o.teacher_remark}</span></p>
+              
+               <div class="clear"></div>
+          </div> 
+            <div class="bottom">
+                <a data-id={$_GET.id} onclick="edit_service_order_teacher_remark(this);">编辑</a>
+                </div>           
+      </section>
+                    
+                      <section class="indx6 m_box mb_20">
+        <h3 class="m_title">学员管理</h3>
+               <ul class="clear">
+               <foreach name='ss' item="s">
+               <li class="home_yh">
+               <div class="img_yh_home"><a href="{:U('/member/serviceOrder/show',['id'=>$s[id]])}"><img src="{$s.student_avatar}"></a></div>
+               <div class="yh_home_txt">
+               <a href="{:U('/member/serviceOrder/show',['id'=>$s[id]])}">
+               {$s.student_nickname}</a>
+               </div>
+               </li>
+               </foreach>
+                </ul>
+                <div class="clear"></div>   
+      </section>    
+      <include file="../Application/Home/View/Common/modal.html"/>
+</eq>                                      
+		</div>

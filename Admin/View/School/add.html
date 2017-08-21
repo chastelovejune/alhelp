@@ -1,0 +1,23 @@
+<include file="Common:admin_header" />
+<form  class="form-horizontal" method="POST">
+  <资料重要请谨慎添加></br></br>
+主键ID： <input type="text" name="id" /></br></br>
+父PID：<input type="text" name="pid" />
+  </br></br>
+  类型: &nbsp; &nbsp;<select name="type">
+    <option value="1">城市</option>
+    <option value="2">学校</option>
+    <option value="3">学院</option>
+    <option value="4">专业</option>
+    </select>
+  </br></br>
+  编号： <input type="text" name="code" /></br></br>
+  名称： <input type="text" name="title" "/></br></br>
+  地址： <input type="text" name="address" /></br></br>
+  电话： <input type="text" name="telephone" /></br></br>
+  邮编： <input type="text" name="postal_code" /></br></br>
+  网址： <input type="text" name="website" /></br></br>
+
+  <input type="submit" value="保存"/>
+</form>
+<include file="Common:admin_footer" />

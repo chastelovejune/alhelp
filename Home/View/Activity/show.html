@@ -1,0 +1,90 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<php>$hot=$a;</php>
+	 <include file="_hot"/>
+
+		<section class="g_cell_9">
+		  <div class="ds_detail_bd m_box mt_0I">
+				<ul class="u_tab2">
+				  <li id="dscTab_1" onmouseover="setTab('dscTab_','u_tab2_item',1,1)" class="u_tab2_item hover">详情</li>
+				</ul>
+				<div id="dscTab_1box" class="ds_detail_ct ds_detail_xq">
+					
+					<p class="activity_content">{$a[content]}</p>
+					
+				</div>
+				<eq name='a.member_id' value='$_SESSION.id'>
+				<div class="u_btn_sl fr_mg" onClick="$('#activity_detail').toggle();">修改详情</div>
+                <div class="clear"></div>
+                <div class="detail_ipt" id="activity_detail">
+                	<form class="activity_detail" method="post" action="{:U('/home/activity/curdUpdate')}">
+                	<input type="hidden" name="id" value="{$a.id}">
+                	<textarea class="u_inp_t"  name="content">{$a.content}</textarea>
+                 	<div class="u_btn_sl fr_mg " onclick="$('form.activity_detail').submit();">确认</div>
+                 	<div class="clear"></div>
+                 	</form>
+                </div>
+                </eq>
+		  </div>
+		  <div class="text_detailfd m_box f_clearfix pd_20">
+          
+            <div class="ucl_ssreplybox">
+            <php>
+            	$_objectId = $a[id];
+            	$_commentType = 6;
+            	$comments = get_comments($_commentType,$_objectId);
+            </php>
+	  	    <include file="Common/_addComment"/>
+	  	    <include file="Common/_comments"/>
+			<include file="Common/_comments.js"/>
+				  	    	  	    
+	    </div>
+		</section>
+        <!--自己进入，可以点击-->
+		<section class="g_cell_3 m_box">
+		  <div class="ucr_box mb_20">
+				<ul class="u_tab2">
+				  <li class="u_tab2_item hover">报名参加的人数：{:M("activity_member")->where(['activity_id'=>$a['id']])->count()}人</li>
+				</ul>
+				<ul class="m_imglist f_clearfix">				  
+                  <li class="activity_hot">
+                  <div class="img_activity">
+                  <img src="{$a[image]}"/>
+                  </div>
+                  <h4>{$a[title]}</h4>
+                  <h5>时间：{$a[begin_time]}</h5>
+                  </li>
+				</ul>
+		  </div>
+		</section>
+        
+        <!--别人进入不可点击-->
+        <section class="g_cell_3 m_box">
+		  <div class="ucr_box m_box mb_20">
+		  <php>
+		  	$ms = M('activity_member')->join("LEFT JOIN mb_member ON member_id=mb_member.id")->where(['activity_id'=>$a[id]])->field("nickname,avatar,mb_member.id")->select();
+		  </php>
+				<ul class="u_tab2">
+				  <li class="u_tab2_item hover">报名参加的人员</li>
+				</ul>
+				<ul class="m_imglist f_clearfix">
+				  <foreach name="ms" item="m">
+				  <li class="m_item">
+				  	<if condition="$a[member_id] eq session('id')">
+					  <a href="{:U('/home/member/profile',['id'=>$m[id]])}">
+					</if>
+				    <div class="m_imgbox"><img src="{$m[avatar]}"></div>
+				    <h4>{$m[nickname]}</h4>
+				  	<if condition="$a[member_id] eq session('id')">
+				    </a>
+				    </if>
+				  </li>
+				  </foreach>
+				</ul>
+		  </div>
+		</section>
+	</div>
+</div>
+<include file="Common/footer"/>

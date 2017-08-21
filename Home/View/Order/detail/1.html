@@ -1,0 +1,49 @@
+<div id="uclTab_2box" class="pd_20">
+<php>
+  foreach($orders as $o){
+    $tmp[$o[from_member_id]][] = $o;
+  }
+  $orders = $tmp;
+</php>
+        <header class="u_paytitle mb_30"><h3>订单详情</h3></header>
+        <foreach name='orders' item='os'>
+        <div class="paytable paystep2">
+          <ul class="paytable_title">
+            <li class="paytab_item1"></li>
+            <li class="paytab_item2">
+              <div class="paytab_user"><div class="m_imgbox"><img src="{$os.0.teacher_avatar}"></div>{$os.0.teacher_nickname}</div>
+              <div class="paytab_NO"></div>
+            </li>
+            <li class="paytab_item3">单价</li>
+            <li class="paytab_item3">数量</li>
+            <li class="paytab_item3">小计</li>
+          </ul>
+          <foreach name='os' item='o'>
+          <ul>
+            <li class="paytab_item1"></li>
+            <li class="paytab_item2">
+              <div class="paytab_tit">{$o.description}</div>
+            </li>
+            <li class="paytab_item3">&yen;{$o.cost}</li>
+            <li class="paytab_item3"><div class="paytab_amount">{$o.count}</div></li>
+            <li class="paytab_item3">&yen;{$o.total}</li>
+          </ul>
+          </foreach>
+        </div>
+        <div class="paytab_parttotal"></div>
+        </foreach>
+
+        <div class="f_clearfix mb_30">
+          <div class="paytab_txetbox">
+            <p class="f_cl9"><span class="f_cll">收货地址：</span><span>{:M("area")->getFieldById($o['province'],'title')}{:M("area")->getFieldById($o['city'],'title')}{:M("area")->getFieldById($o['area'],'title')}{$o.address}</span></p>
+            <p class="f_cl9"><span class="f_cll">支付方式：</span><span>
+              <eq name='o.cash_id' value='0'>
+              余额
+              <else/>
+              {:C("cash_pay_types")[$o[pay_type]]}
+              </eq>
+            </span></p>
+          </div>
+          <div class="paytab_submitbox  f_fr"><strong>总计：&yen;{$fee}</strong></div>
+        </div>
+      </div>

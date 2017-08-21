@@ -1,0 +1,163 @@
+<include file="Common:header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+	<form class="register" method="post" action="{:U('/home/member/register')}">
+	<ul class="login_ct">
+	<h2 class="logintop">注册新助邦账号<span><a href="{:U('/home/member/login')}">登录&nbsp;&nbsp;<img src="/images/icons/go.png" style="width:25px;height:25px;margin-top:-5px;"/></a></span></h2>
+		<eq name='_GET.by' value='email'>
+			<li class="lc_inp">电子邮箱：<input type="text" name="email" class="u_inp_t" email='true' required="true"><br>
+			<p>没有邮箱？&nbsp;&nbsp;&nbsp;<a href="?by=phone" class="register_to_phone re">手机注册</a></p></li>
+		<else/>
+			<li class="lc_inp">手机号：<input type="text" name="phone" class="u_inp_t" required="true" isPhone='true' id="phone_number"><br>
+			<p>没有手机 ？&nbsp;&nbsp;&nbsp;<a href="?by=email" class="register_to_email re">邮箱注册</a></p></li>
+		</eq>
+		
+		<li class="lc_inp">用户名：<input type="text" name="nickname" class="u_inp_t" required="true" isNickname="true"></li>
+		<li class="lc_inp">密码：<input type="password" name="password" class="u_inp_t" required="true"></li>
+		<li class="lc_inp">确认密码：<input type="password" name="password2" class="u_inp_t" required="true" equalTo='[name=password]'></li>
+		<eq name='_GET.by' value='email'><li class="lc_yzm">验证码：<input type="text" name="code" class="u_inp_t" required="true"><img src="{:U('/home/common/verifyCode')}"></li><else/>
+		<li class="lc_inp" >验证码：<p class="login_ver"><input required="true" type="text" name="phone_verified" class="u_inp_t"><span>&nbsp;&nbsp;&nbsp;<input style="width: 10em" class="u_btn_sl" id="get_verified"  type="button" value="获取短信验证码"></span></p></li></eq>
+		<li class="lc_yhsc"><label><input type="checkbox" checked="true" required="true" name="box"> 我已阅读<a href="{:xieyi()}" target="_blank">《新助邦会员注册协议》</a></label></li>
+		<input type="hidden" name="by" value="{$Think.get.by}"/>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl"  value="注册"></li>
+	</ul>
+	</form>
+	<style type="text/css">
+		
+	</style>
+	<p class="logintxt">快速登录</p>
+	<ul class="login3">
+		<li class="qq"><a href="{:U('/home/member/qqLogin')}" target="_blank"> <img src="/images/icons/bt_blue_76X24.png"/> </a></li>
+		<!--<li><a href="{:U('/home/member/wxLogin')}" target="_blank"> <img src="/images/icons/weichat.png"/> </a></li>-->
+		<li><a href="{:U('/home/member/weiboLogin')}" target="_blank"> <img src="/images/icons/weibologin.png"/> </a></li>
+	</ul>
+</div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+
+	$("input[name=code]").next().click(function(){
+	
+		$(this).attr("src","{:U('/home/common/verifyCode')}"+"?time="+(new Date()).valueOf());
+	
+	});
+	$("form.register").go_validate(function(form){
+		$(form).ajaxSubmit(function(result){
+			//console.log(result);
+			if (result["suc"]===true) {
+				if(result["type"]=="email"){
+					window.location.href = "{:U('/home/member/email')}"+"?url="+result["url"];
+				}else{
+					window.location.href = "{:U('/home/member/flow')}";
+				}
+
+			//window.location.href = "{:U('/home/member/flow')}";
+			//window.location.href = "{:U('/')}";
+			} else {
+				//console.log(result);
+				layer.msg(result["message"]);
+			}
+		});
+	},{
+		messages:{
+			'nickname':{'required':'请输入用户名','remote':'用户名已经存在'},
+			'password':"请输入密码",
+			'password2':{'required':'请输入确认密码','equalTo':'2次密码不一样'},
+			'code':'请输入验证码',
+			'box':'请勾选会员注册协议',
+			'email':{'required':'请输入邮箱地址','remote':'邮箱已经存在'},
+			'phone':{'required':'请输入手机号','remote':'手机号已经存在'}
+		},
+		errorPlacement: function(error, element) {
+			 element.parent().append(error);
+			/*if (element.is(":checkbox")) {
+				element.parent().append(error);
+			}else{
+				var name = element.attr("name");
+				if (name == 'code') {
+					element.next().after(error);
+				}else{
+					element.after(error);
+				}
+			}*/
+		},
+		rules:{
+			phone:{
+				remote:{
+					'url':"{:U('/home/member/validate')}",
+				}
+			},
+			email:{
+				remote:{
+					'url':"{:U('/home/member/validate')}",
+				}
+			},
+			nickname:{
+				remote:{
+					'url':"{:U('/home/member/validate')}",
+				}
+			}
+		}
+	});
+
+
+	$("#get_verified").click(function()
+	{
+		var phone = $("form input[name=phone]").val();
+		$btn=this;
+		var object=this;
+		$.post("{:U('/home/common/sendPhoneCode')}",{phone:phone},function(d)
+		{
+			//alert($("#get_verified").html());
+			if (d.suc)
+			{
+				$("form a:eq(1)").html("已发送")
+				settime(object);
+				time($("#get_verified"));
+				//$("#get_verified").html("已发送");
+
+			}
+			else
+			{
+				alert("发送短信失败,该号码已被注册");
+			}
+		});		
+	});
+	
+/*
+	jQuery.validator.addMethod("isNickname", function(value, element) {    
+	    var nickname = /^[a-z]+\d+$/g;    
+	    return this.optional(element) || (nickname.test(value));    
+	}, "用户名是字母和数字的组合"); */
+	/*$("#phone_number").focusout(function () {
+		$.post
+		$msg=$("#phone-error").text();
+		alert($msg);
+	});*/
+
+
+	//短信验证码倒计时
+	var countdown=90;
+	function settime(obj) {
+		if (countdown == 0) {
+			obj.removeAttribute("disabled");
+			obj.value="免费获取验证码";
+			countdown = 90;
+			return;
+		} else {
+			obj.setAttribute("disabled",true);
+			obj.value="重新发送(" + countdown + "s)";
+			countdown--;
+		}
+		setTimeout(function() { settime(obj) },1000)
+	}
+
+</script>
+<!--</script>
+<script type="text/javascript">-->
+<include file="Common:footer"/>

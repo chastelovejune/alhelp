@@ -1,0 +1,48 @@
+
+            
+            <div id="clsTab9_5box" >
+            <ul class="m_form f_clearfix pd_20">
+			    <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+			     <div class="m_img">
+                 <img src="/images/icons/weibo.png"/>
+                 </div>
+                 <div class="zh_con">
+                 <h4>微博账号</h4>
+                 <h5><if condition="$m[weibo_uid] eq 0">未绑定<else/>已绑定{$m[weibo_nickname]}</if></h5>
+                 </div>
+                 <div class="zh_bd">
+                 <input type="button" href='{:U('/home/member/weiboLogin')}' class="u_btn_sl" value="绑定">
+                 </div>
+			    </li>
+			      <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+			     <div class="m_img">
+                 <img src="/images/icons/qq.png"/>
+                 </div>
+                 <div class="zh_con">
+                 <h4>QQ账号</h4>
+                 <h5>
+                <eq name='m.qq_openid' value=''>
+                 未绑定
+                 <else/>
+                 已绑定
+                 </eq>
+                 </h5>
+                 </div>
+                 <div class="zh_bd">
+                 <input type="button" class="u_btn_sl" href='{:U('/home/member/qqLogin')}' value="绑定">
+                 </div>
+			    </li>  
+                  <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+			     <div class="m_img">
+                 <img src="/images/icons/weixin.png"/>
+                 </div>
+                 <div class="zh_con">
+                 <h4>微信账号</h4>
+                 <h5>未绑定</h5>
+                 </div>
+                 <div class="zh_bd">
+                 <input type="button" class="u_btn_sl" onclick="javascrip:window.location.href='{:U('/home/member/wxLogin')}'" value="绑定">
+                 </div>
+			    </li>        			  
+			  </ul>
+            </div>

@@ -1,0 +1,105 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9 m_box pd_20">
+		  <header class="text_detailhd">
+		  	<h2>{$s[title]}</h2>
+		  	<span>作者：<a href="{:id2path($s[member_id])}">{$s[nickname]}</a></span><span>发布时间：{:substr($s[add_time],0,10)}</span><span>浏览次数：{$s[views]}次</span><br>
+			  <if condition="$s[attachment] neq ''">
+				  <button class="u_btn_sl d_attachmentd_attachment" id="attachment"><i class="u_ico_download"></i>确认下载</button><br>
+				  <span>附件：<small>{$s[attachment_name]}</small></span>
+				  <if condition="$s['download_type'] eq 1">
+					  <span><strong>{$s[download_cost]}</strong>积分</span>
+					  <elseif condition="$s['download_type'] eq 2" />
+					  <span><strong>{$s[download_cost]}</strong>金币</span>
+					  <elseif condition="$s['download_type'] eq 3"/>
+					  <span>人民币<strong>{$s[download_cost]}</strong>元</span>
+					  <else/>
+					  <span>下载免费</span>
+				  </if>
+			  </if>
+			  <br>
+
+		  </header>
+
+		  <div class="text_detailbd">{$s[content]}</div>
+		  <div class="text_detailfd">
+			<if condition="$s[url]"> 链接: <a href="{$s[url]}">{$s[url]}</a></if>
+		  <php>
+		  	$pre = M("share")->where("id < $s[id]")->order("id DESC")->find();
+		  	$next = M("share")->where("id > $s[id]")->order("id ASC")->find();
+		  </php>
+		    <div class="text_fy f_clearfix"><span><a href="">分享给朋友</a><a href="">分享到圈子</a><a href="">收藏</a></span><a class="f_fl" href="{:U('/home/share/show',['id'=>$pre[id]])}">上一篇：{$pre[title]}</a><a class="f_fr" href="{:U('/home/share/show',['id'=>$next[id]])}">下一篇：{$next[title]}</a></div>
+		    <php>
+		    	$_commentType=5;
+		    	$_objectId = $s[id];
+	            $comments = get_comments($_commentType,$_objectId);
+		    </php>
+		  <include file="Common/_addComment"/>
+  		  <include file="Common/_comments"/>
+		  <include file="Common/_comments.js"/>
+		  </div>
+		</section>
+		<section class="g_cell_3 m_box">
+			<ul class="u_tab2">
+			  <li class="u_tab2_item">最新公告</li>
+			</ul>
+			<div id="clsTab_2box" class="cls_mainct">
+				<php>
+					$gonggao=M('information')->where("type=3 AND status=0")->limit(5)->order("add_time desc")->select();
+				</php>
+				<ul class="m_newsTlist f_clearfix">
+					<foreach name="gonggao" item="gong">
+					<li class="m_item"><a href="{:U('home/information/show',['id'=>$gong['id']])}">{$gong.title}</a></li>
+				</foreach>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+	$.post("{:U('/home/share/read')}",{id:id},function(){})
+	var id = {$s['id']};
+	var atta_type="{$s['download_type']}";
+	$("#attachment").click(function(){
+		if(atta_type == 0){
+		   $.post("{:U('/home/share/download')}", {id: id}, function (d) {
+			   if(d.suc) {
+				   layer.msg(d.message);
+				   window.location.href = d.url;//打开下载的地址
+			   }else{
+				   layer.msg(d.message);
+			   }
+		   })
+		}else{
+		layer.confirm('下载需要扣除积分、金币或人民币，确定下载吗？', {
+			btn: ['确定','取消'] //按钮
+		}, function(){
+			$.post("{:U('/home/share/download')}", {id: id}, function (d) {
+					if (d.suc) {
+						if(atta_type == 3){
+						  layer.msg(d.message);
+						  var url = "{:U('/home/share/pay')}" + "?id=" + d.url;
+						  window.location.href = url;
+						}else{
+						layer.msg(d.message);
+						window.location.href = d.url;//打开下载的地址
+						}
+					} else {
+						layer.msg(d.message);
+					}
+
+			})
+		})
+		}
+	})
+</script>
+
+<include file="Common/footer"/>

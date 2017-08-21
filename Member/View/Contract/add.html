@@ -1,0 +1,246 @@
+<include file="Common/header"/>
+<php>
+	$order = M("service_order_view")->getById(I('request.id'));
+	$c = M("contract")->where(['order_id'=>I('request.id')])->order('id desc')->find();
+	$ps = M("learning_periods")->where(['contract_id'=>$c['id']])->select();
+</php>
+
+<form method="post" class="main">
+<div class="g_container mt_20 m_box">
+	
+     <div class="divide">
+                <div class="d_left"></div>
+                <div class="d_con ag_title">拟定协议</div>
+                <div class="d_right"></div>
+                </div>
+                
+                <div class="pd_20">
+                
+               
+               <div class="ag_mdt">                         
+              <input type="text" name="title" value="{$c.title}" class="inp_title" placeholder="协议标题（控制在15字）" style="margin-bottom:20px;" max>
+              <input type="button" class="u_btn_bc" style="float:right; margin-right:2%;" value="范本+">
+              </div>
+                          
+              <div class="int">
+				  <div >
+                    <textarea id='edit' name="content" class="input_con" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                   {$c.content} </textarea>
+				  </div>
+				  <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+				  <script type="text/javascript">
+					  $('#edit').froalaEditor({
+						  //heightMin:200,
+						  height: 200,
+						  language: "zh_cn",
+						  theme: "gray",
+						  imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+						  imageUploadParam:'file', //文件名称 <input type=file name=file>
+						  //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+						  toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+						  imageInsertButtons: ['imageUpload'],
+						  imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+					  }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+						  $('.fr-image-progress-bar-layer').addClass('fr-active');
+					  }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+						  if( $('.fr-message').text()=='Loading image' ){
+							  $('.fr-image-progress-bar-layer').removeClass('fr-active');
+							  $img.froalaEditor('events.focus');
+						  }
+					  });
+				  </script>
+
+              </div> 
+              <neq name='c.remark' value=''>
+                <div class="stu_remark">学生修改意见: <p>  {$c.remark}</p></div>
+                </neq>
+                <div class="ag_sta">
+                <h4>学习阶段<span onClick="$('form.add .pop_bg').show();">&nbsp;&nbsp;&nbsp;&nbsp;添加+</span></h4>
+                <ul class="sta_box periods">
+
+                <li style="height:60px;">
+                 <ul style="background:#3c4564; color:#fff; height:50px;">
+               <li class="sta_aditem">
+               阶段
+               </li>
+                 <li class="sta_aditem">
+               金额
+               </li>
+                 <li class="sta_aditem">
+               次数
+               </li>
+                 <li class="sta_aditem">
+               操作
+               </li>
+               
+               </ul>    
+                </li>
+             
+                </ul>
+                     
+                </div>
+              
+              <div class="sta_mdbtn">
+              <div class="u_btn_sl submit">提交</div>
+              </div>
+
+	</div>
+</div>
+</form>
+
+<form class="add">
+	<div class="pop_bg" style="z-index: 3000;">
+	 	<div class="add_sta" style="margin-top: 0;">
+	        <h4 class="add_title">添加学习阶段</h4>
+	        <div class="add_con">
+	        <h5>名称</h5>
+	        <input type="text" class="inp_al" name="title">
+	        <div class="sta_time">
+	        <h5>次数</h5>
+	        <div class="clear"></div>
+	        <input type="text" class="u_inp_t" name="num">&nbsp;<small style="color:grey">优惠包次数为{$re}次</small>
+	     
+	        </div>
+	        <h5>目标</h5>
+	           <div class="int">
+	        <textarea class="input_con" name="target"></textarea>
+	        </div> 
+	        <h5>金额（元）</h5>
+	          <p><span class="cost">0</span>元</p>
+	          <div class="sta_btn">
+	          <input type="submit" value="保存" class="u_btn_sl">
+	          <input type="button" value="取消" class="u_btn_sl" onClick="$('form.add .pop_bg').hide()">
+	          </div>
+	        </div>
+	    </div>
+	</div> 
+</form>
+<form class="edit">
+<input type="hidden" name="index">
+	<div class="pop_bg">
+	 	<div class="add_sta">
+	        <h4 class="add_title">编辑学习阶段</h4>
+	        <div class="add_con">
+	        <h5>名称</h5>
+	        <input type="text" class="inp_al" name="title">
+	        <div class="sta_time">
+	        <h5>次数</h5>
+	        <div class="clear"></div>
+	        <input type="text" class="u_inp_t" name="num">&nbsp;<small style="color:grey">优惠包次数为{$re}次</small>
+	     
+	        </div>
+	        <h5>目标</h5>
+	           <div class="int">
+	        <textarea class="input_con" name="target"></textarea>
+	        </div> 
+	        <h5>金额（元）</h5>
+	          <p><span class="cost">0</span>元</p>
+	          <div class="sta_btn">
+	          <input type="submit" value="保存" class="u_btn_sl">
+	          <input type="button" value="取消" class="u_btn_sl" onClick="$('form.edit .pop_bg').hide()">
+	          </div>
+	        </div>
+	    </div>
+	</div> 
+</form>
+</div>
+<include file="Common/footer"/>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("form.add [name=num]").keyup(function(){
+			var num = $(this).val();
+			// alert(parseInt(num));
+			if (parseInt(num) > 0) {
+				$("form.add span.cost").html(num2fee(num));
+			}else{
+				$("form.add span.cost").html(0);
+			}
+		})
+		$("form.edit [name=num]").keyup(function(){
+			var num = $(this).val();
+			// alert(parseInt(num));
+			if (parseInt(num) > 0) {
+				$("form.edit span.cost").html(num2fee(num));
+			}else{
+				$("form.edit span.cost").html(0);
+			}
+		})
+	})
+	function num2fee(num){
+		var fee = {$order[cost]*$order[discount]}*num*1.0/10;
+		return fee;
+	}
+	function edit_period(t){
+		var p = $(t).parent().parent().parent();
+		var f = $("form.edit");
+		f.find(".pop_bg").show();
+		var index = $("ul.periods>li").index(p);
+		var hiddens = p.find("input[type=hidden]");
+		f.find("input[name=index]").val(index-1);
+		f.find("input[name=title]").val(hiddens.eq(0).val());
+		f.find("input[name=num]").val(hiddens.eq(1).val());
+		f.find("textarea[name=target]").val(hiddens.eq(2).val());
+		f.find("span.cost").html(num2fee(hiddens.eq(1).val()));
+	}
+	function delete_period(t){
+		$(t).parent().parent().parent().remove();		
+	}
+
+	function to_li(title,num,target){
+		var lis = $("ul.periods>li");
+		var fee = num2fee(num);
+		var html = '<li   class="sta_item"><ul class="sta_item_con"><li class="sta_aditem">'+lis.length+'.<span>'+title+'</span></li><li class="sta_aditem"><span>'+fee+'</span>元</li><li class="sta_aditem">&nbsp;&nbsp;&nbsp;<span>'+num+'</span>次</li><li class="sta_aditem"><input type="button" class="u_btn_bl" value="编辑" onClick="edit_period(this)"><input type="button" class="u_btn_bl" value="删除" onClick="delete_period(this)"></li></ul>    ';
+		var hidden = build_hidden("periods["+lis.length+"][title]",title);
+		hidden += build_hidden("periods["+lis.length+"][num]",num);
+		hidden += build_hidden("periods["+lis.length+"][target]",target);
+		html += hidden;
+		html += '</li>';
+		return html;
+	}
+	function add_perios(title,num,target){
+		var html = to_li(title,num,target);
+		$("ul.periods").append(html);		
+	}
+	$("form.add").submit(function(){
+		var title = $(this).find("input[name=title]").val();
+		var num = $(this).find("input[name=num]").val();
+		var target = $(this).find("textarea[name=target]").val();
+		add_perios(title,num,target);
+		$(this).find(".pop_bg").hide();
+		return false;
+	})
+	$("form.edit").submit(function(){
+		$(this).find(".pop_bg").hide();
+		var title = $(this).find("input[name=title]").val();
+		var num = $(this).find("input[name=num]").val();
+		var target = $(this).find("textarea[name=target]").val();
+		var index = $(this).find("input[name=index]").val();
+		var fee = num2fee(num);
+		index = parseInt(index);
+		var li = $("ul.periods>li").eq(index+1);
+		li.find("ul li").eq(0).find('span').html(title);
+		li.find("ul li").eq(1).find('span').html(fee);
+		li.find("ul li").eq(2).find('span').html(num);
+		li.find("[type=hidden]").eq(0).val(title);
+		li.find("[type=hidden]").eq(1).val(num);
+		li.find("[type=hidden]").eq(2).val(target);
+		return false;
+	})
+	var f = $("form").eq(0);
+	f.find("div.submit").click(function(){
+		f.ajaxSubmit(function(d){
+			if(d.suc) {
+				layer.msg("合同已提交给学生，请主动与学生沟通");
+				window.location.href = "{:U('/member/service/orders',['id'=>$order['service_id']])}"
+			}else{
+				layer.msg(d.message);
+			}
+		})
+		return false;
+	});
+	<foreach name="ps" item="p">
+	add_perios('{$p.title}',{$p.num},'{$p.target}');
+	</foreach>
+</script>

@@ -1,0 +1,24 @@
+
+<div class="ag_md_top">
+<div class="ag_type">
+    <php>
+        $map['periods']=$per;
+        //$map['to_member_id']=session('id');
+        $msg=M('message')->where($map)->order('id desc')->select();
+        </php>
+<p>阶段{$step+1}<br><span>阶段进行中</span></p>
+</div>
+<div class="ag_scon">
+<ul>
+    <foreach name="msg" item="vo">
+<li>{$vo.add_time}&nbsp;&nbsp;&nbsp;&nbsp;<span>{$vo.content}</span></li>
+    </foreach>
+</ul>
+
+</div>
+</div>
+
+<div class="stu_title clear"> <!--当为套餐时这部分有-->
+<h4>阶段教学方案</h4>
+<p>《考研专业课第一阶段学习规划》<a class="u_btn_sl" id="jiaoxue" href="{:U('/member/classPlan/add',['id'=>$per,'rid'=>$o['id']])}"><if condition="$role eq 1">编辑<else/>查看</if></a></p>
+</div>

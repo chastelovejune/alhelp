@@ -1,0 +1,20 @@
+
+            <section class="indx6 m_box mb_20 ucr_box">
+				<h3 class="m_title">最新加入学员</h3>
+               <ul id="ucrTab_1box" class="m_imglist f_clearfix">
+          <foreach name="_detailNewestMs" item="m">
+          <li class="m_item">
+            <div class="m_imgbox">
+            <a href="{:id2path($m['id'])}">
+            <img src="{$m['avatar']}">
+            </a>
+
+            </div>
+            <h4>{$m['nickname']}</h4>
+          </li>
+         </foreach>
+				</ul>
+                   <div class="bottom">
+               <a href="#d3" class="more"> 查看更多>></a>
+                </div>  
+			</section>

@@ -1,0 +1,49 @@
+<include file="Common:admin_header" />
+<a class="btn btn-outline btn-success btn-sm" href="{:U('/admin/lunbotu/add')}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+
+      <td>编号</td>
+      <td>图片</td>
+      <td>排序</td>
+      <td>添加时间</td>
+      <td>操作</td>
+
+    </tr>
+  </thead>
+    <foreach name="re" item="v">
+    <tr>
+      <td>{$v['id']}</td>
+      <td><img src="{$v['img']}" /></td>
+      <td><input type="text" value="{$v['sort']}" style="width: 20px" data-id="{$v['id']}"/>
+        <input type="button" class="sort" value="设置" />
+      </td>
+      <td>{$v['add_time']}</td>
+
+      <td>
+        <if condition="$v['status'] eq 0">
+        <a class="btn-default btn btn-sm" href="{:U('admin/lunbotu/stop',['id'=>$v['id']])}">禁用</a>
+          <else/>
+          <a class="btn-default btn btn-sm" href="{:U('admin/lunbotu/start',['id'=>$v['id']])}" style="background-color: green;border:0px">启用</a>
+          </if>
+        <a class="btn-danger btn btn-sm" href="{:U('delete',['id'=>$v['id']])}">删除</a></td>
+
+
+    </tr>
+    </foreach>
+</table>
+
+<script>
+  $(".sort").click(function(){
+    var so=$(this).prev().val();
+    var id=$(this).prev().attr("data-id");
+    $.post("{:U('admin/Lunbotu/sort')}",{sort:so,id:id},function(d){
+      if(d.suc){
+        layer.msg(d.message);
+      }
+    })
+  })
+  </script>
+<include file="Common:admin_footer" />

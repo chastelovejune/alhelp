@@ -1,0 +1,59 @@
+<div class="u_userbar">
+  <div class="g_container">
+    <div class="userbar_info">
+        <if condition="$m['is_realname'] eq 1">
+        <img src="/images/icons/ico_ming.png" style="width: 20;height: 20px"></if>
+        <if condition="$m['is_v'] eq 1">
+            <img src="/images/icons/ico_v.png" style="width: 20;height: 20px"></if>
+        <if condition="$m['is_identify'] eq 1">
+            <img src="/images/icons/ico_id.png" style="width: 20;height: 20px"></if>
+    	<div class="m_imgbox">
+           <img src="{$m['avatar']}" alt="">
+        </div>
+    	<div class="userbar_name">{$m['nickname']} <if condition="$m['is_realname'] eq 1"><span>已通过审核</span> 
+		<else /><span>未实名认证或尚未通过认证</span> </if></div>
+    	<div class="userbar_autograph">
+    	  <input name="sign" id="sign" onblur="send_sign()" value="{$m[sign]}" style="background-color:transparent;border: 0px;color: white " placeholder="点击设置签名">
+    	</div>
+        <php>
+        $circle = M("circle")->join("LEFT JOIN circle_member ON circle.id = circle_member.circle_id")->where(["member_id"=>$m['id']])->order("circle_level DESC")->find();
+        $areaName = M("school")->join("LEFT JOIN school as ps on school.pid=ps.id")->where(["school.id"=>$circle['object_id']])->getField("ps.title");
+     </php>
+    	<div class="userbar_data" style="margin-top:-8px; font-family:'宋体';"><p><span>{$areaName}&nbsp;|&nbsp;{$circle[circle_name]}</span></p>     
+        </div>
+        <div class="userbar_data blackc"><p><a href=""><span>关注：{$m['follow_num']}</span></a><a href=""><span>粉丝：{$m['fans_num']}</span></a><a href=""><span>好友：{$m[friend_num]}</span></a><a href=""><span>群聊：0</span        
+        ></a><a href="" style="display:none;"><img src="/images/icons/heart2.png"></a></p>     
+        </div>
+    </div>
+    <div class="userbar_switch">
+    <ul>
+    <li class="se">	<input type="button" value="学生" class="<eq name='is_student' value='true'>selected<else/>unselect</eq>" onClick="changeRole(0)"></li>
+    <li class="lines"></li>
+    <li class="se"> <input type="button" value="老师" class="<eq name='is_student' value='true'>unselect<else/>selected</eq>" onClick="changeRole(1)"></li>
+    </ul>
+  
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    function changeRole(role){
+        $.cookie("role",role);
+        if (role == 0) {
+            window.location.href = "{:U('/member/index/studentCenter')}";
+        }else{
+            window.location.href = "{:U('/member/index/teacherCenter')}";
+        }
+    }
+   function send_sign(){
+        var sign=$('#sign').val();
+       $.post("{:U('member/memberPost/sendSign')}",{sign:sign},function(d){
+           if(d.suc){
+               layer.msg("设置签名成功");
+           }
+       })
+   }
+    $('#sign').focus(function(){
+        $(this).attr('background-color','white');
+        $(this).attr('color','black');
+    })
+</script>

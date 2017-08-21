@@ -1,0 +1,24 @@
+<include file="Common:admin_header" />
+<a class="btn btn-outline btn-success" href="{:U("/admin/slide/add")}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <foreach name="columns" item="c">
+    <td>{$c}</td>
+    </foreach>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="s">
+    <tr>
+      <foreach name="s" item="v">
+      <td>{$v}</td>
+      </foreach>
+      <td>
+        <a class="btn btn-info" href="{:U("/admin/slide/edit")}?id={$s["id"]}">编辑</a>
+        <a class="btn btn-danger" href="{:U("/admin/slide/delete")}?id={$s["id"]}">删除</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<include file="Common:admin_footer" />

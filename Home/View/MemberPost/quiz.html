@@ -1,0 +1,207 @@
+<include file="Common/header"/>
+		  	  <php>
+    	  $circles = M('circle');
+    	  	if(CONTROLLER_NAME == "Circle"){
+    	  		$circles=$circles->where(['id'=>I("request.id")]);
+    	  	}
+        $mid = $m['id'];
+        if($mid){
+                $circles = $circles->where("id IN (select circle_id from member_follow_circle where member_id=$mid union select circle_id from circle_member where member_id = $mid)");  
+        }else{
+          $circles = $circles->limit(10);
+        }
+    	  $circles = $circles->field("id,circle_name")->select();
+    	  </php>
+<div class="g_container mt_20 f_clearfix">
+<div class="g_row">
+        <div class="g_cell_12 m_box pd_20">
+
+ <div class="ucl_ssinput m_box pd_20 mb_20">
+<form method="post" action="{:U('/home/MemberPost/add')}" class="add_post">
+	<h3></h3>
+
+<div class="talkconbox">
+<textarea class="u_inp_t" name="content" rows="5"  id="emotion_content"></textarea>
+<div class="sstalkcir" id="talkCir"><p id="cirNode">发送到：{$circles[0].circle_name}<input type="hidden" value="{$circles[0].id}" name="circle_id"><p></div>
+</div>
+<div class="ucl_ssinputbtnbox f_clearfix">
+            
+            <div class="select" >
+            <span class="emotion" style="padding-left:0"><img src="/images/icons/face.jpg" style="width:28px;height:28px;"></span>&nbsp;&nbsp;&nbsp;<span class="upload"  onclick="bz('upimg1')"><img src="/images/icons/uploadimg.jpg" style="width:34px;height:28px;"></span><span class="upload">&nbsp;<div class="imguploadbox" id="upimg1">
+			<img src="images/icons/sy_jt1.jpg" class="ico_up"/><span class="gb_img"  onClick="gbBzBox('upimg1')">X</span>
+			<p class="uppictop">本地上传</p>
+			<p class="uppicnum">共<span id="picNum1">0</span>张，还能上传<span id="picNumLack1">9</span>张</p>
+					
+			<ul id="imgshow1"><li class="up_imgfile">+<input type="button" class="upimgbtn" id="wendaPicUpFile"></li>	</ul>
+			<p class="clear"></p>
+			</div></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+            	  <p class="f_fr">
+	
+		   <span class="seto">&nbsp;&nbsp;&nbsp;&nbsp;发送到:</span>
+	    <select class="u_ss_sen ss_cse" id="mycircle">
+	    	<foreach name='circles' item='circle' key="circle_id">
+	  			<option value="{$circle.id}">{$circle.circle_name}</option>
+  			</foreach>
+	  		</select>
+	  		<input type="button" class="u_btn_nora" value="新增" onclick="bz('adcir')">
+				<div class="saddcir">&nbsp;
+					<div class="addschoolbox" id="adcir">
+					<p>校友圈<span class="celcir" onclick="gbBzBox('adcir')">X</span></p>
+					<div>
+					<select name="Select1" class="u_slt school1" data-href="{:U('/home/school/index')}" id="quizAddS1">
+			<option >选择省份</option>
+					</select>
+				</div>
+				<div>
+					<select name="school_id" class="u_slt school2" id="quizAddS2">
+					<option>选择学校</option>
+					
+					</select>
+				</div>
+               <input type="button" class="u_btn_sl" value="添加" onclick="addTalkCir()">
+					</div>
+					</div>
+			  		
+  		    </p>
+            </div>
+            
+            <div class="quizeaddbox clear">
+            <div class="quizereward">
+            <div class="quizer">
+            <img src="../images/icons/collection.png"> &nbsp;&nbsp;酬谢
+            </div>
+          
+		  <input type="hidden" name="reward" value="1">
+            <ul class="qreward">
+            <li class="reward on" value="1">1元</li>
+            <li class="reward" value="2">2元</li>
+            <li class="reward" value="5">5元</li>
+            <li class="reward" value="10">10元</li>
+            <li class="reward" value="20">20元</li>
+            <li class="reward" value="50">50元</li>
+            </ul>
+          
+            </div>
+            <div class="quizetips clear">
+                发送后，您的问题会出现在社区，所有的人都可以来抢答。</br>
+    当您选择了答案后，您托付的费用会立即支付给对方。</br>
+     此时，答案会被隐藏。如果其他人想看到答案，需要支付十分之一的费用：其中的50%会返给您——也就是说，你的提问越精彩，越多的人想看答案，你     
+     不仅会赚回提问的费用，而且还可以赚更多的钱。
+            </div>
+            </div>
+
+			<input type="hidden" name="invite" value="{$invite['id']}">
+          <div class="f_fr"> 
+		  <select class="u_ss_sen" name="view_permission">
+      <foreach name="Think.config.member_post_view_permissions" item="v" key="k">
+  			<option value="{$k}">{$v}</option>
+      </foreach>
+	  	</select>	
+	    <input type="submit" class="u_btn_sl" id="btn_fss" value="发送"> 
+		</div>
+  		  </div> 
+		  </div>
+
+		  </div>
+		  </div>
+		  </div>
+</form>
+
+<style type="text/css">
+  form.add_post input[type=file]{}
+</style>
+<script type="text/javascript">
+	$("form.add_post").submit(function(){
+    var circle_id  =$(this).find("[name=circle_id]").val();
+    if (!circle_id) {
+      alert("你没有关注任何圈子");
+      return false;
+    }
+    var content=$(this).find("[name=content]").val();
+    if (content.length==0) {
+      alert("没有内容");
+      return false;
+    }
+		$(this).ajaxSubmit(function(d){
+      if (d.suc) {
+		var url = "{:U('/home/MemberPost/pay')}"+"?id="+d.message;
+        window.location.href = url;
+      }else{
+        alert(d.message);
+      }
+		});
+		return false;
+	})
+
+var b = 0;
+  $("#wendaPicUpFile").click(function(){	
+	var t = $(this);
+	var f_callback = function(src){
+		b ++;
+		if(b > 9){
+		  alert("最多上传9张图片");
+		  return;
+		}
+		$("#imgshow1").prepend("<li class='imitem' id='im_"+ b +"'><img src='"+src+"'/><img src='images/icons/ico_x_hover.png' class='ico_cancle' id='re_"+b+"'  onclick='f2(im_"+ b +")'/><input type='hidden' name='image[]' id='ims'></li>");
+		$("#ims").val(src);
+		var lack = 9 - b;
+		 document.getElementById('picNum1').innerHTML = b;
+	     document.getElementById('picNumLack1').innerHTML = lack;
+	};
+
+	go_upload(f_callback);
+})
+
+function f2(name){
+	b=b-1;
+	$(name).remove();
+	var lack = 9 - b;
+	document.getElementById('picNum1').innerHTML = b;
+    document.getElementById('picNumLack1').innerHTML = lack;
+}
+
+  $("ul.qreward li").click(function(){
+	   $("ul.qreward li").removeClass("on");
+        $(this).addClass("on");
+        $("input[name=reward]").val($(this).attr("value"));
+  }
+  )
+
+$("#mycircle").change(function(){
+  var cir_name =  $('#mycircle option:selected').text();
+  var cir_id = $('#mycircle option:selected').val();
+	$("#cirNode").remove();
+   $("#talkCir").append("<p id='cirNode'>发送到：" + cir_name+ "<input type='hidden' value='"+cir_id+"' name='circle_id'><p>");
+})
+
+ $.get($("#quizAddS1").attr("data-href"),{},function(data){
+        var html = "";
+        for(var id in data.message){
+            html = html + '<option style="color:#999;background:#fff" value='+id+' >'+data.message[id]+'</option>';
+        }
+        $("#quizAddS1").html(html);
+    }); 
+
+    $("#quizAddS1").change(function(){		
+        var pid = $(this).val();
+        $.get($("#quizAddS1").attr("data-href"),{"pid":pid},function(data){
+            var html = "";
+            for(var id in data.message){
+                html = html + '<option style="color:#999;background:#fff" value='+id+' >'+data.message[id]+'</option>';
+            }
+            $("#quizAddS2").html(html);
+        })
+    })
+
+function addTalkCir(){   
+   var cir_id = $('#quizAddS2 option:selected').val();
+   $.get("{:U('/home/MemberPost/circle')}",{"id":cir_id},function(d){
+       $("#cirNode").remove();
+   $("#talkCir").append("<p id='cirNode'>发送到：" + d.message.circle_name+ "<input type='hidden' value='"+d.message.id+"' name='circle_id'><p>");
+     document.getElementById('adcir').style.display="none";
+   })
+}
+
+</script>
+
+<include file="Common/footer"/>

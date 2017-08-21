@@ -1,0 +1,19 @@
+<include file="Common:admin_header" />
+<form  class="form-horizontal" method="POST">
+主键ID： <input type="text" name="id" value="{$school['id']}"/></br></br>
+  专业CODE： <input type="text" name="code" value="{$school['code']}"/></br></br>
+  父级：<select name="pid">
+  <foreach name="pid_school" item="vo">
+  	<option value="{$vo.id}" <eq name="school['pid']" value="vo['id']">checked</eq>>{$vo.title}</option>
+  	</foreach>
+  </select>
+  </br></br>
+  名称： <input type="text" name="title" value="{$school['title']}"/></br></br>
+  地址： <input type="text" name="address" value="{$school['address']}"/></br></br>
+  电话： <input type="text" name="telephone" value="{$school['telephone']}"/></br></br>
+  邮编： <input type="text" name="postal_code" value="{$school['postal_code']}"/></br></br>
+  网址： <input type="text" name="website" value="{$school['website']}"/></br></br>
+
+  <input type="submit" value="保存"/>
+</form>
+<include file="Common:admin_footer" />

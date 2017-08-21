@@ -1,0 +1,56 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <a class="btn btn-outline btn-success btn-sm" href="/admin_circle_add.html">添加</a>
+  <thead>
+    <tr>
+    <td>ID</td>
+      <td>类型</td>
+      <td>名称</td>
+      <td>logo</td>
+      <td>圈子人数</td>
+      <td>圈子等级</td>
+      <td>所属父级</td>
+      <td>开放状态</td>
+      <td>有效状态</td>
+      <td>增加时间</td>
+      <td>操作</td>
+
+    </tr>
+  </thead>
+    <foreach name="list" item="circle">
+    <tr>
+      <td>{$circle['id']}</td>
+      <td><if condition="$circle['circle_type'] eq 0">校友圈<else/>专业圈</if></td>
+    <!--  <td>{$school['path']}</td>-->
+      <td>{$circle['circle_name']}</td>
+      <td><img src="{$circle['logo']}" height="105" width="105"></td>
+      <td>{$circle['circle_num']}</td>
+     <!-- <td>{$school['pid']}</td>-->
+      <td>{$circle['circle_level']}</td>
+      <td>{$circle['pid']}</td>
+      <td>{$circle['is_open']}</td>
+      <td>
+        <if condition="$circle[status] eq 0">
+          <img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif">
+          <elseif condition="$circle[status] eq 1"/>
+          <img style="width:15px;height:15px" src="__APP__/images/icons/no.gif">
+          <else/>
+          其他
+        </if>
+      </td>
+      <td>{$circle['add_time']}</td>
+      <td>
+        <if condition="$circle['status'] eq 0">
+        <a class="btn btn-default" href="{:U('admin/circle/stop',['id'=>$circle['id']])}">禁用</a>
+          <else/>
+          <a class="btn btn-default" href="{:U('admin/circle/start',['id'=>$circle['id']])}" style="background-color: green">启用</a>
+        </if>
+        <a class="btn btn-info" href="{:U('admin/circle/edit',['id'=>$circle['id']])}">编辑</a>
+        <a class="btn btn-danger" href="{:U('admin/circle/delete',['id'=>$circle['id']])}">删除</a>
+      </td>
+
+    </tr>
+    </foreach>
+</table>
+              {$pageHtml}
+<include file="Common:admin_footer" />

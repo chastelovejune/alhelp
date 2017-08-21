@@ -1,0 +1,76 @@
+<include file="Common/header"/>
+<include file="Common:editor" />
+<php>
+  $maxCount = 9;
+</php>
+<div class="g_container mt_20 m_box pd_20">
+
+ <div class="u_paytitle mb_30"><h3>编辑答案</h3></div>
+
+    <div class="ucl_ssinput m_box pd_20 mb_20">
+	<form method="post" class="add_post">
+	      <h3></h3>
+	
+	    	<textarea class="u_inp_t" name="content" rows="5"  id="answer_con"></textarea>
+			<script type="text/javascript">
+                        $('#answer_con').froalaEditor({
+                            height: 300,
+                            language: "zh_cn",
+							toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+                            imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                            imageUploadParam:'file', //文件名称 <input type=file name=file>
+                            //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                            imageInsertButtons: ['imageUpload'],
+                            imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                        }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                            $('.fr-image-progress-bar-layer').addClass('fr-active');
+                        }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                            if( $('.fr-message').text()=='Loading image' ){
+                                $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                                $img.froalaEditor('events.focus');
+                            }
+                        });
+					</script>
+				  <div id="editor" style="margin-top: 30px;"> </div>
+                    <script src="//cdn.bootcss.com/froala-editor/2.0.3/js/languages/zh_cn.js"></script>
+
+	    	<div class="ucl_ssinputbtnbox f_clearfix mt_20 clear">           
+            <div class="select">						
+            </div>
+            
+	    <input type="submit" class="u_btn_sl f_fr" id="btn_fss" value="发送">
+  		  
+  		  </div>    
+		  </form>
+	    </div>
+	</div>
+
+
+
+<style type="text/css">
+  form.add_post input[type=file]{}
+#demo{ margin:50px auto; width:540px; min-height:800px; background:#CF9}  
+.upload{  position:relative;}
+#editor{ width:100%; }
+</style>
+
+
+<script type="text/javascript">
+    //var imags = new array();
+	$("form.add_post").submit(function(){
+		$(this).ajaxSubmit(function(d){
+      if (d.suc) {
+		var url = "{:U('/home/MemberPost')}";
+                window.location.href = url;
+      }else{
+        alert(d.message);
+      }
+		});
+		return false;
+	})
+
+</script>
+ 
+<include file="Common/footer"/>

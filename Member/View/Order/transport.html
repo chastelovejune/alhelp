@@ -1,0 +1,43 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+  	<div class="g_cell_12 m_box pd_20 ret_g">
+  	  <header class="u_paytitle"><p><span><b>1</b>提交退货申请</span><span><b>2</b>等待退货申请审核</span><span class="on"><b>3</b>寄回退货商品</span><span><b>4</b>确认收货，退款完成</span></p><h3>退货流程</h3></header>
+	  <h4 class="pt_20 pl_20">老师已经同意您的退货申请！</h4>
+      <p class="pt_10 pl_20 f_cl9">请在7天内将资料寄回老师,并填写货运单号,否则老师可能不予确认您的退货退款！如果您不想退款了，还可以【取消退货】</p>
+          <h4 class="pt_20 pl_20">请确认在7天内寄回资料,并填写货运单号!</h4>
+                  <form method="post">
+	    <ul class="m_form f_clearfix pd_20">
+        <!--<form method="post">
+        <input type="hidden" name="order_id" value="{:I('request.id')}">
+        <input type="hidden" name="type" value="1">-->
+        <li class="m_item"><div class="m_formtit">快递公司:</div><input type="text" name="transport_company" class="u_inp_t"></li>
+        <li class="m_item"><div class="m_formtit">快递单号:</div><input type="text" name="transport_number" class="u_inp_t"></li>
+        
+      <!--  </form>-->
+      </ul>
+      <ul class="m_form f_clearfix pd_20">
+        <input type="hidden" name="order_id" value="{:I('request.id')}">
+        <input type="hidden" name="type" value="1">
+       <!-- <li class="m_item"><div class="m_formtit">快递公司:</div><input type="text" name="transport_company" class="u_inp_t"></li>
+        <li class="m_item"><div class="m_formtit">快递单号:</div><input type="text" name="transport_number" class="u_inp_t"></li>-->
+        <li class="m_item" style="padding-left:63px;">
+        <input type="submit" class="u_btn_sl pd_20" value="我已寄出">
+        <input type="button" class="u_btn_sl pd_20" value="取消退货"></li>
+      </ul>
+              </form>
+  	</div>
+  	<div class="g_cell_12 m_box mt_20"></div>
+  </div>
+</div>
+<script type="text/javascript">
+  $("form").submit(function(){
+    var d = $(this).serialize();
+    $.post($(this).attr("action"),d,function(){
+      alert("提交成功");
+      window.location.href= "{:U('/member/order/index')}";
+    });
+    return false;
+  });
+</script>
+<include file="../Application/Home/View/Common/footer.html"/>

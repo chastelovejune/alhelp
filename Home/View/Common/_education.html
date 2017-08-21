@@ -1,0 +1,250 @@
+<form method="post" enctype="multipart/form-data" class="edit_education">
+
+    <div class="grxx_div_r sy_grxx_js m_box">
+
+        <div class="grxx_div_r_txt">
+
+            教育信息<input id="aa" class="u_btn_sl" type="button" value="修改" onClick="bz('adds')">
+
+        </div>
+
+        <div class="fn_cb"></div>
+        <style>
+            .education li {
+                float: left;
+                width: 16%
+            }
+        </style>
+        <php>
+            //$infos = M("zysc_view")->join("LEFT JOIN mb_education_info ON mb_education_info.school_id=zysc_view.zhuanye_id")->where(['member_id'=>session('id')])->field("zysc_view.*,mb_education_info.id as education_id,year")->select();
+            $infos = M("zysc_view")->join("LEFT JOIN mb_education_info ON mb_education_info.school_id=zysc_view.zhuanye_id")->where(['member_id'=>session('id')])->field("zysc_view.*,mb_education_info.id as education_id,year,type")->group("education_id")->select();
+
+
+            //dump($infos);
+        </php>
+        <div class="sy_grxx_tit">&nbsp;</div>
+
+
+        <ul id="sy_grxx_list2" class=" sy_grxx_list on">
+            <li>
+
+                <table class="edutable">
+                    <tr data-id='{$info[education_id]}' class="edu_title">
+                        <td>学历</td>
+                        <td>城市</td>
+                        <td>学校</td>
+                        <td>学院</td>
+                        <td>专业</td>
+                        <td>毕业年份</td>
+                        <td class="schooladd"></td>
+                    </tr>
+                    <foreach name="infos" item="info">
+
+                        <tr data-id='{$info[education_id]}'  class="edu_title">
+                            <!--<td data-id=''>本科</td>-->
+<!--                            <td id="Education_name" data-id=''>{$info[type]}</td>
+                            <td id="Education_city" data-id='{$info[area_id]}'>{$info[area_title]}</td>
+                            <td id="Education_school" data-id='{$info[school_id]}'>{$info[school_title]}</td>
+                            <td id="Education_college" data-id='{$info[yuan_id]}'>{$info[yuan_title]}</td>
+                            <td id="Education_major" data-id='{$info[zhuanye_id]}'>{$info[zhuanye_title]}</td>
+                            <td id="Education_year" data-id='{$info[year]}'>{$info[year]}</td>-->
+                            <td data-id=''>{$info[type]}</td>
+                            <td data-id='{$info[area_id]}' name="education_city">{$info[area_title]}</td>
+                            <td data-id='{$info[school_id]}'>{$info[school_title]}</td>
+                            <td data-id='{$info[yuan_id]}'>{$info[yuan_title]}</td>
+                            <td data-id='{$info[zhuanye_id]}'>{$info[zhuanye_title]}</td>
+                            <td data-id='{$info[year]}'>{$info[year]}</td>
+                            <td class="schooladd">
+                                <a class="edit">&nbsp;&nbsp;修改</a><a class="delete">删除</a>
+                            </td>
+                        </tr>
+                    </foreach>
+                </table>
+
+
+                <!-- 点击添加学校 -->
+
+                <div class="schooladd" id="adds">
+                    <!--<input id="add_schools" type="button" class="btn btn-primary" value="+点击添加学校" />-->
+                    <a id="add_schools" class="scadd"><span style="color:#ff7101;">+</span>&nbsp;&nbsp;点击添加教育信息</a>
+
+
+                    <div id="sy_grxx_schoollist" hidden>
+
+                        <div class="grxx_div_r_txt" id="edit_Education_info" hidden>修改教育信息</div>
+                        <div class="grxx_div_r_txt" id="add_Education_info" hidden>添加教育信息</div>
+                        <ul class="sy_school_item on">
+                          
+                            <input type="hidden" name="school_id"/>
+                            <li>
+                                <!--//<li>-->
+                                <div class="sy_grxx_tit">学历：</div>
+                                <div class="sy_grxx_ct">
+                                    <div class="selectbox">
+
+                                        <select class="sy_gr_s" id="type">
+                                            <option value="本科">本科</option>
+                                            <option value="硕士">硕士</option>
+                                            <option value="博士">博士</option>
+
+                                            <!-- <option value ="u">本科</option>
+                                         <option value ="m">硕士</option>
+                                         <option value ="d">博士</option>-->
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="sy_grxx_tit">学校城市：</div>
+                                <div class="sy_grxx_ct">
+                                    <div class="selectbox">
+                                        <select class="sy_gr_s school0">
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="sy_grxx_tit">学校名称：</div>
+                                <div class="sy_grxx_ct">
+                                    <div class="selectbox"><select class="sy_gr_s school1" name="sid"></select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="sy_grxx_tit">院系：</div>
+                                <div class="sy_grxx_ct">
+                                    <div class="selectbox"><select class="sy_gr_s school2"></select></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="sy_grxx_tit">专业：</div>
+                                <div class="sy_grxx_ct">
+                                    <div class="selectbox"><select name="school_id" class="sy_gr_s school3"></select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="sy_grxx_tit">毕业年份：</div>
+                                <div class="sy_grxx_ct">
+                                    <div class="selectbox">
+                                        <select name="year" class="sy_gr_s">
+                                            <php>
+                                                for($i = 2016;$i > 1980;$i--){
+                                            </php>
+                                            <option value="{$i}">{$i}</option>
+                                            <php>
+                                                }
+                                            </php>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="sy_grxx_submitbox">
+                                <input type="submit" value="提交" class="sy_grxx_sub" id="edu_add_btn">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <include file="Common/_selectSchool.js"/>
+    <script type="text/javascript">
+
+
+        $("#add_schools").click(function (e) {
+            $schoollist = $("#sy_grxx_schoollist");
+            $schoollist.attr("class", "sy_grxx_ct");
+            $schoollist.removeAttr("hidden");
+
+            $("#add_Education_info").removeAttr("hidden");
+            $("#edit_Education_info").hide();
+            $("#add_Education_info").show();
+
+        });
+
+        $.get("{:U('/home/school/index')}", function (d) {
+            var html = build_options(d.message);
+            $(".school0").html(html);
+            $(".school0").change();
+        });
+
+
+        //添加学历信息
+        $("form.edit_education").submit(function () {
+            var school_id = $(this).find("select[name=school_id]").val();
+            var type = $("#type").val();
+            var year=$(this).find("select[name=year]").val();
+
+            if (!school_id) {
+                return false;
+            }
+
+            $(this).find("input[name=school_id]").val(school_id);
+            var d = $("form.edit_education").serialize() + "&type=" + type+ "&year=" + year;
+
+            $.post("{:U('/home/educationInfo/edit')}", d, function () {
+                window.location.reload();
+                $("#add_Education_info").hide();
+                $("#edit_Education_info").hide();
+            });
+            return false;
+        });
+
+        $("a.edit").click(function () {
+
+            /**
+             *
+             * 显示学历修改表单
+             */
+            $("#add_Education_info").hide();
+            $schoollist = $("#sy_grxx_schoollist");
+            $schoollist.attr("class", "sy_grxx_ct");
+            $schoollist.removeAttr("hidden");
+            $("#edit_Education_info").removeAttr("hidden");
+            $("#edit_Education_info").show();
+
+            //获取被修改的教育信息
+
+            var tr = $(this).parent().parent();
+
+            $("input[name=id]").val(tr.attr("data-id"));
+            school0_id = tr.find("td").eq(0).attr("data-id");
+            school1_id = tr.find("td").eq(1).attr("data-id");
+            school2_id = tr.find("td").eq(2).attr("data-id");
+            school3_id = tr.find("td").eq(3).attr("data-id");
+            $(".school0").val(school0_id);
+            $.get("{:U('/home/school/index')}", {pid: school0_id}, function (d) {
+
+                //生成城市下拉列表
+                var html = build_options(d.message);
+                $(".school1").html(html);
+                $(".school1").val(school1_id);
+            });
+            $.get("{:U('/home/school/index')}", {pid: school1_id}, function (d) {
+                var html = build_options(d.message);
+                $(".school2").html(html);
+                $(".school2").val(school2_id);
+            });
+            $.get("{:U('/home/school/index')}", {pid: school2_id}, function (d) {
+                var html = build_options(d.message);
+                $(".school3").html(html);
+                $(".school3").val(school3_id);
+            });
+            $("select[name=year]").val(tr.find("td").eq(4).attr("data-id"));
+            //alert("修改学历");
+        });
+        $("a.delete").click(function () {
+            var tr = $(this).parent().parent();
+            $.post("{:U('/home/educationInfo/delete')}", {id: tr.attr("data-id")}, function () {
+                window.location.reload();
+            })
+        });
+
+        $("input[name=id]").val(0);
+
+
+    </script>
+</form>

@@ -1,0 +1,144 @@
+<include file="Common/header"/>
+<div class="g_container mt_20 m_box">
+	
+     <div class="divide">
+                <div class="d_left"></div>
+                <div class="d_con ag_title">确认协议</div>
+                <div class="d_right"></div>
+                </div>
+                
+                <div class="pd_20">
+                
+              
+              <div class="ag_con">
+              <h4>{$c.title}</h4>
+              <p>
+              {$c.content}
+              </p>
+              </div>
+                          
+                        
+                
+                <div class="ag_sta">
+                <h4>学习阶段</h4>
+                <ul class="sta_box">
+                <li style="height:60px;">
+                 <ul style="background:#3c4564; color:#fff; height:50px;">
+               <li class="sta_aditem">
+               阶段
+               </li>
+                 <li class="sta_aditem">
+               金额
+               </li>
+                 <li class="sta_aditem">
+               次数
+               </li>
+                 <li class="sta_aditem">
+               操作
+               </li>
+               
+               </ul>    
+                </li>
+                <foreach name="periods" item="p" key="k">
+                
+                <li class="sta_item">
+                   <ul class="sta_item_con">
+                 <li class="sta_aditem">{$k+1}.{$p.title}</li>
+                   <li class="sta_aditem">{:D('LearningPeriods')->fee($p['id'])}元</li>
+                   <li class="sta_aditem">
+                 &nbsp;&nbsp;&nbsp;{$p.num}次
+                 </li>
+                   <li class="sta_aditem">
+                 <input type="button" class="u_btn_sl" value="查看">
+                 </li>
+                 <input type="hidden" name="target" value="{$p.target}">
+                 </ul>    
+                </li>
+                </foreach>
+                </ul>
+                     
+                </div>
+              
+               <div class="sta_mdbtn">
+              <div class="u_btn_sl submit">同意</div>
+                <div class="u_btn_bl" onClick="bz('update')">修改</div>
+              </div>
+              
+              <div class="update_box" id="update" style="display:none;">
+                  <div class="int" style=" margin-top:20px;">
+                  <textarea class="input_con" name="remark"></textarea>
+                  </div> 
+              
+                <div class="sta_mdbtn">
+              
+                  <div class="u_btn_sl modify">提交</div>
+                </div>
+              </div>
+
+
+	</div>
+</div>
+
+
+
+
+<div class="pop_bg" id="add">
+ <div class="add_sta">
+                <h4 class="add_title" style="text-align:center;">学习阶段</h4>
+                <div class="add_con">
+                <h5 style="font-size:18px; margin-top:20px; text-align:center;" name='title'></h5>
+                <p class="clsdetail">(<span name='num'></span>&nbsp;&nbsp;&nbsp;&nbsp;<span name='fee'></span>&nbsp;&nbsp;）</p>
+                 <p class="clscon" name='target'></p>
+				
+                <!--<div class="sta_time">
+                <h5>次数</h5>
+                <div class="time1"><span name="num"></span></div>
+                <div class="clear"></div>
+                <h5>目标</h5>
+                   <div class="int">
+              <p name="target"></p>
+                </div>
+                  <div class="clear"></div> 
+                <h5>金额:<span name="fee"></span></h5>-->
+                 
+                  <div class="sta_btn">
+               
+                  <input type="button" value="关闭" class="u_btn_sl" onClick="gbBzBox('add')">
+                  </div>
+                </div>
+                </div>
+                    </div> 
+</div>
+
+<include file="Common/footer"/>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+  $("input[value=查看]").click(function(){
+    $("#add").show();
+    var ul  = $(this).parent().parent();
+    $("#add").find("[name=title]").html(ul.find("li").eq(0).html());
+    $("#add").find("[name=num]").html(ul.find("li").eq(2).html());
+    $("#add").find("[name=target]").html(ul.find("input[name=target]").val());
+    $("#add").find("[name=fee]").html(ul.find("li").eq(1).html());
+  })
+  $("div.submit").click(function(){
+    $.post("{:U('/member/contract/update',['id'=>I('request.id')])}",{status:1},function(d){
+        if(d.suc) {
+            layer.msg('您已同意合同，请到学习中心进行约课！', {time: 2000, icon:6});
+            setTimeout('window.location.href = "{:U('/member/ServiceOrder/show',['id'=>I('request.id')])}"', 2000 );
+
+        }
+    })
+  })
+  $("div.modify").click(function(){
+    var remark = $("#update textarea[name=remark]").val();
+    if (remark.length == 0) {
+      alert("请输入内容");
+      return;
+    }
+    gbBzBox('update');
+    $.post("{:U('/member/contract/update',['id'=>I('request.id')])}",{remark:remark},function(d){
+      window.location.href = "{:U('/member/ServiceOrder')}";
+    })
+  })
+</script>

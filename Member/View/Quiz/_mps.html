@@ -1,0 +1,231 @@
+<div class="ucl_sslist">
+	<ul>
+	<foreach name="_mps" item="mp">
+		<li class="ucl_ssitem m_box member_post">
+	    <div class="ucl_ssusbox">
+		  	<div class="m_imgbox" style="height: 84px; line-height: 84px;"><img alt="" src="{$mp[avatar]}"></div>
+	    </div>
+	  	<div class="ucl_ssrbox">
+	  	  <dl class="ucl_ssmenu" >
+	  	  	<dt><span class="u_ico_cdown is_top"></span></dt>
+
+	 	<eq name='mp.is_master' value='1'>
+	  	  	<dd data-id={$mp[id]} class="is_top">
+	  	  	<eq name='mp.is_top' value='1'>
+	  	  	取消置顶
+	  	  	<else/>
+	  	  	置顶
+	  	  	</eq>
+	  	  	</dd>
+	  	  	</eq>
+
+	  	  	<eq name='mp.is_master' value='1'>
+	  	  	<dd data-id={$mp[id]} class="is_hot">
+	  	  	<eq name='mp.is_hot' value='1'>
+	  	  	取消火贴
+	  	  	<else/>
+	  	  	火贴
+	  	  	</eq>
+	  	  	</dd>
+	  	  	</eq>
+
+	  	  	<if condition='($mp[member_id] eq $_SESSION[id]) OR ($mp[is_master] eq 1)'>
+	  	  	<dd class="delete" data-id={$mp.id}>删除</dd>
+	  	  	</if>
+
+	  	  	<eq name='mp.is_master' value='1'>
+		  	  	<dd class="gonggao" data-id={$mp[id]}>
+		  	  	<if condition="$mp[is_announcement] eq 0">
+		  	  	圈子公告
+		  	  	<else/>
+		  	  	取消公告
+		  	  	</if>
+		  	  	</dd>
+	  	  	</eq>
+	  	  </dl>
+	  		<div class="ucl_ssname"><h4>
+	  		<a href="{:id2path($mp[member_id])}">
+	  		{$mp[nickname]}
+	  		</a>
+	  		</h4>
+	  			<div class="talk_tag">
+                <ul>
+                <eq name='mp.is_top' value='1'>
+                <li class="talk_tag_item"><img src="images/icons/talk_top.png"></li>
+                </eq>
+                <eq name='mp.is_hot' value='1'>
+                <li class="talk_tag_item"><img src="images/icons/talk_hot.png"></li>
+                </eq>
+                <eq name='mp.is_announcement' value='1'>
+                <li class="talk_tag_item"><img src="images/icons/talk_announcement.png"></li>
+                </eq>
+                </ul>
+				<if condition="$mp[reward] eq 0">
+				<p>&nbsp;</p>
+				<else/>
+				<if condition="$mp[accept] eq ''">
+                 <p class="f_fr fs_12" style="margin-top:-10px; margin-right:5px;">悬赏&nbsp;&nbsp;<strong class="txt_oragin fs_16">{$mp[reward]}元</strong></p>
+				<else/>
+				 <p class="f_fr fs_12 txt_green" style="margin-top:-10px; margin-right:5px;">已悬赏&nbsp;&nbsp;<strong class="txt_oragin fs_16">{$mp[reward]}元</strong></p>
+				</if>
+                
+				</if>
+				
+                </div>
+
+	  		<span>{$mp[circle_name]}</span></div>
+	  		<div class="ucl_sstext">
+	  		  <p>{:parse_emotion($mp[content])}</p>
+	  		  <php>
+	  		  	$images = M("attachment")->where(['type'=>0,"object_id"=>$mp[id]])->getField("path",true);
+				$p = 0;
+	  		  </php>
+	  		  <ul id="img_{$mp[id]}">
+	  		  <foreach name="images" item="path">
+	  		  	<li class="m_imgbox" style="height: 147px; line-height: 147px;"  onclick="showImage('img_{$mp[id]}','{$p}')"><img src="{$path}"></li>
+				<php>$p++;</php>
+	  		  </foreach>
+	  		  </ul>
+	  		</div>
+
+	  		
+	  	</div>
+
+		<if condition="$mp[reward] eq 0">
+				<p>&nbsp;</p>
+				<else/>
+               <div class="quizebox clear">
+                    <div class="qinviteface">
+
+					<if condition="$mp[accept] eq ''">
+					<if condition="$mp[invite] eq 0">
+				<p>&nbsp;</p>
+				<else/>
+				<php>
+				   $inviteimg = M("mb_member")->where(['id'=>$mp[invite]])->field('avatar')->find();
+				</php>
+               <img alt="" src="{$inviteimg.avatar}">
+				</if>
+
+                    </div>
+                    
+                    <div class="quizetext">
+             <if condition="$mp[invite] eq 0">
+				<p>&nbsp;</p>
+				<else/>
+				<php>
+				  $inname = M("mb_member")->where(['id'=>$mp[invite]])->field('nickname')->find();
+				  if (M("answer")->where(['member_id'=>$mp[invite],'object_id'=>$mp[id]])->find()) {
+				       $mp['inaned'] = '1';
+			       }else{
+				       $mp['inaned'] = '0';
+				   }
+				</php>
+                 <h4 class="f_fl">{$inname.nickname}				 
+                  <if condition="$mp[inaned] eq '0' ">
+				  <span class="txt_oragin fs_12">&nbsp;&nbsp;待回答</span>
+				 <else/>
+				  <span class="txt_green fs_12">&nbsp;&nbsp;已回答</span>
+				 </if>
+				 </h4>              
+				</if>
+					<else/>
+
+				<php>
+				   $ans = M("answer")->where(['id'=>$mp[accept]])->find();
+				   $rem = M("mb_member")->where(['id'=>$ans[member_id]])->field('avatar,nickname')->find();
+				</php>
+               <img alt="" src="{$rem.avatar}">
+				
+                   </div>
+                    
+                    <div class="quizetext">          
+                 <h4 class="f_fl">{$rem.nickname}				 
+                  <span class="txt_green fs_12">&nbsp;&nbsp;已获赏金</span>
+				 </h4>              
+					</if>
+
+					
+                   
+				   	<php>
+					$ans = M("answer")->where(['object_id'=>$mp[id]])->field("member_id")->select();
+					foreach($ans as $i => $c){
+					  $m = M("mb_member")->where(['id'=>$c['member_id']])->field('avatar')->find();
+   				      $ans[$i]['avatar'] = $m['avatar'];
+					}			
+					</php>
+
+					<if condition="$mp[answer] eq '' ">
+                      
+					<else/>
+					<if condition="$mp[accept] eq '' ">
+                     <a class="u_btn_bc f_fr mb_10" href="{:U('/home/memberPost/detailme',['id'=>$mp[id]])}">看抢答</a>
+					<else/>
+					 <a class="u_btn_sl f_fr mb_10" href="{:U('/memberPost/detailme',['id'=>$mp[id]])}">看答案</a>
+					</if>
+                     
+					</if>
+
+		      <if condition="$ans">
+                 <div class="ansmember clear">
+                    <p>抢答者</p>
+				
+                    <ul>
+					<foreach name="ans" item="an">
+					  <li class="ansm">  
+                   <img src="{$an.avatar}">
+                    </li>
+					</foreach>                               
+                    </ul>
+                    <div class="clear"></div>
+                    </div>
+                    
+                    </div>
+					</if>
+                                 
+                    <div class="clear"></div>
+                    </div>
+				</if>
+
+    
+
+		  <div class="ucl_ssoperation clear"><span class="f_fl">
+	  	  <a href="{:U('/home/memberPost/detailme',['id'=>$mp[id]])}"><if condition="substr($mp['add_time'],0,10) eq date('Y-m-d',time())">{:substr($mp['add_time'],11,5)}<else/>{:substr($mp['add_time'],0,10)}</if></a>
+	  	  </span><span class="hover" onclick="setlist('shuos{$mp[id]}_','',1,3)" id="shuos{$mp[id]}_1">评论：{$mp[comments_num]}</span>|<span onclick="setlist('shuos{$mp[id]}_','',2,3)" id="shuos{$mp[id]}_2">转发：{$mp[f_number]}</span>|<span onclick="setlist('shuos{$mp[id]}_','',3,3)" id="shuos{$mp[id]}_3">赞：{$mp[praise_num]}</span></div>
+  <div style="display:none;" class="ucl_ssreplybox clear" id="shuos{$mp[id]}_1box">
+  <img src="/images/icons/sy_jt1.jpg" class="sh_img">
+  			<php>
+  				$_objectId=$mp['id'];
+  				$_commentType=3;
+  				$comments = get_comments($_commentType,$_objectId);
+  			</php>
+	  	   <include file="../Application/Home/View/Common/_addComment.html"/>
+		  	<include file="../Application/Home/View/Common/_comments.html"/>
+		  	</div>
+
+  <div style="display:none;" class="ucl_sszfbox clear" id="shuos{$mp[id]}_2box">
+  <img src="/images/icons/sy_jt1.jpg" class="zf_img">
+    <ul class="ucl_ssuslist">
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>转发了你的说说</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>转发了你的说说</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>转发了你的说说</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>转发了你的说说</li>
+    </ul>
+		  	</div>
+  <div style="display:none;" class="ucl_sszfbox clear" id="shuos{$mp[id]}_3box">
+  <img src="/images/icons/sy_jt1.jpg" class="dz_img">
+    <ul class="ucl_ssuslist">
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>为你的说说点了赞</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>为你的说说点了赞</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>为你的说说点了赞</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>为你的说说点了赞</li>
+    	<li><div class="m_imgbox" style="height: 24px; line-height: 24px;"><img alt="" src="/images/test/50.jpg"></div><a href="">用户名</a>为你的说说点了赞</li>
+    </ul>
+		  	</div>
+			
+		
+	  </li>
+	         </foreach>      		
+	</ul>
+</div>
+<include file="Common/_comments.js"/>

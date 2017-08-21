@@ -1,0 +1,84 @@
+<include file="Common:admin_header" />
+<meta charset="UTF-8">
+<script src="script/layer/layer.js"></script>
+<a class="btn btn-outline btn-success btn-sm" href="{:U('/home/openClass/add')}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>编号</td>
+    <td>发布者</td>
+	<td>主讲人</td>
+    <td>标题</td>
+    <td>专业</td>
+      <td>日期</td>
+    <td>直播时间</td>
+    <td>费用</td>
+    <td>状态</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="c">
+    <tr>
+    <td>{$c[open_class_id]}</td>
+    <td>{$c[member_name]}</td>
+	<td>{$c[teacher]}</td>
+    <td title="{$c['description']}" >{:substr($c['description'],0,25);}</td>
+	<td><small>{:implode("&nbsp;</br>&nbsp;",parse_class($c)[types])}</small>
+    </td>
+	<!--<td></td>-->
+      <td>{$c[add_time]}</td>
+    <td>{$c[open_class_time]}</td>
+    <td>
+       {$c[price]}
+    </td>
+	<td><if condition="$c[status] eq 0"><img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif">
+      <elseif condition="$c[status] eq 4"/><img style="width:15px;height:15px" src="__APP__/images/icons/no.gif">
+      <elseif condition="$c[status] eq 3"/>已下架
+        <else/>
+        已删除
+    </if><td>
+
+
+      <if condition="$c[status] eq 0">
+	<a href="javascript:void(0)" onclick="stop({$c['open_class_id']})"  class="btn btn-white btn-sm">禁用</a>
+      <else/>
+	<a href="javascript:void(0)" onclick="start({$c['open_class_id']})"  class="btn btn-white btn-sm">启用</a>
+      </if>
+    <a href="{:U('edit')}?openclass_id={$c['open_class_id']}"  class="btn btn-white btn-sm">编辑</a>
+
+    </td>
+    </tr>
+    </foreach>
+</table>
+<p>{$page}&nbsp;共{$count}条</p>
+<script>
+  function stop(id){
+    layer.prompt({title: '输入被禁用的原因', formType: 2}, function(text, index){
+      layer.close(index);
+      $.post("{:U('hold')}",{openclass_id:id,reason:text},function(data){
+        if(data.suc) {
+          layer.msg("禁用成功");
+          window.location = window.location;
+        }else{
+          layer.msg("已经禁用了");
+
+        }
+      })
+
+    });
+  }
+  function start(id){
+    layer.confirm('确定启用吗',{
+      btn:['确定','取消']},function(){
+      $.post("{:U('open')}",{openclass_id:id},function(data){
+        if(data.suc) {
+          layer.msg("启用成功");
+          window.location = window.location;
+        }else{
+          layer.msg("你已经启用了");
+        }
+      })
+    });
+  }
+  </script>
+<include file="Common:admin_footer" />

@@ -1,0 +1,155 @@
+<include file="Common/header"/>
+<include file="Common:editor" />
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+    <div class="toptitle">
+      <h2 class="pd_20">发布直播课</h2>
+      <p>发布直播课的页面：直播课的形式可以有线上线下多种形式，由您自己决定！
+</p>
+    </div>
+     <form method="post" enctype="multipart/form-data">
+      <div class="u_paytitle"><h3>确认专业</h3><p></p></div>
+      <ul class="m_form f_clearfix pd_20">
+
+        <include file="Common/_add3type"/>
+
+        <li class="m_item">
+        	<div class="m_formtit">标题：</div>
+          	<input placeholder="温馨提示：简单清晰的描述会更容易被找到" type="text" class="u_inp_t g_width_5" name="description" required="true" maxlength="16">
+        </li>
+        <li class="m_item"><div class="m_formtit">详细描述：</div>
+            <div style="margin-left: 200px;">
+                    <textarea id='edit' name="remarks" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                    </textarea>
+            </div>
+            <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+            <script type="text/javascript">
+                $('#edit').froalaEditor({
+					height: 300,
+					language: "zh_cn",
+					toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+                    imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                    imageUploadParam:'file', //文件名称 <input type=file name=file>
+                    //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                    imageInsertButtons: ['imageUpload'],
+                    imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                    $('.fr-image-progress-bar-layer').addClass('fr-active');
+                }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                    if( $('.fr-message').text()=='Loading image' ){
+                        $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                        $img.froalaEditor('events.focus');
+                    }
+                });
+            </script>
+            <div id="editor" style="margin-top: 30px;"> </div>
+        </li>
+        <li class="m_item"><div class="m_formtit">参考讲义：</div>
+            <div style="margin-left: 200px;">
+                    <textarea id='edit1' name="content_reference" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                    </textarea>
+            </div>
+            <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+            <script type="text/javascript">
+                $('#edit1').froalaEditor({
+					height: 300,
+					language: "zh_cn",
+					toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+                    imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                    imageUploadParam:'file', //文件名称 <input type=file name=file>
+                    //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                    imageInsertButtons: ['imageUpload'],
+                    imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                    $('.fr-image-progress-bar-layer').addClass('fr-active');
+                }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                    if( $('.fr-message').text()=='Loading image' ){
+                        $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                        $img.froalaEditor('events.focus');
+                    }
+                });
+            </script>
+            <div id="editor" style="margin-top: 30px;"> </div>
+         <!-- <textarea class="u_inp_t" name="content_reference"></textarea>-->
+        </li>
+        <!--<li class="m_item"><div class="m_formtit">谁适合听：</div>
+          <textarea class="u_inp_t" name="content_course"></textarea>
+        </li>-->
+        <li class="m_item"><div class="m_formtit">课程时间：</div>
+          <input type="text" class="u_inp_t" name="open_class_time" required="true">
+        </li>
+         <li class="m_item"><div class="m_formtit">活动费用：</div>
+          <input type="radio" name="price_box" checked id="free">&nbsp;免费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="u_inp_t" name="price_box" id="cost">&nbsp;收费&nbsp;&nbsp;<input type="text" class="u_inp_t g_width_2" name="price"  onfocus="f1()">&nbsp;&nbsp;元
+        </li>
+        <li class="m_item"><div class="m_formtit">上传图片：</div>
+          <input type="file" name="image" required="true"><span>温馨提示：准确的图片更吸引眼球</span>
+        </li>
+        <li class="m_item"><div class="m_formtit">上课教室：</div>
+          <input type="text" class="u_inp_t g_width_5" name="classroom" placeholder="例如：YY频道35038p5教室" >
+        </li>
+        <li class="m_item"><div class="m_formtit">主讲人：</div>
+          <input type="text" class="u_inp_t g_width_5" name="teacher" placeholder="例如：张老师">
+        </li>
+        <li class="m_item"><div class="m_formtit"></div>
+          <label><input type="checkbox" checked="checked" name="box" required="true"> 我已阅读<a data-toggle="modal" data-target=".modal_add_openClass_protocol"> 《新助邦直播课发布协议（试行）》</a></label>
+        </li>
+        <li class="m_item rel_inpr"><div class="m_formtit"></div>
+          <input type="submit" class="u_btn_sl pd_20" value="确认提交">
+        </li>
+      </ul>
+      </form>
+    </div>
+  </div>
+</div>
+<include file="Common/add_js"/>
+<include file="Common/modal/add_openClass_protocol"/>
+<script type="text/javascript">
+	$("form").go_validate(function(form){
+    var f = $(form);
+        var school3=$('.school3 option:selected').val();
+        var unified1=$('.unified1 option:selected').val();
+        var public_subject0=$('.public_subject0 option:selected').val();
+        if(!(school3>0||unified1>0||public_subject0>0)){
+            layer.msg("你必须选择专业");
+            return false;
+        }
+    remove_hide_types();
+
+    f.ajaxSubmit(function(d){
+      var url = "{:U('/home/openClass/show')}"+"?id="+d.message;
+      window.location.href = url;
+    })
+  })
+  $("[name=open_class_time]").go_datetime();
+  function f1(){
+
+	$("#cost").eq(0).attr("checked",true);
+	//$("#free").attr("checked",false);
+  }
+    $("input[name=image]").change(function(e){
+        var This = $(this);
+        var f = e.target.files[0] || e.dataTransfer.files[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            This.parent().find('img').remove();
+            This.parent().append('<img src="'+fileReader.result+'" height="60"/>');
+        }
+        fileReader.readAsDataURL(f);
+
+
+        var filepath = This.val();
+        var tmp = filepath.split(".");
+        var ext = (tmp[ tmp.length - 1 ]).toUpperCase() ;
+
+        if (ext != "BMP" && ext != "PNG" && ext != "GIF" && ext != "JPG" && ext != "JPEG"){
+            layer.msg("图片限于bmp,png,gif,jpeg,jpg格式");
+            $(this).val(null);
+        };
+    });
+</script>
+<include file="Common/footer"/>

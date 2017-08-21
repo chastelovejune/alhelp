@@ -1,0 +1,149 @@
+<php>	
+	  $mp = M("member_post")->where(['member_id'=>session('id'),'reward = 0','status = 1'])->field("id")->select();
+	   foreach($mp as $i => $c){
+	    $mpids[] = $c['id'];
+	   }
+	   if(count($mpids)){
+	   $count0 =M("comment")->where(['comment_type = 3','object_id' => ['in', $mpids],'readed = 0'])->count();
+	   $count1 =M("praise")->where(['type = 0','object_id' => ['in', $mpids],'readed = 0'])->count();
+	   $mpcounts = $count0 + $count1;
+	   }
+
+	   $mp1 = M("member_post")->where(['member_id'=>session('id'),'reward > 0','status = 1'])->field("id")->select();
+	   foreach($mp1 as $k => $v){
+	    $mpids1[] = $v['id'];
+	   }
+	     if(count($mpids1)){
+	   $answercount =M("answer")->where(['object_id' => ['in', $mpids1],'readed = 0'])->count();
+	   $benefitcount =M("benefit")->where(['member_post_id' => ['in', $mpids1],'readed = 0'])->count();
+	   $acceptcount = M("message")->where(['object_id'=>['in', $mpids1],'type = 11','readed = 0'])->count();
+	   $quizcount = $answercount + $benefitcount + $acceptcount;
+	   } 
+	</php>
+<neq name='is_student' value='true'>
+<div class="user_navbox" >
+    <div class="g_container">
+        <ul id="role_2_nav" class="user_nav m_nav">
+		 <li class="user_navitem <eq name='CONTROLLER_NAME' value='Quiz'>hover</eq>"><a href="{:U('/member/quiz/index')}">有偿问答<if condition="($quizcount)"><i class="u_tsd">{$quizcount}</i></if></a></li>
+            <li class="user_navitem <eq name='CONTROLLER_NAME' value='MemberPost'>hover</eq>"><a href="{:U('/member/memberPost/index')}" >说说<if condition="($mpcounts)"><i class="u_tsd">{$mpcounts}</i></if></a></li>
+            <li class="user_navitem <if condition="CONTROLLER_NAME eq 'Service' "> hover</if>">
+                <a href="{:U('/member/service')}?service_type=0" >服务<i class="u_ico u_ico_cdown"></i></a>
+                <ul class="menu">
+                    <li><a href="{:U('/member/service')}?service_type=0" >资料</a></li>
+                    <li><a href="{:U('/member/service')}?service_type=1" >答疑</a></li>
+                    <li><a href="{:U('/member/service')}?service_type=2" >授课</a></li>	
+                </ul>
+            </li>
+            <li class="user_navitem <eq name='CONTROLLER_NAME' value='OpenClass'>hover</eq>">
+                <a href="{:U('/member/OpenClass/index')}" >直播课</a>
+            </li>
+              <php>
+                $is_hover = false;
+                if(CONTROLLER_NAME == "Bid" && ACTION_NAME=='teacher'){
+                    $is_hover = true;
+                }else if(CONTROLLER_NAME == "Audition" && ACTION_NAME=='teacher'){
+                    $is_hover = true;
+                }else if(CONTROLLER_NAME == "ServiceOrder" && ACTION_NAME=='teacher'){
+                    $is_hover = true;
+                }if(CONTROLLER_NAME == "Index" && ACTION_NAME=='teacherCenter'){
+                    $is_hover = true;
+                }
+            </php>
+            <li class="user_navitem s_t <eq name='is_hover' value='true'>hover</eq>">
+                <a href="{:U('/member/audition/teacher')}" >教学<i class="u_ico u_ico_cdown"></i></a>
+                <ul class="menu">
+                    <li><a href="{:U('/member/bid/teacher')}" >投标列表</a></li>
+                    <li><a href="{:U('/member/audition/teacher')}" >试听列表</a></li>
+                    <li><a href="{:U('/member/ServiceOrder/teacher')}" >签约列表</a></li>
+                    <li><a href="{:U('/member/index/teacherCenter')}" >教学列表</a></li>
+                    <li><a href="dem_ser.html" >评价列表</a></li>
+                    <li><a href="dem_ser.html" >仲裁列表</a></li>
+                </ul>
+            </li>
+			<li class="user_navitem <if condition="CONTROLLER_NAME eq 'Order' "> hover</if>">
+				  <a href="{:U('/member/order')}" >老师订单<i class="u_ico u_ico_cdown"></i></a>
+				  <ul class="menu">
+					<li><a href="{:U('/member/order')}" >图书资料订单</a></li>
+					<li><a href="{:U('/member/order/service')}?type=1">答疑授课订单</a></li>
+                   <li><a href="{:U('/member/order/tuo')}">托付费用订单</a></li>
+				  </ul>
+			</li>
+			<!--<php>
+               $re=cookie("role");
+            if(!empty($re)){
+                $map['role']=cookie('role');
+                }else{
+                $map['role']=0;
+                }
+			$map['readed']=0;
+			$map['to_member_id']=session('id');
+			$coun=M('message')->where($map)->count();
+            </php>-->
+       <li class="user_navitem">
+              <a href="{:U('/member/message')}">系统消息</a>
+             
+        </li>
+
+        </ul>
+    </div>
+</div>
+<else/>
+<div class="user_navbox">
+  <div class="g_container">
+    <ul class="user_nav m_nav">
+	<li class="user_navitem <eq name='CONTROLLER_NAME' value='Quiz'>hover</eq>"><a href="{:U('/member/quiz/index')}">有偿问答<if condition="($quizcount)"><i class="u_tsd">{$quizcount}</i></if></a></li>
+        <li class="user_navitem <if condition="CONTROLLER_NAME eq 'MemberPost' "> hover</if>"><a href="{:U('/member/memberPost/index')}" >说说<if condition="($mpcounts)"><i class="u_tsd">{$mpcounts}</i></if></a></li>
+        <li class="user_navitem <eq name="CONTROLLER_NAME" value='Demand'> hover</eq>">
+              <a  href="{:U('/member/demand')}?demand_type=0">需求<i class="u_ico u_ico_cdown"></i></a>
+              <ul class="menu">
+                <li><a  href="{:U('/member/demand')}?demand_type=0">资料</a></li>
+                <li><a  href="{:U('/member/demand')}?demand_type=1">答疑</a></li>
+                <li><a  href="{:U('/member/demand')}?demand_type=2">授课</a></li>                
+              </ul>
+        </li>
+        
+    <php>
+        $is_hover = false;
+        if(CONTROLLER_NAME == "Bid" && ACTION_NAME=='index'){
+            $is_hover = true;
+        }else if(CONTROLLER_NAME == "Audition" && ACTION_NAME=='index'){
+            $is_hover = true;
+        }else if(CONTROLLER_NAME == "ServiceOrder" && ACTION_NAME=='index'){
+            $is_hover = true;
+        }if(CONTROLLER_NAME == "Index" && ACTION_NAME=='studentCenter'){
+            $is_hover = true;
+        }
+    </php>
+        
+        <li class="user_navitem <eq name='is_hover' value='true'>hover</eq>">
+              <a  href="{:U('/member/audition')}">学习中心<i class="u_ico u_ico_cdown"></i></a>
+              <ul class="menu">
+			  <li><a  href="{:U('/member/bid')}">投标列表</a></li>
+               <li><a  href="{:U('/member/audition')}">试听列表</a></li>
+                <li><a  href="{:U('/member/ServiceOrder')}">签约列表</a></li>
+                <li><a  href="{:U('/member/index/studentCenter')}">学习列表</a></li>
+                <li><a  href="dem_ser.html">评价列表</a></li>
+                <li><a  href="dem_ser.html">仲裁列表</a></li>
+				 <li><a  href="{:U('/member/MyOpenClass')}">我的直播课</a></li>
+              </ul>
+        </li>
+        
+        <li class="user_navitem <if condition="CONTROLLER_NAME eq 'Order' "> hover</if>">
+              <a  href="{:U('/member/order')}">学生订单<i class="u_ico u_ico_cdown"></i></a>
+              <ul class="menu">
+                <li><a href="{:U('/member/order')}" >图书资料订单</a></li>
+                <li><a href="{:U('/member/order/service')}?type=1">答疑授课订单</a></li>
+				   <li><a href="{:U('/member/order/tuo')}">托付费用订单</a></li>
+              </ul>
+        </li>
+
+		 <li class="user_navitem">
+
+              <a href="{:U('/member/message')}">系统消息</a>
+             
+        </li>
+      
+    </ul>
+  </div>
+</div>
+</neq>

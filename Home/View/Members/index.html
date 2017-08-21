@@ -1,0 +1,56 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<include file="Common/_listFilter"/>
+		<section class="g_cell_9">
+		
+	    <div class="cir_ts_box m_box">
+		<ul class="u_tab2">
+				  <li id="ucrdTab_1" onclick="setTab('ucrdTab_','u_tab2_item',1,2)" class="u_tab2_item  <if condition='strlen($_GET[type]) eq 0'>hover</if>"><a href="?type=">研友</a></li>
+				  <li id="ucrdTab_2" onclick="setTab('ucrdTab_','u_tab2_item',2,2)" class="u_tab2_item <eq name='_GET[type]' value='1'>hover</eq>"><a href="?type=1">老师</a></li>
+				  <li class="f_fr">
+                
+                   <span class="pa_up" id="pa1" onClick="onchan('pa1')"> 活跃度&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<span class="pa_up" id="pa2" onClick="onchan('pa2')">发布数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+				</ul>
+
+				<ul id="ucrdTab_1box" class="m_imglist f_clearfix">
+				<foreach name="mes" item="me">
+				  <li class="m_item">
+				    <div class="m_imgbox" href="{:id2path($me[id])}"><img src="{$me.avatar}"></div>
+				    <h4>{$me.nickname}</h4>  
+                    <p class="mbtn"><span class="mtalk" onclick="<gt name='_SESSION.id' value='0'>talk('{$me.chat_id}')<else/>window.location.href='{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}'</gt>">聊天</span><!--<a class="mfind">委托找人</a>--><a class="mquiz"  href="{:U('/memberPost/quiz',['id'=>$me['id']])}">有偿提问</a></p>
+				  </li>
+				  </foreach>
+				  </ul>
+
+				  <div class="u_fy m_box">
+			<php>
+				echo pageHtml($count);
+			</php>
+			</div>
+		
+		</div>
+		</section>
+   
+	</div>
+</div>
+
+<include file="Common/footer"/>
+<!--<if condition="$medus">
+<else/>
+<div class="mtipsbg" id="mtip">
+   <p>完善教育信息，可以快速进入校园圈找到匹配的同学啦！</p>
+   <div class="mtipbtn"><a  href="{:U('/home/member/setting')}" class="u_btn_bl">现在就去</a><input type="button" class="u_btn_bl" value="以后再说"  onClick="gbBzBox('mtip')"></div>
+</div>
+</if>-->
+
+<script type="text/javascript">
+   function talk(id){
+      
+	  $.post("{:U('/home/im/getdlgid')}",{mid:id},function(d){
+			var t = d.message;
+			window.location.href="{:U('/home/im/index')}?id=" + id +"&dlgid=" +t;			
+		});		
+   }
+</script>

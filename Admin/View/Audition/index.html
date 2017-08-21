@@ -1,0 +1,55 @@
+<include file="Common/header"/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>学生昵称</td>
+    <td>服务</td>
+      <td>老师</td>
+      <td>状态</td>
+    <td>创建时间</td>
+    <td>上课时间</td>
+      <td>内容</td>
+    <td>是否是公开课</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <foreach name='auditions' item='a'>
+  <tr>
+  <td>{$a.id}</td>
+  <td>{$a.MbMember.nickname}</td>
+  <td>{$a.Service.description}</td>
+  <td><php> $re=M('mb_member')->field('nickname')->find($a['Service']['member_id']);
+ echo $re['nickname'];
+  </php></td>
+    <td>{:C('audition_status')[$a['status']]}
+      <if condition="$a['status'] eq 1"><img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif">
+        <elseif condition="$a['status'] eq 3"/><img style="width:15px;height:15px" src="__APP__/images/icons/no.gif">
+          <else/>
+          </if>
+    </td>
+  <td>{:substr($a['add_time'],0,10)}</td>
+  <td>{$a['accept_time']}</td>
+    <td>
+      <input type="button" value="查看" onclick="layer.open({
+  type: 1,
+  skin: 'layui-layer-rim', //加上边框
+  area: ['600px', '300px'], //宽高
+  content: '标题:{$a["title"]}</br>内容:{$a["content"]}</br>讲义:{$a["content_reference"]}</br>问题:{$a["question"]}</br>方式：{$a["method"]}</br>老师备注：{$a["teacher_remarks"]}</br>学生备注:{$a["remarks"]}'
+});"
+    </td>
+
+<td>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <!--<input type="checkbox" disabled="disabled"  <eq name="a.is_open" value='1'>checked='checked'</eq> >-->
+  <if condition="$a['status'] eq 1"><img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif">
+    <else/><img style="width:15px;height:15px" src="__APP__/images/icons/no.gif">
+  </if>
+
+  </td>
+<td> <a class="btn-danger btn btn-sm" href="{:U('admin/audition/delete',['id'=>$a['id']])}">删除</a></td>
+    </tr>
+  </foreach>
+</table>
+{$pageHtml}
+<include file="Common/footer"/>

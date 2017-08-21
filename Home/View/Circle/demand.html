@@ -1,0 +1,168 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<!--<section class="g_cell_12 hot_ds mb_20">
+      <header class="u_tab2" style="border:0;">
+        <ul class="f_clearfix">
+          <li class="u_tab2_item hover" style="background:none;">热门需求</li>
+        </ul>
+      </header>
+      <ul class="m_sublist f_clearfix">
+      <php>
+      	$hots = D("Demand")->relation(true)->limit(6)->order('is_payed desc,demand_id desc')->select();
+      </php>
+      <foreach name="hots" item="h">
+      <php>$h = parse_class($h);</php>
+      	 <li class="m_item">
+		  <div class="m_dl_userbox">
+		    <div class="m_imgbox"><img src="{$h.Member.avatar}"><i class="u_ico_hot"></i></div>
+		    <h4>{$h[member_name]}</h4>
+		  </div>
+		  <div class="idc1_txt">
+		    <h3><a href="{:U('/home/demand/detail',['id'=>$h[demand_id]])}">【{:C('demand_types')[$h[demand_type]]}】{$h[description]}</a></h3>
+		    <div class="idc1_line1">
+		    <foreach name="h[types]" item="t">
+		    <a>{$t}</a>
+		    </foreach>
+		    </div>
+		       <div class="idc1_line3"><strong>&yen; {$h[cost]}</strong><if condition="$h['is_payed'] eq 1"><b class="txt_oragin" style="font-weight:normal;">【已托付】</b></if></div>
+		    <div class="idc1_line2"><a href="{:U('/home/demand/add')}"><i class="ico ico_book"></i>我有类似需求</a><a href="{:U('home/bid/add',['id'=>$h['demand_id']])}"><i class="ico ico_text"></i>我能提供服务</a><small>{$h[add_time]|to_date}</small></div>
+		  </div>
+		</li>
+        </foreach>
+      </ul>
+    </section>-->
+		<div class="g_cell_9">
+		  <div class="cir_ss m_box f_clearfix">
+		    <div class="u_fss">
+		    	<a class="u_btn_sl g_width_105" href="{:U('/home/demand/add')}">发需求</a>
+		    	<a class="u_btn_sc ml_20 g_width_105" href="{:U('/home/service/add')}">发服务</a>
+		    </div>
+		  	<div class="u_ss">
+		  		<form>
+		  		<input type="hidden" name="demand_type" value="{$_GET[demand_type]}">
+		  		<input type="text" class="u_ss_txn" name="keywords" value="{$_GET[keywords]}">
+		  		<button class="u_ss_btn"></button>
+		  		</form>
+		  	</div>
+		  </div>
+		  <section class="m_box">
+			  <header class="u_tab2">
+					<ul>
+						<li  class="u_tab2_item <if condition='strlen($_GET[demand_type]) eq 0'>hover</if>"><i class="ico"></i><a href="{:U('/home/circle/demand',['id'=>I('request.id')])}">全部</a></li>
+						<foreach name="Think.config.demand_types" item="t" key="k">
+						<li  class="u_tab2_item <if condition='(strlen($_GET[demand_type]) gt 0) AND ($_GET[demand_type] eq $k)'>hover</if>"><i class="ico"></i><a href="{:U('/home/circle/demand',['id'=>I('request.id')])}?demand_type={$k}">{$t}</a></li>
+						</foreach>
+					</ul>
+				</header>
+				<ul id="spgc_1box" class="m_datalist">
+				<php>
+					$demands = D("Demand")->relation(true);
+					$demand_type = I("request.demand_type"); 
+					if(strlen($demand_type) > 0){
+						$demands = $demands->where(["demand_type"=>$demand_type]);
+					}
+			        $keywords  =I("request.keywords");
+			        if ($keywords) {
+			            $where['detail'] = ['like',"%$keywords%"];
+			            $where['description'] = ['like',"%$keywords%"];
+			            $where['_logic'] = 'OR';
+			            $demands = $demands->where(['_complex'=>$where]);
+			        }
+					
+					$copy = clone $demands;								       
+					$demands = $demands->page($_GET['page']?:1,10);
+
+					$s = M("circle")->field('object_id,circle_type')->find(I("request.id"));
+					if($s['circle_type']==0){
+					   $sid = M("zysc_view")->where(['school_id'=>$s['object_id']])->field("zhuanye_id as id")->select();
+					}else{
+					     $mj = M("mj_major")->find($s['object_id']);
+					   if($mj['mj_type']==1){
+					     $sid = M("school")->where(['major_id'=>$s['object_id']])->field("id")->select();
+					   }else{
+					     $mjs = M("mj_major")->where(['pid'=>$s['object_id']])->field('id')->select();
+                         foreach($mjs as $k => $v){
+	                      $mjids[] = $v['id'];
+	                      }						 
+			             $sid = M("school")->where(['major_id'=>['in',$mjids]])->field("id")->select();	
+					    }
+					}
+					 foreach($sid as $k => $v){
+	                   $sids[] = $v['id'];
+	                 }
+					
+		            if(count($sids)>0){
+	                   $demands = $demands->where(['demand.school_id'=>['in',$sids]])->order('is_payed desc,demand_id desc')->select();	
+	                }else{			           	
+					   $demands = array();
+					}			 
+			        $count = $copy->count();
+
+				</php>
+				<foreach name="demands" item="d"> 
+				<php>
+					$d = parse_class($d);
+				</php>
+				  <li class="m_datalist_item">
+				  	<div class="m_dl_userbox"><div class="m_imgbox"><img src="{$d.Member.avatar}"></div><h4>{$d.member_name}</h4></div>
+				  	<div class="m_dl_picbox">&yen;{$d.cost}</div>
+				  	<div class="m_dl_txtbox">
+							<h3><i class="ico_font">需</i><i class="ico"></i><a href="{:U('/home/demand/detail',['id'=>$d[demand_id]])}">【{:C('demand_types')[$d['demand_type']]}】{$d.description}</a><if condition="$d['is_payed'] eq 1"><b class="txt_oragin" style="font-weight:normal;">【已托付】</b></if></h3>
+							<small>
+							<foreach name="d.types" item="t">
+							<a>{$t}</a>
+							</foreach>
+							</small>
+							<div class="m_dl_opt">
+							  <span>{$d.add_time|to_date}</span>
+								<a href="javascript:void(0)"><i class="ico ico_zuan" onclick="f1(this,{$d.demand_id})"></i><i>{$d.praise_num}</i></a><a href="{:U('home/demand/add')}"><i class="ico ico_book"></i>我有类似需求</a><a href="{:U('home/bid/add',['id'=>$d['demand_id']])}"><i class="ico ico_text"></i>我能提供帮助</a>
+							</div>
+				  	</div>
+				  </li>
+				  </foreach>
+				</ul>
+
+				<div class="u_fy">
+				  <php>echo pageHtml($count);</php>
+				</div>
+			</section>
+		</div>
+
+
+		<include file="_right"/>
+ 	</div>
+</div>
+
+<include file="Common/footer"/>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	function f1(t,id){
+		var n=parseInt($(t).next().html());//获取当前点赞数  parseInt返回一个整形
+		var member_id = {:session('id')};
+		var demand_id = id;
+		//  var praise_num = {$demand.praise_num};
+		$.post("{:U('/home/common/newPraise')}", {
+			member_id: member_id,
+			object_id: demand_id,
+			type: 1
+		}, function (d) {
+			if (d.suc) {
+				n= n+1;
+				$(t).next().html(n);
+				layer.msg(d.message);
+
+			} else {
+				n=n-1;
+				if(n>=0) {
+					$(t).next().html(n);
+				}
+				layer.msg(d.message);
+			}
+
+		})
+	}
+</script>

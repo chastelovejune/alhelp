@@ -1,0 +1,32 @@
+  <div class="talk_con chats">
+  <php>//dump($ims);</php>
+    <ul>
+    <foreach name='ims' item='im'>
+    <include file='Im/chat_li'/>
+    
+    </foreach>
+
+    
+    
+    </ul>
+    </div>
+    
+    <div class="talk_add_btn">
+    <ul>
+    <li class="talk_add_item"><img src="images/icons/face.jpg" style="width:28px;height:28px;" class="im_emotion"></li>
+      <li class="talk_add_item picture" onclick="addImImage()"><img src="images/icons/im_pic.png"  style="width:47px;height:40px;" ></li>
+       <!-- <li class="talk_add_item picture"><img src="images/icons/open_file.png"><input type="file"></li>-->
+      <!--  <li class="old_news"><span>消息记录</span></li>-->
+    </ul>
+    </div>
+    
+    <div class="talk_edt">
+    <textarea class="talk_ipt content" id="im_content"></textarea>
+    </div>
+    <div class="talk_send_btn">
+  
+    <input type="button" class="u_btn_sl" onclick="send()" value="发送">
+    </div>
+    
+
+    

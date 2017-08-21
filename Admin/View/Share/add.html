@@ -1,0 +1,179 @@
+<include file="Common:admin_header" />
+<include file="Common:editor" />
+<form  method="POST">
+	标题：
+	<input type="text" name="title" >
+	</br></br>
+	发布人:
+	<input type="text" name="name">
+	选择分类：
+<select name="type">
+	<option value="0">资料</option>
+	<option value="1" >视频</option>
+	<option value="2" >心得</option>
+</select>
+	</br></br>
+专业:&nbsp;{$info['types'][0]}&nbsp;{$info['types'][1]}&nbsp;{$info['types'][2]}&nbsp;{$info['types'][3]} &nbsp;<input type="button" value="编辑专业" id="edit1" class="btn btn-info"/>
+	<ul class="m_form f_clearfix pd_20">
+		<div id="major_edit" style="display: none">
+	<li class="m_item"><div class="m_formtit">专业类型：</div>
+		<select class="u_slt add_type">
+			<foreach name="Think.config.3types" item="v" key="k">
+				<option value="{$k}">{$v}</option>
+			</foreach>
+		</select>
+	</li>
+
+	<li class="m_item school"><div class="m_formtit">地区：</div>
+		<select class="u_slt school0">
+		</select> </li>
+	<li class="m_item school"><div class="m_formtit">大学：</div>
+
+		<select class="u_slt school1">
+		</select>
+	</li>
+	<li class="m_item school">
+		<div class="m_formtit">学院:</div>
+		<select class="u_slt school2">
+		</select>
+	</li>
+	<li class="m_item school"><div class="m_formtit">专业类型：</div>
+		<select class="u_slt school3" name="school_id">
+		</select>
+	</li>
+
+	<li class="m_item unified f_dn">
+		<div class="m_formtit">专业分类：</div>
+		<select class="u_slt unified0">
+		</select>
+		专业:
+		<select class="u_slt unified1" name="unified_id">
+		</select>
+	</li>
+	<li class="m_item public_subject">
+		<div class="m_formtit">专业：</div>
+		<select class="u_slt public_subject0" name="public_subject_id">
+		</select>
+	</li></div>
+
+	<script src="script/layer/layer.js"></script>
+	<script type="text/javascript">
+		$('#edit1').click(function(){
+			$("#major_edit").toggle(1000);
+		})
+
+		//获取地区 学校 专业
+		$("select.add_type").change(function(){
+			var t = $(this).val();
+			if (t == 0) {
+				$(".school").show();
+				$(".unified").hide();
+				$(".public_subject").hide();
+				$.get("{:U('/home/school/index')}",function(d){
+					var html = build_options(d.message);
+					$(".school0").html(html);
+					$(".school0").change();
+				})
+			}else if (t == 1) {
+				//统考
+				$(".school").hide();
+				$(".public_subject").hide();
+				$(".unified").show();
+				$.get("{:U('/home/unifiedClassify/index')}",function(d){
+					var html = build_options(d.message);
+					$(".unified0").html(html);
+					$(".unified0").change();
+				})
+			}else{
+				$(".school").hide();
+				$(".public_subject").show();
+				$(".unified").hide();
+				$.get("{:U('/home/publicSubject/index')}",function(d){
+					var html = build_options(d.message);
+					$(".public_subject0").html(html);
+				})
+			}
+
+		})
+		$("select.add_type").change();
+		$(".unified0").change(function(){
+			$.get("{:U('/home/unified/index')}",{cid:$(this).val()},function(d){
+				var html = build_options(d.message);
+				$(".unified1").html(html);
+			})
+		})
+		function remove_hide_types(){
+			var val = $("select.add_type").val();
+			if (val == 0) {
+				$(".unified").remove();
+				$(".public_subject").remove();
+			}else if (val == 1) {
+				//统考
+				$(".school").remove();
+				$(".public_subject").remove();
+			}else{
+				$(".school").remove();
+				$(".unified").remove();
+			}
+		}
+		$(".school0").change(function(){
+			$.get("{:U('/home/school/index1')}",{pid:$(this).val()},function(d){
+				var html = build_options(d.message[0]);
+				$(".school1").html(html);
+				html = build_options(d.message[1]);
+				$(".school2").html(html);
+				html = build_options(d.message[2]);
+				$(".school3").html(html);
+			})
+		})
+		$(".school1").change(function(){
+			$.get("{:U('/home/school/index1')}",{pid:$(this).val()},function(d){
+				var html = build_options(d.message[0]);
+				$(".school2").html(html);
+				html = build_options(d.message[1]);
+				$(".school3").html(html);
+			})
+		})
+		$(".school2").change(function(){
+			$.get("{:U('/home/school/index')}",{pid:$(this).val()},function(d){
+				var html = build_options(d.message);
+				$(".school3").html(html);
+			})
+		})
+	</script>
+	<!--选择专业end-->
+		</br>
+	  <textarea id='edit' name="content" style="margin-top: 30px;margin-left:150px;width:400px;height:200px" >
+               </textarea>
+
+	<!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+	<script type="text/javascript">
+		$('#edit').froalaEditor({
+			height: 300,
+			language: "zh_cn",
+			toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+			imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+			imageUploadParam:'file', //文件名称 <input type=file name=file>
+			//imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+			toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+			imageInsertButtons: ['imageUpload'],
+			imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+		}).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+			$('.fr-image-progress-bar-layer').addClass('fr-active');
+		}).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+			if( $('.fr-message').text()=='Loading image' ){
+				$('.fr-image-progress-bar-layer').removeClass('fr-active');
+				$img.froalaEditor('events.focus');
+			}
+		});
+	</script>
+	<div style="margin-top: 20px">
+		链接地址：
+		<input type="text" name="url">
+		</br></br>
+		<input type="submit" class="btn btn-info"/>
+	</div>
+</form>
+<include file="Common:admin_footer" />

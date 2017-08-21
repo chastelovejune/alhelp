@@ -1,0 +1,52 @@
+<include file="Common:admin_header" />
+<form  method="POST">
+  统考分类 
+  <select name="cid">
+    <foreach name="cs" item="c">
+    <if condition="$c['id'] eq $unified['cid']">
+    <option selected="selected" value="{$c["id"]}" >{$c["title"]}</option>
+    <else />
+    <option value="{$c["id"]}">{$c["title"]}</option>
+    </if>
+    </foreach>
+  </select>
+  cname <input type="text" name="cname" value="{$unified["cname"]}"/>
+  所属学科 
+  <select class="major0">
+    <foreach name="majors" item="m">
+    <if condition="$m['id'] eq $unified['major']['pid']">
+    <option value="{$m["id"]}" selected="selected">{$m["mj_name"]}</option> 
+    <else />
+    <option value="{$m["id"]}">{$m["mj_name"]}</option> 
+    </if>
+    </foreach>
+  </select>
+  <select name="major_id">
+  </select>
+  <input type="submit" value="保存"/>
+</form>
+<include file="Common:admin_footer" />
+<script language="javascript" type="text/javascript">
+  function go_change(pid){
+    $.get("{:U('admin/unified/majors')}?pid="+pid,{},function(data){
+        var html = "";  
+        for(var i in data){
+          var row = data[i];
+          if(row["id"] == '{$unified["major_id"]}'){
+            html += "<option value='"+row["id"]+"' selected='selected'>"+row["mj_name"]+"</option>";
+          }else{
+            html += "<option value='"+row["id"]+"'>"+row["mj_name"]+"</option>";
+          }
+        }
+        $("select[name=major_id]").html(html);
+    });
+  }
+  $(".major0").change(function(){
+      var pid = $(this).val();
+      go_change(pid);
+  });
+  $(function(){
+    var pid = $(".major0").val();    
+      go_change(pid);
+  });
+</script>

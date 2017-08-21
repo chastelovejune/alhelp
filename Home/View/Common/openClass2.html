@@ -1,0 +1,46 @@
+<section class="g_cell_9 m_box itembor">
+  <header class="u_tab2">
+		<ul>
+			<li id="spgc_1" onclick="setTab('spgc_','u_tab2_item',1,1)" class="u_tab2_item hover"><i class="ico"></i>直播课</li>
+			<li class="u_tab2_item"><i class="ico"></i><a href="http://xjr.alhelp.net/" target="_blank">网校</a></li>
+		</ul>
+	</header>
+	<ul id="spgc_1box" class="m_boxlist2 f_clearfix pd_10 mt_10 op">
+	<foreach name="_cs" item="c">
+		<li class="m_item op_item">
+			<div class="m_imgbox">
+				<a href="{:U('/home/openClass/show',['id'=>$c['open_class_id']])}"><img src="{$c["image"]}" /></a>
+			</div>
+			<div class="m_text">
+				<h3><a href="{:U('/home/openClass/show',['id'=>$c[open_class_id]])}">
+				<i style="font-size: 15px;font-style:normal" ><php>
+					if(mb_strlen($c['description']) > 7){
+						echo mb_substr($c['description'],0,6)."...";
+					}else{
+						echo $c['description'];
+					}
+				</php></i>
+				</a></h3>
+				<h4>主讲人：{:substr($c['teacher'],0,9)}</h4>
+				<p>{:substr($c['open_class_time'],0,10)}<br>{$c['classroom']}</p>
+				<div class="f_clearfix btnlis">
+				<neq name='c.member_id' value='$m.id'>
+					<if condition="$c['open_class_time'] lt date('Y-m-d h:i:s',time())">
+						<span class="u_btn_bk" style="background-color:grey;color:white;border: 0px">已开课</span>
+						<else/>
+				<if condition="$c['apply_id'] gt 0">
+					<span class="u_btn_bk" style="background-color:green;color:white;border: 0px">已报名</span>
+				<else/>
+					<a class="u_btn_bk apply" data-href="{:U('/home/OpenClass/apply')}" data-id="{$c['open_class_id']}">报&nbsp;名</a>
+				</if>
+						</if>
+				</neq>
+				</div>
+			</div>
+		</li>
+	</foreach>
+	</ul>
+<div class="u_fy">
+               <php>echo pageHtml($count);</php>
+            </div>
+</section>

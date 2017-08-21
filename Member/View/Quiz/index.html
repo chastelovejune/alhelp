@@ -1,0 +1,87 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<include file="Common/top_user_info"/>
+<include file="Common/nav"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<section class="g_cell_9">
+
+
+   <div class="f_ss_gr">
+
+<div class="input_ss">
+<input type="text" class="s_ss_content">
+</div>
+<div class="s_act">
+<input type="submit" value class="ico_s">
+</div>
+<div class="fss_btn">
+<input type="button" class="u_btn_sl" onclick="onoff('mianshuoshuofb','shuoquize','ucl_ssinput m_box pd_20 mb_20')" value="发说说" style="width:49%;">
+<button class="u_btn_sc" onclick="onoff('shuoquize','mianshuoshuofb','ucl_ssinput m_box pd_20 mb_20')" style="padding-top:6px; padding-bottom:6px; background:#fff; border:1px solid #ff7101; color:#ff7101; width:49%;">有偿问答</button>
+</div>
+</div>
+
+   <div class="clear mb_15"></div>
+
+  <div id="mianshuoshuofb" class="ucl_ssinput m_box pd_20 mb_20">
+	      
+        <include file="../Application/Home/View/MemberPost/_add.html"/>
+	    </div>
+
+		
+		<div id="shuoquize" class="ucl_ssinput m_box pd_20 mb_20" >
+	     <include file="../Application/Home/View/MemberPost/_quiz.html"/>             
+	    </div>
+                
+<div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+<ul class="u_tab2 m_box" id="nav">
+
+<li class="u_tab2_item hover" id="uclTab_1" onClick="setTab('uclTab_','u_tab2_item',1,6)"><a href="{:U('/member/quiz/index')}">我的提问</a></li>
+<li class="u_tab2_item" id="uclTab_2" onClick="setTab('uclTab_','u_tab2_item',2,6)"><a href="{:U('/member/quiz/ans')}">我的回答</a></li>
+<li class="u_tab2_item" id="uclTab_2" onClick="setTab('uclTab_','u_tab2_item',2,6)"><a href="{:U('/member/quiz/benefitme')}">我看的答案</a></li>
+<li class="u_tab2_item" id="uclTab_3" onClick="setTab('uclTab_','u_tab2_item',3,6)"><a href="{:U('/member/quiz/ansm')}">回答我的<if condition="($answercount)"><i class="u_tsd">{$answercount}</i></if></a></li>
+<li class="u_tab2_item" id="uclTab_4" onClick="setTab('uclTab_','u_tab2_item',4,6)"><a href="{:U('/member/quiz/accept')}">我被选中<if condition="($acceptcount)"><i class="u_tsd">{$acceptcount}</i></if></a></li>
+<li class="u_tab2_item" id="uclTab_5" onClick="setTab('uclTab_','u_tab2_item',5,6)"><a href="{:U('/member/quiz/benefit')}">看答案的<if condition="($benefitcount)"><i class="u_tsd">{$benefitcount}</i></if></a></li>
+ <li class="f_fr">
+ <span class="pa_up" id="pa1" onClick="onchan('pa1')"> 时间&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;<span class="pa_up" id="pa2" onClick="onchan('pa2')">阅读量&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="pa_up" id="pa3" onClick="onchan('pa3')">活跃度&nbsp;&nbsp;&nbsp;&nbsp;</span>
+</li>
+</ul>
+ <php>
+	$_mps  = M("member_post")
+	->join("LEFT JOIN mb_member ON mb_member.id=member_id")
+	->join("LEFT JOIN circle ON circle_id=circle.id")
+	->page($_GET['page'] ?: 1,10)
+	->where(["member_id"=>$m['id'],'reward > 0','member_post.status = 1'])
+	->order('id DESC')
+	->field("member_post.*,mb_member.nickname,mb_member.avatar,circle.circle_name")
+	->select();
+	foreach($_mps as $i => $c){
+	    $ans = M("answer")->where(['object_id'=>$c['id']])->find();
+		$mps[$i]['answer'] = $ans;
+		$an = M("answer")->where(['object_id'=>$c['id'],'member_id'=>session("id")])->find();
+		if($an){
+		    $_mps[$i]['ansed'] = '1';
+		}else{
+			$_mps[$i]['ansed'] = '0';
+		}
+		}
+</php>
+
+   	<include file="Quiz/_mps"/>
+	</section>
+
+	<include file="Common/right"/>
+	</div>
+</div>
+<div id="bg"></div>
+<div id="bottom">
+ <ul>
+     <li class="prev"></li>
+        <li class="img"></li>
+        <li class="next"></li>
+        <li class="close"></li>
+    </ul>
+</div>
+<div id="frame"></div>
+<include file="../Application/Home/View/Common/footer.html"/>

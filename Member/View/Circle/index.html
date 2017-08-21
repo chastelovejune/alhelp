@@ -1,0 +1,112 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<include file="Common/top_user_info"/>
+<include file="Common/nav"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<section class="g_cell_9">                
+<ul class="u_tab2 m_box" id="nav">
+<li class="u_tab2_item hover" id="uclTab_1" onClick="setTab('uclTab_','u_tab2_item',1,6)"><a href="{:U('/member/memberPost/index')}">校友圈</a></li>
+<li class="u_tab2_item" id="uclTab_2" onClick="setTab('uclTab_','u_tab2_item',2,6)"><a href="{:U('/member/memberPost/comments')}">专业圈</a></li>
+</ul>
+ 
+ 
+  <ul id="idc3_1box" class="community_list f_clearfix pt_20 cir m_box" style="padding-left:20px; padding-right:20px;margin:0;">
+       <li style="width:100%;text-align:left;font-size:14px;">我所在的圈子</li>
+	   <foreach name="circles" item="circle">
+	   
+		  <li class="community_item on">
+					  <div class="m_imgbox">
+					   <!-- <i class="u_ico_X" onclick="fzan({$mp.id})"></i><i class="u_ico_suo"></i>-->
+						  <img src="{$circle.logo}" style="width: 100%">
+						</div>
+						<h4>{$circle.title}</h4>
+						<a class="u_btn_bl" href="{:U('/home/circle/profile',['id'=>$circle['id']])}">进入圈子</a>
+					</li>
+			</foreach>	
+          </ul>
+	<!--	<div class="u_fy">
+			<php>
+				echo pageHtml($count);</php>
+		</div>-->
+  <ul id="idc3_1box" class="community_list f_clearfix pt_20 cir m_box" style="padding-left:20px; padding-right:20px;margin:0;">
+  <li style="width:100%;text-align:left;font-size:14px;">我关注的圈子</li>
+       <foreach name="followcs" item="fcir">
+		  <li class="community_item on">
+					  <div class="m_imgbox">
+					    <i class="u_ico_X" onClick="del({$fcir.id})"></i><!--<i class="u_ico_suo"></i>-->
+						  <img src="{$fcir.logo}" style="width: 100%">
+						</div>
+						<h4>{$fcir.title}</h4>
+						<a class="u_btn_bl" href="{:U('/home/circle/profile',['id'=>$fcir['id']])}">进入圈子</a>
+					</li>
+			</foreach>	
+					<li class="commadd m_imgbox">+
+					<form class="school" action="{:U('/member/circle/add')}">
+					<div class="addschoolbox">
+					<p>选择圈子</p>
+					<div>
+					<select name="Select1" class="u_slt school1" data-href="{:U('/home/school/index')}">
+			<option >选择省份</option>
+					</select>
+				</div>
+				<div>
+					<select name="school_id" class="u_slt school2" id="schoolid">
+					<option>选择学校</option>
+					
+					</select>
+				</div>
+               <input type="submit" class="u_btn_sl" value="添加">
+					</div>
+					</form>
+					</li>
+          </ul>
+	</section>
+
+	<include file="Common/right"/>
+	</div>
+</div>
+<include file="../Application/Home/View/Common/footer.html"/>
+
+<script type="text/javascript">
+ function del(id){
+  $.post("{:U('/member/circle/del')}",{'circle_id':id},function(d){
+	   window.location.reload();
+      })
+  }
+
+	$("form.school").submit(function(){
+    var circle_id  =$(this).find("[name=school_id]").val();
+    if (!circle_id) {
+      alert("请选择学校");
+      return false;
+    }   
+		$(this).ajaxSubmit(function(d){
+      if (d.suc) {
+		window.location.reload();	
+      }else{
+        alert(d.message);
+      }
+		});
+		return false;
+	})
+
+   $.get($("form.school .school1").attr("data-href"),{},function(data){
+        var html = "";
+        for(var id in data.message){
+            html = html + '<option style="color:#999;background:#fff" value='+id+' >'+data.message[id]+'</option>';
+        }
+        $("form.school .school1").html(html);
+    }); 
+
+    $("form.school .school1").change(function(){
+        var pid = $(this).val();
+        $.get($("form.school .school1").attr("data-href"),{"pid":pid},function(data){
+            var html = "";
+            for(var id in data.message){
+                html = html + '<option style="color:#999;background:#fff" value='+id+' >'+data.message[id]+'</option>';
+            }
+            $("form.school .school2").html(html);
+        })
+    })
+</script>

@@ -1,0 +1,348 @@
+<include file="Common:header" />
+<include file="Common:editor" />
+<script src="script/layer/layer.js"></script>
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="service_type" value="0">
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+    <div class="toptitle">
+      <h2 class="pd_20">服务资料修改</h2>
+      
+</p>
+    </div>
+          <h5 >创建时间；{$re.add_time}</h5>
+                        <p>发布人:{$re.member_name}</p>
+                    </a>
+                </li>
+              
+            </ul>
+          
+            <div class="u_paytitle"><h3>专业:&nbsp;{$re['types'][0]}&nbsp;{$re['types'][1]}&nbsp;{$re['types'][2]}&nbsp;{$re['types'][3]} &nbsp;<input type="button" value="修改专业" id="edit" style="background-color:#23c6c8;color:white "/></div>
+                <div id="major_edit" style="display: none">
+               <!--选择专业start-->
+			   <li class="m_item"><div class="m_formtit">专业类型：</div>
+  <select class="u_slt add_type">
+    <foreach name="Think.config.3types" item="v" key="k">
+    <option value="{$k}">{$v}</option>
+    </foreach> 
+  </select>
+</li>
+
+<li class="m_item school"><div class="m_formtit">地区：</div>
+  <select class="u_slt school0">
+  </select> </li>
+<li class="m_item school"><div class="m_formtit">大学：</div>
+ 
+  <select class="u_slt school1">
+  </select>
+</li>
+ <li class="m_item school">
+ <div class="m_formtit">学院:</div>  
+  <select class="u_slt school2">
+  </select>
+</li>
+<li class="m_item school"><div class="m_formtit">专业类型：</div>
+  <select class="u_slt school3" name="school_id">
+  </select>
+</li>  
+
+<li class="m_item unified f_dn">
+<div class="m_formtit">专业分类：</div>
+  	<select class="u_slt unified0">
+  	</select>
+  	专业: 
+  	<select class="u_slt unified1" name="unified_id">
+  	</select>
+</li>  
+ <li class="m_item public_subject">
+ <div class="m_formtit">专业：</div>
+  <select class="u_slt public_subject0" name="public_subject_id">
+  </select>
+</li>
+                </div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+    $('#edit').click(function(){
+        $("#major_edit").toggle(1000);
+    })
+
+	$("select.add_type").change(function(){
+		var t = $(this).val();
+		if (t == 0) {
+			$(".school").show();
+			$(".unified").hide();
+			$(".public_subject").hide();
+			$.get("{:U('/home/school/index')}",function(d){
+				var html = build_options(d.message);
+				$(".school0").html(html);
+				$(".school0").change();
+			})	
+		}else if (t == 1) {
+			//统考
+			$(".school").hide();
+			$(".public_subject").hide();
+			$(".unified").show();
+			$.get("{:U('/home/unifiedClassify/index')}",function(d){
+				var html = build_options(d.message);
+				$(".unified0").html(html);
+				$(".unified0").change();
+			})
+		}else{
+			$(".school").hide();
+			$(".public_subject").show();
+			$(".unified").hide();
+			$.get("{:U('/home/publicSubject/index')}",function(d){
+				var html = build_options(d.message);
+				$(".public_subject0").html(html);
+			})
+		}
+		
+	})
+	$("select.add_type").change();
+	$(".unified0").change(function(){
+		$.get("{:U('/home/unified/index')}",{cid:$(this).val()},function(d){
+			var html = build_options(d.message);
+			$(".unified1").html(html);
+		})	
+	})
+	function remove_hide_types(){
+		var val = $("select.add_type").val();
+	    if (val == 0) {
+	      $(".unified").remove();
+	      $(".public_subject").remove();
+	    }else if (val == 1) {
+	      //统考
+	      $(".school").remove();
+	      $(".public_subject").remove();
+	    }else{
+	      $(".school").remove();
+	      $(".unified").remove();
+	    }
+	}
+$(".school0").change(function(){
+		$.get("{:U('/home/school/index1')}",{pid:$(this).val()},function(d){
+			var html = build_options(d.message[0]);
+			$(".school1").html(html);
+			html = build_options(d.message[1]);
+			$(".school2").html(html);
+			html = build_options(d.message[2]);
+			$(".school3").html(html);
+		})	
+	})
+	$(".school1").change(function(){
+		$.get("{:U('/home/school/index1')}",{pid:$(this).val()},function(d){
+			var html = build_options(d.message[0]);
+			$(".school2").html(html);
+			html = build_options(d.message[1]);
+			$(".school3").html(html);
+		})	
+	})
+	$(".school2").change(function(){
+		$.get("{:U('/home/school/index')}",{pid:$(this).val()},function(d){
+			var html = build_options(d.message);
+			$(".school3").html(html);
+		})	
+	})
+
+</script>
+			   <!--选择专业end-->
+
+                <li class="m_item">
+                    <div class="m_formtit">标题：</div>
+                    <input name="description" maxlength='16' placeholder="温馨提示：简单清晰的描述会更容易被找到" type="text" class="u_inp_t g_width_5"  value="{$re.description}">
+                    &nbsp;&nbsp;&nbsp;
+                    <span>(限定16字)</span>
+                </li>
+                <li class="m_item"><div class="m_formtit">考研年份：</div>
+                    <select class="u_slt" id="year">
+                        <for start="2015" end="2019">
+                            <option value="{$i}">{$i}</option>
+                        </for>
+                    </select>
+                </li>
+                <li class="m_item"><div class="m_formtit ckyb">详细描述：<br></div>
+				<!--引入文本编辑器-->
+                    <textarea id='edit1' name="detail" style="margin-top: 30px;width:600px;height:300px" >{$re.detail}
+                    </textarea>
+                    <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+                    <script type="text/javascript">
+                        $('#edit1').froalaEditor({
+							height: 300,
+							language: "zh_cn",
+							toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+                            imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                            imageUploadParam:'file', //文件名称 <input type=file name=file>
+                            //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                            toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+                            imageInsertButtons: ['imageUpload'],
+                            imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                        }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                            $('.fr-image-progress-bar-layer').addClass('fr-active');
+                        }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                            if( $('.fr-message').text()=='Loading image' ){
+                                $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                                $img.froalaEditor('events.focus');
+                            }
+                        });
+                    </script>
+                </li>
+			
+                <li class="m_item" style="margin-left:5px"><div class="m_formtit">图片：</div>
+				<img src="{$re.image}"  style="width:250px;height:200px"></li>
+        <li class="m_item" style="margin-left:5px"><div class="m_formtit">重新上传图片：</div>
+                    <input name="image" type="file" >
+                </li>
+        <li class="m_item"><div class="m_formtit">所需费用：</div>
+          <input type="text" name="cost" number='true' class="u_inp_t"  value="{$re.cost}">
+         <span style="color:#ff7101;font-size:16px;"> &nbsp;&nbsp;元（该价格应包括管理费和运费）</span>
+        </li>
+        
+          <li class="m_item"><div class="m_formtit">平台管理费：</div>
+          <input type="text"   value="" name="commission" class="u_inp_t">
+           <span style="color:#ff7101;font-size:16px;"> &nbsp;&nbsp;元</span>
+        </li>
+       <!-- <li class="m_item"><div class="m_formtit">Q Q：</div>
+            <input name="qq" type="text" class="u_inp_t" number="true" value="{$re.qq}">
+        </li>
+        <li class="m_item"><div class="m_formtit">微信号：</div>
+            <input name="wechat" type="text" class="u_inp_t" value="{$re.wechat}">
+        </li>-->
+        <li class="m_item"><div class="m_formtit">联系电话：</div>
+		<input name="mobile"  isPhone='true' type="text" class="u_inp_t" id="phone" value="{$re.mobile}">  
+        </li>
+        </br>
+        <li class="m_item rel_inpr"><div class="m_formtit"></div>
+          <input type="submit" class="u_btn_sl pd_20" id="publish_submit" value="确认提交" style="background-color: #23c6c8;color: white">
+        </li>
+        </ul>
+    </div>
+  </div>
+</div>
+</form>
+<style>
+    .m_formtit{
+        font-size: 15px;
+        color:#23c6c8;
+        font-weight:bold;
+    }
+</style>
+
+<include file="Common/modal/add_service_example"/>
+<include file="Common/modal/add_service_protocol"/>
+<include file="Common:footer" /> 
+<include file="Common/add_js"/>
+<script>
+
+
+   $("ul.service_type a").click(function () {	  
+        $("ul.service_type li").removeClass("on");
+        $(this).parent().addClass("on");
+        $("input[name=service_type]").val($("ul.service_type li").index($(this).parent()));
+		var box = document.getElementById("p");
+		if($("input[name=service_type]").val() == "0")
+	   {		  
+	   box.style.display = "none";
+	   }else{
+	   box.style.display = "block";
+	   }
+    });
+
+    $("#pabox input[value=确认]").click(function(){
+        var t = $("#pabox");
+        var num = t.find("input[type=text]").eq(0).val();
+        var discount = t.find("input[type=text]").eq(1).val();
+        if (!is_gt0(num)) {
+            layer.msg("请输入次数");
+            return false;
+        }
+        if (!is_gt0(discount)) {
+            layer.msg("请输入折扣数");
+            return false;
+        }
+        var li = $("li.packages");
+        var types =  t.find('input[type=checkbox]').not("[disabled]");
+        var types_html = "";
+        if (types.eq(0).is(":checked")) {
+            types_html += "提问必答&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type1]>";
+        }
+        if (types.eq(1).is(":checked")) {
+            types_html += "测试&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type2]>";
+        }
+        if (types.eq(2).is(":checked")) {
+            types_html += "知道论文&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type3]>";
+        }
+        if (types.eq(3).is(":checked")) {
+            types_html += "提问协助联系导师&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type4]>";
+        }
+        if (types.eq(4).is(":checked")) {
+            var other = types.eq(4).parent().next().next().val();
+            types_html += "其他"+other+"&nbsp;&nbsp;<input type=hidden value="+other+" name=packages["+li.length+"][type5]>";
+        }
+        var html = '<li class="m_item packages"><div class="m_formtit"></div>';
+        html += ("<input type=hidden name=packages["+li.length+"][num] value="+num+">");
+        html += ("<input type=hidden name=packages["+li.length+"][discount] value="+discount+">");
+        html += '<p class="ser_item">套餐'+(li.length+1)+':'+num+'次，'+discount+'折&nbsp;&nbsp;&nbsp;承诺服务：'+types_html+'</p><input type="button" style="padding:0; width:40px; margin-left:20px; font-size:12px;" value="删除" onclick="delete_package('+(li.length)+')" class="u_btn_sl"></li>';
+       // t.after(html);
+	   t.before(html);
+	   var box = document.getElementById("pabox");
+	   box.style.display = "none";
+    })
+    function delete_package(i){
+        $("li.packages").eq($("li.packages").length-i-1).remove();
+    }
+	
+	$("input[name=image]").change(function(){
+		
+		var filepath = $(this).val();
+		var tmp = filepath.split(".");
+		var ext = (tmp[ tmp.length - 1 ]).toUpperCase() ;
+		
+        if (ext != "BMP" && ext != "PNG" && ext != "GIF" && ext != "JPG" && ext != "JPEG"){
+           layer.msg("图片限于bmp,png,gif,jpeg,jpg格式"); 
+		   $(this).val(null);
+		};
+	});
+   //获取地区 学校 专业
+   //接收统考  非统考  公共课的信息，并把下拉框选中
+   /*
+   var school_id="{$re.school_id}" ? "{$re.school_id}":0;//统考
+   var unified_id="{$re.unified_id}" ? "{$re.unified_id}":0;//非统考
+   var public_subject_id="{$re.public_subject_id}" ? "{$re.public_subject_id}":0;//公共课
+   console.log(school_id);
+   console.log( unified_id);
+   console.log( public_subject_id);
+   if(school_id>0){
+       var area_id1="{$re['type']['area_id']}"?"{$re['type']['area_id']}":0;
+       var school_id1="{$re['type']['school_id']}";
+       var yuan_id1="{$re['type']['yuan_id']}";
+       var zhuanye_id1= "{$re['type']['zhuanye_id']}";
+       var area_id=parseInt(area_id1);
+       var school_id=parseInt(school_id1);
+       var yuan_id=parseInt(yuan_id1);
+       var zhuanye_id=parseInt(zhuanye_id1);
+       console.log(area_id);
+       console.log(school_id);
+       console.log(yuan_id);
+       console.log( zhuanye_id);
+       $("select.add_type option[value=0]").attr("selected",true);
+       $("select.school0 option[value="+area_id+"]").attr("selected",true);
+       $("select.school1 option[value="+school_id+"]").attr("selected",true);
+       $("select.school2 option[value="+yuan_id+"]").attr("selected",true);
+       $("select.school3 option[value="+zhuanye_id+"]").attr("selected",true);
+   }
+   if(unified_id>0){
+       var cid="{$re['type']['cid']}";
+       var cid=parseInt(cid);
+       console.log(cid);
+       $("select.add_type option[value=1]").attr("selected",true);
+       $("select.unified0 option[value=cid]").attr("selected",true);
+       $("select.unified1 option[value=unified_id]").attr("selected",true);
+   }
+   if(public_subject_id>0){
+       $("select.add_type option[value=2]").attr("selected",true);
+       $("select.public_subject0 option[value=public_subject_id]").attr("selected",true);
+   }*/
+</script>

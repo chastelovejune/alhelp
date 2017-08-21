@@ -1,0 +1,27 @@
+[ 2016-12-28T13:40:13+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000107s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002972s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003068s ]
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2016-12-28T14:00:57+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.044885s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.029957s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.030049s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+
+[ 2016-12-28T14:11:43+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000646s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001086s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001258s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+

@@ -1,0 +1,42 @@
+<include file="Common:admin_header" />
+<a class="btn btn-outline btn-success btn-sm" href="{:U('admin/Message/add')}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>ID</td>
+      <td>增加时间</td>
+      <!--<td>用户ID</td>
+      <td>对象ID</td>-->
+      <td>内容</td>
+      <td>类型</td>
+      <td>是否已读</td>
+      <td>角色</td>
+     <!-- <td>阶段(用于约课)</td>-->
+      <td>用户</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="c">
+    <tr>
+      <td>{$c.id}</td>
+      <!--<td>{$c.to_member_id}</td>
+      <td>{$c.object_id}</td>-->
+      <td>{$c.add_time}</td>
+      <td><a href="{$c.url}">{$c.content}</a></td>
+      <td>[{$c.type_name}]</td>
+      <td><if condition="$c['readed'] eq 0">未读<else/>&nbsp;&nbsp;&nbsp;<img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif"></if></td>
+      <td><if condition="$c['role'] eq 0">学生<else/>老师</if></td>
+     <!-- <td>{$c.periods}</td>-->
+      <td>{$c.member_name}</td>
+
+      <td>
+        <a href="{:U('delete')}?id={$c['id']}"  class="btn btn-danger">删除</a>
+        <a href="{:U('edit')}?id={$c['id']}"  class="btn btn-info">编辑</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<div class="u_fy">
+  <php>echo pageHtml($cou1);</php>
+</div>
+<include file="Common:admin_footer" />

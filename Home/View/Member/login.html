@@ -1,0 +1,60 @@
+<include file="Common:header"/>
+<div class="u_bannerbar">
+  <div class="g_container">  
+
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+	<ul class="login_ct" id="login_m">
+
+<h2 class="logintop">登录新助邦<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('/home/member/register')}">注册&nbsp;&nbsp;<img src="/images/icons/go.png" style="width:25px;height:25px;margin-top:-5px;"/></a></span></h2>
+
+
+	<form class="login" method="post" action="{:U('/home/member/login')}">
+		<li class="lc_inp">用户名：<input type="text" placeholder="手机或邮箱" name="name" class="u_inp_t" required>
+		</li>
+		<li class="lc_inp">密码：<input type="password" name="password" class="u_inp_t" required></li>
+		<li  style="float:left;margin-left:32px">验证码：<input type="text" name="code" class="u_inp_t" required style="width:90px;"><span>&nbsp;&nbsp;<img id="img" src="{:U('/home/member/code')}" alt="CAPTCHA" border="1"  style="cursor: pointer;width:150px;height:40px" title="看不清？点击更换另一个验证码。" onclick="f1()"/></span></li>
+		<li class="lc_wj"><a href="{:U('/home/member/forget1')}">忘记密码？</a><input type="checkbox" checked="checked">记住密码</li>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="登录"></li>
+	</form>
+	</ul>
+
+	<p class="logintxt">快速登录</p>
+	<ul class="login3">
+		<li class="qq"><a href="{:U('/home/member/qqLogin')}" target="_blank"> <img src="/images/icons/bt_blue_76X24.png"/> </a></li>
+		<!--<li><a href="{:U('/home/member/wxLogin')}" target="_blank"> <img src="/images/icons/weichat.png"/> </a></li>-->
+		<li><a href="{:U('/home/member/weiboLogin')}" target="_blank"> <img src="/images/icons/weibologin.png"/> </a></li>
+	</ul>
+</div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+		$("form.login").go_validate(function(form){
+			$(form).ajaxSubmit(function(result){
+		      	if (result.suc) {
+					layer.msg("登录成功");
+					var url = location.search;
+					if (url) {
+						url = url.replace("?url=","");
+					}
+					if (!url || url.length == 0) {
+						url = "/";	
+					}
+					window.location.href = url;
+				} else {
+					layer.msg(result.message);
+				}
+		      })
+		},{
+			messages:{
+				name:'请输入用户名',
+				password:'请输入密码',
+			}
+		});
+		function f1(){
+			$("#img").attr("src","{:U('/home/member/Code')}"+"?time="+(new Date()).valueOf());
+		}
+</script>
+<include file="Common:footer"/>

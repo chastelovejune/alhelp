@@ -1,0 +1,167 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<!--	<section class="g_cell_12 hot_ds mb_20">
+      <header class="u_tab2" style="border:0;">
+        <ul class="f_clearfix">
+          <li class="u_tab2_item hover" style="background:none;">热门服务</li>
+        </ul>
+      </header>
+      <ul class="m_sublist f_clearfix">
+      <php>
+      	$hots = M("service")->limit(6)->order('add_time desc')->select();
+		
+      </php>
+      <foreach name="hots" item="h">
+      <php>$h = parse_class($h);</php>
+      	 <li class="m_item">
+		  <div class="m_dl_userbox">
+		    <div class="m_imgbox"><img src="{$h[image]}"><i class="u_ico_hot"></i></div>
+		    <h4>{$h[member_name]}</h4>
+		  </div>
+		  <div class="idc1_txt">
+		    <h3><a href="{:U('/home/service/detail',['id'=>$h[service_id]])}">【{:C('service_types')[$h[service_type]]}】{$h[description]}</a></h3>
+		    <div class="idc1_line1">
+		    <foreach name="h[types]" item="t">
+		    <a>{$t}</a>
+		    </foreach>
+		    </div>
+		       <div class="idc1_line3"><strong>&yen; {$h[cost]}</strong></div>
+			   <span><if condition="substr($h['add_time'],0,10) eq date('Y-m-d',time())">{:substr($h['add_time'],11,5)}<else/>{:substr($h['add_time'],0,10)}</if></span>
+		    <div class="idc1_line2"><a href=""><i class="ico ico_book"></i>类似需求</a><a href=""><i class="ico ico_text"></i>类似服务</a><small>{$h[service_time]|to_date}</small></div>
+		  </div>
+		</li>
+        </foreach>
+      </ul>
+    </section>-->
+		<div class="g_cell_9">
+		  <div class="cir_ss m_box f_clearfix">
+		    <div class="u_fss">
+		    	<a class="u_btn_sl g_width_105" href="{:U('/home/demand/add')}">发需求</a>
+		    	<a class="u_btn_sc ml_20 g_width_105" href="{:U('/home/service/add')}">发服务</a>
+		    </div>
+		  	<div class="u_ss">
+		  		<form>
+		  		<input type="hidden" name="service_type" value="{$_GET[service_type]}">
+		  		<input type="text" class="u_ss_txn" name="keywords" value="{$_GET[keywords]}">
+		  		<button class="u_ss_btn"></button>
+		  		</form>
+		  	</div>
+		  </div>
+		  <section class="m_box">
+			  <header class="u_tab2">
+					<ul>
+						<li  class="u_tab2_item <if condition='strlen($_GET[service_type]) eq 0'>hover</if>"><i class="ico"></i><a href="{:U('/home/circle/service',['id'=>I('request.id')])}">全部</a></li>
+						<foreach name="Think.config.service_types" item="t" key="k">
+						<li  class="u_tab2_item <if condition='(strlen($_GET[service_type]) gt 0) AND ($_GET[service_type] eq $k)'>hover</if>"><i class="ico"></i><a href="{:U('/home/circle/service',['id'=>I('request.id')])}?service_type={$k}">{$t}</a></li>
+						</foreach>
+					</ul>
+				</header>
+				<ul id="spgc_1box" class="m_datalist">
+				<php>
+					$services = M("service");
+					$service_type = I("request.service_type"); 
+					if(strlen($service_type) > 0){
+						$services = $services->where(["service_type"=>$service_type]);
+					}
+			        $keywords  =I("request.keywords");
+			        if ($keywords) {
+			            $where['detail'] = ['like',"%$keywords%"];
+			            $where['description'] = ['like',"%$keywords%"];
+			            $where['_logic'] = 'OR';
+			            $services = $services->where(['_complex'=>$where]);
+			        }
+			        $copy = clone $services;
+			        $services = $services->page($_GET['page']?:1,10);
+
+					$s = M("circle")->field('object_id,circle_type')->find(I("request.id"));
+					if($s['circle_type']==0){
+					   $sid = M("zysc_view")->where(['school_id'=>$s['object_id']])->field("zhuanye_id as id")->select();
+					}else{
+					  $mjs = M("mj_major")->where(['pid'=>$s['object_id']])->field('id')->select();
+                         foreach($mjs as $k => $v){
+	                      $mjids[] = $v['id'];
+	                      }						 
+			             $sid = M("school")->where(['major_id'=>['in',$mjids]])->field("id")->select();						    
+					}
+					 foreach($sid as $k => $v){
+	                   $sids[] = $v['id'];
+	                 }
+					
+		            if(count($sids)>0){
+	                   $services = $services->where(['service.school_id'=>['in',$sids]])->order('service_id desc')->select();	
+	                }else{
+			            $services = $services->order('add_time desc')->select();		
+					}
+			       
+			        $count = $copy->count();
+				</php>
+				<foreach name="services" item="d"> 
+				<php>
+					$d = parse_class($d);
+				
+				</php>
+				  <li class="m_datalist_item">
+				  	<div class="m_dl_userbox"><div class="m_imgbox"><img src="{$d.image}"></div><h4>{$d.member_name}</h4></div>
+				  	<div class="m_dl_picbox">&yen;{$d.cost}</div>
+				  	<div class="m_dl_txtbox">
+							<h3><i class="ico_font">需</i><i class="ico"></i><a href="{:U('/home/service/detail',['id'=>$d[service_id]])}">【{:C('service_types')[$d['service_type']]}】{$d.description}</a></h3>
+							<small>
+							<foreach name="d.types" item="t">
+							<a>{$t}</a>
+							</foreach>
+							</small>
+							
+							<div class="m_dl_opt">
+							  <span><if condition="substr($d['add_time'],0,10) eq date('Y-m-d',time())">{:substr($d['add_time'],11,5)}<else/>{:substr($d['add_time'],0,10)}</if></span>
+
+							  <a href="javascript:void(0)"><i class="ico ico_zuan"  onclick="f1(this,{$d.service_id})"></i><i>{$d.praise_num}</i></a><a href=""><i class="ico ico_book"></i>我有类似需求</a><a href=""><i class="ico ico_text"></i>我能提供帮助</a>
+							</div>
+				  	</div>
+				  </li>
+				  </foreach>
+				</ul>
+
+				<div class="u_fy">
+				  <php>echo pageHtml($count);</php>
+				</div>
+			</section>
+		</div>
+
+
+		<include file="_right"/>
+ 	</div>
+</div>
+
+<include file="Common/footer"/>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	function f1(t,id){
+		var n=parseInt($(t).next().html());//获取当前点赞数  parseInt返回一个整形
+		var member_id = {:session('id')};
+		var service_id = id;
+		//  var praise_num = {$demand.praise_num};
+		$.post("{:U('/home/common/newPraise')}", {
+			member_id: member_id,
+			object_id: service_id,
+			type: 2
+		}, function (d) {
+			if (d.suc) {
+				n= n+1;
+				$(t).next().html(n);
+				layer.msg(d.message);
+
+			} else {
+				n=n-1;
+				if(n>=0) {
+					$(t).next().html(n);
+				}
+				layer.msg(d.message);
+			}
+
+		})
+	}
+</script>

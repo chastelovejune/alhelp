@@ -1,0 +1,105 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<include file="Common/top_user_info"/>
+<include file="Common/nav"/>
+
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9 m_box">
+        <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+			<ul class="u_tab2 o_nav" id="nav">			
+			  <li  class="u_tab2_item"><a href="{:U('/member/order/index')}">图书资料订单</a></li>
+			  <li  class="u_tab2_item"><a href="{:U('/member/order/service')}">答疑授课订单</a></li>
+			   <li  class="u_tab2_item hover"><a href="{:U('/member/order/tuo')}">托付费用订单</a></li>
+			</ul>
+      
+  
+<!-- 托付费用 -->
+ <ul id="uclTab_1box" class="pd_20">
+  <li class="ts_top">  
+           <ul>
+            <li class="mc_tuzl" style="min-width:35%; margin-top:5px; text-align:left;">名称</li>
+            <li class="mc_tuzl odm" style="margin-top:5px;"></li>
+            <li class="mc_tuzl odm"> 
+            <select class="u_slt">
+                <option>全部</option>
+                <option>今天</option>
+                <option>本周</option>
+                <option>本月</option>
+                <option>三个月</option>
+                <option>半年</option>
+                <option>今年</option>
+            </select>
+            </li>
+            <li class="mc_tuzl odm">
+                <select class="u_slt">
+                <option>交易状态</option>
+                </select>
+            </li>
+            <li class="mc_tuzl odm" style="margin-top:5px;">操作</li>
+            </ul>
+            </li> 
+			
+
+            
+
+<foreach name='ds' item='d'>
+<php>
+	$d = parse_class($d);
+</php>
+			<li class="ts_content">			
+  <ul>
+			<li style="float:left;"><span>订单编号：xzb{$d.demand_id}</span>
+			</li>
+            <li class="f_fr pr_10" style="cursor:pointer;"></li>
+            </ul>         
+            </li> 
+
+            <li>
+             <ul class="ts_detail_tuo">
+            <li class="ts_item" style="text-align:left; margin-top:0; width:51%;">
+            
+            <div class="ts_content_detail">
+            <ul>
+            <li><p class="title_ts">【{:C('demand_types')[$d[demand_type]]}】{$d.description}</p></li>
+            <li class="txt_gery" style="margin-top:10px;">
+            <foreach name='d.types' item="t">
+            	{$t}&nbsp;&nbsp;
+            </foreach>
+            </li>
+            </ul>
+            </div>
+            </li>
+            <li class="ts_item" style="margin-top:0" >
+            <div class="ds_detail_price">¥{$d.cost}</div>
+           
+            </li>
+            <li  class="ts_item" style="text-align:center; padding-left:5px;width:18%; margin-top:0">
+            <div class="txt_gery">{$d.add_time}</div>
+           <!-- <div class="txt_gery" style="text-align:center; ">{:substr($d[add_time],10,6)}</div>-->
+            </li>
+            <li  class="ts_item" style="width:10%; font-size:14px; margin-top:0">
+            <div class="txt_gery">已托付<span style="color:#ff7101;">{$d.advance_payment}</span>元</div>
+            </li>
+          
+            <li  class="ts_item"  style="width:12%; font-size:16px;margin-top:0">
+            <eq name='d.is_payed' value='0'>
+			 <a href="{:U('/home/demand/buy',['id'=>$d[demand_id]])}" target="_blank" class='btn_green' style="text-decoration:underline;">去托付费用</a><br/>
+			 <else/>
+             <a href="{:U('/member/order/untuo',['id'=>$d[demand_id]])}" onclick="untuo(this);return false;" class='btn_green' style="style="text-decoration:underline;"">解冻托付费用</a>
+             </eq>
+            </li>
+            </ul>
+			</li>
+</foreach>
+ </ul>
+ <div class="u_fy">
+               <php>echo pageHtml($count);</php>
+            </div>
+<!--托付费用订单结束-->
+		</section>
+    
+    <include file="Common/right"/>
+	</div>
+</div>
+<include file="../Application/Home/View/Common/footer.html"/>

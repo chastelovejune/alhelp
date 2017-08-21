@@ -1,0 +1,77 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+<php>
+	$all = M("activity")->field("activity.*, (SELECT id FROM activity_member WHERE activity_id=activity.id AND member_id=".session("id").") as activity_member_id")->select();
+	foreach($all as $a){
+		$as[$a[type]+1][] = $a;
+	}
+	$as[0] = $all;
+	$all = $as;
+	$hot = $all[0][0];
+</php>
+<div class="g_container mt_20">
+	<div class="g_row">
+	  <div class="g_cell_9">
+		 <!-- <div class="cir_ss m_box f_clearfix">
+		    <div class="u_fss">
+		    	<a href="{:U('/home/activity/add',['id'=>$circle[id]])}" class="u_btn_sl g_width_3">发活动</a>
+		    </div>
+		  	<div class="u_ss">
+		  		<input type="text" class="u_ss_txn">
+		  		<button class="u_ss_btn"></button>
+		  		<p>大家都在看：<a href="">活动</a><a href="">活动</a></p>
+		  	</div>
+		  </div>-->
+		  <section class="cir_ts_box m_box">
+			 	<ul class="u_tab2">
+				 <foreach name="Think.config.member_types" item="t" key="k">
+			  <li class="u_tab2_item <if condition='I("request.type") eq $k'>hover</if>" href="{:U('/home/circle/members',['type'=>$k,'id'=>I('request.id')])}">{$t}</li>
+				</foreach>				  
+				</ul>
+
+				 <php>
+				 if(I('request.type') == 0){
+				    $mes = M("circle_member")->table("circle_member cm,mb_member m")->where(['circle_id'=>I('request.id'),'cm.member_id = m.id'])->field("m.id,m.chat_id,m.avatar,m.nickname");
+				 }else{
+				    $mes = M("circle_member")->table("circle_member cm,mb_member m")->where(['circle_id'=>I('request.id'),'cm.member_id = m.id','m.recommend_as_teacher = 1'])->field("m.id,m.chat_id,m.avatar,m.nickname");
+				 }
+				{
+					$count = clone $mes;
+					$count = $count->count();
+				}
+				$mes = $mes->page($_GET['page'] ?: 1,10)->select();
+            </php>
+
+				<ul id="ucrdTab_1box" class="m_imglist f_clearfix">
+				<foreach name="mes" item="me">
+				  <li class="m_item">
+				    <div class="m_imgbox" href="{:id2path($me[id])}"><img src="{$me.avatar}"></div>
+				    <h4>{$me.nickname}</h4>
+                    <p class="mbtn"><a class="mtalk" onclick="<gt name='_SESSION.id' value='0'>talk('{$me.chat_id}')<else/>window.location.href='{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}'</gt>">聊天</a><!--<a class="mfind">委托找人</a>--><a class="mquiz"  href="{:U('/memberPost/quiz',['id'=>$me['id']])}">有偿提问</a></p>
+				  </li>
+				  </foreach>
+				  </ul>
+
+				  <div class="u_fy m_box">
+			<php>
+				echo pageHtml($count);
+			</php>
+			</div>
+				
+			</section>
+		</div>
+	<include file="_right"/>
+ 	</div>
+</div>
+
+<script type="text/javascript">
+	 function talk(id){
+      
+	  $.post("{:U('/home/im/getdlgid')}",{mid:id},function(d){
+			var t = d.message;
+			window.location.href="{:U('/home/im/index')}?id=" + id +"&dlgid=" +t;			
+		});		
+   }
+</script>
+<include file="Common/footer"/>

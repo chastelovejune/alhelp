@@ -1,0 +1,85 @@
+                <ul style="padding:10px 30px;">
+<foreach name="openClass3" item="oc">
+                <li class="op_item clear">
+                  <div class="m_imgbox">
+                <img src="{$oc['image']}">
+                </div>
+                <div class="op_txt">
+                <php>
+                	$over = strtotime($oc["open_class_time"]) < time();
+                    $applyNum=M("apply_open_class")->where(['open_class_id'=>$oc[open_class_id]])->count();
+					//dump($applyNum);
+                </php>
+                <h3><a class="opclst" href="{:U('/home/OpenClass/show',["id"=>$oc['open_class_id']])}">{$oc['description']}<if condition="$over">【已结束】</if></a>
+				<strong>&yen;{$oc.price}</strong>
+				</h3>
+                <p class="time_op">{:substr($oc['open_class_time'],0,16)}<br></p>
+                <p>{$oc['classroom']}</p>
+                <div class="op_btn">
+                <div class="ds_detail_op"><a class="ul3_praise" data-id="{$oc['open_class_id']}"><img src="/images/icons/zan.png"/><span>{$oc["praise_num"]}</span></a>
+				<a href="{:U('/home/OpenClass/show',['id'=>$oc[open_class_id]])}#d3"><img src="/images/icons/menber_num.png"/>报名<strong style="color:#ff7101;">{$applyNum}</strong>人</a>
+                <a href=""><img src="/images/icons/share.png"/>分享				               				
+                 </a>
+				   <include file='../Application/Home/View/Common/baidu_share.html'/>
+                </div>
+                <eq name='oc.member_id' value='$m.id'>
+                    <if condition="$oc['status'] eq 3 ">
+                        <div class="u_btn_bc" onclick="up({$oc['open_class_id']})" style="border:0px;background-color: #1cbc98;color:white">上架</div>
+                    <elseif condition="$oc['status'] eq 0"/>
+                        <div class="u_btn_bc" onclick="down({$oc['open_class_id']})">下架</div>
+                        <else/>
+                        <div class="u_btn_bc" style="background-color: grey;color:white;border:0px">禁用</div>
+                    </if>
+                </eq>
+                
+                <div class="clear"></div>
+                </div>
+                </div>
+				<div class = "clear"></div>
+                </li>
+</foreach>
+                </ul>
+                <script src="script/layer/layer.js"></script>
+                <script type="text/javascript">
+                    function up(id){
+                        $.post("{:U('/member/OpenClass/up')}",{id:id},function(d){
+                            if(d.suc){
+                                layer.msg(d.message)
+                                window.location=window.location;
+                            }
+                        })
+                    }
+                    function down(id){
+                        layer.confirm('确认要下架吗？', {
+                            btn: ['确定','取消'] //按钮
+                        }, function(){
+                            $.post("{:U('/member/OpenClass/down')}",{id:id},function(d){
+                                if(d.suc){
+                                    layer.msg(d.message);
+                                    window.location=window.location;
+                                }
+                            })
+                        }, function(){
+                        });
+                    }
+                    $(".ul3_praise").click(function(){
+                        var open_class_id = $(this).attr("data-id");
+                        handle_openClass_praise(this,open_class_id);
+                        return false;
+                    })
+                    $(".ul3_collection").click(function(){
+                        var t = $(this);
+                        if (t.find("span").html().indexOf("已") == -1) {
+                            //收藏
+                            t.find("span").html("已收藏");
+                            t.find("img").attr("src","/images/icons/collection.png");
+                            $.post("{:U('/home/collection/add')}",{object_id:t.attr("data-id"),type:0},function(d){
+                            })
+                        }else{
+                            t.find("span").html("收藏");
+                            t.find("img").attr("src","/images/icons/collect.png");
+                            $.post("{:U('/home/collection/delete')}",{object_id:t.attr("data-id"),type:0},function(){
+                            })
+                        }
+                    })
+                </script>

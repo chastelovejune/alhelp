@@ -1,0 +1,25 @@
+           	<section class="indx6 m_box mb_20">
+				<h3 class="m_title">最新评论</h3>
+              <div class="teacher_box">
+             <ul>
+             <foreach name="_detailLastCs" item="comment">
+             <li class="clear">
+                <div class="img_face mb_20">
+                <img src="{$comment['avatar']}"/>
+                </div>
+                <div class="content_right">
+              
+                <h4>{$comment['nickname']}</h4>
+                <h5 style="color:black"><if condition="substr($comment['add_time'],0,10) eq date('Y-m-d',time())">{:substr($comment['add_time'],11,5)}<else/>{:substr($comment['add_time'],0,10)}</if></h5>
+                <p class="clear"><span class="pl">{:parse_emotion($comment['content'])}</span></p>
+                </div>
+             </li>
+             </foreach>
+             </ul>
+               <div class="clear"></div>  
+                <div class="bottom">
+               <a href="#d3" class="more"> 查看更多>></a>
+                </div>     
+          </div>            
+			</section>
+           

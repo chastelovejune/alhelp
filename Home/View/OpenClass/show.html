@@ -1,0 +1,273 @@
+<include file="Common/header"/>
+<script src="script/layer/layer.js"></script>
+<div class="mt_20">
+	<div class="g_row">
+	
+        <div class="bg">
+		  <div class="ds_detail_hd m_box f_clearfix">
+		    <div class="ds_detail_user">
+  		  	<div class="m_imgbox"><a href=""><img src="{$open_class[image]}" alt=""></a></div>
+  		  
+		    </div>
+		    <div class="ds_detail_info">
+		    	<h3>{$open_class['description']}</h3>
+                <div class="ds_detail_price">&yen;{$open_class['price']}</div>
+		    	<div class="ds_detail_class clear">
+		    	<foreach name="open_class['types']" item="type">
+		    	<a>{$type}</a>
+		    	</foreach>
+                    <br/>
+                    <br/>
+                    <a>{$open_class['open_class_time']|to_minute}</a>
+		    	</div>
+		    </div>
+		    <div class="ds_detail_info" style="margin-top:50px;">	   	
+        <neq name='open_class.member_id' value='$m.id'>
+		    	<div class="ds_detail_btn" id="fix_btn" style="bottom:-30px;height:55px">
+		    	<a class="u_btn_sl apply">报名</a>
+		    	</div> 
+        </neq>
+		    	<div class="ds_detail_op">
+          <a><img src="/images/icons/zan.png" class="praise"/><span id="praise">{$open_class.praise_num}</span></a>
+          
+
+          <php>
+            $collection = M("collection")->where(['member_id'=>session("id"),"object_id"=>$open_class['open_class_id'],'type'=>0])->find();
+          </php>
+          <a>
+          <if condition="$collection">
+          <img src="/images/icons/collection.png"/><span>已收藏</span>
+          <else/>
+          <img src="/images/icons/collect.png"/><span>收藏</span>
+          </if>
+          </a>
+	
+		  <a><img src="/images/icons/share.png"/>分享</a>
+
+          <include file="Common/baidu_share"/>
+           </div>
+		    </div>
+		  </div>
+          
+          </div>
+          
+          <div class="g_container">
+          <div class="g_row">
+          <section class="g_cell_9">
+		  <div class="ds_detail_bd m_box">
+           <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+          <div class="nav_box"  id="nav">
+  
+				<ul class="u_tab2 detial_tab"  id="nav_item">
+				  <li id="dscTab_1" class="u_tab2_item hover"><a href="#d1">详情</a></li>    
+				  <li id="dscTab_2"  class="u_tab2_item"><a href="#d2">其他直播课</a></li>
+				  <li id="dscTab_3"  class="u_tab2_item"><a href="#d3">报名同学</a></li>
+				  <li id="dscTab_4"  class="u_tab2_item"><a href="#d4">讨论区</a></li>				 
+				</ul>
+                             
+                </div>
+                <div id="d1"></div>
+				<div id="dscTab_1box" class="ds_detail_ct ds_detail_xq">
+                <h5>详细描述：</h5>
+					<p>{$open_class['remarks']}</p>                                    
+					<h5>参考讲义：</h5>
+					<p>{$open_class['content_reference']}</p>
+                    
+                    <h5>授课教室：</h5>
+					<p><a herf="{$open_class['classroom']}">{$open_class['classroom']}</a></p>
+                    
+				</div>
+                 <div id="d2"></div>
+                <div class="divide">
+                <div class="d_left"></div>
+                <div class="d_con">其他直播课</div>
+                <div class="d_right"></div>
+                </div>
+                <!--其他公开课-->
+                 <div class="op_cls">
+               
+                <include file="Common/openClass3ul"/>
+               
+              <div class="clear"></div>
+                </div>
+                
+                
+				
+                 <div id="d3"></div>
+                <div class="divide">
+                <div class="d_left"></div>
+                <div class="d_con">参加同学</div>
+                <div class="d_right"></div>
+                </div>
+                  <!--课堂同学-->
+				<div id="dscTab_3box" class="ds_detail_ct">
+         <ul class="m_hz_list f_clearfix">
+         <php>
+         	$ms = M("mb_member")->join("LEFT JOIN apply_open_class ON mb_member.id=apply_open_class.member_id")->where(["apply_open_class.open_class_id"=>$open_class['open_class_id']]);
+          if($m){
+            $ms = $ms->field("mb_member.*,(SELECT id from follow where follower=$m[id] and befollowed=mb_member.id) as followid");
+          }else{
+            $ms = $ms->field("mb_member.*");
+          }
+          $ms = $ms->select();
+           //  dump($ms);
+         </php>
+         <foreach name="ms" item="m">
+			  <li class="hz_item">
+              <div class="m_imgbox">
+              <a class="jr_rw">
+                <img src="{$m['avatar']}" href='{:U('/home/member/profile',['id'=>$m[id]])}'>
+                <gt name='mid' value='0'>
+                <i class="u_btn_sl" onclick="open_class_show_follow(this,{$m.id});">
+                <gt name='m.followid' value='0'>取消关注<else/>关注</gt>
+                </i>
+                </gt>
+              </a>
+              </div>
+			   
+			   <h4>{$m["nickname"]}</h4>
+						
+			  </li>
+			 </foreach>
+			</ul>
+                      
+				</div>
+                
+                 <div id="d4"></div>
+                <div class="divide">
+                <div class="d_left"></div>
+                <div class="d_con">讨论区</div>
+                <div class="d_right"></div>
+                </div>
+                <php>
+                  $_commentType = 0;
+                  $_objectId = $open_class['open_class_id'];
+                </php>    
+
+			 <include file="Common/detail/4"/>
+              
+
+		  </div>
+		</section>
+       	       	<div class="g_cell_3 mt_20">		  
+        <php>
+          $_detailM = M("mb_member")->find($open_class["member_id"]);
+        </php>
+			     <include file="Common/detail/1"/> 
+
+              <php>
+                $_detailLastCs = M("comment")->join("LEFT JOIN mb_member ON member_id=mb_member.id")->where(['comment_type'=>$_commentType,'object_id'=>$_objectId])->order('id desc')->limit(3)->getField("comment.*,mb_member.nickname,mb_member.avatar");
+              </php>
+           <include file="Common/detail/2"/>
+           <php>
+              $_detailNewestMs = $ms;
+           </php>
+            <include file="Common/detail/3"/>
+            
+             <section class="indx6 m_box mb_20 hot_ds">
+				<h3 class="m_title">系统推荐</h3>           
+                  <ul id="idc1_1box" class="m_sublist f_clearfix">
+                <foreach name="openClass3" item="oc">
+        <li class="clear  pl_10">
+          <php>
+            $m = M("mb_member")->find($oc['member_id']);
+          </php>
+          <div class="img_face mb_20"><img src="{$m['avatar']}"></div>
+          <div class="content_right">
+                <h4><a href="{:U('/home/member/profile',['id'=>$m[id]])}">{$m['nickname']}</a></h4>
+                <h5>{:substr($oc['open_class_time'],0,10)}</h5>
+                <p class="clear"><span class="pl">{$oc['description']}</span></p>
+                </div>
+        </li>
+      </foreach>
+      </ul>  
+
+        <div class="clear"></div>  
+                <div class="bottom">
+               <a href="{:U('/home/openClass/index')}" class="more"> 查看更多>></a>
+                </div>                          
+			</section>
+		</div>
+     </div>
+    
+    </div>
+	 </div>
+</div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+  var open_class_id = {$open_class['open_class_id']};
+function applyed(){
+ $("a.apply").html("已报名");
+	$("a.apply").attr("href","javascript:return false");
+	$("a.apply").css({"background-color":"lightgray","cursor":"default"});
+}
+$("a.apply").click(function(){
+    if("{:session('id')}"==""){
+        layer.msg("你必须先登录才能报名");
+        var url=window.location.pathname
+        window.location="/home_member_login.html?url="+url;
+    }else {
+        if ({$open_class[price]} > 0) {
+            layer.msg("报名此课程需先付费");
+            var url = "{:U('/home/OpenClass/apay',['id'=>$_GET[id]])}";
+            window.location.href = url;
+            // window.location.href = "{:U('/home/openclass/apay',['id'=>$_GET[id]])}";
+        } else {
+            $.post("{:U('/home/OpenClass/apply')}", {"open_class_id": open_class_id}, function (d) {
+                if (d.suc) {
+                    layer.msg(d.message);
+                } else {
+
+                    layer.msg(d.message);
+                    setTimeout(function () {
+                        window.location = d.url;
+                    }, 2000);
+                }
+            })
+            applyed();
+            return false;
+        }
+    }
+})
+
+$(".ds_detail_op a").eq(1).click(function(){
+    var t = $(this);
+    if (t.find("span").html().indexOf("已") == -1) {
+        //收藏
+        t.find("span").html("已收藏");
+        t.find("img").attr("src","/images/icons/collection.png");
+        $.post("{:U('/home/collection/add')}",{object_id:open_class_id,type:0},function(d){
+        })
+    }else{
+        t.find("span").html("收藏");
+        t.find("img").attr("src","/images/icons/collect.png");
+        $.post("{:U('/home/collection/delete')}",{object_id:open_class_id,type:0},function(){
+        })
+    }
+    return false;
+})
+<if condition="$open_class['apply_id'] gt 0">
+applyed();
+</if>
+$(".praise").click(function()
+	{
+			
+		var member_id = "{$m.id}";
+		var c_id ="{$open_class.open_class_id}";
+		var	praise_num= "{$open_class.praise_num}";
+		$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:open_class_id,type:3},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg(d.message);
+				praise_num++;
+				$("#praise").html(praise_num);
+			}else{
+				layer.msg(d.message);
+				$("#praise").html(praise_num);
+			}
+				
+		})
+	})
+</script>
+<include file="Common/footer"/>

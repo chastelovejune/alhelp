@@ -1,0 +1,184 @@
+<include file="Common/header"/>
+<!--<php>
+	$order = M("service_order_view")->getById(I('request.id'));
+	$c = M("contract")->where(['order_id'=>I('request.id')])->order('id desc')->find();
+	$ps = M("learning_periods")->where(['contract_id'=>$c['id']])->select();
+</php>-->
+
+
+<div class="g_container mt_20 m_box pd_20">
+<div class="u_paytitle"><h3>修改约课计划</h3></div>
+
+
+  <!--老师-->
+    <form  method="post">
+<ul class="m_form f_clearfix pd_20">
+
+    <li class="m_item"><div class="m_formtit">课程标题：</div>
+      <input type="text" class="u_inp_t long new" name="name" placeholder="建议修改为醒目的标题" maxlength="8" value="{$re.name}">
+        <p class="content">{$re.name}<p>
+    </li>
+
+    <li class="m_item"><div class="m_formtit ckyb">课程内容：</div>
+        <div class="content" style="margin-left: 190px">{$re.content}</div>
+            <div class="new">
+                <div style="margin-left: 200px;">
+                    <textarea id='editor' name="content" class="input_con editor">{$re.content}</textarea>
+                </div>
+                <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+                <script type="text/javascript">
+                    $('#editor').froalaEditor({
+                        //heightMin:200,
+                        height: 200,
+                        language: "zh_cn",
+                        theme: "gray",
+                        imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                        imageUploadParam:'file', //文件名称 <input type=file name=file>
+                        //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                        toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+                        imageInsertButtons: ['imageUpload'],
+                        imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                    }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                        $('.fr-image-progress-bar-layer').addClass('fr-active');
+                    }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                        if( $('.fr-message').text()=='Loading image' ){
+                            $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                            $img.froalaEditor('events.focus');
+                        }
+                    });
+                </script>
+            </div>
+    </li>
+     <li class="m_item"><div class="m_formtit ckyb">课程讲义：</div>
+         <div class="content"  style="margin-left: 190px">{$re.content_reference}</div>
+             <div class="new">
+                 <div style="margin-left: 200px;">
+                     <textarea id='editor1' name="content_reference" class="input_con editor">{$re.content_reference}</textarea>
+                 </div>
+                 <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+                 <script type="text/javascript">
+                     $('#editor1').froalaEditor({
+                         //heightMin:200,
+                         height: 200,
+                         language: "zh_cn",
+                         theme: "gray",
+                         imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                         imageUploadParam:'file', //文件名称 <input type=file name=file>
+                         //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                         toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+                         imageInsertButtons: ['imageUpload'],
+                         imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                     }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                         $('.fr-image-progress-bar-layer').addClass('fr-active');
+                     }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                         if( $('.fr-message').text()=='Loading image' ){
+                             $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                             $img.froalaEditor('events.focus');
+                         }
+                     });
+                 </script>
+
+             <div>
+    </li>
+
+     <li class="m_item"><div class="m_formtit">试听方式：</div>
+         <p class="content">{$re.listen_type}<p>
+    <input type="text" class="u_inp_t long new"  name="listen_type" placeholder="可为QQ号，直播课堂或链接地址等" value="{$re.listen_type}">
+
+</li>
+    <li class="m_item"><div class="m_formtit">上课时间：</div>
+        <p class="content">{$re.set_time}<p>
+        <input type="text" class="u_inp_t long new"  name="set_time" placeholder="请设置上课的时间" value="{$re.set_time}">
+
+    </li>
+    <div class="m_formtit">是否公开：</div>
+  <li  class="m_item new" style="margin-left:18%;">
+  <div class="op_s">
+  <input type="radio" name="is_open" checked="{$re.is_open}" style="float:left;" value=1>
+  <div class="txt_os">
+  <h4>公开</h4>
+  <p>建议公开，就有更多的同学能够试听！</p>
+  </div>
+  </div>
+   <div class="op_s">
+  <input type="radio" name="is_open" style="float:left;" value=0>
+  <div class="txt_os">
+  <h4>不公开</h4>
+  
+  </div>
+  </div>
+  </li>
+
+
+
+    <if condition="$re['is_open'] eq 1"><div class="txt_os">
+        <h4 class="content">公开</h4><else/><div class="txt_os">
+        <h4 class="content">不公开</h4></if>
+
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+        <input type="submit" class="u_btn_sl" value="提交" style="display:none" id="submit">
+       <!-- <input type="button" class="u_btn_sl" value="查看" style="display:none" id="look">-->
+        <input type="button" class="u_btn_sl" value="修改" id="edit">
+        <if condition="$is_start eq 0">
+        <input type="button" class="u_btn_sl" value="同意" onclick="ok1({$re.id},{$re.order_id},{$per})" id="ok">
+            <else/></if>
+      <input type="button" class="u_btn_sl" value="取消约课" onclick="cancel1({$re.id},{$re.order_id},{$per})" id="cancel">
+    </li>    
+  </ul>
+        </form>
+</div>
+
+
+<include file="Common/footer"/>
+<style>
+    .new{
+        display:none;
+    }
+    .content{
+        text-align: left;
+        margin-top: 5px;
+    }
+    .editor{
+        width:700px;height:200px;float:left
+    }
+</style>
+<script type="text/javascript">
+	/*$("form").submit(function(){
+		$(this).ajaxSubmit(function(d){
+			window.location.href = "{:U('/member/serviceOrder/show',['id'=>$o['id']])}";
+		})
+		return false;
+	})
+*/
+    function ok1(id,order_id,per){
+        $.post("{:U('/member/plan/update')}",{id:id,status:1,period:per},function(d){
+            //console.log(d);
+           var url="{:U('member/serviceOrder/show')}"+"?id="+order_id;
+           window.location=url;
+        })
+    }
+    function cancel1(id,order_id){
+        $.post("{:U('/member/plan/update')}",{id:id,status:2,period:per},function(){
+            var url="{:U('member/serviceOrder/show')}"+"?id="+order_id;
+            window.location=url;
+        })
+    }
+    $("#edit").click(function(){
+        $(".new").show();
+        $(".content").hide();
+        $("#edit").hide();
+        $("#submit").show();
+        $("#look").show();
+        $('#ok').hide();
+        $('#cancel').hide();
+    })
+   /* $("#look").click(function(){
+        $(".new").hide();
+        $(".content").show();
+        $("#edit").hide();
+        $("#submit").hide();
+    })*/
+	$("[name=set_time]").go_datetime();
+	</script>

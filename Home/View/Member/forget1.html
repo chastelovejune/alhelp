@@ -1,0 +1,49 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+
+
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+   <div class="pos_ct">  <h2 class="logintop" style="padding-bottom:0;">找回密码<span> <a href="{:U('/home/member/forget2')}">邮箱找回&nbsp;&nbsp;<img src="/images/icons/go.png" style="width:25px;height:25px;margin-top:-5px;"/></a></span></h2></div>
+  <form method="post">
+	<ul class="login_ct"  style="padding-top:20px;">
+		<li class="lc_inp">手机号：<input name="phone" remote='{:U("/home/member/isYou")}' type="text" class="u_inp_t" required="true" isPhone='true'></li>
+		<li class="lc_yzm">验证码：<input type="text" name="phone_verified" required="true" class="u_inp_t"><a >获取验证码</a></li>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="提交"></li>
+	</ul>
+	</form>
+	<script type="text/javascript">
+		$("form a").click(function(){
+			var phone = $("form input[name=phone]").val();
+			if (!is_phone(phone)) {
+				alert("请输入正确的手机号");
+				return false;
+			}
+			$.post("{:U('/home/common/sendPhoneCode/findpwd/1')}",{phone:phone},function(d){
+				console.log(d);
+				if (d.suc) {
+					$("form a").html("已发送");
+				}else{
+					alert(d.message);
+				}
+			})
+			return false;
+		})
+		$("form").go_validate(function(form){
+			var phone = $(form).find("input[name=phone]").val();
+			$(form).ajaxSubmit(function(d){
+				console.log(d);
+				if (d.suc) {
+					window.location.href = "{:U('/home/member/findPwd')}"+"?phone="+d.message.phone;
+				}else{
+					alert(d.message);
+				}
+			})
+		},{messages:{'phone':{'remote':'该手机号没注册'}}});
+	</script>
+</div>
+<include file="Common/footer"/>

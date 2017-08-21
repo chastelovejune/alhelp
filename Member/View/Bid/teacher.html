@@ -1,0 +1,51 @@
+<include file="Common/teacher_edu_header"/>
+
+<foreach name="bids" item="b">
+<php>
+	$b = parse_class($b);
+</php>
+<li class="user_dsitme f_clearfix">
+  <div class="user_dsuser">
+  	<div class="m_imgbox" style="height: 101px; line-height: 101px;"><img src="{$b.avatar}" alt=""></div>
+  	<h4>{$b.nickname}</h4>
+  	<p>电话:{$b.phone}<br>QQ:{$b.qq}</p>
+     <p><span class="bz pointer" id="btn" onclick="bz('bz_box2')">备</span><span class="qq_btn">说悄悄话</span></p>
+    <div class="bz_box" id="bz_box2" style="display:none;">
+    <img class="bz_xl" src="images/icons/sy_jt1.jpg">
+    <img class="gb_bz pointer" onclick="gbBzBox('bz_box2')" src="images/icons/ico_x.png">
+    <div class="bz_content">备注备注备注备注备注备注备注备注备注</div>
+    <input type="button" class="btn_color pointer" value="保存">
+    </div>
+  </div>
+    <div class="user_dsl">
+	  <h4 class="user_dstit">
+    <i class="ico_org">需<a href="{:U('/home/demand/detail',['id'=>$b['demand_id']])}"></i>【{:C('demand_types')[$b['demand_type']]}】
+    {$b.demand_description}</a><strong>¥{$b.bid_price}</strong></h4>
+	  <div class="user_dsclass">
+	  <foreach name="b.types" item="t">
+	  <span>{$t}</span>
+	  </foreach>
+	  </div>
+	  <span class="user_dstime">{$b.add_time|to_date}</span>
+	  <p>{$b.description}</p>
+      <ul class="user_tbtn">
+      <eq name="b.status" value="0">
+            <li class="u_btn_bln" style="cursor:default;">
+      已投标
+            </li>
+	</eq>
+
+	 <eq name="b.status" value="2">
+            <li class="u_btn_bln" style="cursor:default;">
+      投标已被同意
+            </li>
+	</eq>
+    
+      </ul>
+  </div>
+</li>
+</foreach>
+<div class="u_fy">
+               <php>echo pageHtml($cou);</php>
+            </div>
+<include file="Common/teacher_edu_footer"/>

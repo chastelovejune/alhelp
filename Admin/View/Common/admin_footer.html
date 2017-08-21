@@ -1,0 +1,37 @@
+            </div>
+        </div>
+    </div>
+  
+<script>
+//导航高亮
+$(function(){
+  var controller_name = location.pathname.match(/_([\w]*)_/)[1];
+  $("#side-menu").find("a").each(function(){
+  	var href = $(this).attr("href");
+  	if (href.indexOf(controller_name)!=-1) {
+	  $(this).parent().addClass("active");
+	  $(this).parent().parent().addClass("in");
+	  $(this).parent().parent().parent().addClass("active")
+	  return false;
+  	}
+  });
+});
+
+function page(page){
+  var search = location.search;
+  if(search){
+    var url = search.replace(/page=?[\d]*/,"page="+page);
+    window.location = url;
+  }else{
+    window.location = "?page="+page;  
+  }
+}
+
+$(window).resize(function(){
+	//调整顶部用户菜单的宽度
+	$("#user_navbar").width($(document).width()-$("#side_navbar").width());
+	drowPageContent();
+});
+</script>
+</body>
+</html>

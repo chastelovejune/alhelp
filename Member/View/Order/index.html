@@ -1,0 +1,258 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<include file="Common/top_user_info"/>
+<include file="Common/nav"/>
+
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9 m_box">
+        <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+			<ul class="u_tab2 o_nav" id="nav">			
+			  <li  class="u_tab2_item hover"><a href="{:U('/member/order/index')}">图书资料订单</a></li>
+			  <li  class="u_tab2_item"><a href="{:U('/member/order/service')}">答疑授课订单</a></li>
+			   <li  class="u_tab2_item"><a href="{:U('/member/order/tuo')}">托付费用订单</a></li>
+			</ul>
+         
+  
+          <!--答疑-->
+         
+          <ul id="uclTab_1box" class="pd_20">
+          
+          <li class="ts_top">  
+           <ul>
+            <li class="mc_tuzl" style="min-width:35%; margin-top:5px; text-align:left;">名称</li>
+            <li class="mc_tuzl" style="margin-top:5px;"></li>
+            <li class="mc_tuzl odm"> 
+            <select class="u_slt">
+                <option>全部</option>
+                <option>今天</option>
+                <option>本周</option>
+                <option>本月</option>
+                <option>三个月</option>
+                <option>半年</option>
+                <option>今年</option>
+            </select>
+            </li>
+            <li class="mc_tuzl odm">
+                <select class="u_slt">
+                <option>交易状态</option>
+                </select>
+            </li>
+            <li class="mc_tuzl odm" style="margin-top:5px;">操作</li>
+            </ul>
+            </li>             
+  <foreach name='orders' item="o">
+        <ul>
+            <li class="ts_content">
+            <ul>
+            <li class="ord_num" style="float:left;"><span>订单编号：{$o['order_number']}</span>
+            <span>
+            <eq name='is_student' value='true'>
+                <img src="{$o.Teacher.avatar}"/>{$o.Teacher.nickname}
+            <else/>
+                <img src="{$o.Student.avatar}"/>{$o.Student.nickname}
+            </eq>
+            </span>
+            </li>
+            <li class="f_fr pr_10 odm" style="cursor:pointer;">删除订单</li>
+            </ul>         
+            </li>
+
+            <li>
+
+            <ul class="ts_detail">
+            <li class="ts_item oitem1">
+            <div class="ts_yh">
+            <div class="m_imgbox"><img src="{$o.Service.image}" style="width:100px;"></div>
+            </div>
+            <div class="ts_content_detail">
+            <ul>
+            <li><p class="title_ts">【资料】<a target="_blank" href="{:U('/home/service/detail',['id'=>$o[service_id]])}">{$o.Service.description}</a></p></li>
+            <li class="txt_gery ordersc">&nbsp;&nbsp;安徽&nbsp;&nbsp;安徽大学&nbsp;&nbsp;&nbsp;(000)研究生院&nbsp;&nbsp;专业学位（会计）</li>
+            <li style="font-size:14px;">&nbsp;&nbsp;数量&nbsp;1</li>
+            </ul>
+            </div>
+            </li>
+            <li class="ts_item orderfee">
+            <div class="ds_detail_price">¥{$o[total]}</div>
+			<div class="txt_gery">(含运费:10元)</div>
+            </li>
+            <li  class="ts_item ordertime" style="">
+            <div class="txt_gery">{:substr($o[add_time],0,10)}</div>
+            <div class="txt_gery">{:substr($o[add_time],11,5)}</div>
+            </li>
+            <li  class="ts_item orderstatus" style=" text-align:left; padding-left:20px; margin-top:0px;">
+			
+            <div class="txt_gery">
+            {:C("order_status")[$o[status]]}
+            </div>
+        <!--已发货，显示快递信息和发货时间-->
+        <eq name='o.status' value='2'>
+        <php>$trans = M("transport")->where(['type'=>0,'order_id'=>$o['id']])->find();</php>
+            <div class="txt_gery">发货日: {$trans.add_time|to_minute}</div>
+            <div class="txt_gery">货单号: {$trans.transport_number}</div>
+			<div class="txt_gery">快  递: {$trans.transport_company}</div>
+        </eq>
+        <eq name='o.status' value='8'>
+        <php>$trans = M("transport")->where(['type'=>1,'order_id'=>$o['id']])->find();</php>
+            <div class="txt_gery">发货日: {$trans.add_time|to_minute}</div>
+            <div class="txt_gery">货单号: {$trans.transport_number}</div>
+            <div class="txt_gery">快  递: {$trans.transport_company}</div>
+        </eq>
+            </li>
+            <li  class="ts_item orderbtn">         
+            <switch name='o.status'>
+            <case value='0'>
+                <eq name='is_student' value='true'> 
+              <p>  <a <eq name='o.bid_id' value='0'>href="{:U('/member/order/pay',['id'=>$o[id]])}"<else/>href="{:U('member/bid/cart',['id'=>$o['service_id'],'bid'=>$o['bid_id']])}"</eq> class='btn_green'>去付款</a></p>
+               <a href="{:U('/member/order/status0',['id'=>$o[id]])}" class='btn_green'>取消订单</a>
+                </eq>
+            </case>
+            <case value='1'>
+                <eq name='is_teacher' value='true'>
+                    <a target="_blank" href="{:U('/member/order/tTransport',['id'=>$o[id]])}" class='btn_green'>发货</a>
+                <else/>
+                    <a data-id="{$o.id}" class='status1 btn_green remoney'>申请退款</a>
+                </eq>
+            </case>
+            <case value='2'>
+                <eq name='is_student' value='true'>
+                   <p> <a data-id='{$o.id}' class='btn receive btn-info btn-sm'>确认收货</a></p>
+                    <a target="_blank" href="{:U('/member/order/refund',['id'=>$o[id]])}" class='btn_green'>申请退货</a>
+                </eq>
+            </case>
+            <case value='3'>
+                <eq name='is_student' value='true'>
+                    <a target="_blank" href="{:U('/member/order/rating',['id'=>$o[id]])}" class='btn_green'>评价</a>
+                </eq>
+            </case>
+			<case value='4'>
+                <eq name='is_student' value='true'>
+                    <p class='btn_green'>已评价</p>
+                </eq>
+            </case>
+			
+            <case value='5'>
+                <eq name='is_teacher' value='true'>
+
+                 <p>   <a data-id="{$o.id}" class="btn_green remoneyTeacher">同意退款</a></p>
+					<a target="_blank" href="{:U('/member/order/tTransport',['id'=>$o[id]])}" class='btn_green'>发货</a>
+                </eq>
+
+            </case>
+			
+			 <case value='6'>
+                <eq name='is_student' value='true'>
+                    <p class='btn_green'>已退款</p>
+				<else/>
+				<!--	<p class='btn_green'>您已同意退款</p>-->
+                </eq>
+            </case>
+			
+			<case value='7'>
+                <eq name='is_teacher' value='true'>
+                    <a class="btn btn-sm btn-info" href="{:U('/member/order/refundTeacher',['id'=>$o[id]])}" target="_blank">学生申请退货</a>
+				<else/>
+					<p class="btn_green">已申请退货</p>
+					<a class="btn btn-sm btn-info" href="{:U('/member/order/unRefund',['id'=>$o[id]])}" target="_blank">取消退货</a>
+                 </eq>
+            </case>
+	
+			
+            <case value='8'>
+                <eq name='is_student' value='true'>
+                    <a target="_blank" href="{:U('/member/order/transport',['id'=>$o[id]])}" class='btn_green'>老师同意退货,去邮寄</a>
+					
+				<else/>
+					<!--<p class="btn_green">您已同意退货</p>-->
+                </eq>
+            </case>
+            <case value='9'>
+                <eq name='is_teacher' value='true'>
+                    
+					<a target="_blank" href="{:U('/member/order/statusEight',['id'=>$o[id]])}" class='btn btn-sm btn-info'>查看退货</a>
+				<else/>
+					<p class="btn_green">退货已发出</p>
+                </eq>
+            </case>
+			
+			 <case value='10'>
+                <eq name='is_teacher' value='true'>
+                    <p class='btn_green'>已收到退货</p>
+				<else/>
+					<p class="btn_green">老师已收回退货</p>
+                </eq>
+            </case>
+            </switch> 
+			
+			
+            
+            </li>
+			<li class="clear"></li>
+            </ul>
+            </li>                 
+            
+            </ul>
+    </foreach>
+	<div class="u_fy">
+               <php>echo pageHtml($count);</php>
+            </div>
+          </ul>
+		</section>
+    
+    <include file="Common/right"/>
+	</div>
+</div>
+<style type="text/css">
+    li.ts_item div.txt_green div{
+        color:gray;font-size:10px;
+    }
+</style>
+<script type="text/javascript">
+    $("a.receive").click(function(){
+        $.post(" {:U('/member/order/receive')} ",{id:$(this).attr("data-id")},function(){
+            window.location.reload();
+        })
+        return false;
+    })
+    $("a.status0").click(function(){
+        $.post($(this).attr("href"),function(){
+            window.location.reload();
+        })
+        return false;
+    })
+    $("a.status1").click(function(){
+        $.post($(this).attr("href"),function(){
+            window.location.reload();
+        })
+        return false;
+    })
+	
+	$("a.remoney").click(function()
+	{
+		$.post("{:U('/member/order/remoney')}",{id:$(this).attr("data-id")},function(d)
+		{
+			if(d.suc)
+			{
+				window.location.reload();
+			}
+			else{
+				alert(d.message);
+			}
+		})
+	})
+	
+	$("a.remoneyTeacher").click(function()
+	{
+		$.post("{:U('/member/order/remoneyTeacher')}",{id:$(this).attr("data-id")},function(d)
+		{
+			if(d.suc)
+			{
+				window.location.reload();
+			}
+		})
+	})
+	
+	
+</script>
+<include file="../Application/Home/View/Common/footer.html"/>

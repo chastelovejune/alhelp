@@ -1,0 +1,139 @@
+<div class="role_1_section" style="display: block">
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+//发送ajax下架
+	function f(id){
+
+		$.post("{:U('member/demand/soldout')}",{id:id},
+		function(data){
+			layer.msg('下架成功');
+			window.location=window.location;
+		});
+	}
+//发送ajax上架
+	function f1(id){
+
+		$.post("{:U('member/demand/onsold')}",{id:id},
+		function(data){
+			layer.msg('上架成功');
+			window.location=window.location;
+		});
+	}
+	</script>
+    <section class="g_cell_9" >
+        <div class="f_ss_gr">
+            <form>
+            <input type="hidden" name="demand_type" value="{$_GET['demand_type']}">
+            <div class="input_ss">
+                <input type="text" class="s_ss_content" name="keywords" value="{$_GET['keywords']}">
+            </div>
+            <div class="s_act">
+                <input type="submit" value class="ico_s">
+            </div>
+            </form>
+            <div class="fss_btn">
+                <input type="button" class="u_btn_sl" onclick="window.location.href='{:U('/home/demand/add')}'" value="发需求" style="width:100%;">
+            </div>
+        </div>
+        <div class="clear mb_15">                
+        </div>
+        <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none">
+        </div>
+        <div class="m_box">
+            <ul class="u_tab2 ds_nav">
+                <foreach name="Think.config.demand_types" item="t" key="k">
+                <li class="u_tab2_item <eq name="_GET['demand_type']" value="$k">hover</eq>">
+                <a href="?demand_type={$k}">{$t}</a>
+                </li>
+                </foreach>
+            </ul>
+
+            <ul class="user_dslist mt_15" style="display: block">
+                <volist name="demands" id="vo" empty="您还未发布过资料">
+                <php>$vo = parse_class($vo);</php>
+                    <li class="user_dsitme f_clearfix">
+                        <div class="user_dsl">
+                            <div class="m_dl_txtbox msd_item">
+                                <h3 class="le_line">
+                                    <i class="ico"></i>
+							<if condition="$vo.status eq 4">
+
+								<a href="">
+                                        【{:C('demand_types')[$vo['demand_type']]}】
+                                        {$vo.description}
+                                    </a>
+									<if condition="$vo['is_payed'] eq 0">
+									<a href="{:U('/home/demand/buy',['id'=>$vo[demand_id]])}" target="_blank" class="gotuo">去托付费用</a>
+									<else/>
+									<b class="txt_oragin" style="font-weight:normal;">【已托付】</b>
+									</if>
+
+                                </h3>
+                                <small>
+                                    <foreach name="vo.types" item="type">
+                                        <a href="javascript:void(0)">{$type}</a>
+                                    </foreach>
+                                </small>
+                                <div class="m_dl_opt mb_15" style="padding-top:15px;">
+                                    <span>{$vo.add_time|to_date}</span>
+                                </div>
+                            </div>
+                            <div class="user_dsoperation clear">
+
+
+                            </div>
+                        </div>
+                        <div class="user_dsr">
+                            <strong>&yen;{$vo.cost}</strong>
+							<span class="u_btn_bc" style="background-color:gray;color:white;border:0px">
+                                禁用
+                            </span>
+							<else/>
+                                    <a href="{:U('home/demand/detail')}?id={$vo.demand_id}">
+                                        【{:C('demand_types')[$vo['demand_type']]}】
+                                        {$vo.description}
+                                    </a>
+									<if condition="$vo['is_payed'] eq 0">
+									<a href="{:U('/home/demand/buy',['id'=>$vo[demand_id]])}" target="_blank" class="gotuo">去托付费用</a>
+									<else/>
+									<b class="txt_oragin" style="font-weight:normal;">【已托付】</b>
+									</if>
+                                </h3>
+                                <small>
+                                    <foreach name="vo.types" item="type">
+                                        <a href="">{$type}</a>
+                                    </foreach>
+                                </small>
+                                <div class="m_dl_opt mb_15" style="padding-top:15px;">
+                                    <span>{$vo.add_time|to_date}</span>
+                                </div>
+                            </div>
+                            <div class="user_dsoperation clear">
+
+                               <!-- <a href="" style="margin-left:5px;">
+                                    悄悄话<!--(1)<span class="u_tsds">3</span>
+                                </a>|-->
+
+                            </div>
+                        </div>
+                        <div class="user_dsr">
+                            <strong>&yen;{$vo.cost}</strong>
+							<if condition="$vo.status eq 0">
+                            <span class="u_btn_bc" onclick="f({$vo.demand_id})"  title="点击即可下架">
+                                下架
+								<elseif condition="$vo.status eq 3"/>
+								<span class="u_btn_bc" onclick="f1({$vo.demand_id})" style="background-color:#1ECCA7;color:white;border:0px" title="点击上架">
+                                上架
+								<else/>
+								<span class="u_btn_bc" style="background-color:gray;color:white" title="被管理员禁用">
+                                禁用
+								</if>
+                            </span>
+							</if>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+        </div>                                        
+    </section>
+</div>

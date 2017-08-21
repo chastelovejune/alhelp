@@ -1,0 +1,19 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>title</td>
+    <td>上级</td>
+    </tr>
+  </thead>
+    <foreach name="areas" item="a">
+    <tr>
+      <td>{$a.id}</td>
+      <td>{$a.title}</td>
+      <td>{$a.ptitle}</td>
+    </tr>
+    </foreach>
+</table>
+              {$pageHtml}
+<include file="Common:admin_footer" />

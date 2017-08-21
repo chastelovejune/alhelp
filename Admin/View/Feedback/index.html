@@ -1,0 +1,41 @@
+<include file="Common:admin_header" />
+<script src="script/layer/layer.js"></script>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>ID</td>
+        <td>状态</td>
+        <td>用户</td>
+        <td>用户</td>
+        <td>反馈信息</td>
+        <td>管理员反馈</td>
+        <td>增加时间</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="c">
+    <tr>
+      <foreach name="c" item="v">
+      <td>{$v}</td>
+      </foreach>
+      <td >
+		<a href="javascript:void(0)" id="feedback" class="btn btn-info feedback" onclick="f1({$c['id']})">反馈</a>
+        <a href="{:U('delete')}?id={$c['id']}"  class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<script type="text/javascript">
+function f1(id){
+layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text){
+	$.post("{:U('admin/feedback/adminfeedback')}",{id:id,feedback:text},
+	function(data){
+		layer.msg('反馈成功：'+ text);
+		window.location=window.location;
+	}
+	);
+  });
+}
+
+</script>
+<include file="Common:admin_footer" />

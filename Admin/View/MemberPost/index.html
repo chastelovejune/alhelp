@@ -1,0 +1,55 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>日期</td>
+    <td>编号</td>
+    <td>发件人</td>
+    <!--<td>类型</td>-->
+    <td>内容</td>
+    <td>全局置顶</td>
+    <td>全局公告</td>
+    <td>全局火贴</td>
+    <td>圈子</td>
+    <td>圈子置顶</td>
+    <td>圈子火贴</td>
+    <td>圈子公告</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="mp">
+    <tr data-id="{$mp.id}">
+        <td>{$mp.add_time|to_minute}</td>
+      <td>{$mp.id}</td>
+      <td>{$mp.member_nickname}</td>
+
+      <td>{$mp.content}</td>
+      <td><input type="checkbox" data-key="is_top" name="is_top" <eq name="mp.is_top" value="1">checked='checked'</eq>></td>
+
+      <td><input type="checkbox" data-key="is_announcement" name="is_announcement" <eq name="mp.is_announcement" value="1">checked='checked'</eq>></td>
+      <td><input type="checkbox" data-key="is_hot" name="is_hot" <eq name="mp.is_hot" value="1">checked='checked'</eq>></td>
+      <td>{:M("circle")->getFieldById($mp['circle_id'],"circle_name")}</td>
+      <td><input type="checkbox" data-key="circle_top" name="circle_top" <eq name="mp.circle_top" value="1">checked='checked'</eq>></td>
+      <td><input type="checkbox" data-key="circle_hot" name="circle_hot" <eq name="mp.circle_hot" value="1">checked='checked'</eq>></td>
+      <td><input type="checkbox" data-key="circle_announcement" name="circle_announcement" <eq name="mp.circle_announcement" value="1">checked='checked'</eq>></td>
+      <td>
+        <a href="{:U('delete')}?id={$mp['id']}"  class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer" />
+<script type="text/javascript">
+  $("input[type=checkbox]").click(function(){
+    var id = $(this).parent().parent().attr("data-id");
+    var key = $(this).attr("data-key");
+    var value = $(this).is(":checked") ? 1 :0;
+    var info = {id:id};
+    info[key] = value;
+    console.log(info);
+    $.post("{:U('/admin/MemberPost/update')}",info,function(d){
+
+    })
+  })
+</script>

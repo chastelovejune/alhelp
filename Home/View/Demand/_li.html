@@ -1,0 +1,72 @@
+  <li class="m_datalist_item">
+    <div class="m_dl_userbox">
+        <div class="m_imgbox"><a href="{:id2path($tj[member_id])}">
+            <!--头像显示表示-->
+            <php>
+               $mb= M('mb_member')->field('is_v,is_realname,is_identify')->where('id='.$tj['member_id'])->find();
+            </php>
+
+            <if condition="$mb['is_realname'] eq 1">
+                <img class="fx_ming" style="width:18px; height:18px; margin-top:2px;"src="images/icons/ico_ming.png"></if>
+            <if condition="$mb['is_v'] eq 1">
+                <img class="fx_ming" style="width:18px; height:18px;  margin-top:2px;"src="/images/icons/ico_v.png">
+                </if>
+            <if condition="$mb['is_identify'] eq 1">
+                <img class="fx_ming" style="width:18px; height:18px;margin-top:2px;"src="/images/icons/ico_id.png">
+              </if>
+            <img src="{$tj.avatar}" onerror="this.src='/Ucenter/images/noavatar_big.gif'">
+        </a>
+            <!--头像显示标识END-->
+            <h4>{$tj[member_name]}</h4></div>
+        <div class="m_imgbox_us">
+            <div class="m_iu_hd f_clearfix">
+                <div class="m_imgbox"><a href="{:id2path($tj[member_id])}"><img src="{$tj.avatar}"></a></div>
+                <div class="titbox"><h4><a href="{:id2path($tj[member_id])}">{$tj.member_name}</a><input type="button" value="关注" class="u_btn_sl"><input type="button" value="私信" class="u_btn_bl"></h4><p>{$tj.sign}</p></div>
+            </div>
+            <ul class="m_iu_bd"><li>关注<br>{$tj.follow_num}</li><li>粉丝<br>{$tj.fans_num}</li><li>分享<br>{$tj.share_num}</li><li>收藏<br>{$tj.collection_num}</li></ul>
+            <i class="u_ico_cup"></i>
+        </div>
+    </div>
+
+    <div class="m_dl_picbox">&yen;{$tj.cost}</div>
+    <div class="m_dl_txtbox">
+        <h3><i class="ico_font">需</i><i class="ico"></i><a href="{:U('/home/demand/detail',['id'=>$tj['demand_id']])}">【{:C('demand_types')[$tj[demand_type]]}】{$tj.description}</a><if condition="$tj['is_payed'] eq 1"><b class="txt_oragin" style="font-weight:normal;">【已托付】</b></if></h3>
+        <small>
+        <foreach name="tj[types]" item="t">
+        <a>{$t}</a>
+        </foreach>
+        </small>
+        <div class="m_dl_opt">
+            <span>{$tj.add_time|to_date}</span>
+            <a href="javascript:void(0)"><i class="ico ico_zuan" onclick="f1(this,{$tj.demand_id})"></i><i>{$tj.praise_num}</i></a><a href="{:U('home/demand/add')}"><i class="ico ico_book"></i>我有类似需求</a><a href="{:U('home/bid/add',['id'=>$tj['demand_id']])}"><i class="ico ico_text"></i>我能提供帮助</a>
+        </div>
+    </div>
+</li>
+  <script src="script/layer/layer.js"></script>
+  <script type="text/javascript">
+      function f1(t,id){
+          var n=parseInt($(t).next().html());//获取当前点赞数  parseInt返回一个整形
+          var member_id = {:session('id')};
+          var demand_id = id;
+        //  var praise_num = {$demand.praise_num};
+              $.post("{:U('/home/common/newPraise')}", {
+                  member_id: member_id,
+                  object_id: demand_id,
+                  type: 1
+              }, function (d) {
+                  if (d.suc) {
+                     n= n+1;
+                      $(t).next().html(n);
+                      layer.msg(d.message);
+
+                  } else {
+                      n=n-1;
+                      if(n>=0) {
+                          $(t).next().html(n);
+                      }
+                      layer.msg(d.message);
+                  }
+
+              })
+      }
+  </script>

@@ -1,0 +1,18 @@
+[ 2017-01-03T14:28:51+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.033062s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.026944s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.027222s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+
+[ 2017-01-03T14:28:51+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000887s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005091s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005258s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+

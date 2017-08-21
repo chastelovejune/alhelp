@@ -1,0 +1,58 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20 f_clearfix">
+<div class="g_row">
+
+ <div class="g_cell_12 m_box pd_20">
+    <form method="post" class="gopay">
+      <header class="u_paytitle"><h3>选择支付方式</h3></header>
+      <ul class="pay_ment pd_20 f_clearfix">
+        <li class="m_item"><input type="radio" name="pay_type" value="0">
+        微信
+        </li>
+        <li class="m_item"><input type="radio" name="pay_type" checked="checked" value="1">支付宝支付</li>
+        <li class="m_item"><input type="radio" name="pay_type" value="2">新助邦账户支付</li>
+      </ul>
+	  <input type="hidden" name="id" value="{$_GET[id]}">
+      <div class="paytab_submitbox"><strong>总计：&yen;{$reward.reward}</strong><br><input class="u_btn_sc pd_20" type="button" value="去付款"></div>
+      </form>
+    </div>
+	</div>
+	</div>
+
+<include file="Common/footer"/>
+
+<script type="text/javascript">
+ $("input[value=去付款]").click(function(){
+    var f = $("form.gopay");
+    var pay_type = f.find('[name=pay_type]:checked').val();
+    if (pay_type == 1 && "{$_SERVER.HTTP_HOST}" != 'www.alhelp.net') {
+      alert('支付宝必须在www.alhelp.net使用');
+      return false;
+    }
+
+	 var pay = function(){	
+      f.ajaxSubmit(function(d){	
+        if (pay_type==2) {
+          if (d.suc) {  
+            window.location.href = "{:U('/home/memberPost/ok',['id'=>$_GET[id]])}";  
+          }else{
+            alert(d.message);
+          }
+        }else if(pay_type == 1){
+          go_alipay(d);
+        }else {
+          go_wxPay(d.message.code,d.message.id,d.message.type);
+        }
+      })
+    };
+    
+    if (pay_type == 2) {
+      handle_paypwd(function(){
+        pay();
+      })
+    }else{
+      pay();
+    }
+  })
+</script>

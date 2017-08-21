@@ -1,0 +1,32 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+    <!--<h2 class="logintop">找回密码</h2>-->
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+   <div class="pos_ct">  <h2 class="logintop" style="padding-bottom:0;">修改登录密码</h2></div>
+  <form method="post">
+	<ul class="login_ct f_dl">
+		<li class="lc_inp">老密码：<input name="old" type="password" required="true" equal="{$m.password}" class="u_inp_t"></li>
+		<li class="lc_inp">新密码：<input name="new1" type="password" required="true" class="u_inp_t"></li>
+		<li class="lc_inp">确认密码：<input name="new2" type="password" required="true" equalTo="[name=new1]" class="u_inp_t"></li>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="提交"></li>
+	</ul>
+	</form>
+	<script type="text/javascript">
+		$("form").go_validate(function(form){
+			$(form).ajaxSubmit(function(d){
+				if (d.suc) {
+					alert("重置密码成功");
+					window.location.href = "{:U('/home/member/setting')}";
+				}else{
+					alert(d.message);
+				}
+			})
+		},{messages:{old:{equal:'输入老密码错误'}}});
+	</script>
+</div>
+<include file="Common/footer"/>

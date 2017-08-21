@@ -1,0 +1,26 @@
+				  <li class="m_datalist_item">
+<div class="m_dl_userbox"><div class="m_imgbox"><a href="{:id2path($s[member_id])}">
+	<img src="{$s[avatar]}"></a></div><h4>
+	<a href="{:id2path($s[member_id])}">
+	{$s[nickname]}
+	</a>
+	</h4>
+</div>
+<div class="m_dl_txtbox">
+	<h3><i class="ico"></i><a href="{:U('/home/share/show',['id'=>$s[id]])}">{$s[title]}</a>
+
+		<if condition="$s['download_type'] eq 1">
+			<span class="u_bb">需要积分 {$s[download_cost]}</span>
+		<elseif condition="$s['download_type'] eq 2" />
+			<span class="u_bb" style="background-color: gold">需要金币 {$s[download_cost]}</span>
+			<elseif condition="$s['download_type'] eq 3" />
+			<span class="u_bb" style="background-color: green">人民币: {$s[download_cost]}元</span>
+		<else/></if></h3>
+	<small><a href="">{$s['types'][0]}</a><a href="">{$s['types'][1]}</a><a href="">{$s['types'][2]}</a><a href="">{$s['types'][3]}</a><a href="">{$s['types'][4]}</a></small>
+	<div class="m_dl_opt">
+		<p >{:substr(strip_tags($s[content]),0,500)}</p>
+	  <span>{:substr($s[add_time],0,10)}</span></br>
+
+	</div>
+</div>
+				  </li>

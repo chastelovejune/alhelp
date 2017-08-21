@@ -1,0 +1,143 @@
+<include file="Common:admin_header" />
+<form>
+<input type="text" name="key" placeholder="请输入用户名"/>
+    <input type="submit" value="查询"/>
+    </form>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+      <td>头像</td>
+    <td>用户名</td>
+    <td>积分</td>
+    <td>金币</td>
+    <td>注册时间</td>
+    <td>设置为大V</td>
+    <td>学生推荐设置</td>
+    <td>老师推荐设置</td>
+    <td>状态</td>
+      <td>设置为圈主</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="m">
+    <tr data-id={$m[id]}>
+      <td>{$m[id]}</td>
+     <td><img src="{$m['avatar']}" style="width: 30px;height: 30px;"></td>
+      <td><a href="javascript:void(0)" onclick="layer.open({
+  type: 1,
+  skin: 'layui-layer-rim', //加上边框
+  area: ['600px', '240px'], //宽高
+  content: '<center>电话:{$m[phone]}</br>邮箱:{$m[email]}</br>被点赞:{$m[parise_num]}</br>手机验证:{$m[phone_verified]}</br>地址:{$m[address]} </br>YY:{$m[yy]}</br>密码:{$m[password]}</br>qq:{$m[qq]}</br>描述:{$m[description]}</br>爱好:{$m[hobby]}</br>朋友描述:{$m[friend_description]}</br>微博:{$m[weibo_nickname]}</br>微信:{$m[wx]}</center>'
+});">{$m[nickname]}</a></td>
+      <td>{$m[score]}</td>
+      <td>{$m[coin]}</td>
+      <td>{:substr($m[reg_time],0,10)}</td>
+      <td><input data-key="is_v" type="checkbox" <if condition='$m[is_v]'>checked='checked'  </if>></input></td>
+      <td><input data-key="recommend_as_student" type="checkbox" <if condition='$m[recommend_as_student]'>checked='checked'  </if>></input></td>
+      <td><input data-key="recommend_as_teacher" type="checkbox" <if condition='$m[recommend_as_teacher]'>checked='checked'  </if>></input></td>
+      <td><if condition="$m[status] eq 0">
+        <img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif">
+        <else />
+        <img style="width:15px;height:15px" src="__APP__/images/icons/no.gif">
+      </if></td>
+      <td>
+        <input type="button" class="btn btn-sm btn-info circle" onclick="go_circle({$m.id})" value="设置">
+      </td>
+      <td>
+          <if condition="$m['status'] eq 0">
+        <a href="{:U('admin/Member/stop')}?id={$m['id']}"  class="btn btn-default ">禁用</a>
+              <else/>
+              <a href="{:U('admin/Member/start')}?id={$m['id']}"  class="btn btn-info ">启用</a>
+              </if>
+		<a href="{:U('admin/Member/edit')}?id={$m['id']}"  class="btn btn-primary ">编辑</a>
+      <!-- <a href="{:U('delete')}?id={$m['id']}"  class="btn btn-danger">删除</a>-->
+      </td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<script type="text/javascript">
+  $("input[type=checkbox]").click(function(){
+    var id = $(this).parent().parent().attr("data-id");
+    var key = $(this).attr("data-key");
+    var value = $(this).is(":checked") ? 1 :0;
+    var info = {id:id};
+    info[key] = value;
+    console.log(info);
+    $.post("{:U('/admin/Member/update')}",{info:info},function(d){
+
+    })
+  });
+  function go_circle(id){
+    var modal = $(".modal_circle");
+    modal.modal();
+    modal.attr("data-id",id);
+    $.get("{:U('/admin/member/addCircle')}",{id:id},function(d){
+      var html = "";
+      for(var key in d.message.masters){
+        var circle_name = d.message.masters[key];
+        html += "<span class='btn btn-info'>"+circle_name+"</span>";
+      }
+      modal.find(".modal-body div.masters").html(html);
+
+      var html = build_options(d.message.circles);
+      modal.find(".modal-body .add").html(html);
+    })
+  }
+  $(function(){
+      var modal = $(".modal_circle");
+      modal.find("input[type=button]").click(function(){
+        var id = modal.attr("data-id");
+        var circle_id = modal.find(".modal-body .add").val();
+        $.post("{:U('/admin/member/addCircle')}",{id:id,circle_id:circle_id},function(d){
+          if (d.suc) {
+            alert("设置成功");
+            modal.modal("hide");
+          }else{
+            alert(d.message);
+          }
+        })
+      })
+  })
+  
+</script>
+<include file="Common:admin_footer" />
+<div class="modal fade modal_circle" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">设置圈主</h4>
+          </div>
+
+          <div class="modal-body">
+          <h4>已是这些圈子的圈主</h4>
+          <div class="">
+		  <ul>
+		  <li> 北京大学&nbsp;&nbsp;&nbsp;<a class="btn btn-danger">删除</a></li>
+		  </ul>
+		  </div>
+          <h4>添加</h4>
+		  <div>
+		    校友圈
+		  </div>
+          <div  style="margin-top:20px;">
+            <select class="add form-control" style="margin-top:20px;"></select>
+			 <select class="add form-control" style="margin-top:20px;"></select>
+          </div>
+		   <div style="margin-top:20px;">
+		    专业圈
+		  </div>
+          <div  style="margin-top:20px;">
+            <select class="add form-control" style="margin-top:20px;"></select>
+			 <select class="add form-control" style="margin-top:20px;"></select>
+          </div>
+          </div>
+
+          <div class="modal-footer">
+              <input type="button" value="保存" class="btn btn-primary">
+          </div>
+    </div>
+  </div>
+</div>

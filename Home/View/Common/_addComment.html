@@ -1,0 +1,47 @@
+<div class="ucl_ssinput">
+  <form class="comment add_comment_main ad_comment_{$mp.id}" method="post" action="{:U('/home/comment/add')}">
+    <input type="hidden" name="object_id" value="{$_objectId}" id="o_{$mp.id}">
+    <input type="hidden" name="comment_type" value="{$_commentType}">
+    <if condition="(CONTROLLER_NAME eq 'MemberPost') AND (ACTION_NAME eq 'index')">
+    <textarea class="u_inp_t" id="emotion_content_{$mp.id}" name="content"></textarea>
+    <else/>
+	<textarea class="u_inp_t" id="emotion_content" name="content" ></textarea>
+    </if>
+    <div class="ucl_ssinputbtnbox f_clearfix">
+    <span type="button" class="f_fr u_btn_sl" onclick="addComment('{$mp.id}')" id="commentButton">发送</span>
+    <if condition="(CONTROLLER_NAME eq 'MemberPost') AND (ACTION_NAME eq 'index')">
+    <span class="emotion_mp">表情</span>
+    <else/>
+    <span class="emotion">表情</span>
+    </if>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+   function addComment(id){
+	 var cid = "#emotion_content_" + id;
+	 var oid = "#o_" + id;
+	 var box_id = "shuos"+id+"_1box";	 
+	 var comnum_box = "cnum_"+id;
+	 var comnum = document.getElementById(comnum_box).innerText;
+	 comnum = parseInt(comnum);
+     var content = $(cid).val();
+	 if(content == ''){
+	   alert("请输入评论内容");
+	   return;
+	 }
+	 var object_id = $(oid).val();
+	 var com = "form.ad_comment_" + id;
+	  document.getElementById('commentButton').innerHTML = "发送中";	
+	  document.getElementById('commentButton').disabled=false;
+	 $.post("{:U('/home/comment/add')}",{"object_id":object_id,"comment_type":3,"content":content},function(html){
+		  $(com).after(html);
+	      document.getElementById('commentButton').innerHTML = "发送";			  
+		   document.getElementById('commentButton').disabled=true;
+          $(cid).val("");
+		  comnum = comnum + 1;
+		  document.getElementById(comnum_box).innerHTML = comnum;
+	 })
+   }
+</script>

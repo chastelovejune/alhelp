@@ -1,0 +1,42 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>日期</td>
+    <td>类别</td>
+    <td>支付方式</td>
+    <td>资金流向(从)</td>
+    <td>资金流向(到)</td>
+    <td>金额</td>
+    </tr>
+  </thead>
+  <foreach name="cashs" item="c">
+    <tr>
+    <td>{$c.id}</td>
+    <td>{$c.add_time|to_minute}</td>
+    <td>{:C('payment_record_types')[$c['type']]}</td>
+    <td>{:C('cash_pay_types')[$c['pay_type']]}</td>
+    <td>
+    <switch name='c.type'>
+    <case value='0'>{$c.nickname}</case>
+    <case value='1'>新助邦</case>
+    <case value='2'>{$c.nickname}</case>
+	 <default />{$c.nickname}
+    </switch>
+    
+    </td>
+    <td>
+    <switch name='c.type'>
+    <case value='0'>新助邦</case>
+    <case value='1'>{$c.nickname}</case>
+    <case value='2'>新助邦</case>
+	<default/>新助邦
+    </switch>
+    </td>
+    <td>{$c.balance}</td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer" />

@@ -1,0 +1,30 @@
+<include file="Common:admin_header" />
+<a class="btn btn-outline btn-success" href="{:U("/admin/unified/add")}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>统考分类</td>
+    <td>sort</td>
+    <td>status</td>
+    <td>cname</td>
+    <td>学科</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="u">
+    <tr>
+      <td>{$u["id"]}</td>
+      <td>{$u["classify"]["title"]}</td>
+      <td>{$u["sort"]}</td>
+      <td>{$u["status"]}</td>
+      <td>{$u["cname"]}</td>
+      <td>{$u["major"]["mj_name"]}</td>
+      <td>
+        <a class="btn btn-danger" href="{:U("delete")}?id={$u["id"]}">删除</a>
+        <a class="btn btn-info" href="{:U("/admin/unified/edit")}?id={$u["id"]}">编辑</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<include file="Common:admin_footer" />

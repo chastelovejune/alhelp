@@ -1,0 +1,22 @@
+<include file="Common:admin_header" />
+<form  method="POST">
+	分类名称：
+<input type="text" name="name" value="{$type2['name']}">
+	</br></br>
+	所属上级：
+<select name="pid" id="select">
+	<foreach name="tops" item="i">
+		<option value="{$i[id]}" >{$i.level|str_repeat="﹂&nbsp;&nbsp;&nbsp;",###}{$i.name}</option>
+	</foreach>
+</select>
+	</br></br>
+	<input type="hidden" name="type" value="{$type}">
+<input type="submit" value="保存" class="btn btn-info">
+</form>
+<include file="Common:admin_footer" />
+<script>
+	$(function() {
+		var pid = "{$type['pid']}";
+		$("#select option[value="+ pid + "]").attr('selected', true);
+	})
+	</script>

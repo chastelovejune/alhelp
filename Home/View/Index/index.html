@@ -1,0 +1,513 @@
+<include file="Common:header" />
+<link rel="stylesheet" type="text/css" href="__CSS__/index.css" />
+<script src="__SCRIPT__/index.js"></script>
+<!--banner go-->
+<div id="main_banner" class="f_clearfix">
+    <div class="slideBox">
+        <div class="bd">
+            <ul>
+                <foreach name="lunbotu" item="s">
+                    <li>
+                        <a class="pic" href="http://{$s['link']}" target="_blank"><div class="sd_img" title="{$s['title']}" style="background-image:url({$s["img"]});"></div></a>
+                    </li>
+
+                </foreach>
+            </ul>
+        </div>
+        <div class="hd">
+            <ul>
+            </ul>
+        </div>
+    </div>
+	<!--轮播图结束-->
+    <div class="index_release" id="navindex">
+        <a href="{:U('/home/demand/add')}" class="u_btn_sc">发布需求</a>
+        <a href="{:U('/home/service/add')}" class="u_btn_sc">发布服务</a>
+        <ul class="u_tab1 f_clearfix">
+            <li id="ids1" onmouseover="setTab('ids', 'u_btn_sl', 1, 2)" class="u_btn_sl" style="background:none;">地区</li>
+            <li id="ids2" onmouseover="setTab('ids', 'u_btn_sl', 2, 2)"  class="u_btn_sl" style="background:none;">学科门类</li>
+        </ul>
+        <div class="index_reclass">
+            <div id="ids1box">
+                <form class="school" method="post" action="{:U('home/index/search')}">
+                    <div>
+                        <select name="Select1" class="u_slt school1" data-href="{:U('/home/school/index')}">
+                            <option>选择省份</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select name="Select1_school" class="u_slt school2">
+                            <option>选择学校</option>
+                        </select>
+                    </div>
+                    <div class="serch">
+                        <input type="submit" class="u_btn_sl" value="搜索" style="padding:10px 30px; font-size:18px;">
+                    </div>
+                </form>
+            </div>
+            <div id="ids2box" style="display:none;" data-href="{:U('/home/major/tree')}">
+                <div class="index_xl_tab_div">
+                    <select name="Select1" class="u_slt major0" style="width:48%; float:left;">
+                        <option>选择学科</option>
+                    </select>
+                </div>
+                <div class="index_xl_tab_div ">
+                    <select name="Select1" class="u_slt major1" style="width:48%; float:right;">
+                        <option>选择学科</option>
+                    </select>
+                </div>
+                <div class="index_xl_tab_div ">
+                    <select name="Select1" class="u_slt major2">
+                        <option>选择学科</option>
+                    </select>
+                </div>
+                <div class="serch">
+                    <input type="button" class="u_btn_sl" value="搜索" style="padding:10px 30px; font-size:18px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--banner end & index1-->
+<div class="index1 pt_20">
+    <section class="g_container">
+        <header class="u_tab1">
+            <ul class="f_clearfix">
+                <li id="idc1_1" onmouseover="setTab('idc1_', 'u_btn_sl', 1, 3)" class="u_btn_sl hover">最新需求<p class="u_btn_z"></p></li>
+                <li id="idc1_2" onmouseover="setTab('idc1_', 'u_btn_sl', 2, 3)" class="u_btn_sl">最新服务<p class="u_btn_z"></p></li>
+                <li id="idc1_3" onmouseover="setTab('idc1_', 'u_btn_sl', 3, 3)" class="u_btn_sl">直播课<p class="u_btn_z"></p></li>
+                <li class="u_btn_bl"><a class="more3">more</a></li>
+            </ul>
+        </header>
+        <ul id="idc1_1box" class="m_boxlist">
+            <volist name="latest_demands" id="vo">
+                <li class="m_item g_width_4">
+                    <div class="m_imgbox">
+                    <a href="{:id2path($vo[member_id])}">
+                        <!--头像显示表示-->
+                        <php>
+                            $mb= M('mb_member')->field('is_v,is_realname,is_identify')->where('id='.$vo['member_id'])->find();
+                        </php>
+
+                        <if condition="$vo['is_realname'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-left: 105px; margin-top:2px;"src="images/icons/ico_ming.png"></if>
+                        <if condition="$vo['is_v'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-left: 85px;  margin-top:2px;"src="/images/icons/ico_v.png">
+                        </if>
+                        <if condition="$vo['is_identify'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-left: 65px;margin-top:2px;"src="/images/icons/ico_id.png">
+                        </if>
+                        <img src="{$vo.avatar}">
+                    </a>
+                        <!--头像显示标识END-->
+
+
+                    <i class="u_ico_hot"></i>
+                    </div>
+                    <div class="idc1_txt">
+                        <h3>【资料】<a href="{:U('demand/detail')}?id={$vo.demand_id}">{$vo.description}</a></h3>
+                        <php>$type_obj = $vo;</php>
+                     <p class="idc1_line1">   <include file="Common/types"/></p>
+                        <div class="idc1_line2"><a href="{:U('demand/add')}">类似需求</a><a href="{:U('home/bid/add',['id'=>$vo['demand_id']])}" target="_blank">提供帮助</a></div>
+                        <div class="idc1_line3">
+                        <small>{$vo.add_time}</small>
+                        <strong>&yen;{$vo.cost}</strong>
+                        <gt name='vo.advance_payment' value="0"><span style="font-size: 16px; color:#ff7101;">【已托付】</span></gt>
+                        </div>
+                    </div>
+                </li>
+            </volist>
+        </ul>
+        <ul id="idc1_2box" class="m_boxlist" style="display:none;">
+                  <volist name="latest_services" id="vo">
+                <li class="m_item g_width_4">
+                    <div class="m_imgbox">
+                    <a href="{:id2path($vo[member_id])}">
+                    <if condition="$vo['image']"><img src="{$vo.image}"><else/>
+                        <!--头像显示表示-->
+                        <php>
+                            $mb= M('mb_member')->field('is_v,is_realname,is_identify')->where('id='.$vo['member_id'])->find();
+                        </php>
+
+                        <if condition="$vo['is_realname'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-left: 105px; margin-top:2px;"src="images/icons/ico_ming.png"></if>
+                        <if condition="$vo['is_v'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-left: 85px;  margin-top:2px;"src="/images/icons/ico_v.png">
+                        </if>
+                        <if condition="$vo['is_identify'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-left: 65px;margin-top:2px;"src="/images/icons/ico_id.png">
+                        </if>
+                        <img src="/Ucenter/images/noavatar_big.gif"/>
+                    </a>
+                        <!--头像显示标识END-->
+
+                    </if>
+                    </a>
+                    <i class="u_ico_hot"></i></div>
+                    <div class="idc1_txt">
+                        <h3>【答疑】<a href="{:U('service/detail')}?id={$vo.service_id}">{$vo.description}</a></h3>
+                   <p class="idc1_line1">     <foreach name="vo.types" item="type">
+                            <a href="">{$type}</a>
+                        </foreach> </p>
+                        <div class="idc1_line2"><a href="{:U('demand/service')}">类似服务</a></div>
+                        <div class="idc1_line3"><small>{$vo.add_time}</small><strong>&yen;{$vo.cost}</strong></div>
+                    </div>
+                </li>
+            </volist>
+        </ul>
+        <ul id="idc1_3box" class="m_boxlist" style="display:none;">
+            <foreach name="classes" item="c">
+                <li class="m_item g_width_4">
+                    <div class="m_imgbox"><img src="{$c["image"]}" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></div>
+                    <div class="idc1_txt">
+                        <h3><i class="ico"></i>&nbsp;&nbsp;<a href="{:U('/home/OpenClass/show',["id"=>$c['open_class_id']])}">{$c["description"]}</a></h3>
+                        <p class="idc1_line1">
+                            <foreach name="c['types']" item="type">
+                                <a href="">{$type}</a>
+                            </foreach>
+                        </p>
+                        <div class="idc1_line2"><a href="">类似直播课</a></div>
+                        <div class="idc1_line3">
+                            <small>{:substr($c["open_class_time"],0,10)}</small>
+                            <strong> <if condition="$c['price'] eq 0"> 免费<else/> &yen;{$c["price"]} </if> </strong>
+                        </div>
+                    </div>
+                </li>
+            </foreach>
+        </ul>
+    </section>
+</div>
+
+<!--index1 end & index2-->
+<div class="index2 pt_20 pb_20">
+    <section class="g_container">
+        <header class="u_tab1">
+            <ul class="f_clearfix">
+                <li id="idc2_1" onmouseover="setTab('idc2_', 'u_btn_sl', 1, 2)" class="u_btn_sl hover">热门圈子<p class="u_btn_z"></p></li>
+                <li id="idc2_2" onmouseover="setTab('idc2_', 'u_btn_sl', 2, 2)" class="u_btn_sl">收藏圈子<p class="u_btn_z"></p></li>
+                <li class="u_btn_bl"><a href="{:U('/home/circle')}">more</a></li>
+            </ul>
+        </header>
+        <php>
+            $mps = M("member_post")
+            ->join("LEFT JOIN circle ON circle.id=member_post.circle_id")
+            ->join("LEFT JOIN mb_member ON mb_member.id=member_post.member_id")
+            ->order("member_post.id DESC")->field("member_post.*,circle_name,mb_member.nickname,mb_member.avatar")->limit(3)->select();
+        </php>
+        <ul id="idc2_1box" class="idc2_list f_clearfix">
+        <foreach name="mps" item="mp">
+            <li>
+                <span class="idc2_date">{:substr($mp[add_time],11,5)}</span><i class="ico"></i>
+                <a class="idc2_tit cr" href="{:U('/home/circle/memberPost',['id'=>$mp[circle_id]])}">{$mp[circle_name]}</a><img class="idc2_img" src="{$mp[avatar]}" onerror="this.src='/Ucenter/images/noavatar_big.gif'">
+                <p class="idc2_txt"><a href="{:U('/home/member/memberPost',['id'=>$mp[member_id]])}">{$mp[nickname]}：</a>{$mp[content]}</p>
+            </li>
+           </foreach>
+        </ul>
+        <if condition="session('id')">
+         <php>
+            $mps = M("member_post")
+            ->join("LEFT JOIN circle ON circle.id=member_post.circle_id")
+            ->join("LEFT JOIN mb_member ON mb_member.id=member_post.member_id")
+            ->join("LEFT JOIN member_follow_circle on member_follow_circle.circle_id=circle.id")
+            ->order("member_post.id DESC")
+            ->where(['member_follow_circle.member_id'=>session('id')])
+            ->field("member_post.*,circle_name,mb_member.nickname,mb_member.avatar")->limit(3)->select();
+        </php>
+        <ul id="idc2_2box" class="idc2_list f_clearfix" style="display:none;">
+            <foreach name="mps" item="mp">
+            <li>
+                <span class="idc2_date">{:substr($mp[add_time],11,5)}</span><i class="ico"></i>
+                <a class="idc2_tit" href="{:U('/home/circle/memberPost',['id'=>$mp[circle_id]])}">{$mp[circle_name]}</a><img class="idc2_img" src="{$mp[avatar]}" onerror="this.src='/Ucenter/images/noavatar_big.gif'">
+                <p class="idc2_txt"><a href="{:U('/home/member/memberPost',['id'=>$mp[member_id]])}">{$mp[nickname]}：</a>{$mp[content]}</p>
+            </li>
+           </foreach>
+        </ul>
+        </if>
+    </section>
+</div>
+
+<!--index2 end & index3-->
+<div class="index3 m_box">
+    <section class="g_container">
+        <header class="u_tab1">
+            <ul class="f_clearfix">
+                <li id="idc3_1" onmouseover="setTab('idc3_', 'u_btn_sl', 1, 2)" class="u_btn_sl hover">推荐老师<p class="u_btn_z"></p></li>
+                <li id="idc3_2" onmouseover="setTab('idc3_', 'u_btn_sl', 2, 2)" class="u_btn_sl">报考学生<p class="u_btn_z"></p></li>
+                <li class="u_btn_bl"><a href="{:U('/home/Recommend/teacher')}" class="more_recommend">more</a></li>
+            </ul>
+        </header>
+
+        <ul id="idc3_1box" class="m_imglist f_clearfix">
+            <foreach name="teachers" item="t">
+                <li class="m_item" style="margin-left:10px;">
+                    <div class="m_imgbox pointeri">
+                        <!--头像显示表示-->
+                        <if condition="$t['is_realname'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px; margin-top:2px;"src="images/icons/ico_ming.png"></if>
+                        <if condition="$t['is_v'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;  margin-top:2px;"src="/images/icons/ico_v.png">
+                        </if>
+                        <if condition="$t['is_identify'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-top:2px;"src="/images/icons/ico_id.png">
+                        </if>
+                        <!--头像显示标识END-->
+                        <img src="{$t['avatar']}" onerror="this.src='/Ucenter/images/noavatar_big.gif'">
+                        </a>
+                        <div class="hover_item">            
+                        </div>
+						{$t['isfed']}
+                        <if condition="$t['isfed']">
+                            <i class="u_btn_sl gz unfollow"  f-href="{:U("/home/member/follow")}" u-href="{:U("/home/member/unfollow")}" data-id="{$t["id"]}" style = "font-size:14px; right:12%;  ">取消关注</i>
+                            <else/>
+                            <i class="u_btn_sl gz follow" f-href="{:U("/home/member/follow")}" u-href="{:U("/home/member/unfollow")}" data-id="{$t["id"]}">关&nbsp;&nbsp;注</i>
+                        </if>
+                    </div>
+                    <h4><a href="{:U('/home/member/profile',['id'=>$t[id]])}">{$t["nickname"]}</a></h4>          
+                </li>
+            </foreach> 
+        </ul>
+
+        <ul id="idc3_2box" class="m_imglist f_clearfix" style="display:none;">
+            <foreach name="students" item="s">
+                <li class="m_item" style="margin-left:10px;">
+                    <div class="m_imgbox pointeri">
+                        <!--头像显示表示-->
+                        <if condition="$s['is_realname'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px; margin-top:2px;"src="images/icons/ico_ming.png"></if>
+                        <if condition="$s['is_v'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;  margin-top:2px;"src="/images/icons/ico_v.png">
+                        </if>
+                        <if condition="$s['is_identify'] eq 1">
+                            <img class="fx_ming" style="width:18px; height:18px;margin-top:2px;"src="/images/icons/ico_id.png">
+                        </if>
+                        <!--头像显示标识END-->
+                        <img src="{$s['avatar']}" onerror="this.src='/Ucenter/images/noavatar_big.gif'">
+                        </a>
+                                                
+                        <div class="hover_item">            
+                        </div>
+                        <if condition="$s['isfed']">
+                            <i class="u_btn_sl gz unfollow" f-href="{:U("/home/member/follow")}" u-href="{:U("/home/member/unfollow")}" data-id="{$s["id"]}" style = "font-size:14px; right:12%;  ">取消关注</i>
+                            <else/>
+                            <i class="u_btn_sl gz follow" f-href="{:U("/home/member/follow")}" u-href="{:U("/home/member/unfollow")}" data-id="{$s["id"]}">关&nbsp;&nbsp;注</i>
+                        </if>
+                    </div>
+                   
+                    <h4><a href="{:U('/home/member/profile',['id'=>$s[id]])}">{$s["nickname"]}</a></h4>          
+                </li>
+            </foreach> 
+        </ul>
+    </section>
+</div>
+
+<!--index3 end & index4~6-->
+<div class="g_container mt_30">
+    <div class="g_row">
+        <div class="g_cell_9 g_cell_max">
+            <section class="indx4 m_box mb_20">
+                <header class="u_tab2">
+                    <ul>
+                        <li id="idc4_1" onmouseover="setTab('idc4_', 'u_tab2_item', 1, 3)" class="u_tab2_item hover">下载专区</li>
+                      <!-- <li id="idc4_2" onmouseover="setTab('idc4_', 'u_tab2_item', 2, 3)" class="u_tab2_item">资讯</li>
+                        <li id="idc4_3" onmouseover="setTab('idc4_', 'u_tab2_item', 3, 3)" class="u_tab2_item">我们</li>-->
+                        <a href="{:U('/home/information')}"> <li class="u_btn_bl">more</li></a>
+                    </ul>
+                </header>
+                <php>
+                    $info1 = M("information")->where(['type'=>0])->order("add_time desc")->limit(3)->select();
+                </php>
+                <div id="idc4_1box" class="m_newslist">
+                    <foreach name="info1" item="vo">
+                    <h3><a href="{:U('/home/information/show',['id'=>$vo[id]])}">{$vo[title]}</a>
+                    <span>发布时间：{:substr($vo[add_time],0,16)}</span></h3>
+                  <i style="color:grey;font-style:normal;margin-left:15px"> {:substr(strip_tags($vo[content]),0,500)}</i>
+                        </br></br></br>
+                        </foreach>
+                </div>
+              <!--  <div id="idc4_2box" class="m_newslist" style="display:none;">
+                    <h3><a href="{:U('/home/information/show',['id'=>$info2[id]])}">{$info2[title]}</a>
+                    <span>发布时间：{:substr($info2[add_time],0,16)}</span></h3>
+                    {$info2[content]}
+                </div>
+                <div id="idc4_3box" class="m_newslist" style="display:none;">
+                    <h3><a href="{:U('/home/information/show',['id'=>$info3[id]])}">{$info3[title]}</a>
+                    <span>发布时间：{:substr($info3[add_time],0,16)}</span></h3>
+                    {$info3[content]}
+                </div>-->
+            </section>
+            <section class="indx5 m_box">
+                <header class="u_tab2">
+                    <ul>
+                        <li id="idc5_1" onmouseover="setTab('idc5_', 'u_tab2_item', 1, 3)" class="u_tab2_item hover">资 料</li>
+                        <li id="idc5_2" onmouseover="setTab('idc5_', 'u_tab2_item', 2, 3)" class="u_tab2_item">视 频</li>
+                        <li id="idc5_3" onmouseover="setTab('idc5_', 'u_tab2_item', 3, 3)" class="u_tab2_item">心 得</li>
+                        <a href="{:U('/home/information/index2')}"><li class="u_btn_bl">more</li></a>
+                    </ul>
+                </header>
+                <php>
+                    $tmp = M("share")->join("LEFT JOIN mb_member ON mb_member.id=share.member_id")->field("share.*,avatar")->order('add_time desc')->limit(3)->select();
+                    foreach($tmp as $s){
+                        $shares[$s[type]][] = $s;
+                    }
+                </php>
+                <ul id="idc5_1box" class="m_newslist">
+                    <foreach name="shares[0]" item="s">
+                    <li class="m_newslist_item">
+                        <div class="m_imgbox"><img src="{$s[avatar]}"><div class="u_ico_vcmz"><i class="u_ico_V"></i></div></div>
+                        <div class="m_txtbox">
+                            <h3>
+                            <a href="{:U('/home/share/show',['id'=>$s[id]])}">{$s[title]}</a>
+                            <span>{:substr($s[add_time],0,16)}</span></h3>
+                            <i style="color:grey;font-style:normal;margin-left:15px">   {:substr(strip_tags($s[content]),0,500)}</i>
+                        </div>
+                    </li>
+                   </foreach>
+                </ul>
+                <ul id="idc5_2box" class="m_newslist" style="display:none;">
+                    <foreach name="shares[1]" item="s">
+                        <include file="Common/_share_video"/>
+                   </foreach>
+                </ul>
+                <ul id="idc5_3box" class="m_newslist" style="display:none;">
+                    <foreach name="shares[2]" item="s">
+                    <li class="m_newslist_item">
+                        <div class="m_imgbox"><img src="{$s[avatar]}"><div class="u_ico_vcmz"><i class="u_ico_V"></i></div></div>
+                        <div class="m_txtbox">
+                            <h3>
+                            <a href="{:U('/home/share/show',['id'=>$s[id]])}">{$s[title]}</a>
+                            <span>{:substr($s[add_time],0,16)}</span></h3>
+                            <i style="color:grey;font-style:normal;margin-left:15px"> {:substr(strip_tags($s[content]),0,500)}</i>
+                        </div>
+                    </li>
+                   </foreach>
+                </ul>
+            </section>
+        </div>
+        <php>
+            $ggs = M('information')->where("type=3")->limit(7)->order('add_time desc')->select();
+        </php>
+        <div class="g_cell_3">
+            <section class="indx6 m_box mb_20">
+                <h3 class="m_title">公告<a href="{:U('/home/information/index3')}" class="u_btn_bl">more</a></h3>
+                <ul class="m_newsTlist f_clearfix">
+                    <foreach name="ggs" item="g">
+                    <li class="m_item"><a href="{:U('/home/information/show',['id'=>$g[id]])}">{$g[title]}</a></li>
+                    </foreach>
+                </ul>
+            </section>
+            <php>
+                $infos = M("information")->where("type=1")->order("id DESC")->limit(7)->order('add_time desc')->getField("id,title");
+            </php>
+            <section class="indx6 m_box">
+                <h3 class="m_title">资讯<a href="{:U('/home/information/index1')}" class="u_btn_bl">more</a></h3>
+                <ul class="m_newsTlist f_clearfix">
+                    <foreach name="infos" item="info" key="k">
+                    <li class="m_item"><a href="{:U('/home/information/show',['id'=>$k])}">{$info}</a></li>
+                    </foreach>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!--index4~6 end & index7-->
+<div class="indx7 mt_30">
+    <foreach class="g_container">
+        <volist name="types" id="vo">
+        <div class="idx7_item">
+            <a href="" class="idx7tit">
+                <div class="m_imgbox"><img src="{$vo.image}" style="width: 56px;height: 56px"></div>
+                <h4>{$vo.name}</h4>
+            </a>
+            <p>
+                <volist name="vo['info']" id="k">
+                <a href="{:U('home/information/show',['id'=>$k['id']])}">{$k.title}</a>
+                    </volist>
+            </p>
+        </div>
+</volist>
+    </div>
+</div>
+<script type="text/javascript">
+    //首页
+    var mb_memeber="{:session('id')}";
+    $(".follow").click(function(){
+        if(mb_memeber==""){
+            layer.msg("登录才能关注");
+            exit;
+        }
+        $(this).toggleClass("follow");
+        $(this).toggleClass("unfollow");
+        $(this).html("取消关注");
+        $.post($(this).attr("f-href"),{"member_id":$(this).attr("data-id")},function(){
+        });
+    });
+    $(".unfollow").click(function(){
+        if(mb_memeber==""){
+            layer.msg("登录才能关注");
+            exit;
+        }
+        $(this).toggleClass("follow");
+        $(this).toggleClass("unfollow");
+        $(this).html("关注");
+        $.post($(this).attr("u-href"),{"member_id":$(this).attr("data-id")},function(){
+        });
+    });
+    $.get($("form.school .school1").attr("data-href"),{},function(data){
+        var html = "<option>选择省份</option>";
+        for(var id in data.message){
+            html = html + '<option style="color:white;background:#7C7D7C" value='+id+' >'+data.message[id]+'</option>';
+        }
+        $("form.school .school1").html(html);
+    }); 
+    $("form.school .school1").change(function(){
+        var pid = $(this).val();
+        $.get($("form.school .school1").attr("data-href"),{"pid":pid},function(data){
+            var html = "";
+            for(var id in data.message){
+                html = html + '<option style="color:white;background:#7C7D7C" value='+id+' >'+data.message[id]+'</option>';
+            }
+            $("form.school .school2").html(html);
+        })
+    })
+    $.get($("#ids2box").attr("data-href"),{},function(data){
+        var html = " <option>选择学科</option>";
+        for(var id in data.message){
+            html = html + '<option style="color:white;background:#7C7D7C" value='+id+' >'+data.message[id]+'</option>';
+        }
+        $("#ids2box .major0").html(html);
+    });
+    $("#ids2box .major0").change(function(){
+        $.get($("#ids2box").attr("data-href"),{pid:$(this).val()},function(data){
+            var html = "<option>选择学科</option>";
+            for(var id in data.message){
+                html = html + '<option style="color:white;background:#7C7D7C" value='+id+' >'+data.message[id]+'</option>';
+            }
+            $("#ids2box .major1").html(html);
+        });
+    })
+    $("#ids2box .major1").change(function(){
+        $.get($("#ids2box").attr("data-href"),{pid:$(this).val()},function(data){
+            var html = "";
+            for(var id in data.message){
+                html = html + '<option style="color:white;background:#7C7D7C" value='+id+' >'+data.message[id]+'</option>';
+            }
+            $("#ids2box .major2").html(html);
+        });
+    })
+    $(".more3").click(function(){
+        if(!$("#idc1_1box").is(":hidden")){
+            window.location.href = "{:U('/home/demand/lists')}";
+        }
+        if(!$("#idc1_2box").is(":hidden")){
+            window.location.href = "{:U('/home/service/lists')}";
+        }
+        if(!$("#idc1_3box").is(":hidden")){
+            window.location.href = "{:U('/home/openClass/index')}";
+        }
+    })
+
+</script>
+<include file="Common:footer" /> 
+

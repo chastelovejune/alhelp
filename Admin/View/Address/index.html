@@ -1,0 +1,48 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+    <td>ID</td>
+      <td>用户</td>
+     <!-- <td>状态</td>-->
+      <td>创建时间</td>
+      <td>省</td>
+      <td>城市</td>
+      <td>地区</td>
+      <td>地址</td>
+      <td>电话</td>
+      <td>默认地址</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="c">
+    <tr>
+      <td>{$c['id']}</td>
+      <td>{$c.name}</td>
+     <!-- <td>{$c['status']}</td>-->
+      <td>{$c['add_time']}</td>
+      <td>{:M('area')->where("id=".$c['province'])->getfield('title')}</td>
+      <td>{:M('area')->where("id=".$c['city'])->getfield('title')}</td>
+      <td>{:M('area')->where("id=".$c['area'])->getfield('title')}</td>
+      <td><a href="javascript:void(0)" onclick="layer.open({
+  type: 1,
+  skin: 'layui-layer-rim', //加上边框
+  area: ['420px', '240px'], //宽高
+  content: '{$c['address']}'
+});">查看</a></td>
+      <td>{$c['phone']}</td>
+      <td><input type="checkbox"  <eq name="c['is_default']" value="1">checked</eq>/>
+
+      </eq>
+      </td>
+      <td>
+        <a href="{:U('admin/address/edit',['id'=>$c['id']])}"  class="btn btn-info">编辑</a>
+        <a href="{:U('delete')}?id={$c['id']}"  class="btn btn-danger">删除</a>
+      <!--  <a href="{:U('delete')}?id={$c['id']}"  class="btn btn-danger">删除</a>-->
+      </td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer" />

@@ -1,0 +1,138 @@
+  <!--收支明细-->
+    <div class="f_clearfix" id="uclTab_5box">
+    
+    <ul>
+    <li style="margin-left:20px;" class="cx_item_act">
+    日期查询：
+    <input type="text" id="from_time" class="Wdate">
+    -
+    <input type="text" id="from_time" class="Wdate">
+    <input type="button" value="确认" class="rq_qr">
+    </li>
+    <li class="cx_item_act">
+    <ul>
+    <li class="cx_fw"><a href="#">全部</a></li>
+    <li class="cx_fw"><a href="#">今天</a></li>
+    <li class="cx_fw"><a href="#">近一周</a></li>
+    <li class="cx_fw"><a href="#">近一月</a></li>
+    <li class="cx_fw"><a href="#">近三月</a></li>
+    </ul>
+    </li>
+    </ul>
+            
+    <div style="clear:both; margin-left:20px;">
+    <span class="cx_type" style="color:#333;">类别查询：</span>
+    <ul>
+    <php>
+        $types = ['全部','收入','支出','已充值','已提现','冻结'];
+    </php>
+    <foreach name='types' item="t" key='k'>
+    <li class="u_tab2_item2 <eq name='k' value='$type'>hover</eq>" href="{:U('/member/index/minxi',['type'=>$k])}">{$t}
+    </li>
+    </foreach>
+    </ul>
+    </div>
+    
+    
+    <!--全部-->
+    <div class="sz_mx_box" id="uclTab2_1box">
+    <ul style="width:100%; height:40px; background-color:#f8f8f8; border:1px solid #ccc;">
+    <li style="width:25%;" class="mx_title">详情</li>
+    <li style="width:25%;" class="mx_title">时间</li>
+    <li style="width:20%;" class="mx_title">资金流向</li>
+    <li style="width:15%;" class="mx_title">明细</li>
+    <li style="width:15%;" class="mx_title">状态</li>
+    </ul>
+    <ul>
+<foreach name="rs" item="r">
+    <li class="sz_mx_content">
+    <ul>
+    <li style="width:25%;" class="mx_title">
+	<switch name='r.type'>
+	<case value="1">
+	提现
+	</case>
+    <case value='2'>
+    <a target="_blank">{$r.order_name}</a>
+    </case>
+    <case value='3'>
+    <a target="_blank" href="{:U('/home/demand/detail',['id'=>$r[object_id]])}">托付费用</a>
+    </case>
+	 <case value='4'>
+    <a target="_blank" href="{:U('/home/openClass/show',['id'=>$r[object_id]])}">{$r.order_name}</a>
+    </case>
+	 <case value='5'>
+    <a target="_blank" href="{:U('/home/service/detail',['id'=>M('order')->getFieldById($r[object_id],'service_id')])}">{$r.order_name}</a>
+    </case>
+	<case value='6'>
+    <a target="_blank" href="{:U('/home/service/detail',['id'=>M('service_order')->getFieldById($r[object_id],'service_id')])}">{$r.order_name}</a>
+    </case>
+	<case value='7'>
+    <a target="_blank" href="{:U('/home/memberPost/detail',['id'=>$r[object_id]])}">有偿问答</a>
+    </case>
+	<case value='8'>
+	 
+    <a target="_blank" href="{:U('/home/memberPost/detail',['id'=>$r[object_id]])}">偷听答案</a>
+    </case>
+	 <case value='9'>
+    <a target="_blank">{$r.order_name}</a>
+    </case>
+	<case value='10'>
+    <a target="_blank">{$r.order_name}</a>
+    </case>
+	<case value='11'>
+    <a target="_blank" href="{:U('/home/demand/detail',['id'=>$r[object_id]])}">{$r.order_name}</a>
+    </case>
+    <default/>{$r.order_name}
+    </switch>
+    
+    </li>
+    <li style="width:25%;" class="mx_title">{$r.add_time|to_minute}</li>
+    <li style="width:20%;" class="mx_title"><!--{:D('PaymentRecord')->id2name($r['from_member_id'])}&gt;{:D('PaymentRecord')->id2name($r['to_member_id'])}-->
+	<php>
+	  $from = M("mb_member")->where(['id'=>$r['from_member_id']])->field('nickname')->find();
+      $to = M("mb_member")->where(['id'=>$r['to_member_id']])->field('nickname')->find();
+	</php>
+	<if condition="$r['income_type'] eq 0"> 
+	 <if condition="$r['from_member_id'] eq 0">
+       新助邦微银&gt;{$to['nickname']}微银
+	 <else/>
+	 <if condition="$r['to_member_id'] eq 0">
+	  {$from['nickname']}微银&gt;新助邦微银
+	 <else/>
+	  <switch  name='r.type'>
+	   <case value='3'>
+	   {$from['nickname']}微银&gt;{$to['nickname']}冻结微银
+	   </case>
+	   <case value='11'>
+	   {$from['nickname']}冻结微银&gt;{$to['nickname']}微银
+	   </case>
+	   <default/>
+	  </switch>
+	    </if>
+	  </if>
+	<else/>
+	  <switch  name='r.type'>
+	   <case value='1'>
+	   {$from['nickname']}微银&gt;{$to['nickname']}
+	   </case>
+	   <case value='2'>
+	   {$from['nickname']}&gt;{$to['nickname']}微银
+	   </case>
+	   <default/>{$from['nickname']}&gt;{$to['nickname']}微银
+	  </switch>
+	</if>
+	</li>
+    <li style="width:15%; color:#1ecca7; font-weight:bold;" class="mx_title">{$r.balance}</li>
+    <li style="width:15%;" class="mx_title">交易成功</li>
+	<li class="clear"></li>
+    </ul>
+    </li>
+</foreach>
+    </ul>
+    	<div class="u_fy">
+<php>echo pageHtml($count);</php>
+</div>
+    </div>
+                                
+</div>

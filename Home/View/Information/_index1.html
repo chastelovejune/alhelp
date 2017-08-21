@@ -1,0 +1,117 @@
+<div id="NewsC_2box" class="g_row">
+<php>
+	$types = C("information0_types");
+</php>
+	<section class="g_cell_3 class_seat m_box">
+		<header class="cls0_header">
+			<div class="u_ss">
+				<form method="get">
+					<!--	<input type="hidden" name="type2">-->
+					<input type="text" class="u_ss_txn" name="keywords" value="{$_GET['keywords']}">
+					<input type="submit" class="u_ss_btn" value="">
+				</form>
+			</div>
+		</header>
+		<!--<ul class="newspt_list">
+        <foreach name="types" item="t" key="k">
+          <li data-id="{$k}" class="newspt_item <if condition='($_GET[type2]) AND ($k eq $_GET[type2])'> hover</if>">
+            <h4>{$t}</h4>
+          </li>
+          </foreach>
+        </ul>-->
+		<ul class="newspt_list">
+			<php>
+				$frist = M("information_type")->where(['pid'=>0,'type'=>$type])->find();
+				$tops=M("information_type")->where(['pid'=>$frist['id'],'type'=>$type])->select();
+				foreach($tops as $i=>$t){
+				$t['types'] = M("information_type")->where(['pid'=>$t[id]])->select();
+				$tops[$i]=$t;
+				}
+			</php>
+			<foreach name="tops" item="t" key="k">
+				<li class="newspt_item" onclick="setTab('clsTab0_','newspt_item',{$k+1},{:count($tops)})" id="clsTab0_{$k+1}">
+					<h4>{$t[name]}</h4>
+					<div class="cls_mainct" id="clsTab0_{$k+1}box">
+						<div class="m_titlist">
+							<div class="cls_slt">
+								<foreach name="t[types]" item="t" key="k">
+									<a href="{:U('home/information/index1',['type2'=>$t[id]])}"><button data-id={$t[id]}>{$t[name]}</button></a>
+								</foreach>
+							</div>
+						</div>
+					</div>
+				</li>
+			</foreach>
+		</ul>
+	</section>
+	<script type="text/javascript">
+		$(".newspt_list li").click(function(){
+			$("form").find("input[name=type2]").val($(this).attr("data-id"));
+			$("form").submit();
+		})
+	</script>
+<section class="g_cell_9 m_box newsnews">
+	<ul class="m_newslist">
+    <li class="f_fr" style="padding-top:20px;"> 
+      <include file="_index_order"/>
+    </li>
+    <li style="height:20px;"></li>
+    <foreach name="infos" item="i">
+		<li class="m_newslist_item">
+			<h3><div class="m_imgbox"><a href="#">
+
+			<img src="{:M('mb_member')->where('id='.$i['member_id'])->getfield('avatar')}" alt="" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></a></div><a href="{:U('/home/information/show',['id'=>$i[id]])}">{$i[title]}</a><span>{:substr($i[add_time],0,16)}</span></h3>
+			<p>{:substr(strip_tags($i[content]),0,500)}</p>
+             <div class="m_cl_btn">
+				 <a href="javascript:void(0)" data-id={$i[id]} class="zan1"><img src="/images/icons/zan.png"/>&nbsp;<span>{$i[praise_num]}</span> </a><a href="javascript:void(0)"><img src="/images/icons/share.png"/>&nbsp;分享</a><a href="javascript:void(0)" class="ul3_collection"><img src="/images/icons/collect.png"/><span>&nbsp;收藏</span></a>
+                </div>
+		</li>
+	</foreach>
+	</ul>
+	<div class="u_fy">
+			<php>echo pageHtml(M('information')->where(['type'=>1])->count());</php>
+	</div>
+</section>
+</div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	$(".zan1").click(function(){
+		var obj=$(this);
+		var n = $(this).find("span").html();
+		n = parseInt(n);
+		var member_id = {:session('id')};
+		var id=$(this).attr("data-id");
+		//$(this).find("span").html(n+1);
+		$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:id,type:4},function (d) {
+			if (d.suc) {
+				layer.msg(d.message);
+
+				obj.find("span").html(n + 1);
+
+			} else {
+					if(n>0){
+						layer.msg(d.message);
+						obj.find("span").html(n - 1);;
+					}else {
+						layer.msg(d.message);
+					}
+
+			}
+		})
+	})
+	$(".ul3_collection").click(function(){
+		var t = $(this);
+		if (t.find("span").html().indexOf("已") == -1) {
+			//收藏
+			t.find("span").html("已收藏");
+			t.find("img").attr("src","/images/icons/collection.png");
+			$.post("{:U('/home/collection/add')}",{object_id:t.attr("data-id"),type:0},function(d){
+			})
+		}else{
+			t.find("span").html("收藏");
+			t.find("img").attr("src","/images/icons/collect.png");
+			$.post("{:U('/home/collection/delete')}",{object_id:t.attr("data-id"),type:0},function(){
+			})
+		}
+	})
+</script>

@@ -1,0 +1,73 @@
+<ul style="float:left; margin-top:35px;">
+        <li class="bf_item selecty">
+        预
+        <div class="bf_ts">
+        <div class="bf_tst">拟定阶段学习规划</div>
+        <div class="bf_tsc">新助邦提供各学科学习规划范本根据学生的实际情况进行修改即可</div>
+        <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+        </li>
+         <li class="bf_item selecty">
+        计
+        <div class="bf_ts">
+        <div class="bf_tst">拟定授课计划和课后练习</div>
+        <div class="bf_tsc">简单填写授课时间，地点，上课内容和需要讲义</div>
+         <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+        </li>
+
+         <li class="bf_item <gt name='package.type1' value='0'>selecty<else/>selectn</gt>">
+        答
+        <div class="bf_ts">
+        <div class="bf_tst">提问必答</div>
+        <div class="bf_tsc">24小时内，解答学生的问题，帮学生及时扫清学习上的疑问，紧急情况下除外</div>
+         <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+        </li>
+         <li class="bf_item <gt name='package.type2' value='0'>selecty<else/>selectn</gt>">
+        测
+        <div class="bf_ts">
+        <div class="bf_tst">测试</div>
+        <div class="bf_tsc">每个阶段结束后，对学生的学习情况进行测评，有针对性调整学习计划</div>
+         <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+        </li>
+         <li class="bf_item <gt name='package.type3' value='0'>selecty<else/>selectn</gt>">
+        论
+        <div class="bf_ts">
+        <div class="bf_tst">指导论文</div>
+        <div class="bf_tsc"></div>
+         <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+        </li>
+         <li class="bf_item <gt name='package.type4' value='0'>selecty<else/>selectn</gt>">
+        导
+        <div class="bf_ts">
+        <div class="bf_tst">协助联系导师</div>
+        <div class="bf_tsc"></div>
+         <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+             <php>
+
+                 $map['service_id']=array('EQ',$service['service_id']);
+                 $map['type5']=array('NEQ','0');
+                 $type5=M('service_package')->field('type5')->where($map)->select();
+                 $ohter=$type5[0]['type5'];
+             </php>
+        </li>
+         <li class="bf_item <gt name='ohter' value='0'>selecty<else/>selectn</gt>">
+        其他
+        <div class="bf_ts">
+        <div class="bf_tst"><eq name="ohter" value="0"><else/>{$ohter}</eq></div>
+        <div class="bf_tsc"></div>
+         <p class="ts_arrow"></p>
+      <p class="u_btn_z"></p>
+        </div>
+        </li>
+        </ul>

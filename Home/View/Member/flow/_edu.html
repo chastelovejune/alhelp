@@ -1,0 +1,14 @@
+
+<foreach name="infos" item="info">
+                        <tr data-id='{$info[education_id]}'>               
+                           <td data-id=''>{$info[type]}</td>
+                            <td data-id='{$info[area_id]}' name="education_city">{$info[area_title]}</td>
+                            <td data-id='{$info[school_id]}'>{$info[school_title]}</td>
+                            <td data-id='{$info[yuan_id]}'>{$info[yuan_title]}</td>
+                            <td data-id='{$info[zhuanye_id]}'>{$info[zhuanye_title]}</td>
+                            <td data-id='{$info[year]}'>{$info[year]}</td>
+                            <td class="">
+                                <a class="edit">&nbsp;&nbsp;修改</a><a class="delete">删除</a>
+                            </td>
+                        </tr>
+                    </foreach>

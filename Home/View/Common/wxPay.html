@@ -1,0 +1,91 @@
+<include file="Common/header"/>
+<div class="wxtop">
+<img src="images/icons/wxpay.png" />
+</div>
+<div style="text-align:center">
+  <img  src="http://paysdk.weixin.qq.com/example/qrcode.php?data={$_GET.code}" style="width:150px;height:150px; margin-left:auto; margin-right:auto; margin-top:20px;"/>
+  </div>
+  <div class="wxcontent">
+<div class="wx_tips">
+<img src="images/icons/scan1.png"/>
+<p>请使用微信’扫一扫‘扫描二维码支付</p>
+<div style="clear:both;"></div>
+</div>
+<div class="cost">&yen;{$fee}</div>
+</div>
+  <script>
+
+    var id = {:is_array($_GET[id])?json_encode($_GET[id]):$_GET[id]};
+    var type = "{$_GET.type}";
+    setInterval(function(){
+      if (type == "recharge") {
+        $.get("{:U('/home/recharge/show')}"+"?id="+id,function(d){
+          if (d.message.success == 1) {
+            window.location.href = "{:U('/home/recharge/ok',['id'=>$_GET[id]])}";
+          }
+        })
+      }else if(type == 'serviceOrder'){
+        $.get("{:U('/home/serviceOrder/show')}"+"?id="+id,function(d){
+          if (d.message.status == 1) {
+            window.location.href = "{:U('/home/ServiceOrder/ok',['id'=>$_GET[id]])}";
+          }
+        })
+      }else if(type == 'order'){
+		
+        $.get("{:U('/home/order/detail')}"+"?id="+id[0],function(d){
+          if (d.message.status == 1) {
+            window.location.href = "{:U('/home/order/ok')}?"+$.param({id:id});
+          }
+        })
+      }else if(type == 'demand'){
+        $.get("{:U('/home/demand/detail')}"+"?id="+id,function(d){
+          if (d.message.is_payed == 1) {
+            window.location.href = "{:U('/home/demand/detail',['id'=>$_GET[id]])}";
+          }
+        })
+      }else if(type == 'quiz'){
+        $.get("{:U('/home/memberPost/quizconfirm')}"+"?id="+id,function(d){  
+			if(d.message.status == 1){
+            window.location.href = "{:U('/home/memberPost/ok',['id'=>$_GET[id]])}";  
+			}
+      })
+	  }else if(type == 'benefit'){		 
+	  $.get("{:U('/home/memberPost/isbenefit')}"+"?id="+id,function(d){  
+			if(d.suc){
+            window.location.href = "{:U('/home/memberPost/anscontent',['id'=>$_GET[id]])}";  
+			}
+      })
+	  }else if(type == 'openClass'){
+	  $.get("{:U('/home/openClass/isapply')}"+"?id="+id,function(d){  
+			if(d.suc){
+            window.location.href = "{:U('/home/openClass/show',['id'=>$_GET[id]])}";  
+			}
+      })
+	  }else if(type == 'dataBid'){
+	   $.get("{:U('/home/order/detail')}"+"?id="+id,function(d){
+          if (d.message.status == 1) {
+            window.location.href = "{:U('/home/order/ok',['id'=>$_GET[id]])}";
+          }
+        })
+	  }else if(type == 'classBid'){
+	    $.get("{:U('/home/serviceOrder/show')}"+"?id="+id,function(d){
+          if (d.message.status == 1) {
+            window.location.href = "{:U('/home/ServiceOrder/ok',['id'=>$_GET[id]])}";
+          }
+        })
+	  }else if(type == 'download'){
+	     $.get("{:U('/home/information/getwxpaystatus')}?id="+id[2],function(d){
+          if (d.message.status == 1) {
+               window.location.href = "{:U('/home/information/down')}?id="+id[0];         
+          }
+        })
+	  }else if(type == 'sharedownload'){
+	   $.get("{:U('/home/information/getwxpaystatus')}?id="+id[2],function(d){
+          if (d.message.status == 1) {
+               window.location.href = "{:U('/home/share/down')}?id="+id[0];         
+          }
+        })
+	  }
+    },5000)
+  </script>
+  <include file="Common/footer"/>

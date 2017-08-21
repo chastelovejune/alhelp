@@ -1,0 +1,7 @@
+<foreach name="type_obj[types]" item="t">
+    <gt name='type_obj.school_id' value="0">
+    <a href="{:U('/home/circle/show',['id'=>$type_obj['circle_id']])}">{$t}</a>
+    <else/>
+    <a>{$t}</a>
+    </gt>
+</foreach>

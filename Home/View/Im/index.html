@@ -1,0 +1,12 @@
+<include file='Im/header'/>
+<include file='Im/chat'/>
+<include file='Im/footer'/>
+<script type="text/javascript">
+    setInterval(function(){
+        var id={$_GET.id};
+       // var type="{$_GET.type}";
+        //var mid = {$obj.member_id};
+		var dlgid ="{$_GET.dlgid}";
+        pull(id,dlgid);
+    },5000);
+</script>

@@ -1,0 +1,75 @@
+﻿<include file="Common:admin_header" />
+
+
+<form role="form" action="{:U('admin/address/edit')}" method="post">
+
+
+
+	<input type="hidden" value="{$m['id']}" name="id" >
+  <div class="form-group">
+    <label for="name">用户名</label>
+    <input type="text" class="form-control" id="name" name="name" value="{$l['name']}" style="width:180px">
+  </div>
+  <div class="form-group">
+    <label for="province">省</label>
+    <select name="province" class="form-control" style="width:130px">
+      <foreach name="re" item="vo">
+      <eq name="vo['level']" value="0">  <option value="{$vo['id']}" <if condition="$l['province'] eq $vo['id']" >selected<else/></if>>{$vo['title']}</option></eq>
+      </foreach>
+      <select>
+  </div>
+  <div class="form-group">
+    <label for="city">城市</label>
+    <select name="city" class="form-control" style="width:130px">
+      <foreach name="re" item="vo">
+      <eq name="vo['level']" value="1">  <option value="{$vo['id']}"  <option value="{$vo['id']}" <if condition="$l['city'] eq $vo['id']" >selected<else/></if>>{$vo['title']}</option></eq>
+        </foreach>
+      <select>
+  </div>
+  <div class="form-group">
+    <label for="area">区域</label>
+    <select name="area" class="form-control" style="width:130px">
+      <foreach name="re" item="vo">
+      <eq name="vo['level']" value="2">  <option value="{$vo['id']}"  <option value="{$vo['id']}" <if condition="$l['area'] eq $vo['id']" >selected<else/></if>>{$vo['title']}</option></eq>
+        </foreach>
+      <select>
+  </div>
+
+
+  
+  <div class="form-group">
+    <label for="address">地址</label>
+    <input type="address" class="form-control" id="address" name="address" value="{$l['address']}" style="width:180px">
+  </div>
+  <div class="form-group">
+    <label for="phone">手机</label>
+    <input type="text" class="form-control" id="phone" name="phone"  value="{$l['phone']}" style="width:180px">
+  </div>
+  
+
+  <div class="form-group">
+    <label for="is_dafault">是否默认</label>
+    <select name="is_dafault" class="form-control" style="width:110px">
+      <option value=0 <eq name="m['is_default']" value="0">selected</eq>>默认</option>
+      <option value=1 <eq name="m['is_default']" value="1">selected</eq>>普通</option>
+      <select>
+  </div>
+  <input type="hidden" name="id" value="{$l['id']}">
+  <div class="form-group pull-right">
+
+	<input type="submit" class="btn btn-primary" value="提交"/>&nbsp;&nbsp;&nbsp;&nbsp;	
+
+	<input type="reset" class="btn btn-danger" value="重置"/>
+  </div>
+</form>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+  function f1(){
+    var pwd=$("#pwd").val();
+    var repwd=$("#repwd").val();
+    if(pwd!=repwd){
+     layer.msg("确认密码和密码不一样")
+
+    }
+  }
+  </script>

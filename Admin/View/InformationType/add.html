@@ -1,0 +1,29 @@
+<include file="Common:admin_header" />
+<form  method="post" enctype="multipart/form-data">
+	分类名称：
+<input type="text" name="name" >
+	</br></br>
+	<eq name="type" value="6">
+	分类图片(首页显示分类图片):
+	</br></br>
+	<input type="file" name="image" >
+	</br>
+		</eq>
+	所属上级：（请不要选自两级以上栏目，设置无限级分类只为后续功能迭代）
+	</br>
+<select name="pid" id="select">
+	<foreach name="tops" item="i">
+		<option value="{$i[id]}" >{$i.level|str_repeat="&nbsp;&nbsp;&nbsp;",###}{$i.name}</option>
+	</foreach>
+</select>
+	</br></br>
+	<input type="hidden" name="type" value="{$type}">
+<input type="submit" value="保存" class="btn btn-info">
+</form>
+<include file="Common:admin_footer" />
+<script>
+	$(function() {
+		var pid = "{$type['pid']}";
+		$("#select option[value="+ pid + "]").attr('selected', true);
+	})
+	</script>

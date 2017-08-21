@@ -1,0 +1,121 @@
+
+<footer class="main_footer">
+    <div class="g_container" style="padding-top:35px; padding-bottom:35px;">
+        <div class="g_row">
+        
+            <div class="footer1">
+            <img src="images/icons/logo.png" style=" margin-right:10px;">
+          
+            </div>
+            <div class="footer1">
+            <div class="main_ftnav">
+            <a href="">关于我们</a>|<a href="">加入我们</a>|<a href="">意见反馈</a>|<a href="">APP下载</a>
+            
+            </div>
+            <div class="main_fttxt" style="margin-left:10px;">
+             All Rights Reserved 滇ICP备15001166号
+            </div>
+            </div>
+            <div class="footer1 main_ftnav">
+            <span>关注我们：</span><i class="sina"></i><i class="weixin"><img src="" alt="二维码"></i
+            ></div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="line"></div>
+    
+    <div class="g_container" style="padding-top:20px;">
+        <div class="g_row">
+    
+    <div class="main_fttxt">
+      友情链接：<a href="">&nbsp;&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;&nbsp;</a>|<a href="">&nbsp;&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;&nbsp;</a>|<a href="">&nbsp;&nbsp;&nbsp;&nbsp;百度&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    </div>  
+       
+        </div>
+    </div>
+</footer>
+
+<div class="float_container">
+  <div class="fl_ftop">
+  <!-- gt name='mid' value='0' -->
+  <php>
+     // $im = M("imessage")->where(['_logic'=>'or','to_member_id'=>$mid,'from_member_id'=>$mid])->order('id asc')->find();
+	 $m = M("mb_member")->find(session('id'));
+	  $t = new \Org\Util\Im();	
+	  $msg = $t->get_list($m['chat_id']);
+	  if(count($msg)>0){
+	  $ims = $msg[0];
+	  }else{
+	   $ims = array(
+	     'obj' => ' ',
+		 'dlgid' => ' '
+	   );
+	  }
+  </php>
+   <!-- <a target="_blank" href="<eq name='im.from_member_id' value='$m.id'>{:U('/home/im/index',['id'=>$im[object_id],'mid'=>$im[to_member_id],'type'=>$im[object_type]])}<else/>{:U('/home/im/tome',['id'=>$im[object_id],'mid'=>$im[from_member_id],'type'=>$im[object_type]])}</eq>">-->
+   <a id="rightWeiLiaoBtn" target="_blank" href="{:U('/home/im/index',['id'=>$ims[obj],'dlgid'=>$ims[dlgid]])}">
+    <span>微聊</span>
+    </a>
+    <!-- /gt -->
+		<php>	
+	  $mp = M("member_post")->where(['member_id'=>session('id'),'reward = 0','status = 1'])->field("id")->select();
+	   foreach($mp as $i => $c){
+	    $mpids[] = $c['id'];
+	   }
+	   if(count($mpids)){
+	   $count0 =M("comment")->where(['comment_type = 3','object_id' => ['in', $mpids],'readed = 0'])->count();
+	   $count1 =M("praise")->where(['type = 0','object_id' => ['in', $mpids],'readed = 0'])->count();
+	   $mpcounts = $count0 + $count1;
+	   }
+
+	   $mp1 = M("member_post")->where(['member_id'=>session('id'),'reward > 0','status = 1'])->field("id")->select();
+	   foreach($mp1 as $k => $v){
+	    $mpids1[] = $v['id'];
+	   }
+	     if(count($mpids1)){
+	   $answercount =M("answer")->where(['object_id' => ['in', $mpids1],'readed = 0'])->count();
+	   $benefitcount =M("benefit")->where(['member_post_id' => ['in', $mpids1],'readed = 0'])->count();
+	   $acceptcount = M("message")->where(['object_id'=>['in', $mpids1],'type = 11','readed = 0'])->count();
+	   $quizcount = $answercount + $benefitcount + $acceptcount;
+	   }
+
+	  $counts = $mpcounts + $quizcount;	  
+	</php>
+	<if condition="($mpcounts neq 0 AND $quizcount neq 0)">
+	<a href="{:U('/member/MemberPost')}"><gt name="counts" value='0'><i class="u_tsd">{$counts}</i></gt><span>提问交流</span></a>
+	<else/>
+	   <if condition="$mpcounts neq 0">
+	   <a href="{:U('/member/MemberPost')}"><gt name="counts" value='0'><i class="u_tsd">{$counts}</i></gt><span>提问交流</span></a>
+	   <else/>
+	   <a href="{:U('/member/Quiz')}"><gt name="counts" value='0'><i class="u_tsd">{$counts}</i></gt><span>提问交流</span></a>
+	   </if>
+	</if>
+
+    <a href="#"><i class="u_ico_flW"></i></a>
+    <a href="#"><i class="u_ico_flT"></i></a>
+    <a href="javascript:void(0);"><i class="u_ico_fl2"></i><img src="images/test/90.jpg" alt=""></a>
+
+  </div>
+</div>
+
+<div class="mtipsbg disn" id="mtip">
+   <p>完善教育信息，可以快速进入校园圈找到匹配的同学啦！</p>
+   <div class="mtipbtn"><a  href="{:U('/home/member/setting')}" class="u_btn_bl">现在就去</a><input type="button" class="u_btn_bl" value="以后再说"  onClick="gbBzBox('mtip')"></div>
+</div>
+<script language="javascript">
+	//检查有没有我的最新消息
+	$(function(){
+		if($('#rightWeiLiaoBtn').length > 0){
+			$.get('{:U("home/im/checkme")}', {}, function(data){
+				if(data!='' && !isNaN(data)){
+					$('#rightWeiLiaoBtn').append('<i style="position: absolute;top: -15px;right: -10px;width: 25px;height: 25px;background: #D84C29;border-radius: 50%;font-size: 10px;font-style: normal;line-height: 26px;">'+data+'</i>');
+				}else{
+					$('#rightWeiLiaoBtn i').remove();	
+				}
+			});	
+		}
+	});
+</script>
+</body>
+</html>

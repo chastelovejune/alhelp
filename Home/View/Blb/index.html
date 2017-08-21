@@ -1,0 +1,39 @@
+<include file='Common/header'/>
+<div class="u_bannerbar">
+  <div class="g_container">
+  	<div class="u_ss">
+  		<input type="text" class="u_ss_txn">
+  		<button class="u_ss_btn"></button>
+  	</div>
+  </div>
+</div>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<include file="Common/_listFilter"/>
+		<section class="g_cell_9 m_box">
+			<ul class="m_commlist">
+			<foreach name='schools' item='s'>
+			  <li class="m_commlist_item">
+			  	<div class="m_cl_userbox"><div class="m_imgbox"><img src="images/test/96.jpg"></div></div>
+			  	<div class="m_cl_btnbox"><a href="{:U('/home/circle/show',['id'=>$s['circle_id']])}" class="u_btn_sl">进入圈子</a><a href="" class="u_btn_sc">关注圈子</a></div>
+			  	<div class="m_cl_txtbox">
+						<h3>
+							<a href="{:U('/home/blb/zhuanye',['id'=>$s['id']])}">{$s.title}</a>
+						</h3>
+						<p>地址：{$s.address}<br>房间电话：{$s.telephone}</p>
+						<div class="m_cl_opt">
+						  <a href="{:U('/home/circle/demand',['id'=>$s['circle_id']])}">进入圈子>></a><a href="{$s.website}">查看官网>></a>
+						</div>
+			  	</div>
+			  </li>
+			  </foreach>
+			</ul>
+			<div class="u_fy">
+			  <php>echo pageHtml($count);</php>
+			</div>
+		</section>
+
+	</div>
+</div>
+<include file='Common/footer'/>

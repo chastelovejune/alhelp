@@ -1,0 +1,83 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9 m_box pd_20">
+		  <header class="text_detailhd">
+		  <!--	<h2>{$i[title]}</h2>
+		  	<span>作者：<a href="{:U('/home/member/profile',['id'=>$i[member_id]])}">{$i[nickname]}</a></span><span>发布时间：{:substr($i[add_time],0,10)}</span><span>浏览次数：{$i[views]}次</span><br>
+		  	<if condition="$i[attachment] neq ''">
+		  	<button class="u_btn_sl d_attachment" ><i class="u_ico_download"></i>确认下载</button><br>
+		  	<span>附件：<small>{$i[attachment_name]}</small></span><span><strong>{$i[attachment_score]}</strong>积分</span>
+		  	</if>
+		  	<br>
+		  	<if condition="$i[image] neq ''">
+		  	<img src="{$i[image]}" alt="">
+		  	</if>-->
+		  </header>
+		  <div class="text_detailbd">{$answer[content]}</div>
+		  <div class="text_detailfd">		 
+		  </div>
+		</section>
+		<section class="g_cell_3 m_box">
+			<ul class="u_tab2">
+			  <li class="u_tab2_item">最新公告</li>
+			</ul>
+			<div id="clsTab_2box" class="cls_mainct">
+			<php>
+				$gaos = topGongGao();
+			</php>
+				<ul class="m_newsTlist f_clearfix">
+					<foreach name="gaos" item="gao">
+					<li class="m_item"><a href="{:U('/home/information/show',['id'=>$gao[id]])}">{$gao[title]}</a></li>
+					</foreach>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+
+
+<div class="pop_bg">
+<div class="int_box">
+<div class="int_top">
+亲~积分不够了
+</div>
+<div class="int_con">
+<p>现在就去赚取积分吧！</p>
+<div class="u_btn_gb" onclick="$('.pop_bg').hide()">关闭</div>
+<div class="u_btn_sl" href='{:U('/home/information/show',['id'=>39])}'>现在就去</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	var id = {$i['id']};
+	$.post("{:U('/home/information/read')}",{id:id},function(){})
+	$(".text_fy span a").eq(2).click(function(){
+		var t = $(this);
+		if (t.html().indexOf("已") != -1) {
+			t.html("收藏");
+			$.post("{:U('/home/Collection/delete')}",{type:1,object_id:id},function(){
+			})
+		}else{
+			t.html("已收藏");
+			$.post("{:U('/home/Collection/add')}",{type:1,object_id:id},function(){
+			})
+		}
+		return false;
+	})
+	$("button.d_attachment").click(function(){
+		$.post("{:U('/home/information/download')}",{id:id},function(d){
+			if (d.suc) {
+				window.location.href = d.message;
+			}else{
+				$("div.pop_bg").show();
+			}
+		})
+	})
+</script>
+
+<include file="Common/footer"/>

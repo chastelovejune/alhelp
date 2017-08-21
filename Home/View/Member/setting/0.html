@@ -1,0 +1,191 @@
+<div id="clsTab9_1box">
+	<div class="grxx_div_r sy_grxx_js">
+		<div class="grxx_div_r_txt">
+			基本资料<input id="sy_grxx_open1" class="u_btn_sl" type="button" value="修改">
+		</div>
+		<div class="fn_cb"></div>
+		
+		<form action="{:U('/home/member/update')}" method="POST" enctype="multipart/form-data" class="form1">
+		<ul id="sy_grxx_list1" class="sy_grxx_list"><!--加on类名开关修改模式-->
+			<li>
+				<div class="sy_grxx_tit">
+					头像：
+				</div>
+				<div class="sy_grxx_ct">
+					<img style="width:70px;" src="{$m['avatar']}"></img>
+					<input type="hidden" name="avatar" value="{$m.avatar}">
+					<input type="hidden" class="btn btn-info btn-sm" value="上传新头像">
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					新助邦ID
+				</div>
+				<div class="sy_grxx_ct">
+				  <span class="sy_pl10">xzb{$m["id"]}</span>
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					昵称：
+				</div>
+				<div class="sy_grxx_ct">
+					<input type="text" name="nickname" value="{$m["nickname"]}" readonly="readonly" class="sy_gr_t">
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					签名: 
+				</div>
+				<div class="sy_grxx_ct">
+					<input type="text" name="sign" value="{$m["sign"]}" readonly="readonly" class="sy_gr_t">
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					注册邮箱：
+				</div>
+				<div class="sy_grxx_ct">
+				  <span class="sy_gr_t" style="float:left;width:25%">{$m["email"]}</span>
+	                <div class="yz_g" href="{:U('/home/member/bindEmail')}">修改</div>
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					手机号：
+				</div>
+				<div class="sy_grxx_ct">
+				  <span class="sy_gr_t" style="float:left;width:25%">{$m["phone"]}</span>
+	              <div class="yz_g" href="{:U('/home/member/bindPhone')}">修改</div>                         
+	          
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					QQ：
+				</div>
+				<div class="sy_grxx_ct">
+				  <input type="text" name="qq" value="{$m["qq"]}" readonly="readonly" class="sy_gr_t">
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					微信：
+				</div>
+				<div class="sy_grxx_ct">
+				  <input type="text" name="wx" value="{$m["wx"]}" readonly="readonly" class="sy_gr_t">
+				</div>
+			</li>
+			
+			<li>
+				<div class="sy_grxx_tit">
+					性别：
+				</div>
+				<div class="sy_grxx_ct" >
+				  <input type="radio" style="display:inline;" name="is_male" <eq name='m.is_male' value='1'> checked="checked"</eq> value="1"><label>男</label><input type="radio" style="display:inline;" name="is_male" <eq name='m.is_male' value='0'> checked="checked"</eq> value="0"><label>女</label>
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					所在地：
+				</div>
+				<div class="sy_grxx_ct">
+				  <div class="selectbox wid">
+					  <select disabled="disabled" class="sy_gr_s" name="province">
+					  	<option>省份</option>
+					  </select>
+					</div>
+				  <div class="selectbox wid">
+					  <select disabled="disabled" class="sy_gr_s" name="city">
+					  	<option>城市</option>
+					  </select>
+					</div>
+				  <div class="selectbox wid">
+					  <select disabled="disabled" class="sy_gr_s" name="area">
+					  	<option>县区</option>
+					  </select>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					地址：
+				</div>
+				<div class="sy_grxx_ct">
+				  <input type="text" value="{$m['address']}" name="address" readonly="readonly" class="sy_gr_t">
+				</div>
+			</li>
+		</ul>
+		</form>
+	</div>
+
+	<include file="Common/_education"/>
+	<div class="grxx_div_r sy_grxx_js">
+		<div class="grxx_div_r_txt">
+			个人资料<input id="sy_grxx_open3" class="u_btn_sl" type="button" value="修改">
+		</div>
+		<div class="fn_cb"></div>
+		<ul id="sy_grxx_list3" class="sy_grxx_list"><!--加on类名开关修改模式-->
+		<form method="post" action="{:U('/home/member/update')}">
+			<li>
+				<div class="sy_grxx_tit">
+					感情状况：
+				</div>
+				<div class="sy_grxx_ct">
+				  <div class="selectbox wid">
+					  <select disabled="disabled" class="sy_gr_s" name="feeling_status">
+					  <foreach name="Think.config.feeling_status" item="v" key="k">
+					  	<option value="{$k}" <eq name='k' value='$m[feeling_status]'>selected="selected" </eq>>{$v}</option>
+					  </foreach>
+					  </select>
+				  </div>
+				</div>
+			</li>
+			<li>
+				<div class="sy_grxx_tit">
+					兴趣：
+				</div>
+				<div class="sy_grxx_ct">
+				  <input type="text" name="hobby" value="{$m[hobby]}" readonly="readonly" class="sy_gr_t">
+				</div>
+			</li>
+		
+			<li>
+				<div class="sy_grxx_tit">
+					个人介绍：
+				</div>
+				<div class="sy_grxx_ct">
+				  <textarea name="friend_description" type="text" class="des" rows="5" readonly="readonly" class="sy_gr_t" placeholder="喜欢的交友对象,类型等,自己的基本情况
+	">{$m[friend_description]}</textarea>
+				</div>
+			</li>
+		</form>
+		</ul>
+	</div>
+	</div>
+<script type="text/javascript">
+	$("#sy_grxx_open1").click(function(){
+		if ($(this).val() == "修改") {
+			$("input[value=上传新头像]").attr("type","button");
+			return;
+		}
+		
+		
+		$("form.form1").ajaxSubmit(function(d){
+			if (d.suc) {
+				window.location.reload();
+			}else{
+				alert(d.message);
+			}
+		})
+	});
+	$(function(){
+		$("input[value=上传新头像]").click(function(){
+			go_upload(function(src){
+				$("input[name=avatar]").val(src);
+				$("input[name=avatar]").prev().attr('src',src);
+			});
+		})
+	})
+	go_pca("select[name=province]","select[name=city]","select[name=area]",{$m["province"]},{$m["city"]},{$m["area"]});
+</script>

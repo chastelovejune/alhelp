@@ -1,0 +1,38 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+<php>
+	$all = M("activity")->field("activity.*, (SELECT id FROM activity_member WHERE activity_id=activity.id AND member_id=".session("id").") as activity_member_id")->select();
+	foreach($all as $a){
+		$as[$a[type]+1][] = $a;
+	}
+	$as[0] = $all;
+	$all = $as;
+	$hot = $all[0][0];
+</php>
+<div class="g_container mt_20">
+	<div class="g_row">
+	<include file="Activity/_hot"/>
+	  <div class="g_cell_9">
+		  <div class="cir_ss m_box f_clearfix">
+		    <div class="u_fss">
+		    	<a href="{:U('/home/activity/add',['id'=>$circle[id]])}" class="u_btn_sl g_width_3">发活动</a>
+		    </div>
+		  	<div class="u_ss">
+		  		<input type="text" class="u_ss_txn">
+		  		<button class="u_ss_btn"></button>
+		  		<p>大家都在看：<a href="">活动</a><a href="">活动</a></p>
+		  	</div>
+		  </div>
+		  <section class="m_box">
+			  <include file="Activity/_s"/>
+			</section>
+		</div>
+	<include file="_right"/>
+ 	</div>
+</div>
+
+<script type="text/javascript">
+	setTab('spgc_','u_tab2_item',1,{:count($types)});
+</script>
+<include file="Common/footer"/>

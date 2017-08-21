@@ -1,0 +1,155 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<div class="mt_20">
+	<div class="g_row">
+		
+        <div class="bg">
+		  <div class="ds_detail_hd m_box f_clearfix" style="border-radius:10px;">
+		    <div class="ds_detail_user">
+  		  	<div class="m_imgbox"><a href="{:id2path($service['member_id'])}"><img src="{$service.image}" alt=""></a></div>
+  		  
+		    </div>
+		    <div class="ds_detail_info">
+		    	<h2 style="padding-bottom:0px;">
+		    	<a target="_blank" href="{:U('/home/service/detail',['id'=>$service['service_id']])}">{$service.description}</a>
+		    	</h2>
+                
+		    	<div class="ds_detail_class clear">
+		    	<foreach name="service['types']" item="t">
+		    	<a>{$t}</a>
+		    	</foreach>
+		    	</div>
+                    <div class="ds_detail_price" style="float:none; padding-bottom:0px; padding-top:0px; margin-bottom:0px;">&yen;{$service.cost}</div>
+		    </div>
+		    <div class="ds_detail_info" style="margin-top:45px;">	
+      <div class="ds_detail_op"><a href="javascript:void(0)" class="praise"><img src="images/icons/zan.png"/><span id="praise">{$service.praise_num}</span></a><a href=""><img src="images/icons/share.png"/>分享</a><a href="javascript:void(0)" id="collection"><img src="images/icons/collect.png"/><span>收藏</span></a> </div>
+                 <!--资料-->	    			    	
+                			    </div>
+		  </div>
+          
+ </div>   
+          
+          <div class="g_container">
+          <div class="g_row">
+          <section class="g_cell_12">
+		  <div class="ds_detail_bd m_box pl_20">
+          <ul class="u_tab2" id="nav">
+			  <li  class="u_tab2_item hover" style="padding-left:20px; padding-right:20px;">试听</li>
+			 
+			  <li  class="u_tab2_item" href="{:U('/member/service/orders',['id'=>I('request.id')])}" style="padding-left:20px; padding-right:20px;">签约</li>
+			               
+			</ul>
+            
+         <ul class="user_dslist user_dslistuu te_ds" style="padding:0;">
+                <foreach name="service.auditions" item="a">
+				<li class="user_dsitme f_clearfix clear">
+				  <div class="user_dsuser">
+				  	<div class="m_imgbox"><img src="{$a.avatar}" alt=""></div>
+
+                    <p><span class="bz pointer" id="btn" onClick="bz('bz_box{$a.id}')">备</span><span class="qq_btn">说悄悄话</span></p>
+                    <div class="bz_box" id="bz_box{$a.id}" style="display:none;">
+                    <img class="bz_xl" src="images/icons/sy_jt1.jpg">
+                    <img class="gb_bz pointer" onClick="gbBzBox('bz_box{$a.id}')" src="images/icons/ico_x.png">
+                    <form method="post" action="{:U('/member/audition/update',['id'=>$a['id']])}" class="audition_remarks">
+                    <div class="bz_content">
+                    	<textarea style="width:100%;height:100%;" name="teacher_remarks">{$a.teacher_remarks}</textarea>
+                    </div>
+                    <input type="submit" class="btn_color pointer" value="保存">
+                    </form>
+                    </div>
+				  </div>
+				  <div class="user_dsl">
+
+
+					  <h4 class="user_dstit"><span class="txt_green">{$a.nickname}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;电话：{$a.phone}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;QQ：{$a.qq}</span> <eq name="a.status" value = "1"><li class="u_btn_bln f_fr" style="cursor:default;">已同意试听  </eq>                  </li></h4>
+					  <h5 style="font-size:14px;">学生申请日期:&nbsp;{$a.add_time|to_minute}
+						  <if condition="$a['status'] eq 1" class="user_dsclass">
+							  &nbsp;&nbsp;上课时间:&nbsp;{$a.update_time|to_minute}&nbsp;&nbsp;上课地点:&nbsp;{$a.method}</h5>
+					  <h5 style="font-size:14px; margin-top:20px;">标题：{$a.title}<span style="color:#1ecca7;">【公开课】</span></h5>
+
+					  <h5 style="margin-top:20px;">内容：</h5>
+					  <div class="clsdescon">{$a.content}</div>					  
+					  <h5 style="margin-top:10px;">讲义：</h5>
+					  <p>{$a.content_reference}</p>
+					<else/></if>
+					  <!--<h5>谁听：</h5>
+					  <p>都适合听</p>-->
+
+					  </div>
+
+					<!--  <p>{$a.question}</p>-->
+
+
+                        <ul class="user_tbtn">
+                      <eq name="a.status" value="0">
+                      <li class="u_btn_sl" data-id={$a.id} href="{:U('/member/audition/ok',['id'=>$a[id]])}">同意试听</li>
+                      <else/>
+                     
+                      </eq>
+                      </ul>
+				  </div>
+
+				</li>
+				</foreach>
+             
+			</ul>
+            
+            
+               
+		  </div>
+		</section>       
+        
+     </div>
+        
+    
+    
+    </div>
+	 </div>
+</div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+$(".praise").click(function()
+{
+
+var member_id = {$m.id};
+var service_id = {$service.service_id};
+var	praise_num= {$service.praise_num};
+$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:service_id,type:2},function(d)
+{
+if(d.suc)
+{
+layer.msg(d.message);
+praise_num++;
+$("#praise").html(praise_num);
+}else{
+layer.msg(d.message);
+praise_num;
+$("#praise").html(praise_num);
+}
+
+})
+})
+
+$("#collection").click(function()
+{
+
+var member_id = {$m.id};
+var service_id = {$service.service_id};
+$.post("{:U('/home/service/collection')}",{m_id:member_id,s_id:service_id},function(d)
+{
+if(d.suc)
+{
+layer.msg("收藏成功");
+$("#collection").find('img').attr('src','/images/icons/collection.png');
+$("#collection").find('span').html('取消收藏');
+//window.location.reload();
+}else{
+$("#collection").find('img').attr('src','/images/icons/collect.png');
+$("#collection").find('span').html('收藏');
+layer.msg(d.message);
+}
+
+})
+})
+
+</script>
+<include file="../Application/Home/View/Common/footer.html"/>

@@ -1,0 +1,66 @@
+<div class="ucl_ssinput">
+<form method="post" action="{:U('/home/MemberPost/relay')}" class="add_relay">
+	<h3></h3>
+	 <input type="hidden" value="0" name="reward">
+	<input type="hidden" value="1" name="status">
+<textarea class="u_inp_t" id="emotion_content" name="content" rows="5" style="margin-bottom:0;">{$mp.content}</textarea>
+<div class="ucl_ssinputbtnbox f_clearfix" style="background:#fff; padding-bottom:10px; padding-top:20px; padding-right:10px; margin-top:-5px;">
+
+    <div class="select">
+    <span class="emotion">表情</span>&nbsp;&nbsp;&nbsp;
+    	  <p class="f_fr">
+    	  <php>
+    	  $circles = M('circle');
+    	  	if(CONTROLLER_NAME == "Circle"){
+    	  		$circles=$circles->where(['id'=>I("request.id")]);
+    	  	}
+        $mid = $m['id'];
+        if($mid){
+                $circles = $circles->where("id IN (select circle_id from member_follow_circle where member_id=$mid union select circle_id from circle_member where member_id = $mid)");  
+        }else{
+          $circles = $circles->limit(10);
+        }
+    	  $circles = $circles->getField("id,circle_name");
+    	  </php>
+	    <select class="u_ss_sen ss_cse" name="circle_id">
+	    	<foreach name='circles' item='circle_name' key="circle_id">
+	  			<option value="{$circle_id}">{$circle_name}</option>
+  			</foreach>
+	  		</select>
+	  		<input type="button" class="u_btn_nora" value="新增">
+	    <select class="u_ss_sen" name="view_permission">
+      <foreach name="Think.config.member_post_view_permissions" item="v" key="k">
+  			<option value="{$k}">{$v}</option>
+      </foreach>
+	  	</select>
+	    </p>
+    </div> 
+	<input type="hidden" name="fid" value="{$mp.id}">
+	 <input type="submit" class="u_btn_sl f_fr" id="btn_fss" value="发送">  	
+  </div>
+</form>
+</div>
+
+<!--<script type="text/javascript">
+	$("form.add_relay").submit(function(){
+    var circle_id  =$(this).find("[name=circle_id]").val();
+    if (!circle_id) {
+      alert("你没有关注任何圈子");
+      return false;
+    }
+    var content=$(this).find("[name=content]").val();
+    if (content.length==0) {
+      alert("没有内容");
+      return false;
+    }
+		$(this).ajaxSubmit(function(d){
+      if (d.suc) {
+		window.location.reload();	
+      }else{
+        alert(d.message);
+      }
+		});
+		return false;
+	})
+
+</script>-->

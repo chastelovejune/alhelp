@@ -1,0 +1,186 @@
+<div id="clsTab9_4box">
+ <ul class="m_form f_clearfix pd_20">
+    <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+     <div class="m_img">
+    <img src="/images/icons/OK_s.png" style="margin-top:10px; width:20px; height:20px;">
+     </div>
+     <div class="zh_con">
+     <h4>登录密码</h4>
+     
+     </div>
+     <div class="zh_bd">
+	<input type="button" class="u_btn_sl" href="{:U('/home/member/changePwd')}" value="修改">
+     </div>
+	 
+    </li>
+     <!-- <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+     <div class="m_img">
+	 
+     <img src="<empty name="m['paypassword']">/images/icons/Error_s.png<else/>/images/icons/OK_s.png</empty>" style="margin-top:10px; width:20px; height:20px;"/>
+     </div>
+     <div class="zh_con">
+     <h4>支付密码</h4>
+     <h5>在进行消费行为时需要输入的密码</h5>
+     </div>
+     <div class="zh_bd">
+     <input type="button" class="u_btn_sl" value="修改" href="{:U('/home/member/changePayPwd')}">
+     </div>
+    </li> --> 
+      <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+     <div class="m_img">
+	 <php>
+         $q_c = M("mb_question")->where(['member_id'=>session('id')])->count();
+     </php>
+     <img src="<eq name='q_c' value='0'>/images/icons/Error_s.png<else/>/images/icons/OK_s.png</eq>" style="margin-top:10px; width:20px; height:20px;"/>
+     </div>
+     <div class="zh_con">
+     <h4>安全问题</h4>
+     <h5>
+     <eq name='q_c' value='0'>
+     通过设置并且验证安全问题，保护帐号密码安全。
+     <else/>
+     你已经设置安全问题
+     </eq>
+     </h5>
+     </div>
+     <div class="zh_bd">
+     <input type="button" class="u_btn_sl question" value="设置">
+     </div>
+    </li>
+      <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+     <div class="m_img">
+     <img src="<empty name="m['phone']">/images/icons/Error_s.png<else/>/images/icons/OK_s.png</empty>" style="margin-top:10px; width:20px; height:20px;"/>
+     </div>
+     <div class="zh_con">
+     <h4>手机绑定</h4>
+     <h5>增加账户登录、购买课程时的安全性，同时还可以找回登录密码，支付密码。</h5>
+     </div>
+     <div class="zh_bd">
+     <input type="<empty name="m['phone']">button<else/>hidden</empty>" href="{:U('/home/member/bindPhone')}" class="u_btn_sl" value="绑定">
+     </div>
+
+    
+    </li>
+       <li class="m_item" style="padding-bottom:10px; border-bottom:1px solid #eee;">
+     <div class="m_img">
+    
+	<img src="<empty name="m['email']">/images/icons/Error_s.png<else/>/images/icons/OK_s.png</empty>" style="margin-top:10px; width:20px; height:20px;"/>
+     </div>
+     <div class="zh_con">
+     <h4>邮箱绑定</h4>
+     <h5>增加账户登录、购买课程时的安全性，同时还可以找回登录密码，支付密码。</h5>
+     </div>
+     <div class="zh_bd">
+     <input type="<empty name="m['email']">button<else/>hidden</empty>" href='{:U('/home/member/bindEmail')}' class="u_btn_sl" value="绑定">
+     </div>
+    
+    </li>			  
+  </ul>
+</div>
+ 
+ <div class="se_set question" style="display:none;">
+ <h3 class="m_title">安全设置</h3>
+<ul class="sy_grxx_list on"><!--加on类名开关修改模式-->
+            <form class="question" method="post">
+            <php>
+                $questions = M("mb_question")->where(['member_id'=>session('id')])->select();
+            </php>
+            <li style="height:40px;">
+                <div class="sy_grxx_tit">
+                    安全问题1：
+                </div>
+                <div class="sy_grxx_ct">
+                   <select class="sy_gr_s" name="type[0]">
+                   <foreach name="Think.config.question" item="v" key="k">
+                        <option value="{$k}" <if condition='$k eq $questions[0][type]'>selected=true</if> >{$v}</option>
+                    </foreach>
+                        
+                      </select>
+                </div>
+            </li>
+            <li style="height:40px;">
+                <div class="sy_grxx_tit">
+                    答案：
+                </div>
+                <div class="sy_grxx_ct">
+                  <input type="text"  class="sy_gr_t" name="answer[0]" value="{$questions[0][answer]}">
+                </div>
+            </li>
+            <li style="height:40px;">
+                <div class="sy_grxx_tit">
+                    安全问题2：
+                </div>
+                <div class="sy_grxx_ct">
+                   <select class="sy_gr_s" name="type[1]">
+                    <foreach name="Think.config.question" item="v" key="k">
+                        <option value="{$k}" <if condition='$k eq $questions[1][type]'>selected=true</if>>{$v}</option>
+                    </foreach>
+                    </select>
+                </div>
+            </li>
+            <li style="height:40px;">
+                <div class="sy_grxx_tit">
+                    答案：
+                </div>
+                <div class="sy_grxx_ct">
+                  <input type="text"  class="sy_gr_t" name="answer[1]" value="{$questions[1][answer]}">
+                </div>
+            </li>
+            <li style="height:40px;">
+                <div class="sy_grxx_tit">
+                    安全问题3：
+                </div>
+                <div class="sy_grxx_ct">
+                   <select class="sy_gr_s" name="type[2]">
+                    <foreach name="Think.config.question" item="v" key="k">
+                        <option <if condition='$k eq $questions[2][type]'>selected=true</if> value="{$k}">{$v}</option>
+                    </foreach>
+                      </select>
+                </div>
+            </li>
+            <li style="height:40px;">
+                <div class="sy_grxx_tit">
+                    答案：
+                </div>
+                <div class="sy_grxx_ct">
+                  <input type="text"  class="sy_gr_t" name="answer[2]" value="{$questions[2][answer]}">
+                </div>
+            </li>
+            <li><span class="u_btn_sl submit" style="margin-left:20%;">提交</span></li>
+            </form>
+        </ul>
+</div>
+
+<script type="text/javascript">
+    $("input.question").click(function(){
+        $("section.g_cell_9 > div").hide();
+        $("div.question").show();
+    })
+    $("form.question").find("span.submit").click(function(){
+        var types = new Array();
+        $("form.question").find("select").each(function(){
+            types.push($(this).val());
+        });
+        var answers = new Array();
+        $("form.question").find("input[type=text]").each(function(){
+            answers.push($(this).val());
+        });
+        
+        console.log(types);
+        console.log(answers);
+        if (types[0] == types[1] || types[1] == types[2]  || types[2] == types[0]) {
+            alert("不能有相同问题");
+            return false;
+        }
+        for (var i = 0; i < answers.length; i++) {
+            if(answers[i] == ""){
+                alert("请输入第"+(i+1)+"个问题的答案");
+                return false;
+            }
+        }
+        $.post("{:U('/home/mbQuestion/add')}",{types:types,answers:answers},function(){
+            alert("设置成功");
+            window.location.reload();
+        })
+    })
+</script>

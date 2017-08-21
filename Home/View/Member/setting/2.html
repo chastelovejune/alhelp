@@ -1,0 +1,92 @@
+<style type="text/css">
+	.rz_img img{
+		width:300px;
+	}
+	
+	.rz_img a{
+		color:white;
+	}
+	
+</style>
+
+<div id="clsTab9_2box">
+			  <ul class="m_form f_clearfix pd_20">
+	   			<if condition="$m['is_identify'] eq 1">
+				<li class="m_item  alert alert-info">
+			      <div class="">你的身份信息已审核通过</div>
+			    </li>
+					<php>
+					$profile = M("mb_profile")->where(["member_id"=>$m['id'],"profile_type"=>0])->order("profile_id DESC")->find();
+					</php>
+					<div style="margin-left: 80px;margin-top: 10px">真实姓名：{$profile['realname']}</div>
+					<div style="margin-left: 80px;margin-top: 10px">身份证号：{$profile['id_card_no']}</div>
+					<div style="margin-left: 80px;margin-top: 10px">证件照正面：<img src="{$profile['profile_front']}" style="width:200px;height: 200px"></div>
+					<div style="margin-left: 80px;margin-top: 10px">证件照反面：<img src="{$profile['profile_back']}" style="width:200px;height: 200px"></div>
+				<else/>
+			<php>
+				$p1 = M("mb_profile")->where(["member_id"=>$m['id'],"profile_type"=>1])->order("profile_id DESC")->find();
+				
+			</php>
+			<if condition="$p1  AND ($p1['status'] eq 0)">
+				<li class="m_item alert alert-info">
+			      <div class="">正在审核</div>
+			    </li>
+			<else/>
+			<php>
+				if($p1  && $p1['status'] == 2){
+					</php>
+<li class="m_item alert alert-danger"><div class="">审核被拒绝</div></li>
+					<php>
+				}
+			</php>
+
+	   			<form method="post" enctype="multipart/form-data" class="form3" action="{:U('/home/member/identify')}">
+	   			
+			    <li class="m_item">
+			      <div class="m_formtit">身份简介：</div>
+			      <textarea type="text" class="u_inp_t" name="description" placeholder="一句话表明你的身份,控制在20字以内 "></textarea> 
+			    </li>
+                <li class="m_item">
+			      <div class="m_formtit">证件照上传：</div>
+                   <p style="margin-top:5px;"><span class="f_cll">（在校研究生可上传学生证，刚录取的可上传录取通知书。
+、机构需上传营业执照和组织机构代码、职场人士上传工作证、机构上传组织机构代码及营业执照）</span>可以上传 jpg，gif，pbg格式的图片，且文件小于2M</p>
+			    <div class="rz_img" style="margin-left:150px;"> 
+                证件1：<span class="sc_file">+<input type="text" name="profile_front"></span>
+				<a class="btn btn-primary" id="0">重传</a>
+				</div>
+                <div class="rz_img" style="margin-left:150px;">
+                证件2：<span class="sc_file">+<input type="text" name="profile_back"></span>
+				<a class="btn btn-primary" id="1">重传</a>
+			     </div>
+			    </li>
+			    <li class="m_item" style="padding-left:50px;">
+			      <input type="submit" value="确认提交" class="u_btn_sl pd_20">
+			    </li>
+			    </form>
+			</if>
+		</if>
+	</ul>
+</div>
+
+<script type="text/javascript">
+
+
+$("form").go_validate(function(form){
+	$(form).ajaxSubmit(function(d){
+		window.location.reload();
+	})
+},{});
+$(".sc_file").click(function(){
+	var t = $(this);
+	go_upload(function(src){
+		t.find("input").val(src);
+		t.after("<img src='"+src+"'/>");
+	});
+});
+
+$(".rz_img a").click( function()
+	{
+		var index = $(this).attr("id");
+		$(".rz_img:eq(" + index + ") img").remove();
+	});
+</script>

@@ -1,0 +1,162 @@
+  <php>
+    	  $circles = M('circle');
+    	  	if(CONTROLLER_NAME == "Circle"){
+    	  		$circles=$circles->where(['id'=>I("request.id")]);
+    	  	}
+        $mid = $m['id'];
+        if($mid){
+                $circles = $circles->where("id IN (select circle_id from member_follow_circle where member_id=$mid union select circle_id from circle_member where member_id = $mid)");  
+        }else{
+          $circles = $circles->limit(10);
+        }
+
+		  $circles = $circles->field("id,circle_name")->select();
+    	  </php>
+<form method="post" action="{:U('/home/MemberPost/add')}" class="add_post">
+	<h3></h3>
+	 <input type="hidden" value="0" name="reward">
+	<input type="hidden" value="1" name="status">
+	<div class="talkconbox">
+<textarea class="u_inp_t" name="content" rows="5"  id="emotion_content1"></textarea>
+<div class="sstalkcir" id="talkCir"><p id="cirNode">发送到：{$circles[0].circle_name}<input type="hidden" value="{$circles[0].id}" name="circle_id"><p></div>
+</div>
+<div class="ucl_ssinputbtnbox f_clearfix">
+
+    <div class="select">
+
+   <span class="emotion1"><img src="/images/icons/face.jpg" style="width:28px;height:28px;"></span>&nbsp;&nbsp;&nbsp;<span class="upload" onclick="bz('upimg')"><img src="/images/icons/uploadimg.jpg"  style="width:34px;height:28px;"></span><span class="upload">&nbsp;<div class="imguploadbox" id="upimg">
+			<img src="images/icons/sy_jt1.jpg" class="ico_up"/>
+			<span class="gb_img"  onClick="gbBzBox('upimg')">X</span>
+			<p class="uppictop">本地上传</p>
+			<p class="uppicnum">共<span id="picNum">0</span>张，还能上传<span id="picNumLack">9</span>张</p>
+					
+			<ul id="imgshow"><li class="up_imgfile">+<input type="button" class="upimgbtn" id="talkPicUpload"></li></ul>
+			<p class="clear"></p>
+			</div></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+    	  <p class="f_fr">
+    	
+		  <span class="seto">&nbsp;&nbsp;&nbsp;&nbsp;发送到:</span>
+	    <select class="u_ss_sen ss_cse" id="mycircle">
+	    	<foreach name='circles' item='circle' key="circle_id">
+	  			<option value="{$circle.id}">{$circle.circle_name}</option>
+  			</foreach>
+	  		</select>
+	  		<input type="button" class="u_btn_nora" value="新增"  onclick="bz('adcir')" >	
+			<div class="saddcir">&nbsp;
+					<div class="addschoolbox" id="adcir">
+					<p>校友圈<span class="celcir" onclick="gbBzBox('adcir')">X</span></p>
+					<div>
+					<select name="Select1" class="u_slt school1" data-href="{:U('/home/school/index')}" id="talkAddS1">
+			<option >选择省份</option>
+					</select>
+				</div>
+				<div>
+					<select name="school_id" class="u_slt school2" id="talkAddS2">
+					<option>选择学校</option>					
+					</select>
+				</div>
+               <input type="button" class="u_btn_sl" value="添加" onclick="addTalkCir()">
+					</div>
+					</div>
+	    </p>
+    </div> 
+	<div class="f_fr">
+	    <select class="u_ss_sen" name="view_permission">
+      <foreach name="Think.config.member_post_view_permissions" item="v" key="k">
+  			<option value="{$k}">{$v}</option>
+      </foreach>
+	  	</select>
+	 <input type="submit" class="u_btn_sl" id="btn_fss" value="发送">  
+	 </div>
+  </div>
+</form>
+
+<style type="text/css">
+  form.add_post input[type=file]{}
+</style>
+
+<script type="text/javascript">
+	$("form.add_post").submit(function(){
+    var circle_id  =$(this).find("[name=circle_id]").val();
+    if (!circle_id) {
+      alert("你没有关注任何圈子");
+      return false;
+    }
+    var content=$(this).find("[name=content]").val();
+    if (content.length==0) {
+      alert("没有内容");
+      return false;
+    }
+		$(this).ajaxSubmit(function(d){
+      if (d.suc) {
+		window.location.reload();	
+      }else{
+        alert(d.message);
+      }
+		});
+		return false;
+	})
+
+var a = 0;
+
+  $("#talkPicUpload").click(function(){	
+	var t = $(this);
+	var f_callback = function(src){
+		a ++;
+		if(a > 9){
+		  alert("最多上传9张图片");
+		  return;
+		}
+		$("#imgshow").prepend("<li class='imitem' id='im_"+ a +"'><img src='"+src+"'/><img src='images/icons/ico_x_hover.png' class='ico_cancle' id='re_"+a+"'  onclick='f1(im_"+ a +")'/><input type='hidden' name='image[]' id='ims'></li>");
+		$("#ims").val(src);
+		var lack = 9 - a;
+		 document.getElementById('picNum').innerHTML = a;
+	     document.getElementById('picNumLack').innerHTML = lack;
+	};
+	go_upload(f_callback);
+})
+
+function f1(name){
+	a= a-1;
+	$(name).remove();	
+	var lack = 9 - a;
+	document.getElementById('picNum').innerHTML = a;
+	document.getElementById('picNumLack').innerHTML = lack;
+}
+
+$("#mycircle").change(function(){
+  var cir_name =  $('#mycircle option:selected').text();
+  var cir_id = $('#mycircle option:selected').val();
+	$("#cirNode").remove();
+   $("#talkCir").append("<p id='cirNode'>发送到：" + cir_name+ "<input type='hidden' value='"+cir_id+"' name='circle_id'><p>");
+})
+
+ $.get($("#talkAddS1").attr("data-href"),{},function(data){
+        var html = "";
+        for(var id in data.message){
+            html = html + '<option style="color:#999;background:#fff" value='+id+' >'+data.message[id]+'</option>';
+        }
+        $("#talkAddS1").html(html);
+    }); 
+
+    $("#talkAddS1").change(function(){		
+        var pid = $(this).val();
+        $.get($("#talkAddS1").attr("data-href"),{"pid":pid},function(data){
+            var html = "";
+            for(var id in data.message){
+                html = html + '<option style="color:#999;background:#fff" value='+id+' >'+data.message[id]+'</option>';
+            }
+            $("#talkAddS2").html(html);
+        })
+    })
+
+function addTalkCir(){   
+   var cir_id = $('#talkAddS2 option:selected').val();
+   $.get("{:U('/home/MemberPost/circle')}",{"id":cir_id},function(d){
+       $("#cirNode").remove();
+   $("#talkCir").append("<p id='cirNode'>发送到：" + d.message.circle_name+ "<input type='hidden' value='"+d.message.id+"' name='circle_id'><p>");
+     document.getElementById('adcir').style.display="none";
+   })
+}
+
+</script>

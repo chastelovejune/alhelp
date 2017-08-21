@@ -1,0 +1,50 @@
+<php>
+  $a = 0;
+  $comments = array_slice($comments,0,6);
+</php>
+<foreach name="comments" item="pc">
+<php>
+   $a ++;
+</php>
+	  <div class="ucl_ssreply mb_20">
+	  	<dl class="f_clearfix">
+	  		<dt><div class="m_imgbox"><img src="{$pc['avatar']}" style="width:30px;height:30px"></div></dt>
+	  		<dd>
+	  		  <div class="ucl_ssrtext" ><span class="ucl_ssrname"><a href="{:U('/home/member/profile',['id'=>$pc[member_id]])}">{$pc['nickname']}</a></span><p>：{:parse_emotion($pc['content'])}</p></div>
+	  		  <div class="ucl_ssrtiem">
+    <a class="zan" data-id="{$pc['id']}"><img src="/images/icons/u1.jpg" style="width:30px;height:30px">
+    <span> {$pc["praise_num"]}</span>
+    </a>
+    <if condition="$pc['member_id'] eq $_SESSION['id']">
+    <a onclick="delete_comment({$pc['id']},{$mp['id']},this)">删除</a>
+    </if>
+    <a data-id="{$pc['id']}" onclick="gailou(this)">回复</a><if condition="substr($pc['add_time'],0,10) eq date('Y-m-d',time())">{:substr($pc['add_time'],11,5)}<else/>{:substr($pc['add_time'],0,10)}</if><i class="ico_uclssr"></i>
+    </div>
+    <foreach name="pc['subCs']" item="sc">
+	  		 <include file='Common/_sub_comment'/>
+    </foreach>
+	  		</dd>
+	  	</dl>
+		<if condition="$a eq 6">
+		 <if condition="$mp['reward'] eq '0'">
+          <p style="text-align:center;"><a href="{:U('/home/memberPost/show',['id'=>$mp[id]])}">查看更多>></a></p>
+		  <else/>
+		  <if condition="$mp['isme'] eq '1'">		  
+		 <p  style="text-align:center;"> <a href="{:U('/home/memberPost/detailme',['id'=>$mp[id]])}">查看更多>></a></p>
+		  <else/>
+		 <p  style="text-align:center;">  <a href="{:U('/home/memberPost/detail',['id'=>$mp[id]])}">查看更多>></a></p>
+		  </if>
+		  </if>
+
+		<else/>
+		
+		</if>
+	  </div>
+</foreach>
+<style>
+    .ucl_ssrtext{
+        word-break:break-word;
+        word-wrap:break-word;
+        width: 550px;
+    }
+</style>

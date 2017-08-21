@@ -1,0 +1,266 @@
+<include file="Common:header" /> 
+<!--以上头部-->
+<script src="script/layer/layer.js"></script>
+<div class="mt_20">
+    <div class="g_row">
+
+        <div class="bg">
+            <div class="ds_detail_hd m_box f_clearfix" style="border-radius:10px;">
+                <div class="ds_detail_user">
+                    <div class="m_imgbox"><a href="{:id2path($owner['id'])}"><img src="{$owner.avatar}" alt=""></a></div>
+
+                </div>
+                <div class="ds_detail_info">
+                    <h2 style="padding-bottom:0px;margin-left:-10px;">【{:C('demand_types')[$demand['demand_type']]}】{$demand['description']}</h2>
+                    
+                    <div class="ds_detail_class clear" id="profes_type">
+                        <php>$type_obj = $demand;</php>
+                        <include file="Common/types"/>
+                    </div>
+                    <div class="ds_detail_price" style="float:none; padding-bottom:0px; padding-top:0px; margin-bottom:0px;">
+                        &yen;{$demand.cost}
+                        <gt name='demand.is_payed' value="0">
+                      <span style="font-size: 14px; color: #ff7101;">【已托付】</span></gt>
+                        <!--  <a href="{:U('/home/service/add')}" style="font-size:16px;">我能提供帮助</a>-->
+
+                    </div>
+                </div>
+                <div class="ds_detail_info" >  
+<div class="ds_detail_op deop">
+                        <a href="javascript:void(0)" class="priase">
+                            <img src="/images/icons/zan.png"/><span id="praise">{$demand.praise_num}<span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" id="collection">
+                            <img src="/images/icons/collect.png"/><span>收藏</span>
+                        </a>
+						<a href="">
+                            <img src="/images/icons/share.png"/>分享
+                        </a>
+						
+						<span class="f_fr dsare"> <include file="Common/baidu_share"/> </span>
+                        
+                    </div>
+        
+       
+        <eq name="demand[member_id]" value="$_SESSION['id']">
+        <div style="height:55px; " id="" class="ds_detail_btn">
+        <a class="u_btn_sl" id="bc">补充说明</a></div>
+        <else/>
+        <div style="height:55px;" id="" class="ds_detail_btn"><a href="{:U('/home/bid/add',['id'=>$demand['demand_id']])}" target="_blank" class="one u_btn_sl" id="bid">投标</a></div>
+        </eq>
+                </div>
+            </div>
+        </div>   
+
+        <div class="g_container">
+            <div class="g_row">
+                <section class="g_cell_9">
+                    <div class="ds_detail_bd m_box">
+                        <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+                        <div class="nav_box"  id="nav">
+
+                            <ul class="u_tab2 detial_tab">
+                                <li id="dscTab_1" class="u_tab2_item hover"><a href="#d1">详情</a></li>  
+                                <li id="dscTab_2"  class="u_tab2_item"><a href="#d2">合作列表</a></li>                             
+                                <li class="u_tab2_item"><a href="#d6"> 系统推荐</a></li>
+								 <li id="dscTab_3"  class="u_tab2_item"><a href="#d3">讨论区</a></li>
+                            </ul>
+
+                        </div>
+
+                        <div id="d1"></div>
+                        <div id="dscTab_1box" class="ds_detail_ct ds_detail_xq">
+							
+                            <p>{$demand.detail}</p>
+							<p>{$demand.add_time}</p>
+                            <div class="clear remarks">
+                                <h5>补充说明：</h5>
+                                <foreach name="demand.Remark" item="r">
+                               <p>{$r.content}<br/>{$r.add_time|to_minute}</p>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div id="d2"></div>
+                        <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">合作方列表</div>
+                            <div class="d_right"></div>
+                        </div>
+                        <!--合作方列表-->
+                        <div id="dscTab_2box" class="ds_detail_ct">
+                            <ul class="m_hz_list f_clearfix">
+                                <php>
+                                    $ms = M("mb_member")->where("id in (select member_id from bid where demand_id= ".$demand['demand_id'].")")->limit(10)->select();
+                                </php>
+                                <foreach name="ms" item="_m">
+                                <li class="hz_item">
+                                    <div class="m_imgbox"><a class="jr_rw" href="{:U('/home/member/profile',['id'=>$_m[id]])}"><img src="{$_m[avatar]}"></a></div>
+                                    <h4>{$_m[nickname]}</h4>
+									<span class="u_btn_bln" style="cursor:default;height:32px,width:72px">已投标</span>
+                                </li>
+                                </foreach>
+                            </ul>		
+                        </div>
+
+                   
+
+                        <div id="d6"></div>
+                        <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">系统推荐</div>
+                            <div class="d_right"></div>
+                        </div>
+                        <div class="sys" style="padding-left:30px; padding-right:30px;">
+                            <ul id="spgc_1box" class="m_datalist">
+                            <php>
+                                if($demand['unified_id']){
+                                    $where = ['unified_id'=>$demand['unified_id']];
+                                }elseif($demand['public_subject_id']){
+                                    $where = ['public_subject_id'=>$demand['public_subject_id']];
+                                }else{
+                                    $where = ['school_id'=>$demand['school_id']];
+                                }
+                                $tjs = M("service")->join("LEFT JOIN member ON member.id=member_id")->field("service.*,member.avatar,sign,follow_num,fans_num,share_num,collection_num")->order("service_id desc")->limit(3)->where($where)->select();
+                            </php>
+                            <foreach name="tjs" item="tj">
+                            <php>$tj = parse_class($tj)</php>
+                              <include file="Service/_li"/>
+                                </foreach>
+                            </ul>
+                        </div>
+
+						  <div id="d3"></div>
+						   <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">讨论区</div>
+                            <div class="d_right"></div>
+                        </div>
+                        <!--课堂同学-->
+                        <div id="dscTab_3box" class="ds_detail_ct">                            
+
+                            <div class="nav_de">讨论区</div>
+
+                              <php>
+                  $_commentType = 2;
+                  $_objectId = $demand["demand_id"];
+                </php>    
+
+             <include file="Common/detail/4"/>
+
+                        </div>
+
+                    </div>
+
+					
+						
+                </section>
+
+                <div class="g_cell_3 mt_20">
+                                     <php>
+          $_detailM = M("mb_member")->find($demand["member_id"]);
+        </php>
+                 <include file="Common/detail/1"/>
+  <php>
+                $_detailLastCs = M("comment")->join("LEFT JOIN mb_member ON member_id=mb_member.id")->where(['comment_type'=>2,'object_id'=>$demand['demand_id']])->limit(3)->order("id desc")->getField("comment.*,mb_member.nickname,mb_member.avatar");
+              </php>
+           <include file="Common/detail/2"/>
+
+                    <section class="indx6 m_box mb_20 hot_ds">
+                        <h3 class="m_title">系统推荐</h3>           
+                        <ul id="idc1_1box" class="m_sublist f_clearfix">
+                            <foreach name="tjs" item="tj">
+                            <li class="clear pl_10">
+                                <div class="img_face mb_20"><img src="{$tj.avatar}"></div>
+                                <div class="content_right">
+
+                                    <h4>{$tj.member_name}</h4>
+                                    <h5 style="color:black"><if condition="substr($tj['add_time'],0,10) eq date('Y-m-d',time())">{:substr($tj['add_time'],11,5)}<else/>{:substr($tj['add_time'],0,10)}</if></h5>
+                                    <p class="clear"><span class="pl">
+                                    <a href="{:U('/home/service/detail',['id'=>$tj['service_id']])}">
+[{:C('service_types')[$tj['service_type']]}]{$tj.description}
+            </a>
+</span></p>
+                                </div>
+                            </li>
+                            </foreach>
+                        </ul>  
+                        <div class="clear"></div>  
+                        <div class="bottom">
+                            <a href="{:U('/home/demand/lists')}" class="more"> 查看更多>></a>
+                        </div>
+                    </section>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+<php>
+        $re=M("bid")->where(['demand_id'=>$demand['demand_id'],'member_id'=>session("id")])->find();
+</php>
+<include file="Common/modal"/>
+<!--以下底部-->
+<include file="Common:footer" /> 
+<script type="text/javascript">
+    $(".bucong").click(function(){
+        go_textarea_modal('补充说明文字',function(body){
+            var demand_id = {$demand.demand_id};
+            $.post("{:U('/home/Remark/curdAdd')}",{is_demand:1,object_id:demand_id,content:body},function(d){
+				layer.msg("添加成功");
+                $(".remarks").append("<p>"+body+"<br/>"+d.message+"</p>");
+            })
+        });
+    })
+$(document).ready(function(){
+    var re ="<?php echo $re?>";
+    if(re!==""){
+        $("#bid").attr("href","javascript:void(0)");
+        $("#bid").css('background-color',"gray");
+        $("#bid").html("已投标");
+    }
+})
+//下面代码直接从服务哪里COPY过来，这些功能都要实现
+	$(".priase").click(function()
+	{
+			
+		var member_id = {$m.id}; 
+		var demand_id = {$demand.demand_id};
+		var	praise_num= {$demand.praise_num};
+		$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:demand_id,type:1},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg(d.message);
+				praise_num++
+				$("#praise").html(praise_num);
+			}else{
+				
+				$("#praise").html(praise_num);
+				layer.msg(d.message);
+			}
+				
+		})
+	})
+	
+	$("#collection").click(function()
+	{
+			
+		var member_id = {$m.id}; 
+		var demand_id = {$demand.demand_id};
+		$.post("{:U('/home/demand/collection')}",{m_id:member_id,s_id:demand_id},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg("收藏成功");
+				$("#collection").find('img').attr('src','/images/icons/collection.png');
+				$("#collection").find('span').html('取消收藏');
+				//window.location.reload();
+			}else{
+				$("#collection").find('img').attr('src','/images/icons/collect.png');
+				$("#collection").find('span').html('收藏');
+				layer.msg(d.message);
+			}
+				
+		})
+	})
+</script>

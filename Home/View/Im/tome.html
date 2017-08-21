@@ -1,0 +1,11 @@
+<include file='Im/header'/>
+<include file='Im/chat'/>
+<include file='Im/footer'/>
+<script type="text/javascript">
+    setInterval(function(){
+        var id={$_GET.id};
+        var type="{$_GET.type}";
+        var mid = {$_GET.mid};
+        pull(id,type,mid);
+    },5000);
+</script>

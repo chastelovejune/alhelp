@@ -1,0 +1,62 @@
+	<div id="NewsC_3box" class="g_row">
+		<include file="Common/_listFilter"/>
+		<section class="g_cell_9">
+        
+        <div class="f_ss_gr">
+
+<form>
+<div class="input_ss">
+<input type="text" class="s_ss_content" name="keywords" value="{$_GET['keywords']}">
+</div>
+<div class="s_act">
+<input type="submit" value class="ico_s">
+</div>
+</form>
+<div class="fss_btn">
+<input type="button" class="u_btn_sl" href="{:U('/home/share/add')}" value="分享" style="width:100%;">
+</div>
+</div>
+        <div class="clear mb_15"></div>
+        
+        <div class="m_box">
+		  <header class="u_tab2">
+				<ul class="share_nav">
+					<li id="spgc_1" onclick="setTab('spgc_','u_tab2_item',1,4)" class="u_tab2_item hover"><i class="ico"></i>全部</li>
+					<li id="spgc_2" onclick="setTab('spgc_','u_tab2_item',2,4)" class="u_tab2_item"><i class="ico"></i>分享资料</li>
+					<li id="spgc_3" onclick="setTab('spgc_','u_tab2_item',3,4)" class="u_tab2_item"><i class="ico"></i>分享视频</li>
+					<li id="spgc_4" onclick="setTab('spgc_','u_tab2_item',4,4)" class="u_tab2_item"><i class="ico"></i>分享心得</li>
+				<li class="f_fr">
+				              <include file="_index_order"/>
+				</li>
+                </ul>
+			</header>
+			<ul id="spgc_1box" class="m_datalist">
+            
+			  <foreach name="all" item="s">
+			  <include file="Common/_share"/>
+			  </foreach>
+			</ul>
+			<ul id="spgc_2box" class="m_datalist" style="display:none;">
+           
+			  <foreach name="shares[0]" item="s">
+			  	<include file="Common/_share"/>
+			  </foreach>
+
+			</ul>
+			<ul id="spgc_3box" class="m_datalist" style="display:none;">
+            <foreach name="shares[1]" item="s">
+				  <include file="Common/_share_video"/>
+			 </foreach>
+			</ul>
+			<ul id="spgc_4box" class="m_datalist" style="display:none;">
+				<foreach name="shares[2]" item="s">
+				  <include file="Common/_share"/>
+			  </foreach>
+
+			</ul>
+			<div class="u_fy">
+			 	<php>echo pageHtml(M('share')->count());</php>
+			</div>
+            </div>
+		</section>
+	</div>

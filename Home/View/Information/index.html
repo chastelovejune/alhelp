@@ -1,0 +1,82 @@
+<include file="Common/header"/>
+
+<div class="u_bannerbar">
+  <div class="g_container">
+    <h2><a href="{:U('/home/information/index')}" class="bbtit <if condition='ACTION_NAME eq index'>hover</if>">下载</a><b>|</b><a href="{:U('/home/information/index1')}" class="bbtit <if condition='ACTION_NAME eq index1'>hover</if>"">资讯</a><b>|</b><a href="{:U('/home/information/index2')}" class="bbtit  <if condition='ACTION_NAME eq index2'>hover</if>"">分享</a><b>|</b><a href="{:U('/home/information/index3')}" class="bbtit  <if condition='ACTION_NAME eq index3'>hover</if>"">公告</a><b>|</b><a href="{:U('/home/information/index4')}" class="bbtit  <if condition='ACTION_NAME eq index4'>hover</if>"">院校动态</a></h2>
+  </div>
+</div>
+
+<div class="g_container mt_20">   
+<if condition="ACTION_NAME eq index">
+	<include file="_index"/>
+</if>
+<if condition="ACTION_NAME eq index1">
+	<include file="_index1"/>
+</if>
+<if condition="ACTION_NAME eq index2">
+	<include file="_index2"/>
+</if>
+<if condition="ACTION_NAME eq index3">
+	<include file="_index3"/>
+</if>
+<if condition="ACTION_NAME eq index4">
+	<div id="NewsC_5box" class="g_row">
+			<include file="Common/_listFilter"/>
+	<section class="g_cell_9 m_box newsnews">
+		<ul class="m_newslist">
+	    <li class="f_fr" style="padding-top:20px;"> 
+	      <include file="_index_order"/>
+	    </li>
+	    <li style="height:20px;"></li>
+	    <foreach name="infos" item="i">
+			<li class="m_newslist_item">
+				<h3><div class="m_imgbox"><a href="#">
+
+				{~$hederPic = M('mb_member')->where('id='.$i['member_id'])->getfield('avatar');}
+				<img src="{$hederPic|default='/img/defheader.png'}" alt="" ></a></div><a href="{:U('/home/information/show',['id'=>$i[id]])}">{$i['title']}</a><span>{:substr($i[add_time],0,16)}</span></h3>
+				<p>{$i['types'][0]}&nbsp;{$i['types'][1]}&nbsp;{$i['types'][2]}&nbsp;{$i['types'][3]}</p>
+				<p>{:substr(strip_tags($i[content]),0,350)}</p>
+	             <div class="m_cl_btn">
+	                <a data-id={$i[id]} class="zan"><img src="/images/icons/zan.png"/>&nbsp;<span>{$i[praise_num]}</span> </a><a href=""><img src="/images/icons/share.png"/>&nbsp;分享</a><a href=""><img src="/images/icons/collect.png"/>&nbsp;收藏</a>
+	                </div>
+			</li>
+		</foreach>
+		</ul>
+	<div class="u_fy">
+			
+			<div class="u_fy">
+			 	<php>echo pageHtml($count)</php>
+			</div>
+	</div>
+	</section>
+
+	</div>
+</if>
+</div>
+
+
+
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	$("a.zan").click(function(){
+		var n = $(this).find("span").html();
+		n = parseInt(n);
+		var member_id = {:session('id')};
+		var id=$(this).attr("data-id");
+		var obj=$(this);
+		//$(this).find("span").html(n+1);
+		$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:id,type:4},function (d) {
+			if (d.suc) {
+				layer.msg(d.message);
+
+				obj.find("span").html(n + 1);
+
+			} else {
+				layer.msg(d.message);
+				obj.find("span").html(n-1);
+			}
+		});
+	})
+</script>
+
+<include file="Common/footer"/>

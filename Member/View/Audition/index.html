@@ -1,0 +1,69 @@
+<include file="Common/student_edu_header"/>
+<ul class="user_dslist user_dslistuu" style="padding:0;">
+<foreach name="auditions" item="a">
+<php>$a=parse_class($a);</php>
+				<li class="user_dsitme f_clearfix">
+				  <div class="user_dsuser">
+				  	<div class="m_imgbox"><img src="{$a.avatar}" alt=""></div>
+				  	<h4>{$a.nickname}</h4>
+				  	<p>电话:{$a.phone}<br>QQ:{$a.qq}</p>
+                     <p><span class="bz pointer" id="btn" onClick="bz('bz_box{$a.id}')">备</span><span class="qq_btn">说悄悄话</span></p>
+                    <div class="bz_box" id="bz_box{$a.id}" style="display:none;">
+                    <img class="bz_xl" src="images/icons/sy_jt1.jpg">
+                    <img class="gb_bz pointer" onClick="gbBzBox('bz_box{$a.id}')" src="images/icons/ico_x.png">
+                    <form method="post" action="{:U('/member/audition/update',['id'=>$a['id']])}" class="audition_remarks">
+                    <div class="bz_content">
+                    	<textarea style="width:100%;height:100%;" name="remarks">{$a.remarks}</textarea>
+                    </div>
+                    <input type="submit" class="btn_color pointer" value="保存">
+                    </form>
+                    </div>
+				  </div>
+				    <div class="user_dsl">
+					  <h4 class="user_dstit"><i class="ico_org">供</i>
+            <a href="{:U('/home/service/detail',['id'=>$a['service_id']])}">
+            【{:C('service_types')[$a['service_type']]}】{$a.service_description}
+            </a>
+            
+            <span>(已付费)</span><strong>&yen;{$a.cost}</strong></h4>
+					  <div class="user_dsclass">
+					  <foreach name="a.types" item="t">
+					  <span>{$t}</span>
+					  </foreach>
+					  </div>
+					  <span class="user_dstime">申请时间：{$a.add_time|to_date}</span>
+					  <p>{$a.title}</p>
+                      <ul class="user_tbtn">
+                      <li class="<eq name='a.status' value='1'>u_btn_bln<else/>u_btn_bcn</eq>" onClick="ckTime('bz_box_{$a.id}')">
+                      <eq name='a.status' value='0'>
+                      已申请试听，等待回复
+                      <else/>
+                      对方已同意试听
+                      </eq>&nbsp;&nbsp;
+                      <img src="images/icons/tc_con.png">
+                     <!-- <div class="time_lis" id="bz_box_{$a.id}">
+                      <div style="position:relative;"><span class="txt_green">时间：</span><span class="txt_gery">{$a.wish_time|to_minute}</span>
+                       <img src="images/icons/sy_jt1.jpg">
+                      </div>
+                        <div><span class="txt_green">对老师说的话：</span><span class="txt_gery">{$a.question}</span></div>
+                      </div>-->
+					  <div class="clsts">
+					  <h4 style="text-align:center;">{$a.title}<if condition="$a['is_open'] eq 1">(公开课)<else/></if></h4>
+					  <h5 style="text-align:center; color:#1ecca7; font-size:14px;margin-top:10px;margin-bottom:10px;">{$a.method}&nbsp;&nbsp;&nbsp;{$a.accept_time}</h5>
+					  <h4>内容：</h4>
+					  <p>{$a.content}</p>
+					  <h4>讲义：</h4>
+					  <p>{$a.content_reference}</p>
+					  <h4>地点：</h4>
+					  <p>{$a.method}</p>
+					  </div>
+                      </li>
+					  
+					   <input type="submit" class="u_btn_sl" value="购买" style="margin-left:10px;" href="{:U('home/service/buy',['id'=>$a[service_id]])}">
+                      </ul>
+                      
+				  </div>
+				</li>
+           </foreach>
+ </ul>
+	<include file="Common/student_edu_footer"/>	

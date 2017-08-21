@@ -1,0 +1,75 @@
+<include file="Common/header"/>
+<!--<php>
+	$order = M("service_order_view")->getById(I('request.id'));
+	$c = M("contract")->where(['order_id'=>I('request.id')])->order('id desc')->find();
+	$ps = M("learning_periods")->where(['contract_id'=>$c['id']])->select();
+</php>-->
+<div class="g_container mt_20 m_box pd_20">
+    <if condition="$role eq 1">
+<div class="u_paytitle"><h3>创建阶段教学方案</h3></div>
+<!-- 老师创建教学方案-->
+<div class="ag_mdt" style="margin-top:20px;">
+                        <form method="post">
+                          <input type="text" name="plan_title" class="inp_title" value="{$re.plan_title}" placeholder="协议标题（控制在15字）" style="margin-bottom:20px;">
+                          <input type="button" class="u_btn_bc" style="float:right; margin-right:2%;" value="范本+">
+                          </div>
+                          
+                          <div class="int">
+
+                              <div style="margin-left: 200px;">
+                                  <textarea id='edit' name="plan_content" class="input_con">{$re.plan_content}</textarea>
+                              </div>
+                              <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+                              <script type="text/javascript">
+                                  $('#edit').froalaEditor({
+                                      //heightMin:200,
+                                      height: 200,
+                                      language: "zh_cn",
+                                      theme: "gray",
+                                      imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                                      imageUploadParam:'file', //文件名称 <input type=file name=file>
+                                      //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                                      toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+                                      imageInsertButtons: ['imageUpload'],
+                                      imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                                  }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                                      $('.fr-image-progress-bar-layer').addClass('fr-active');
+                                  }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                                      if( $('.fr-message').text()=='Loading image' ){
+                                          $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                                          $img.froalaEditor('events.focus');
+                                      }
+                                  });
+                                  </script>
+                </div>
+                
+                <div class="btnb"><input type="submit" value="确认创建" class="u_btn_sl"></div>
+
+    </form>
+        <else/>
+  <div class="u_paytitle" id="look"><h3 >查看阶段教学方案</h3></div>
+<!-- 学生查看教学方案-->
+
+  <div class="stu_remark" id="remark" > <span>标题：</span>{$re.plan_title}
+                <div> {$re.plan_content}</div>
+               <!-- <div class="btnb"><input type="button" value="确认" class="u_btn_sl"></div>-->
+                </div>
+  
+  
+</div>
+</if>
+
+<include file="Common/footer"/>
+
+  <script src="http://cdn.ckeditor.com/4.5.7/standard-all/ckeditor.js"></script>
+  <script type="text/javascript">
+    var config = {
+      extraPlugins: 'codesnippet,colorbutton,font',
+      codeSnippet_theme: 'monokai_sublime',
+    };
+    CKEDITOR.replace('content_ckeditor', config );
+    $('#look').click(function(){
+        $("#remark").toggle();
+    })
+  </script>

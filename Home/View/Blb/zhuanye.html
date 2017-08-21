@@ -1,0 +1,45 @@
+<include file='Common/header'/>
+<div class="u_bannerbar">
+  <div class="g_container">
+  	<div class="u_ss">
+  		<input type="text" class="u_ss_txn">
+  		<button class="u_ss_btn"></button>
+  	</div>
+  </div>
+</div>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+    <div class="g_cell_12 mb_20 m_box">
+      <div class="toptitle">
+      <h2 class="pd_20"><span style="color:#000; font-size:24px;">{$school.ptitle}</span><span style="color:#000; font-size:14px;">>{$school.title}</span></h2>
+      <p><a href="{:U('/home/blb/index')}">返回上一级>></a></p>
+    </div>
+      <foreach name='zys' item='zs'>
+ <ul class="xy_box">
+    <foreach name='zs' item="z">
+      <li class="xy_item">
+    <div class="xy_name">
+    <h4>{$z.title}</h4>
+    </div>   
+    <div class="act_xy">
+    <ul>
+    <li class="pointer"><img src="images/icons/icon_ qz.png">查看专业</li>
+    <li class="pointer" href="{:U('/home/circle/demand',['id'=>$school['circle_id']])}"><img src="images/icons/icon_ zy.png">进校友圈</li>
+    </ul>
+    </div>
+    <div class="btn_xy">
+      <div class="btn_blb pointer" href="{:U('/home/blb/show',['id'=>$z['id']])}">
+      报录比
+      </div>
+      <div class="btn_fs pointer">复&nbsp;&nbsp;&nbsp;&nbsp;试</div>
+    </div>
+    </li>
+    </foreach>
+    </ul>  
+    </foreach>
+
+     </div>
+	</div>
+</div>
+<include file='Common/footer'/>

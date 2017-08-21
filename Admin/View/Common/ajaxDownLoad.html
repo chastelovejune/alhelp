@@ -1,0 +1,22 @@
+
+<script type="text/javascript">
+     function ajaxDownLoad(src) {
+      var url = "{:U('AjaxDownLoadFile/downloadImg')}";
+      var form = $("<form>");
+      form.attr('style', 'display:none');
+      form.attr('target', '');
+      form.attr('method', 'post');
+      form.attr('action', url);
+
+      var input1 = $('<input>');
+      input1.attr('type', 'hidden');
+      input1.attr('name', 'imgURL');
+      input1.attr('value', src);
+
+      $('body').append(form);
+      form.append(input1);
+
+      form.submit();
+      form.remove();
+     }
+</script>

@@ -1,0 +1,99 @@
+﻿<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+<php>
+    $id=I("request.id");
+   $res=M('circle')->find($id);
+    $re=M('zysc_view')->field('zhuanye_id,zhuanye_title,yuan_id,yuan_title')->where('school_id='.$res['object_id'])->group('zhuanye_id')->select();
+   $arr=array();
+    foreach($re as $k=>$v){
+      $title=$v['yuan_title'];
+      $arr[$title][]=$v;
+    }
+   // dump($arr);
+   // dump($res);
+</php>
+<!--校园圈-->
+<if condition="$res['circle_type'] eq 0">
+<div class="g_container mt_20">
+
+	<div class="g_row">
+		<div class="g_cell_9">
+		  <div class="cir_ts_box m_box" style="margin-bottom: 50px">
+				<foreach name="arr" item="vo"  key="k">
+               <div class="blb_school_box">
+                  <ul>
+                  <li class="blb_school_item">
+                  <div class="blb_school_title">
+                  <h4>{$k}</h4>
+                  </div>
+                  <div class="de_line1"></div>
+                  <ul class="blb_major">
+                      <foreach name="vo" item="v">
+                  <li class="blb_major_item">
+                 <p><span class="blb_major_title">{$v.zhuanye_title}</span><span class="blb_other_school" href="{:U('home/circle/majorSchool',['title'=>$v['zhuanye_title'],'schoolId'=>$res['object_id']])}">>其他大学</span>
+                     <span class="blb_other_school" href="{:U('home/circle/dataDownload',['id'=>$v['zhuanye_id']])}">>专业资料下载&nbsp;></span>
+                  <span class="blb_other_school" href="{:U('home/circle/blb',['schoolId'=>$v[zhuanye_id]])}"> <img src="images/icons/blb.jpg" style="width: 15px;height: 15px">&nbsp;报录比</span>
+                 </p>
+                  </li>
+                          </foreach>
+                  <li class="clear"></li>
+                  </ul>
+                  </li>
+                  </ul>
+               </div>
+                   </foreach>
+
+</div>
+		  </div>
+        <include file="_right"/>
+		</div>
+
+</div>
+    </if>
+<!--校园圈end-->
+<!--专业圈start-->
+<if condition="$res['circle_type'] eq 1">
+    <php>
+//取出二级专业
+       $major= M('mj_major')->where('pid='.$res['object_id'])->select();
+      //  dump($major);
+    </php>
+<div class="g_container mt_20">
+    <div class="g_row">
+        <div class="g_cell_9">
+            <div class="cir_ts_box m_box" style="margin-bottom: 50px">
+                    <div class="blb_school_box">
+                        <ul>
+                            <li class="blb_school_item">
+                                <div class="blb_school_title">
+                                    <h4>{$res['circle_name']}</h4>
+                                </div>
+                                <div class="de_line1"></div>
+                                <ul class="blb_major">
+                                    <foreach name="major" item="v">
+                                        <li class="blb_major_item">
+                                            <p><span class="blb_major_title">{$v.mj_name}</span><span class="blb_other_school" href="{:U('home/circle/majorSchool',['title'=>$v['mj_name'],'schoolId'=>$v['id']])}">>开设大学</span>
+                                                <span class="blb_other_school" href="{:U('home/circle/dataDownload',['id'=>$v['id']])}">>专业资料下载&nbsp;></span>
+                                                <span class="blb_other_school" href="{:U('home/circle/blb',['schoolId'=>$v[id]])}"> <img src="images/icons/blb.jpg" style="width: 15px;height: 15px">&nbsp;报录比</span>
+                                            </p>
+                                        </li>
+                                    </foreach>
+                                    <li class="clear"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+        <include file="_right"/>
+    </div>
+
+</div>
+    </if>
+<!--专业圈end-->
+<!--以下底部-->
+<script type="text/javascript">
+
+</script>
+<include file="Common/footer"/>

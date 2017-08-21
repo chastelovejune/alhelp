@@ -1,0 +1,131 @@
+<include file="Common/header"/>
+
+
+<div class="mt_20">
+	<div class="g_row">
+		
+       <include file="_1"/>
+          
+          <div class="g_container">
+          <div class="g_row">
+          <section class="g_cell_9">
+		  <div class="ds_detail_bd m_box">
+          <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+          <div class="nav_box"  id="nav">
+  
+				<ul class="u_tab2"> <!--当为套餐时有几个阶段，当单品是，只有一个-->
+
+          <foreach name="periods" item="p" key="index">
+				  <li class="u_tab2_item <eq name='step' value='$index'>hover</eq>">
+          <a href="{:U('/member/ServiceOrder/show',['id'=>I('request.id'),'step'=>$index,'per'=>$p[id]])}">
+          {$p.title}
+          </a>
+          </li>
+				  </foreach>
+				</ul>
+                             
+                </div>               
+                
+                <div  class="study_sta">
+<include file="_package_2"/>
+                  <eq name="period.is_over" value="0">
+
+                <div class="stu_title clear">
+
+                    <h4>约课计划&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('/member/classPlan/yue',['id'=>$o['id'],'per'=>$per])}">+添加约课</a></h4>
+               </div>
+               </eq>
+                <div class="stu_sta clear">
+                     
+                <ul>
+                <foreach name="period.plans" item="p">
+                                 <include file="_yue_li"/>
+                </foreach>
+                </ul>
+                </div>
+                <switch name="period.status">
+                <case value='0'>
+                  <eq name="period.end" value="1">
+                  <div class="cls_sta_btn">
+                  <input type="button" class="u_btn_sl" value="继续学习">
+                  <input type="button" class="u_btn_sl" value="终止学习">
+                  </div>
+                  </eq>
+                </case>
+                <case value='1'>
+                  <div class="alert alert-info">
+                  已结束
+                  </div>
+                </case>
+                <case value='2'>
+                 <div class="alert alert-info">
+                  已终止
+                  </div>
+                </case>
+                </switch>
+                  
+                </div>
+                
+              <div class="clear"></div>
+               
+               
+		  </div>
+		</section>
+        
+       	<include file="_2"/>
+     </div>
+        
+    
+    
+    </div>
+	 </div>
+</div>
+
+
+
+<include file="add_yue"/>
+
+<include file="show_yue"/>
+
+
+
+<div class="pop_bg continue_ok">
+<div class="cls_sta_box">
+<div class="cls_sta_top">
+提示
+</div>
+<div class="cls_sta_con">
+<p class="txt_green">保持这种奋斗的状态，继续努力吧！</p>
+<input type="button" class="u_btn_sl" value="知道了" onclick="window.location.reload()">
+</div>
+</div>
+</div>
+
+<div class="pop_bg end_ok">
+<div class="cls_sta_box">
+<div class="cls_sta_top">
+提示
+</div>
+<div class="cls_sta_con">
+<p>余款将在**个工作日转至您的账户</p>
+<input type="button" class="u_btn_sl" value="知道了" onclick="window.location.reload()">
+</div>
+</div>
+</div>
+
+
+<include file="Common/footer"/>
+<script type="text/javascript">
+  $("input[value=继续学习]").click(function(){
+    var id = {$period.id};
+    $.post("{:U('/member/period/update')}",{id:id,status:1},function(){
+      $("div.continue_ok").show();
+    })
+  })
+  $("input[value=终止学习]").click(function(){
+    var order_id = {$o.id};
+    $.post("{:U('/member/period/end')}",{order_id:order_id},function(){
+      $("div.end_ok").show();
+    })
+  })
+</script>

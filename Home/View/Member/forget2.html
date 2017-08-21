@@ -1,0 +1,75 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+  </div>
+</div> 
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+
+   <div class="pos_ct"> <h2 class="logintop" style="padding-bottom:0;">找回密码<span><a href="{:U('/home/member/forget1')}">手机找回&nbsp;&nbsp;<img src="/images/icons/go.png" style="width:25px;height:25px;margin-top:-5px;"/></a></span></h2></div>
+  	
+  	<form method="post" action="{:U('/home/Common/sendEmailCode')}">
+	<ul class="login_ct" style="padding-top:20px;">
+
+		<li class="lc_inp">电子邮箱：<input type="text" name="email" class="u_inp_t"></li>
+		<!-- <li class="lc_yzm">验证码：<input type="text" name="email_verified" class="u_inp_t"><a>发送验证码</a></li> -->
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="提交"></li>
+	</ul>
+	</form>
+	<!--提交后的提示-->
+	<!--<div class="pos_tips"><p>请到<span>123456@qq.com</span>邮箱查阅来自新助邦的邮件，从邮件重设您的密码</p>
+	<a class="u_btn_sl">去往我的注册邮箱&nbsp;>&nbsp;></a>
+</div>-->
+
+	<script type="text/javascript">
+	
+		/*
+		
+		$("form a").click(function(){
+			var a = $(this);
+			var email = $("form input[name=email]").val();
+			if (!/^.+@.+$/.test(email)) {
+				alert("请输入正确的邮箱地址");
+				return false;
+			}
+			$.post("{:U('/home/Common/sendEmailCode')}",{email:email},function(d){
+				if (d.suc) {
+					a.html("已发送");
+				}else{
+					alert(d.message);
+					a.html("发送验证码");
+				}
+			})
+			a.html("发送中.....");
+			return false;
+		})
+		$("form").submit(function(){
+			if ($(this).find("input[name=email_verified]").val().length == 0) {
+				alert("请输入验证码");
+				return false;
+			} 
+			$(this).ajaxSubmit(function(d){
+				if (d.suc) {
+					window.location.href = "{:U('/home/member/findPwd')}"+"?email="+$("form").find("input[name=email]").val();
+				}else{
+					alert(d.message);
+				}
+			})
+			return false;
+		})*/  
+		
+		
+		$("form").submit(function () {
+            var email = $("form input[name=email]").val();
+			if (!/^.+@.+$/.test(email)) 
+			{
+				alert("请输入正确的邮箱地址");
+				return false;
+			}
+			$("form input[type='submit']").attr('disabled',true).val('请稍后..');
+         });	
+		
+	</script>
+</div>
+<include file="Common/footer"/>

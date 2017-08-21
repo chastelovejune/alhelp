@@ -1,0 +1,42 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9">
+			<ul class="u_tab2 m_box">
+
+			  <foreach name="Think.config.member_post_types" item="t" key="k">
+			  <li class="u_tab2_item <if condition='I("request.type") eq $k'>hover</if>" href="{:U('/home/circle/memberPost',['type'=>$k,'id'=>I('request.id')])}">{$t}</li>
+				</foreach>
+			 
+              <li class="ucl_shuoshuo"><input type="button" value="有偿问答" onclick="<gt name='_SESSION.id' value='0'>onoff('mianshuoshuofb','','ucl_ssinput m_box pd_20 mb_20')<else/>window.location.href='{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}'</gt>" class="u_btn_sl"></li>
+			</ul>
+            
+            <div class="ucl_ssinput m_box pd_20 mb_20" id="mianshuoshuofb">
+	     		<include file="MemberPost/_quiz"/>
+	    	</div>
+            <php>
+				$_mps = D("MemberPost")->mps()->where(['circle_id'=>I('request.id'),'member_post.status = 1','reward > 0']);
+				{
+					$count = clone $_mps;
+					$count = $count->count();
+				}
+				$_mps = $_mps->page($_GET['page'] ?: 1,10)->select();
+				foreach($_mps as $i => $c){
+	               $ans = M("answer")->where(['object_id'=>$c['id']])->find();
+		           $_mps[$i]['answer'] = $ans;
+		        }
+            </php>
+			<include file="MemberPost/_mps"/>
+			<div class="u_fy m_box">
+				<php>
+					echo pageHtml($count);
+				</php>
+			</div>
+		</section>
+		<include file="_right"/>
+   
+	</div>
+</div>
+<include file="Common/footer"/>

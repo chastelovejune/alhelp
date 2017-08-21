@@ -1,0 +1,14 @@
+ <dl>
+<dt><div class="m_imgbox"><img src="{$sc['avatar']}" style="width:30px;height:30px"></div></dt>
+<dd>
+<div class="ucl_ssrtext"><span class="ucl_ssrname">
+<a href="{:U('/home/member/profile',['id'=>$sc[member_id]])}">{$sc['nickname']}</a>&nbsp;</span>回复<span class="ucl_ssrname"><a href="{:U('/home/member/profile',['id'=>$sc[member_id]])}">{$sc['pnickname']}</a></span>：{:parse_emotion($sc['content'])}</div>
+<div class="ucl_ssrtiem">
+<a class="zan" data-id="{$sc['id']}"><img src="/images/icons/u1.jpg" style="width:30px;height:30px"><span>{$sc["praise_num"]}</span></a>
+<if condition="$sc['member_id'] eq $_SESSION['id']">
+<a onclick="delete_comment({$sc['id']},{$mp['id']},this)">删除</a>
+</if>
+<a data-id="{$sc['id']}" onclick="gailou(this)">回复</a><span style="color:black"><if condition="substr($sc['add_time'],0,10) eq date('Y-m-d',time())">{:substr($pc['add_time'],11,5)}<else/>{:substr($pc['add_time'],0,10)}</if></span><i class="ico_uclssr"></i>
+</div>
+</dd>
+</dl>

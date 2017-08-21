@@ -1,0 +1,31 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box paystep2">
+      <ul class="u_tab2">
+      <php>
+      	$menu = ['订单状态','订单详情','退货信息','评价','仲裁'];
+      </php>
+        <foreach name='menu' item='m' key='k'>
+        <li href="{:U('/home/order/detail')}?{:http_build_query(array_merge($_GET,['type'=>$k]))}" class="u_tab2_item <eq name='k' value='$type'>hover</eq>">{$m}</li>
+        </foreach>
+        </ul>
+        
+     
+      <switch name='type'>
+      <case value='0'><include file="Order/detail/0"/></case>
+      <case value='1'><include file="Order/detail/1"/></case>
+      <case value='2'></case>
+      <case value='3'><include file="Order/detail/3"/></case>
+      <case value='4'><include file="Order/detail/4"/></case>
+      </switch>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<include file="Common/footer"/>

@@ -1,0 +1,100 @@
+<div id="NewsC_1box" class="g_row">
+	<section class="g_cell_3 class_seat m_box">
+		<header class="cls0_header">
+	  	<div class="u_ss">
+	  		<form method="get">
+		  		<!--<input type="hidden" name="type2">-->
+		  		<input type="text" class="u_ss_txn" name="keywords" value="{$_GET['keywords']}">
+		  		<input type="submit" class="u_ss_btn" value="">
+	  		</form>
+	  	</div>
+		</header>
+		<ul class="newspt_list">
+		<php>
+			$frist = M("information_type")->where(['pid'=>0,'type'=>$type])->find();
+			$tops=M("information_type")->where(['pid'=>$frist['id'],'type'=>$type])->select();
+			foreach($tops as $i=>$t){
+				$t['types'] = M("information_type")->where(['pid'=>$t[id]])->select();
+				$tops[$i]=$t;
+			}
+		</php>
+		<foreach name="tops" item="t" key="k">
+		  <li class="newspt_item" onclick="setTab('clsTab0_','newspt_item',{$k+1},{:count($tops)})" id="clsTab0_{$k+1}">
+		    <h4>{$t[name]}</h4>
+				<div class="cls_mainct" id="clsTab0_{$k+1}box">
+				  <div class="m_titlist">
+						<div class="cls_slt">
+						<foreach name="t[types]" item="t" key="k">
+						<a href="{:U('home/information/index',['type2'=>$t[id]])}"><button data-id={$t[id]}>{$t[name]}</button></a>
+						</foreach>
+						</div>
+					</div>
+				</div>
+		  </li>
+		  </foreach>
+		</ul>
+	</section>
+	<section class="g_cell_9 m_box">
+		<ul class="m_newsplist">
+         <li class="f_fr">
+          <include file="_index_order"/>
+          </li>
+         <li style="height:40px;"></li>
+         <foreach name="infos" item="i">
+		  <li class="m_newsplist_item">
+		  	<div class="m_cl_userbox"><div class="m_imgbox"><a href="#"><img src="<if condition='$i[image]'> {$i[image]}<else/> /Ucenter/images/noavatar_big.gif</if>" style="height: 100px;width: 100px" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></a></div></div>
+		  	<div class="m_cl_txtbox">
+					<h3><a href="{:U('/home/information/show',['id'=>$i[id]])}">{$i[title]}</a>
+					<if condition="$i[attachment_type] eq 1">
+					<span class="u_bb">需要积分 {$i[attachment_score]}个</span>
+						<elseif condition="$i[attachment_type] eq 2"/>
+							<span class="u_bb" style="background-color: #00a0e9">人民币 {$i[attachment_cost]}元</span>
+					</if>
+					</h3>
+					<p>{:strip_tags($i[content])}
+						<br></p>
+					<div class="m_cl_opt">
+					  {:substr($i[add_time],0,10)}
+					</div>
+                    <div class="m_cl_btn">
+						<a data-id={$i[id]} class="zan"><img src="/images/icons/zan.png"/>&nbsp;<span>{$i[praise_num]}</span></a><a href="javascript:void(0)"><img src="/images/icons/share.png"/>&nbsp;分享</a><a href=""><img src="/images/icons/collect.png"/>&nbsp;收藏</a>
+                    </div>
+		  	</div>
+		  </li>
+		  </foreach>
+		</ul>
+		<div class="u_fy">
+		<php>echo pageHtml(M('information')->where(['type'=>0])->count());</php>
+		</div>
+	</section>
+</div>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	setTab('clsTab0_','newspt_item',1,{:count($tops)});
+	$("div.cls_slt button").click(function(){
+		$("form").find("input[name=type2]").val($(this).attr("data-id"));
+		$("form").submit();
+	})
+	function f1(id,praise_num){
+		var obj=$(this);
+		var member_id = {:session('id')};
+		var information_id = id;
+		//  var praise_num = {$demand.praise_num};
+		$.post("{:U('/home/common/newPraise')}", {
+			member_id: member_id,
+			object_id: information_id,
+			type: 4
+		}, function (d) {
+			if (d.suc) {
+				layer.msg(d.message);
+
+				obj.find('span').html(praise_num+1);
+
+			} else {
+				layer.msg(d.message);
+				obj.find('span').html(praise_num-1);
+			}
+
+		})
+	}
+</script>

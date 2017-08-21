@@ -1,0 +1,435 @@
+﻿<include file="Common/header"/>
+<!--以上头部-->
+
+
+<div class="g_container mt_20">
+	
+	 
+	<div class="g_row">
+		<section class="g_cell_3 class_seat blb_l">
+        <p>   
+        <br>    
+        <span style="font-size:24px;">{$title}</span>
+        </p>
+        <br>
+	    <ul>
+            <foreach name="yjfx" item="vo">
+        <li class="blb_type ">{$vo}</li>
+            </foreach>
+        </ul>
+        <br><br>
+			<div class="appcodeimg">
+                <img src="images/main/app_dow.png" style="width:150px; height:150px;">
+			</div>
+            		 <div class="appcode">下载助邦考研app<br>
+
+立即找校友圈和专业圈朋友
+</div>
+		</section>
+		<section class="g_cell_9 m_box">
+				<ul class="blb_tab">
+					<li  id="spgc_1" onclick="setTab('spgc_','u_tab2_item',1,9)" class="u_tab2_item hover">分数线</li>
+					<li  id="spgc_2" onclick="setTab('spgc_','u_tab2_item',2,9)" class="u_tab2_item">专业课初试科目</li>
+					<li  id="spgc_3" onclick="setTab('spgc_','u_tab2_item',3,9)" class="u_tab2_item">考试大纲</li>
+					<li  id="spgc_4" onclick="setTab('spgc_','u_tab2_item',4,9)" class="u_tab2_item">专业课复试科目</li>
+					<li  id="spgc_5" onclick="setTab('spgc_','u_tab2_item',5,9)" class="u_tab2_item"><!--英语复试--></li>
+					<li  id="spgc_6" onclick="setTab('spgc_','u_tab2_item',6,9)" class="u_tab2_item">学科带头人和导师</li>		
+                    <li  id="spgc_7" onclick="setTab('spgc_','u_tab2_item',7,9)" class="u_tab2_item">奖学金</li>
+                     <li  id="spgc_8" onclick="setTab('spgc_','u_tab2_item',8,9)" class="u_tab2_item">初试特殊要求</li>
+                      <li  id="spgc_9" onclick="setTab('spgc_','u_tab2_item',9,9)" class="u_tab2_item">复试特殊要求</li>			
+				</ul>
+                <div id="spgc_1box">
+                <div class="blb_box clear">
+                <h4>报录比（人数）</h4>
+                <ul class="blb_title_box">
+                <li class="blb_title">
+                年份
+                </li>
+                <li class="blb_title">
+                报名
+                </li>
+                <li class="blb_title">
+                复试
+                </li>
+                <li class="blb_title">
+                录取
+                </li>
+                <li class="blb_title">
+                保研
+                </li>
+                <li class="blb_title">
+                调剂
+                </li>
+                <li class="clear"></li>
+                </ul>
+                <!--内容-->
+                <ul>
+                    <foreach name="blb" item="vo">
+                <li class="blb_con">
+                <ul>
+                <li class="blb_con_item">
+                {$vo['year']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['bk']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['fs']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['lq']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['by']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['tj']}
+                </li>
+                </ul>
+                </li>
+                        </foreach>
+                </ul>
+                <!--内容-->
+                </div>
+                
+                <div class="blb_box">
+                    <h4>初试分数线</h4>
+                <ul class="blb_title_box">
+                <li class="blb_title">
+                年份
+                </li>
+                <li class="blb_title">
+                总分
+                </li>
+                <li class="blb_title">
+                英语
+                </li>
+                <li class="blb_title">
+                政治
+                </li>
+                <li class="blb_title sm_font">
+                专一\数学
+                </li>
+                <li class="blb_title">
+                专二
+                </li>
+                <li class="clear"></li>
+                </ul>
+                <!--内容-->
+                <ul>
+                    <foreach name="cs" item="vo">
+                <li class="blb_con">
+                <ul>
+                <li class="blb_con_item">
+                {$vo['year']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['total']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['english']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['politics']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['major1']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['major2']}
+                </li>
+                </ul>
+                </li>
+                    </foreach>
+                
+
+                
+                </ul>
+                <!--内容-->
+                </div>
+                
+                <div class="blb_box">
+                      <h4>初试录取分数线</h4>
+                <ul class="blb_title_box">
+                <li class="blb_title">
+                年份
+                </li>
+                <li class="blb_title">
+                总分
+                </li>
+                <li class="blb_title">
+                英语
+                </li>
+                <li class="blb_title">
+                政治
+                </li>
+                <li class="blb_title sm_font">
+                专一\数学
+                </li>
+                <li class="blb_title">
+                专二
+                </li>
+                <li class="clear"></li>
+                </ul>
+                <!--内容-->
+                <ul>
+                    <foreach  name="lq" item="vo">
+                <li class="blb_con">
+                <ul>
+                <li class="blb_con_item">
+                    {$vo['year']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['total']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['english']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['politics']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['major1']}
+                </li>
+                <li class="blb_con_item">
+                    {$vo['major2']}
+                </li>
+                </ul>
+                </li>
+                    </foreach>
+
+                
+                </ul>
+                </div>
+
+                 <div class="blb_box">
+                      <h4>复试情况</h4>
+                <ul class="blb_title_box">
+                <li class="blb_title">
+                年份
+                </li>
+                <li class="blb_title">
+                复试总分
+                </li>
+                <li class="blb_title">
+                初试复试比
+                </li>
+                <li class="blb_title">
+                专业课
+                </li>
+                <li class="blb_title sm_font">
+                英语总分
+                </li>
+              
+                <li class="clear"></li>
+                </ul>
+                <!--内容-->
+                <ul>
+                    <foreach name="blb" item="vo">
+             <li class="blb_con">
+                <ul>
+                <li class="blb_con_item">
+            {$vo.year}
+                </li>
+                <li class="blb_con_item">
+                    {$vo.r_score}
+                </li>
+                <li class="blb_con_item">
+                    {$vo.pr_rate}
+                </li>
+                <li class="blb_con_item">
+                    {$vo.r_major}
+                </li>
+                <li class="blb_con_item">
+                    {$vo.r_english}
+                </li>
+              
+                </ul>
+                </li>
+                    </foreach>
+                
+                </ul>
+                </div>
+                
+                </div>
+                
+                <div id="spgc_2box" style="display:none" class="blb_txt_box">
+                <ul class="clear pt_20 blb_year_tab">
+                    <foreach name="blb" item="vo">
+                      <a href="{:U('home/circle/blb',['school_id'=>'','year'=>$vo['year']])}"  <li class="blb_year  <if condition='$vo[year] eq $year'>hover</if>">{$vo.year}</li></a>
+                    </foreach>
+                </ul>
+
+                <div class="blb_box clear" >
+                <h4>指定参考书目</h4>
+                <p class="blb_txt">{$info.p_book1}</p>
+                 <h4>建议参考书目</h4>
+                <p class="blb_txt">{$info.p_book2}</p>
+                 <h4>是否有大的变化</h4>
+                <p class="blb_txt">{$info.change1}</p>
+                 <h4>变化情况</h4>
+                <p class="blb_txt">{$info.changes1}</p>
+                </div>
+
+                </div>
+                
+                        <div id="spgc_3box" style="display:none" class="blb_txt_box">
+                <ul class="clear pt_20 blb_year_tab">
+                    <foreach name="blb" item="vo">
+                        <a href="{:U('home/circle/blb',['school_id'=>'','year'=>$vo['year']])}"  <li class="blb_year  <if condition='$vo[year] eq $year'>hover</if>">{$vo.year}</li></a>
+              </foreach>
+                </ul>
+
+                <div class="blb_box clear">
+                <h4>是否有大的变化</h4>
+                <p class="blb_txt">{$info.change2}</p>
+                 <h4>变化时间</h4>
+                <p class="blb_txt">{$info.change_time2}</p>
+                 <h4>变化情况</h4>
+                <p class="blb_txt">{$info.changes2}</p>
+                </div>
+
+                </div>
+                                
+                
+                  <div id="spgc_4box" style="display:none" class="blb_txt_box">
+                <ul class="clear pt_20 blb_year_tab">
+                    <foreach name="blb" item="vo">
+                        <a href="{:U('home/circle/blb',['school_id'=>'','year'=>$vo['year']])}"  <li class="blb_year  <if condition='$vo[year] eq $year'>hover</if>">{$vo.year}</li></a>
+                        </foreach>
+                </ul>
+
+                <div class="blb_box clear">
+                <h4>指定参考书目</h4>
+                <p class="blb_txt">{$info.r_book1}</p>
+                 <h4>建议参考书目</h4>
+                <p class="blb_txt">{$info.r_book2}</p>
+                 <h4>笔试主观题</h4>
+                <p class="blb_txt">{$info.subjective_item}</p>
+                 <h4>笔试客观题</h4>
+                <p class="blb_txt">{$info.objective_item}</p>
+                  <h4>面试题量</h4>
+                <p class="blb_txt">{$info.test_type}</p>
+                  <h4>有无时间限制</h4>
+                <p class="blb_txt">{$info.time_limit}</p>
+                </div>
+
+                </div>
+                
+            <div id="spgc_5box" style="display:none" class="blb_txt_box">
+                <!--
+                <ul class="clear pt_20 blb_year_tab">
+                    <foreach name="blb" item="vo">
+                        <li class="blb_year hover">{$vo.year}</li>
+                    </foreach>
+                </ul>
+                <div class="blb_box clear">
+                <h4>听力</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+                 <h4>笔试阅读</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+                 <h4>笔试作文</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+                 <h4>笔试其他</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+                  <h4>口试小组讨论</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+                  <h4>口试问答</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+              
+                  <h4>口试翻译</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+      
+                  <h4>口试其他</h4>
+                <p class="blb_txt">文本内容文本内容文本内容文本内文本内容文本内文本内容文本内文本内容文本内文本内容文本内</p>
+                </div>-->
+                </div>
+                
+
+                <div id="spgc_6box"  class="blb_txt_box" style="display:none">
+                  <div class="blb_box clear">
+                  <ul>
+                      <if condition="$blb[0]['kol']">
+                  <li class="blb_leader">
+                  <div class="blb_leader_head">
+                  <img src="images/test/90.jpg">
+                  </div>
+                  <div class="blb_leader_txt">
+                  <h5>姓名<span>&nbsp;&nbsp;{$blb[0]['kol']}</span></h5>
+                 <p>简介</p>
+                  </div>
+
+                  <div class="clear"></div>
+                  </li>
+                          </if>
+                      <if condition="$blb[0]['tutor_name']">
+                    <li class="blb_leader">
+                  <div class="blb_leader_head">
+                  <img src="images/test/90.jpg">
+                  </div>
+                  <div class="blb_leader_txt">
+                  <h5>姓名<span>&nbsp;&nbsp;{$blb[0]['tutor_name']}</span></h5>
+                <p>简介</p>
+                  </div>
+                  <div class="clear"></div>
+                  </li>
+                          </if>
+                  </ul>
+                  </div>
+                </div>
+                
+                   <div id="spgc_7box" style="display:none" class="blb_txt_box">       
+                <div class="blb_box clear">
+
+                 <h4>一等奖</h4>
+                <p class="blb_txt">{$blb[0]['scholarship_1']}</p>
+
+
+                 <h4>二等奖</h4>
+                <p class="blb_txt">{$blb[0]['scholarship_2']}</p>
+
+
+                <h4>三等奖</h4>
+                <p class="blb_txt">{$blb[0]['scholarship_3']}</p>
+
+                </div>
+                </div>
+                      
+                
+                   <div id="spgc_8box" style="display:none" class="blb_txt_box pb_20">       
+                <div class="blb_box clear">
+                <ul>
+                <li class="pt_10">{$blb[0]['multi']}</li>
+                <li class="pt_10">{$blb[0]['degree_ertificate']}</li>
+                <li class="pt_10">{$blb[0]['job']}</li>
+                    <if condition="$blb[0]['other']">
+                <li class="pt_10">{$blb[0]['other']}</li>
+                    </if>
+                </ul>
+                </div>
+                </div>
+                
+                
+                    <div id="spgc_9box" style="display:none" class="blb_txt_box pb_20">       
+                <div class="blb_box clear">
+                  <ul>
+                      <if condition="$blb[0]['thesis'] neq ''">
+                <li class="pt_10">{$blb[0]['thesis']}</li>
+                      <else/>
+                          无
+                      </if>
+
+                </ul>
+                </div>
+                </div>
+                
+		</section>
+	</div>
+</div>
+
+
+
+
+
+<!--以下底部-->
+<include file="Common/footer"/>

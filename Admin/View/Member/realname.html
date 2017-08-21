@@ -1,0 +1,70 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>申请日期</td>
+    <!--<td>用户id</td>-->
+    <td>用户名</td>
+    <td>真实姓名</td>
+    <td>身份证号码</td>
+    <td>正面照片</td>
+    <td>背面照片</td>
+    <td>状态</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+  <foreach name="profiles" item="p">
+    <tr>
+      <td>{$p['add_time']}</td>
+     <!-- <td>{$p['member_id']}</td>-->
+      <td>{$p['nickname']}</td>
+      <td>{$p['realname']}</td>
+      <td>{$p['id_card_no']}</td>
+      <td><img src="{$p['profile_front']}" style="width:30px;height:30px" class="img">
+        <div style="display:none; position:fixed;top:100px;
+        left:600px" class="img_div"><img src="{$p['profile_front']}"/><div>
+      </td>
+      <td><img src="{$p['profile_back']}"  style="width:30px;height:30px" class="img">
+        <div style="display:none;  position:fixed;top:100px;
+        left:600px" class="img_div"><img src="{$p['profile_back']}"/><div>
+      </td>
+      <td>
+        <if condition="$p[status] eq 1">
+          <img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif"><td><strong style="color: green">审核通过</strong></td>
+          <elseif condition="$p[status] eq 2"/>
+          <img style="width:15px;height:15px" src="__APP__/images/icons/no.gif"><td><strong style="color: red">被拒绝</strong></td>
+          <else/>
+          <strong style="color:gold">待审核</strong>
+        </if>
+      </td>
+      <td><if condition="$p['status'] eq 0">
+        <a href="javascript:reject({$p['profile_id']})" class="btn btn-danger">拒绝</a>
+        <a href="javascript:ok({$p['profile_id']})" class="btn btn-info">通过</a>
+        </if></td>
+    </tr>
+  </foreach>
+</table>
+<include file="Member/_profile1"/>
+<script>
+  function reject(id){
+    layer.prompt({title: '请填写被禁用的原因，并确认', formType: 2}, function(text, index){
+      layer.close(index);
+      $.post("{:U('/admin/member/reject')}",{profile_id:id,text:text},function(d){
+          window.location.reload();
+
+      })
+    });
+  }
+  function ok(id){
+    $.post("{:U('/admin/member/ok')}",{profile_id:id},function(){
+      window.location.reload();
+      })
+  }
+  $('.img').click(function(){
+    $(this).next("div").toggle();
+  })
+  $('.img_div').click(function(){
+    $(this).toggle();
+  })
+</script>
+<include file="Common:admin_footer" />

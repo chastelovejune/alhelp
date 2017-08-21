@@ -1,0 +1,21 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20 f_clearfix">
+<div class="g_row">
+<php>//dump($cost);</php>
+ <div class="g_cell_12 m_box pd_20">
+		  <p style="margin-bottom:20px;font-size:16px;">文件：&nbsp;&nbsp;{$info.title}&nbsp;&nbsp;</p>
+      <header class="u_paytitle"><h3>下载文件</h3></header>
+      <input type="button" class="u_btn_sl" value="确认下载" onclick="download('{$info[attachment]}')">
+	  <p class="down_tips">如果您是在微信公众号下载，由于微信公众号安全保护不支持下载，<span>请您点击右上角，选择在浏览器打开，前往其他浏览器下载。</span>给您带来的不便，请谅解。</p>
+    </div>
+	</div>
+	</div>
+
+<include file="Common/footer"/>
+
+<script type="text/javascript">
+ function download(url){
+   window.location.href = url;
+ }
+</script>

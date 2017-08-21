@@ -1,0 +1,47 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20 m_box pd_20">
+	<div class="m_datalist">
+    <!--学生申请试听 -->
+	  <div class="m_datalist_item">
+	  	<div class="m_dl_picbox">&yen;{$service.cost}</div>
+	  	<div class="m_dl_txtbox">
+				<h3><i class="ico_font" style="background-color:orange">供</i><i class="ico"></i><a href="{:U('/home/service/detail',['id'=>$service['service_id']])}">【{:C('service_types')[$service['service_type']]}】{$service.description}</a></h3>
+				<small>
+				<foreach name="service.types" item="t">
+				<a>{$t}</a>
+				</foreach>
+				</small>
+	  	</div>
+	  </div>
+	</div>
+     
+	</div>
+</div>
+<form method="post">
+<div class="g_container mt_20 m_box pd_20">
+<!-- 学生-->
+  <ul class="m_form f_clearfix pd_20">
+    <li class="m_item"><div class="m_formtit">预约时间：</div>
+      <input type="text" class="u_inp_t" name="wish_time">
+    </li>
+    <li class="m_item"><div class="m_formtit ckyb">你的疑问：</div>
+      <textarea class="u_inp_t" name="question"></textarea>
+    </li>
+  
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+      <input type="submit" class="u_btn_sl" value="确认提交">
+    </li>
+  </ul>
+</div>
+</form>
+<script type="text/javascript">
+	$("form").submit(function(){
+		$(this).ajaxSubmit(function(d){
+			window.location.href = "{:U('/member/audition')}";
+		})
+		return false;
+	})
+	$("[name=wish_time]").go_datetime();
+</script>
+<include file="Common/footer"/>

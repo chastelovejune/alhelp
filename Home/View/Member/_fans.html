@@ -1,0 +1,33 @@
+ <div class="m_box">
+ 
+      <div class="grxx_div_r_txt" style="padding-left:20px; font-size:18px;">
+            Ta的粉丝
+          </div>
+      <ul>
+<php>
+  $fans = M("mb_member")->join("LEFT JOIN follow ON mb_member.id=follow.follower")->where(["befollowed"=>$re["id"]])->select();
+</php>
+<foreach name="fans" item="f">
+      <li class="gz_item clear">
+      <div class="roundimg gz_face">
+      <img src="{$f['avatar']}">
+      </div>
+      <div class="gz_con">
+      <div class="gz_top">
+      <div class="name">
+      {$f['nickname']}
+      </div>
+      <div class="gz_btn">
+      <input value="+关注" class="u_btn_sl" type="button">
+      </div>
+         
+    <p class="clear">关注：<span class="txt_orange">{$f['follow_num']}</span>&nbsp;&nbsp;&nbsp;&nbsp;粉丝：<span class="txt_orange">{$f['fans_num']}</span></p>
+    
+      </div>
+   
+      </div>
+      </li>
+      </foreach>
+      </ul>
+      <div class="clear"></div>
+      </div>

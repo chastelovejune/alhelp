@@ -1,0 +1,67 @@
+<include file="Common/header"/>
+
+
+<div class="mt_20">
+	<div class="g_row">
+		
+       <include file="_1"/>
+          
+          <div class="g_container">
+          <div class="g_row">
+          <section class="g_cell_9">
+		  <div class="ds_detail_bd m_box">
+          <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+          <div class="nav_box"  id="nav">
+  
+				<ul class="u_tab2"> <!--当为套餐时有几个阶段，当单品是，只有一个-->
+          <foreach name="periods" item="p" key="index">
+				  <li class="u_tab2_item <eq name='step' value='$index'>hover</eq>">
+                      <a href="{:U('/member/ServiceOrder/show',['id'=>I('request.id'),'step'=>$index,'per'=>$p[id]])}">
+          {$p.title}
+          </a>
+          </li>
+				  </foreach>
+				</ul>
+                             
+                </div>               
+                
+                <div  class="study_sta">
+<include file="_package_2"/>
+                <div class="stu_title clear">
+                    <h4>约课计划&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('/member/classPlan/yue',['id'=>$o['id'],'per'=>$per])}">+添加约课</a></h4>
+               
+               </div>
+                
+                  <div class="stu_sta clear">
+                       
+                  <ul>
+                  <foreach name="period.plans" item="p">
+                                   <include file="_yue_li"/>
+                  </foreach>
+                  </ul>
+                  </div>
+                </div>
+                
+              <div class="clear"></div>
+               
+               
+		  </div>
+		</section>
+        
+       	<include file="_2"/>
+     </div>
+        
+    
+    
+    </div>
+	 </div>
+</div>
+
+
+
+<include file="add_yue"/>
+
+<include file="show_yue"/>
+
+
+<include file="Common/footer"/>

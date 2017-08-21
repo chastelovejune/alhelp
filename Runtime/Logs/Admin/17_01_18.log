@@ -1,0 +1,959 @@
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/public/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000663s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000854s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000939s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000536s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000593s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000073s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000158s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020022s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020134s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000506s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000547s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000672s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000711s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__CSS__/bootstrap.min.css?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000582s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000772s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000852s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__JS__/jquery.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000685s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001181s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__JS__/bootstrap.min.js?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000725s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000942s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001022s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__CSS__/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000693s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000886s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000960s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__IMG__/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000766s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000575s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000824s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000918s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000137s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008234s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008314s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000468s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000517s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000810s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000858s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__CSS__/style.css?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000462s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001104s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001195s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000420s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000714s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000784s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000042s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000094s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006691s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006750s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000425s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000460s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000691s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000609s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000540s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000602s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000043s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000091s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006108s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006178s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000563s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000610s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000630s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000670s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000092s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000162s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006186s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006245s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000711s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000772s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000976s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001042s ]
+
+[ 2017-01-18T13:01:31+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000412s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000577s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000041s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000091s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005698s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005747s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000409s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000446s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000659s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000698s ]
+
+[ 2017-01-18T13:01:35+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000461s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000541s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000589s ]
+SQL: SHOW COLUMNS FROM `admin` [ RunTime:0.1353s ]
+SQL: SELECT * FROM `admin` WHERE `username` = 'tianview' AND `password` = 'aa123456' LIMIT 1   [ RunTime:0.0114s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000127s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016870s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016919s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000461s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000497s ]
+
+[ 2017-01-18T13:01:38+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000803s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000889s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000041s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000087s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005857s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005926s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001487s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001580s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000887s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000934s ]
+
+[ 2017-01-18T13:01:47+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000488s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000825s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000933s ]
+SQL: SHOW COLUMNS FROM `admin` [ RunTime:0.0035s ]
+SQL: SELECT * FROM `admin` WHERE `username` = 'admin' AND `password` = 'adminzhang' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant post - assumed 'post' D:\xampp\htdocs\xzb\Application\Admin\Controller\IndexController.class.php 第 32 行.
+SQL: UPDATE `admin` SET `last_login_ip`='post0.0.0.0' WHERE `id` = 1 [ RunTime:0.0219s ]
+
+[ 2017-01-18T13:01:47+08:00 ] ::1 /xzb/Public/index.php/admin/information/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000520s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000571s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000617s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+SQL: SHOW COLUMNS FROM `information` [ RunTime:0.0033s ]
+NOTIC: [8] Undefined index: page D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 11 行.
+SQL: SELECT `add_time`,information.id,information_type.name,`nickname`,`title`,`attachment_score`,`views`,`download_num`,`status`,`attachment_type`,`attachment_cost`,`attachment_coin` FROM `information` left join information_type ON information.type2=information_type.id  WHERE ( information.type=0 ) ORDER BY id desc LIMIT 0,10   [ RunTime:0.0218s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `information` WHERE ( type=0 ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000080s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000131s ]
+NOTIC: [8] Undefined index: page D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 128 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.046533s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.046599s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000521s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000560s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000816s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000885s ]
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/plugins/morris/morris-0.4.3.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000078s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003325s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001993s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002076s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000783s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001740s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001820s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/gritter/jquery.gritter.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000623s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002645s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002723s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/style.css?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001134s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000930s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001002s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/hplus.js?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000773s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000750s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000829s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/metisMenu/jquery.metisMenu.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001815s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001890s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/bootstrap.min.js?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001664s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000769s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000852s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/slimscroll/jquery.slimscroll.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001062s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001318s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001396s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/pace/pace.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000635s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000745s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000821s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/script/froala/css/font-awesome.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000733s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001187s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/bootstrap.min.css?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000577s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000807s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000890s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer-v2.1/layer/layer.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000560s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000703s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000778s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/script/froala/css/froala_editor.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000933s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000878s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000962s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer-v2.1/layer/extend/layer.ext.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000636s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001195s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001269s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer/laydate/laydate.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000675s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001436s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001526s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/jquery-2.1.1.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000739s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001908s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001995s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__IMG__/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000622s ]
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer/skin/layer.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000646s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001176s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001264s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/toastr/toastr.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000635s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000755s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000868s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/admin/information/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000673s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000791s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000885s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000690s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000065s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000194s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008154s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008218s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000447s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000496s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000629s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000670s ]
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__CSS__/bootstrap.min.css?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000622s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000746s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000871s ]
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__JS__/jquery.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000761s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000829s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001015s ]
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__CSS__/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000172s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001978s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000714s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__JS__/bootstrap.min.js?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000768s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000595s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000680s ]
+
+[ 2017-01-18T13:02:12+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__CSS__/style.css?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000451s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002235s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002338s ]
+
+[ 2017-01-18T13:02:13+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/__IMG__/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001287s ]
+
+[ 2017-01-18T13:02:13+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000678s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000937s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001162s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000103s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000360s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018205s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018311s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000595s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004961s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005111s ]
+
+[ 2017-01-18T13:02:13+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000570s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000648s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000711s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000071s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000159s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009646s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009725s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000669s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000726s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001224s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001291s ]
+
+[ 2017-01-18T13:02:13+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000527s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000859s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000967s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000097s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000214s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010686s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010886s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001195s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001307s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002484s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002587s ]
+
+[ 2017-01-18T13:02:13+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000639s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003875s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004071s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000078s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000177s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012923s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013006s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000917s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000985s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001098s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001143s ]
+
+[ 2017-01-18T13:02:13+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000564s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000588s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000649s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006761s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006820s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000488s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000734s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000778s ]
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000636s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001203s ]
+SQL: SHOW COLUMNS FROM `admin` [ RunTime:0.0042s ]
+SQL: SELECT * FROM `admin` WHERE `username` = 'admin' AND `password` = 'adminzhang' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant post - assumed 'post' D:\xampp\htdocs\xzb\Application\Admin\Controller\IndexController.class.php 第 32 行.
+SQL: UPDATE `admin` SET `last_login_ip`='post0.0.0.0' WHERE `id` = 1 [ RunTime:0.0004s ]
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000652s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+SQL: SHOW COLUMNS FROM `information` [ RunTime:0.0038s ]
+NOTIC: [8] Undefined index: page D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 11 行.
+SQL: SELECT `add_time`,information.id,information_type.name,`nickname`,`title`,`attachment_score`,`views`,`download_num`,`status`,`attachment_type`,`attachment_cost`,`attachment_coin` FROM `information` left join information_type ON information.type2=information_type.id  WHERE ( information.type=0 ) ORDER BY id desc LIMIT 0,10   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `information` WHERE ( type=0 ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000109s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000199s ]
+NOTIC: [8] Undefined index: page D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 128 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.019412s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019474s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000596s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000652s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001003s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001079s ]
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/bootstrap.min.css?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000644s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000775s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000863s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/plugins/morris/morris-0.4.3.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000627s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000714s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000792s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/gritter/jquery.gritter.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001081s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001355s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001454s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/script/froala/css/font-awesome.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003499s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000909s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001011s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/jquery-2.1.1.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000604s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001003s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001084s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/style.css?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000996s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.026875s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026987s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer/skin/layer.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001334s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000797s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__CSS__/animate.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.029841s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.013807s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.013899s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__CSS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/metisMenu/jquery.metisMenu.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000104s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001481s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000788s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000866s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/slimscroll/jquery.slimscroll.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000643s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000731s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000820s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/bootstrap.min.js?v=3.4.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000921s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000817s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000907s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/hplus.js?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000892s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001366s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/script/froala/css/froala_editor.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001538s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.021593s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.021714s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer-v2.1/layer/extend/layer.ext.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000667s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002970s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003079s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer/laydate/laydate.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002017s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000799s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000896s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/pace/pace.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000713s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000988s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer-v2.1/layer/layer.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000751s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001295s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001418s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/metisMenu/jquery.metisMenu.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000633s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000774s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__IMG__/favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000643s ]
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/toastr/toastr.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000618s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000772s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000881s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/slimscroll/jquery.slimscroll.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000573s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000808s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000892s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/hplus.js?v=2.2.0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000822s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000797s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/pace/pace.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000673s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001006s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001117s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer-v2.1/layer/layer.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000531s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000809s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer-v2.1/layer/extend/layer.ext.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000580s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/layer/laydate/laydate.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000453s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000554s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000603s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/admin/information/__JS__/plugins/toastr/toastr.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000489s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000667s ]
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::add() should be compatible with Admin\Common\AdminBaseController::add($table = '') D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+NOTIC: [2048] Declaration of Admin\Controller\InformationController::edit() should be compatible with Admin\Common\AdminBaseController::edit($table = '', $callback = NULL) D:\xampp\htdocs\xzb\Application\Admin\Controller\InformationController.class.php 第 4 行.
+ERR: 非法操作:__JS__
+

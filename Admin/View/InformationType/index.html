@@ -1,0 +1,23 @@
+<include file="Common:admin_header" />
+<center><h2><{$type_name[$type]}></h2></center>
+<a class="btn btn-outline btn-success btn-sm" href="{:U('/admin/InformationType/add',['type'=>$type])}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+    <td>ID</td>
+      <td>分类</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="t">
+    <tr>
+    <td>{$t.id}</td>
+    <td>{$t.level|str_repeat="﹂&nbsp;&nbsp;&nbsp;",###}{$t.name}</td>
+    <td> <if condition="$t['pid'] eq 0"><span class="btn-default btn">顶级禁止操作</span> <else/><a class="btn-info btn btn-sm" href="{:U('admin/InformationType/edit',['id'=>$t['id'],'type'=>$type])}">编辑</a>
+    <a class="btn-danger btn btn-sm" href="{:U('delete',['id'=>$t['id']])}">删除</a></if></td>
+
+    </tr>
+    </foreach>
+</table>
+<include file="Common:admin_footer" />

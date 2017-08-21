@@ -1,0 +1,70 @@
+<div id="NewsC_4box" class="g_row">
+<php>
+	$types = C("information_gonggao_types");
+</php>
+	<section class="g_cell_3 class_seat m_box">
+		<header class="cls0_header">
+			<div class="u_ss">
+				<form method="get">
+					<!--	<input type="hidden" name="type2">-->
+					<input type="text" class="u_ss_txn" name="keywords" value="{$_GET['keywords']}">
+					<input type="submit" class="u_ss_btn" value="">
+				</form>
+			</div>
+		</header>
+		<!--<ul class="newspt_list">
+        <foreach name="types" item="t" key="k">
+          <li data-id="{$k}" class="newspt_item <if condition='($_GET[type2]) AND ($k eq $_GET[type2])'> hover</if>">
+            <h4>{$t}</h4>
+          </li>
+          </foreach>
+        </ul>-->
+		<ul class="newspt_list">
+			<php>
+				$frist = M("information_type")->where(['pid'=>0,'type'=>$type])->find();
+				$tops=M("information_type")->where(['pid'=>$frist['id'],'type'=>$type])->select();
+				foreach($tops as $i=>$t){
+				$t['types'] = M("information_type")->where(['pid'=>$t[id]])->select();
+				$tops[$i]=$t;
+				}
+			</php>
+			<foreach name="tops" item="t" key="k">
+				<li class="newspt_item" onclick="setTab('clsTab0_','newspt_item',{$k+1},{:count($tops)})" id="clsTab0_{$k+1}">
+					<h4>{$t[name]}</h4>
+					<div class="cls_mainct" id="clsTab0_{$k+1}box">
+						<div class="m_titlist">
+							<div class="cls_slt">
+								<foreach name="t[types]" item="t" key="k">
+									<a href="{:U('home/information/index3',['type2'=>$t[id]])}"><button data-id={$t[id]}>{$t[name]}</button></a>
+								</foreach>
+							</div>
+						</div>
+					</div>
+				</li>
+			</foreach>
+		</ul>
+	</section>
+	<script type="text/javascript">
+		$(".newspt_list li").click(function(){
+			$("form").find("input[name=type2]").val($(this).attr("data-id"));
+			$("form").submit();
+		})
+	</script>
+	<div id="clsTabbz_1box" class="g_cell_9 m_box newsnews">
+		<ul class="m_newslist">
+        <li class="f_fr" style="padding-top:20px;">              <include file="_index_order"/>
+</li>
+        <li style="height:40px;"></li>
+        	<foreach name="infos" item="i">
+			<li class="m_newslist_item">
+				<h3><div class="m_imgbox"><img style="background-color:#FFF;" src=" {:M('mb_member')->where('id='.$i['member_id'])->getfield('avatar')}" alt="" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></div>
+				<a href="{:U('/home/information/show',['id'=>$i['id']])}">
+				{$i[title]}
+				</a>
+				<span>{:substr($i[add_time],0,16)}</span></h3>
+				<p>{:substr(strip_tags($i[content]),0,350)}</p>
+			</li>
+			</foreach>
+		</ul>
+	</div>
+</div>

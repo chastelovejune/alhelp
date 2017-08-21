@@ -1,0 +1,564 @@
+[ 2017-01-18T12:44:00+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.022690s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.041540s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.041605s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.2721s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.5114s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.2077s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0286s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.2088s ]
+SQL: call sup(1450001,0,0) [ RunTime:0.2897s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SHOW COLUMNS FROM `zysc_view` [ RunTime:0.0038s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1450001 LIMIT 1   [ RunTime:0.0005s ]
+SQL: call sup(708000,0,0) [ RunTime:0.0118s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 708000 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(1313000,0,0) [ RunTime:0.0123s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1313000 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(1205000,0,0) [ RunTime:0.0125s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1205000 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(719000,0,0) [ RunTime:0.0102s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 719000 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0375s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0175s ]
+SQL: call sup(4,0,0) [ RunTime:0.0460s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0005s ]
+SQL: call sup(200003,0,0) [ RunTime:0.0122s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 200003 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(0,0,1) [ RunTime:0.0195s ]
+SQL: call sup(4,0,0) [ RunTime:0.0009s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0005s ]
+SQL: call sup(402002,0,0) [ RunTime:0.0158s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 402002 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0264s ]
+SQL: SELECT * FROM `open_class` LIMIT 5   [ RunTime:0.0156s ]
+SQL: call sup(4,0,0) [ RunTime:0.0010s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(0,7,0) [ RunTime:0.0587s ]
+SQL: call sup(6,0,0) [ RunTime:0.0027s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 6 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(919124,0,0) [ RunTime:0.0176s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 919124 LIMIT 1   [ RunTime:0.0007s ]
+SQL: call sup(223110,0,0) [ RunTime:0.0045s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 223110 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `information_type` [ RunTime:0.0165s ]
+SQL: SELECT * FROM `information_type` WHERE ( type=6 ) LIMIT 6   [ RunTime:0.0111s ]
+SQL: SHOW COLUMNS FROM `information` [ RunTime:0.0175s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 16 LIMIT 3   [ RunTime:0.0135s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 17 LIMIT 3   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 18 LIMIT 3   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 19 LIMIT 3   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 20 LIMIT 3   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lunbotu` [ RunTime:0.0175s ]
+SQL: SELECT * FROM `lunbotu` WHERE ( status=0 ) ORDER BY sort asc  [ RunTime:0.0079s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.030422s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.030512s ]
+NOTIC: [8] Undefined variable: m D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 36 行.
+NOTIC: [8] Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 40 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37731 ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37727 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37726 ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37725 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=26429 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+SQL: SHOW COLUMNS FROM `member_post` [ RunTime:0.0108s ]
+SQL: SELECT member_post.*,`circle_name`,mb_member.nickname,mb_member.avatar FROM `member_post` LEFT JOIN circle ON circle.id=member_post.circle_id LEFT JOIN mb_member ON mb_member.id=member_post.member_id  ORDER BY member_post.id DESC LIMIT 3   [ RunTime:0.0287s ]
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+SQL: SELECT * FROM `information` WHERE `type` = 0 ORDER BY add_time desc LIMIT 3   [ RunTime:0.0147s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+SQL: SHOW COLUMNS FROM `share` [ RunTime:0.0211s ]
+SQL: SELECT share.*,`avatar` FROM `share` LEFT JOIN mb_member ON mb_member.id=share.member_id  ORDER BY add_time desc LIMIT 3   [ RunTime:0.0422s ]
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 430 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 434 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 435 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 441 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 444 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 445 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 446 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 452 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 456 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 457 行.
+SQL: SELECT * FROM `information` WHERE ( type=3 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+SQL: SELECT `id`,`title` FROM `information` WHERE ( type=1 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `mb_member` LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Constant DATA_PATH already defined D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 53 行.
+NOTIC: [8] Undefined index: dialog D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 723 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_id - assumed 'object_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant from_member_id - assumed 'from_member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_type - assumed 'object_type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant obj - assumed 'obj' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+NOTIC: [8] Use of undefined constant dlgid - assumed 'dlgid' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward = 0 ) AND (  status = 1 )  [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: mpids D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward > 0 ) AND (  status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: mpids1 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: quizcount D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 624 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 626 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.341938s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.341998s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.017687s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.017739s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006605s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006673s ]
+
+[ 2017-01-18T12:44:56+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000742s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000968s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001069s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0766s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.4116s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.1708s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0040s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.0594s ]
+SQL: call sup(1450001,0,0) [ RunTime:0.0008s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SHOW COLUMNS FROM `zysc_view` [ RunTime:0.0032s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1450001 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(708000,0,0) [ RunTime:0.0004s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 708000 LIMIT 1   [ RunTime:0.0003s ]
+SQL: call sup(1313000,0,0) [ RunTime:0.0004s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1313000 LIMIT 1   [ RunTime:0.0003s ]
+SQL: call sup(1205000,0,0) [ RunTime:0.0003s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1205000 LIMIT 1   [ RunTime:0.0003s ]
+SQL: call sup(719000,0,0) [ RunTime:0.0003s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 719000 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0037s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0006s ]
+SQL: call sup(4,0,0) [ RunTime:0.0009s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(200003,0,0) [ RunTime:0.0016s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 200003 LIMIT 1   [ RunTime:0.0005s ]
+SQL: call sup(0,0,1) [ RunTime:0.0002s ]
+SQL: call sup(4,0,0) [ RunTime:0.0009s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(402002,0,0) [ RunTime:0.0011s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 402002 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `open_class` LIMIT 5   [ RunTime:0.0003s ]
+SQL: call sup(4,0,0) [ RunTime:0.0010s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0004s ]
+SQL: call sup(0,7,0) [ RunTime:0.0003s ]
+SQL: call sup(6,0,0) [ RunTime:0.0009s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 6 LIMIT 1   [ RunTime:0.0003s ]
+SQL: call sup(919124,0,0) [ RunTime:0.0008s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 919124 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(223110,0,0) [ RunTime:0.0209s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 223110 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `information_type` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `information_type` WHERE ( type=6 ) LIMIT 6   [ RunTime:0.0137s ]
+SQL: SHOW COLUMNS FROM `information` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 16 LIMIT 3   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 17 LIMIT 3   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 18 LIMIT 3   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 19 LIMIT 3   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 20 LIMIT 3   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `lunbotu` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `lunbotu` WHERE ( status=0 ) ORDER BY sort asc  [ RunTime:0.0153s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000307s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000359s ]
+NOTIC: [8] Undefined variable: m D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 36 行.
+NOTIC: [8] Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 40 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37731 ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37727 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37726 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37725 ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=26429 ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+SQL: SHOW COLUMNS FROM `member_post` [ RunTime:0.0047s ]
+SQL: SELECT member_post.*,`circle_name`,mb_member.nickname,mb_member.avatar FROM `member_post` LEFT JOIN circle ON circle.id=member_post.circle_id LEFT JOIN mb_member ON mb_member.id=member_post.member_id  ORDER BY member_post.id DESC LIMIT 3   [ RunTime:0.0105s ]
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+SQL: SELECT * FROM `information` WHERE `type` = 0 ORDER BY add_time desc LIMIT 3   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+SQL: SHOW COLUMNS FROM `share` [ RunTime:0.0030s ]
+SQL: SELECT share.*,`avatar` FROM `share` LEFT JOIN mb_member ON mb_member.id=share.member_id  ORDER BY add_time desc LIMIT 3   [ RunTime:0.0413s ]
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 430 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 434 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 435 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 441 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 444 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 445 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 446 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 452 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 456 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 457 行.
+SQL: SELECT * FROM `information` WHERE ( type=3 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0004s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+SQL: SELECT `id`,`title` FROM `information` WHERE ( type=1 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `mb_member` LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Constant DATA_PATH already defined D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 53 行.
+NOTIC: [8] Undefined index: dialog D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 723 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_id - assumed 'object_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant from_member_id - assumed 'from_member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_type - assumed 'object_type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant obj - assumed 'obj' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+NOTIC: [8] Use of undefined constant dlgid - assumed 'dlgid' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward = 0 ) AND (  status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: mpids D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward > 0 ) AND (  status = 1 )  [ RunTime:0.0002s ]
+NOTIC: [8] Undefined variable: mpids1 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: quizcount D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 624 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 626 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.119408s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.119462s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000643s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000891s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000950s ]
+
+[ 2017-01-18T12:44:56+08:00 ] 127.0.0.1 /index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000722s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000964s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001058s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-18T12:44:57+08:00 ] 127.0.0.1 /index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000658s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000811s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000891s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0042s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.3119s ]
+
+[ 2017-01-18T12:44:57+08:00 ] 127.0.0.1 /index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000639s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000821s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000902s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0789s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0181s ]
+
+[ 2017-01-18T12:44:57+08:00 ] 127.0.0.1 /index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000687s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000957s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001044s ]
+
+[ 2017-01-18T13:01:48+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000577s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000757s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000843s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0177s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-18T13:02:24+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000781s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000740s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0043s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0006s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-18T13:02:25+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000551s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000620s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000737s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0007s ]
+ERR: 非法操作:js.js
+

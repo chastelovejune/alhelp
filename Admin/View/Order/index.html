@@ -1,0 +1,56 @@
+<include file="Common:admin_header" />
+<form method="post">
+<select name="status">
+
+	<php>
+		foreach(C("order_status") as $k=>$v){
+		echo "<option value=".$k.">".$v."</option>";
+		}
+	</php>
+
+</select>
+
+<input type="text" placeholder="输出ID或者订单号" name="key">
+<input type="submit" value="搜索">
+	</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+    	<td>id</td>
+		<td>订单编号</td>
+    	<td>买家</td>
+    	<td>卖家</td>
+    	<td>商品名字</td>
+    	<td>订单状态</td>
+		<td>地址</td>
+		<td>电话</td>
+		<td>总付</td>
+	<!--	<td>托付金额(需求)</td>-->
+		<td>添加时间</td>
+		<!--<td>派送时间</td>-->
+		<!--<td>支付时间</td>-->
+		<td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="orders" item="o">
+    <tr>
+    	<td>{$o['id']}</td>
+		<td>{$o['order_number']}</td>
+      	<td>{:M("mb_member")->where(['id'=>$o['from_member_id']])->getField('nickname')}</td>
+      	<td>{:M("mb_member")->where(['id'=>$o['to_member_id']])->getField('nickname')}</td>	
+      	<td>{$o['description']}</td>
+      	<td>{:C("order_status")[$o['status']]}</td>
+		<td>{$o['address']}</td>
+		<td>{$o['phone']}</td>
+		<td>{$o['total']}</td>
+		<!--<td>{$o['addvance_payment']}</td>-->
+		<td>{$o['add_time']}</td>
+		<!--<td>{$o['send_time']}</td>-->
+		<!--<td>{$o['pay_time']}</td>-->
+		<td><a class="btn-danger btn btn-sm" href="{:U('delete',['id'=>$o['id']])}">删除</a></td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer" />

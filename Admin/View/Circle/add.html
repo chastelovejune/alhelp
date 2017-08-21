@@ -1,0 +1,27 @@
+<include file="Common:admin_header" />
+<form  class="form-horizontal" method="post" enctype="multipart/form-data">
+  <!--编号： <input type="text" name="code" value="{$circle['code']}"/></br>-->
+  类型：<select name="circle_type">
+    <option value="0">校友圈</option>
+    <option value="1">专业圈</option>
+    </select>
+  </br></br>
+  名称： <input type="text" name="circle_name" value="{$circle['circle_name']}"/></br></br>
+选择学校 :<select name="object_id">
+  <foreach name="school" item="v">
+    <option value="{$v['id']}" >{$v['title']}</option>
+  </foreach>
+</select>
+</br></br>
+  父级： <select name="pid'">
+  <foreach name="c_list" item="vo">
+  <option value="{$vo['id']}" >{$vo['circle_name']}</option>
+    </foreach>
+</select>
+  </br></br>
+
+ 上传logo: <input type="file" name="logo" /></br>
+
+  <input type="submit" value="保存"/>
+</form>
+<include file="Common:admin_footer" />

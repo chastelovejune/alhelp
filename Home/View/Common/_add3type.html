@@ -1,0 +1,57 @@
+<li class="m_item sm_se"><div class="m_formtit">专业类型：</div>
+  <select class="u_slt add_type" required="true">
+    <foreach name="Think.config.3types" item="v" key="k">
+    <option value="{$k}">{$v}</option>
+    </foreach> 
+  </select>
+</li>
+
+<li class="m_item school sm_se"><div class="m_formtit">地区：</div>
+  <select class="u_slt school0" >
+  </select> </li>
+<li class="m_item school sm_se"><div class="m_formtit">大学：</div>
+ 
+  <select class="u_slt school1" >
+  </select>
+</li>
+ <li class="m_item school">
+ <div class="m_formtit">学院:</div>  
+  <select class="u_slt school2" >
+  </select>
+</li>
+<li class="m_item school"><div class="m_formtit">专业类型：</div>
+  <select class="u_slt school3" name="school_id" >
+  </select>
+</li>  
+
+<li class="m_item unified f_dn">
+<div class="m_formtit">专业分类：</div>
+  	<select class="u_slt unified0" >
+  	</select>
+  	专业: 
+  	<select class="u_slt unified1" name="unified_id" >
+  	</select>
+</li>  
+ <li class="m_item public_subject">
+ <div class="m_formtit">专业：</div>
+  <select class="u_slt public_subject0" name="public_subject_id" >
+  </select>
+</li>  
+
+<li class="m_item rel_inpr"><div class="m_formtit fsamll">没有您想选择的专业</div><input placeholder="按“地区、大学、学院、专业及代码”的方式反馈给我们。" type="text" class="u_inp_t g_width_5" id="major"><input type="button" id="button" class="u_btn_sl" value="发送">
+</li>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+
+$('#button').click(function(){
+	var text=$("#major").val();
+	$.post("{:U('home/demand/addmajor')}",{content:text},function(data){
+		if(data){
+			$('#button').val("发送成功");
+			layer.msg('提交成功');
+		}else{
+            layer.msg(data.message);
+        }
+	})
+});
+</script>

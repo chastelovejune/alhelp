@@ -1,0 +1,82 @@
+<include file="Common/header"/>
+<form method="post">
+<input type="hidden" name="circle_id" value="{:I('request.id')}">
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+    <div class="toptitle">
+      <h2 class="pd_20">发布活动</h2>
+      <p>文字说明</p>
+    </div>
+      <div class="u_paytitle"><h3>活动信息</h3><p></p></div>
+      <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit">活动标题：</div>
+          <input placeholder="简单的描述更容易被找到" type="text" name="title" class="u_inp_t g_width_5">
+        </li>
+        <li class="m_item"><div class="m_formtit">活动时间：</div>
+          <input type="text" class="u_inp_t" name="begin_time">
+        </li>
+        <li class="m_item"><div class="m_formtit">活动地点：</div>
+          <input placeholder="简单的描述更容易被找到" name="address" type="text" class="u_inp_t g_width_5">
+        </li>
+        <li class="m_item"><div class="m_formtit">活动详情：</div>
+          <textarea class="u_inp_t" name="content"></textarea>
+        </li>
+        <li class="m_item"><div class="m_formtit">活动类型：</div>
+          <select class="u_slt" name="type">
+          <foreach name="Think.config.activity_types" item="t" key="i">
+            <option value="{$i}">{$t}</option>
+            </foreach>
+          </select>
+        </li>
+        <li class="m_item"><div class="m_formtit">活动费用：</div>
+          <input type="radio" checked>&nbsp;免费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="u_inp_t">&nbsp;收费&nbsp;&nbsp;<input type="text" name="price" class="u_inp_t g_width_2">&nbsp;&nbsp;元
+        </li>
+        <li class="m_item"><div class="m_formtit">上传图片：</div>
+          <input type="file" name="image"><span>温馨提示：准确的图片更吸引眼球</span>
+        </li>
+      </ul>
+      <div class="u_paytitle"><h3>主办信息</h3><p></p></div>
+      <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit">主办名称：</div>
+          <input type="text" name="master_name" class="u_inp_t g_width_5">
+        </li>
+        <li class="m_item"><div class="m_formtit">主办简介：</div>
+          <textarea class="u_inp_t" name="master_description"></textarea>
+        </li>
+        <li class="m_item"><div class="m_formtit">发起人：</div>
+          {$m[nickname]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="button" class="u_btn_sl smrz" value="现在就去实名身份认证！">
+        </li>
+        <li class="m_item"><div class="m_formtit">Q Q：</div>
+          <input type="text" class="u_inp_t" name="qq">
+        </li>
+        <li class="m_item"><div class="m_formtit">联系电话：</div>
+          <input type="text" class="u_inp_t" name="phone">
+        </li>
+        <li class="m_item"><div class="m_formtit"></div>
+          <label><input type="checkbox" checked="checked"> 我已阅读<a class='show_essay_modal' type='0'>《新助邦活动发布协议（试行）》</a></label>
+        </li>
+        <li class="m_item rel_inpr"><div class="m_formtit"></div>
+          <input type="submit" class="u_btn_sl pd_20" value="确认提交">
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</form>
+
+<script type="text/javascript">
+	$("form").submit(function(){
+		$(this).ajaxSubmit(function(d){
+			 window.location.href = d.message;
+		})
+		return false;
+	})
+  $(function(){
+    $("[name=begin_time]").go_datetime();
+  })
+</script>
+
+<include file="Common/modal/essay_modal"/>
+<include file="Common/footer"/>

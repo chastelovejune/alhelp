@@ -1,0 +1,123 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+   <!-- <foreach name="columns" item="c">
+    <td>{$c}</td>
+    </foreach>-->
+<td>id</td>
+<td>银行类型</td>
+<td>用户名</td>
+<td>银行卡号</td>
+<td>银行卡账户名</td>
+<td>添加时间</td>
+<td>状态</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="c">
+    <tr>
+     <!-- <foreach name="c" item="v">
+      <td>{$v}</td>
+      </foreach>-->
+	  <td>{$c[id]}</td>
+	  
+	  <td>{:C("bankcard_types")[$c[card_type]]}</td>
+	  <td>{$c[nickname]}</td>
+	  <td>{$c[card_num]}</td>
+	  <td>{$c[card_name]}</td>
+	  <td>{$c[add_time]}</td>
+	  <td>
+	  <switch name="c[status]" >
+        <case value="-1">不通过</case>
+         <case value="0">审核中</case>
+		  <case value="1">通过</case>
+		   <case value="2">通过</case>
+		    <case value="3">禁用</case>
+        <default />默认情况
+      </switch>
+	  </td>
+      <td>
+       <!-- <a href="{:U('delete')}?id={$c['id']}"  class="btn btn-danger">删除</a>-->
+	    <switch name="c[status]" >
+        <case value="-1"><input type="button" value="启用" class="btn btn-primary" onclick="startbank({$c.id})"></case>
+         <case value="0"><input type="button" value="审核" onclick="check({$c.id})" class="btn btn-sm btn-info circle"></case>
+		  <case value="1"><input type="button" value="禁用" class="btn btn-danger" onclick="forbiddenbank({$c.id})"></case>
+		   <case value="2"><input type="button" value="禁用" class="btn btn-danger" onclick="forbiddenbank({$c.id})"></case>
+		    <case value="3"><input type="button" value="启用" class="btn btn-primary" onclick="startbank({$c.id})"></case>
+        <default />默认情况
+      </switch>
+      </td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer"/>
+
+<script type="text/javascript">
+function check(id){
+    var modal = $(".modal_check");
+    modal.modal();
+	modal.attr("data-id",id);
+  }
+
+$(function(){
+      var modal = $(".modal_check");
+      modal.find("input[type=button]").click(function(){
+        var id = modal.attr("data-id");
+		var status = modal.find(".modal-body [name=status]:checked").val();
+        $.post("{:U('/admin/bankcard/updatestatus')}",{id:id,status:status},function(d){
+          if (d.suc) {
+            alert("设置成功");
+            modal.modal("hide");
+			window.location.reload();
+          }else{
+            alert(d.message);
+          }
+        })
+      })
+  })
+
+function startbank(id){
+  $.post("{:U('/admin/bankcard/updatestatus')}",{id:id,status:2},function(d){
+          if (d.suc) {
+            alert("设置成功");
+			window.location.reload();
+          }else{
+            alert(d.message);
+          }
+        })
+}
+
+function forbiddenbank(id){
+  $.post("{:U('/admin/bankcard/updatestatus')}",{id:id,status:3},function(d){
+          if (d.suc) {
+            alert("设置成功");
+			window.location.reload();
+          }else{
+            alert(d.message);
+          }
+        })
+}
+
+</script>
+
+<div class="modal fade modal_check" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">审核银行卡</h4>
+          </div>
+
+          <div class="modal-body">
+		   <p><span><input type="radio" value="1"  name="status">通过</span>
+		   <span><input type="radio" value="-1" checked="checked" name="status">不通过</span></p>
+          </div>
+
+          <div class="modal-footer">
+              <input type="button" value="提交" class="btn btn-primary">
+          </div>
+    </div>
+  </div>
+</div>

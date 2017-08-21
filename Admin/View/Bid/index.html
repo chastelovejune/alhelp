@@ -1,0 +1,38 @@
+<include file="Common/header"/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+     <!--<td>订单号</td>-->
+    <td>日期</td>
+    <!--<td>投标人id</td>-->
+    <td>投标人</td>
+    <td>需求</td>
+    <td>服务</td>
+    <td>投标价</td>
+    <td>QQ</td>
+    <td>电话</td>
+      <td>状态</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <foreach name='bids' item='b'>
+  <tr>
+  <td>{$b.id}</td>
+  <td>{:substr($b['add_time'],0,10)}</td>
+  <!--<td>{$b.member_id}</td>-->
+  <td>{$b.MbMember.nickname}</td>
+  <td>{$b.Demand.description}</td>
+  <td>{$b.Service.description}</td>
+  <td>￥{$b.bid_price}</td>
+  <td>{$b.qq}</td>
+  <td>{$b.phone}</td>
+    <td><if condition="$b['status'] eq 0"> <img style="width:15px;height:15px" src="__APP__/images/icons/yes.gif"><elseif condition="$b['status'] eq 2"/>成功<elseif condition="$b['status'] eq 1"/> <img style="width:15px;height:15px" src="__APP__/images/icons/no.gif"><else/>作废</if></td>
+    <td><a class="btn-danger  btn-sm" href="{:U('admin/bid/delete',['id'=>$b['id']])}">删除</a>
+      <a class="btn-default  btn-sm" href="{:U('admin/bid/getout',['id'=>$b['id']])}">作废</a>
+    </td>
+  </tr>
+  </foreach>
+</table>
+{$pageHtml}
+<include file="Common/footer"/>

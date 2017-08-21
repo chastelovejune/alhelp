@@ -1,0 +1,189 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<div class="mt_20">
+	<div class="g_row">
+		
+        <div class="bg">
+		  <div class="ds_detail_hd m_box f_clearfix" style="border-radius:10px;">
+		    <div class="ds_detail_user">
+  		  	<div class="m_imgbox"><a href=""><img src="{$service.image}" alt=""></a></div>
+  		  
+		    </div>
+		    <div class="ds_detail_info">
+		    	<h2 style="padding-bottom:0px;">
+		    	<a target="_blank" href="{:U('/home/service/detail',['id'=>$service['service_id']])}">
+		    	{$service.description}
+		    	</a>
+		    	</h2>
+                
+		    	<div class="ds_detail_class clear">
+		    	<foreach name="service['types']" item="t">
+		    	<a>{$t}</a>
+		    	</foreach>
+		    	</div>
+                    <div class="ds_detail_price" style="float:none; padding-bottom:0px; padding-top:0px; margin-bottom:0px;">&yen;{$service.cost}</div>
+		    </div>
+		    <div class="ds_detail_info" style="margin-top:45px;">
+
+				<if condition="$service['member_id'] eq session('id')"><else/>
+      <div class="ds_detail_op"><a href="javascript:void(0)"><img class="praise" src="images/icons/zan.png"/><span id="praise">{$service.praise_num}</span></a><a><img src="images/icons/share.png"/>分享</a> <a href="javascript:void(0)" id="collection">
+		  <img src="/images/icons/collect.png"/><span>收藏</span>
+	  </a> </div>
+				</if>
+                 <!--资料-->	    			    	
+                			    </div>
+		  </div>
+          
+ </div>   
+          
+          <div class="g_container">
+          <div class="g_row">
+          <section class="g_cell_12">
+		  <div class="ds_detail_bd m_box pl_20">
+          <ul class="u_tab2" id="nav">
+			  <li  class="u_tab2_item "  href="{:U('/member/service/audition',['id'=>I('request.id')])}" style="padding-left:20px; padding-right:20px;">试听</li>
+			  <li  class="u_tab2_item hover" style="padding-left:20px; padding-right:20px;">签约</li>
+			               
+			</ul>
+            
+ 
+            
+            
+             <ul class="user_dslist user_dslistuu te_ds" style="padding:0;">
+                <foreach name="service.orders" item="o">
+				<li class="user_dsitme f_clearfix clear">
+				  <div class="user_dsuser">
+				  	<div class="m_imgbox"><img src="{$o.avatar}" alt=""></div>
+				  	
+                    <p><span class="bz pointer remark" id="btn" ">备</span><span class="qq_btn">说悄悄话</span></p>
+                    <div class="bz_box" id="bz_box1" style="display:none;">
+                    <img class="bz_xl" src="images/icons/sy_jt1.jpg">
+                    <img class="gb_bz pointer cl_ramark" " src="images/icons/ico_x.png">
+						<form method="post" action="{:U('/member/Service/remark',['id'=>$o['id']])}" class="audition_remarks">
+                   <textarea  name="remark" placeholder="备注" class="bz_content">{$o.teacher_remark}</textarea>
+                    <input type="submit" class="btn_color pointer" value="保存">
+							</form>
+                    </div>
+				  </div>
+				  <div class="user_dsl">
+                     
+					  <h4 class="user_dstit"><span class="txt_green">{$o.nickname}<eq name='o.num' value='0'></eq></span><span>&nbsp;&nbsp;&nbsp;&nbsp;电话：{$o.phone}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;QQ：{$o.qq}</span></h4>
+                         
+					  <div class="user_dsclass"><h5 class="txt_green">{$o.add_time}</h5></div>
+					  </br>
+					
+					 <!-- <p>{$o.member_description}</p>-->
+					  <div>
+					  <include file="Common/_package"/>	
+					  </div>
+                      <ul class="user_tbtn">
+                      <gt name='o.package_id' value='0'>
+	                     <php>
+	                     	$contracts = M("contract")->where(['order_id'=>$o['id']])->order('add_time desc')->select();
+	                     </php>
+						<if condition="count($contracts) eq 0">
+	                      <li class="u_btn_sl" href="{:U('/member/contract/add',['id'=>$o['id']])}">
+	                      同意并拟定合同
+	                      </li>
+	                    <else/>
+	                    	<php>
+	                    		$c = $contracts[0];
+	                    	</php>
+	                    	<eq name='c.status' value='1'>
+								<a href="{:U('/member/ServiceOrder/show',['id'=>$o['id']])}"><li class="u_btn_bcn">学生已同意</li></a>
+	                    	<else/>
+	                    		<eq name='c.remark' value=''>
+			                       <li class="u_btn_bln">
+			                      等待学生查看
+			                      </li>
+			                    <else/>
+			                      <li class="u_btn_sl">
+			                      	<a target="_blank" href="{:U('/member/contract/add',['id'=>$o['id']])}">学提出修改，重新拟定</a>
+			                      </li>
+			                    </eq>
+	                    	</eq>
+		                    	
+		                    	<li style=" float:left; margin-right:10px;">
+		                    		<select class="u_slt show_contracts">
+				                    	<option value="0">选择查看合同</option>
+		                    			<foreach name="contracts" item="c">
+						            	<option value="{$c.id}">{$c.title}</option>
+						            	</foreach>
+							        </select>
+						        </li>
+	                      </if>
+                      </gt>
+                      </ul>
+                       
+                        
+				  </div>
+				 
+				</li>
+
+</foreach>
+                
+			
+               	</ul>
+               
+		  </div>
+		</section>       
+        
+     </div>
+        
+    
+    
+    </div>
+	 </div>
+</div>
+<include file="../Application/Home/View/Common/footer.html"/>
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+	$(".remark").click(function(){
+	$(this).parent().next().show();
+	})
+	$(".cl_ramark").click(function(){
+		$(this).prev().parent().hide();
+	})
+	$(".praise").click(function()
+	{
+
+		var member_id = {$m.id};
+		var service_id = {$service.service_id};
+		var	praise_num= {$service.praise_num};
+		$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:service_id,type:2},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg(d.message);
+				praise_num++;
+				$("#praise").html(praise_num);
+			}else{
+				layer.msg(d.message);
+				praise_num;
+				$("#praise").html(praise_num);
+			}
+
+		})
+	})
+
+	$("#collection").click(function()
+	{
+
+		var member_id = {$m.id};
+		var service_id = {$service.service_id};
+		$.post("{:U('/home/service/collection')}",{m_id:member_id,s_id:service_id},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg("收藏成功");
+				$("#collection").find('img').attr('src','/images/icons/collection.png');
+				$("#collection").find('span').html('取消收藏');
+				//window.location.reload();
+			}else{
+				$("#collection").find('img').attr('src','/images/icons/collect.png');
+				$("#collection").find('span').html('收藏');
+				layer.msg(d.message);
+			}
+
+		})
+	})
+	</script>

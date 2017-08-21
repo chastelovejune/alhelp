@@ -1,0 +1,131 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>申请日期</td>
+    <td>用户id</td>
+    <td>用户名</td>
+    <td>银行卡类型</td>
+    <td>账户名</td>
+    <td>卡号</td>
+    <td>提现金额</td>
+    <td>账户余额</td>
+    <td>账户冻结金额</td>
+    <td>状态</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="cash">
+    <tr>
+      <td>{$cash[add_time]}</td>
+      <td>{$cash[member_id]}</td>
+      <td>{$cash[nickname]}</td>
+      <td>{:C("bankcard_types")[$cash[card_type]]}</td>
+      <td>{$cash[card_name]}</td>
+      <td>{$cash[card_num]}</td>
+      <td>{$cash[balance]}</td>
+      <td>{$cash[mb_balance]}</td>
+      <td>{$cash[balance_frozen]}</td>
+      <td>{:C('tixian_types')[$cash[status]]}</td>
+      <td data-id="{$cash[id]}">
+        <if condition="$cash[status] eq 0">
+        <input type="button"  class="btn btn-info btn-sm" value="通过" onClick="tipass({$cash.id})">
+        <a  class="btn btn-danger btn-sm reject" data-toggle="modal" data-target=".bs-example-modal-sm">拒绝</a> 
+        </if>
+        <if condition="$cash[status] eq 2">
+          被拒绝原因: {$cash[remark]}
+        </if>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+          <form action="{:U('update')}" method="post">
+          <div class="modal-header">
+          <h1> <small>请填写拒绝的原因</small></h1>
+          </div>
+
+          <div class="modal-body">
+            <input type="hidden" name="id">
+            <input type="hidden" name="status" value="2">
+              <textarea required name="remark" style="height: 197px;width:100%"></textarea>
+          </div>
+
+          <div class="modal-footer">
+              <input type="submit" class="btn btn-primary">
+          </div>
+          </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal_pass" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">选择转账方式</h4>
+          </div>
+
+          <div class="modal-body">
+		   <p><span><input type="radio" value="0"  name="status">微信&nbsp;&nbsp;&nbsp;</span>
+		   <span><input type="radio" value="1" checked="checked" name="status">支付宝&nbsp;&nbsp;&nbsp;</span><input type="radio" value="2" checked="checked" name="status">其他</span></p>
+          </div>
+
+          <div class="modal-footer">
+              <input type="button" value="提交" class="btn btn-primary">
+          </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+function tipass(id){
+   var modal = $(".modal_pass");
+    modal.modal();
+	modal.attr("data-id",id);
+}
+
+$(function(){
+      var modal = $(".modal_pass");
+      modal.find("input[type=button]").click(function(){
+        var id = modal.attr("data-id");
+		var status = modal.find(".modal-body [name=status]:checked").val();
+        $.post("{:U('/admin/acount/ok')}",{id:id,status:status},function(d){
+          if (d.suc) {
+            alert("设置成功");
+            modal.modal("hide");
+			window.location.reload();
+          }else{
+            alert(d.message);
+          }
+        })
+      })
+  })
+
+  $("a.ok").click(function(){
+    var info = {id:$(this).parent().attr("data-id")};
+    $.post("{:U('/admin/acount/ok')}",info,function(){
+      window.location.reload();
+    })
+    return false;
+  })
+  $("a.reject").click(function(){
+    $("form").find("input[name=id]").val($(this).parent().attr("data-id"));
+  })
+
+  $.validator.setDefaults({
+      submitHandler: function(form) {
+        $(form).ajaxSubmit(function(){
+          window.location.reload();
+        })
+      }
+  });
+  $().ready(function() {
+      $("form").validate();
+  });
+</script>
+<include file="Common:admin_footer" />

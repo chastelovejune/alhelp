@@ -1,0 +1,62 @@
+<div class="f_ss_gr">
+	<div class="input_ss sr_ss" >
+	<input type="text" class="s_ss_content">
+	</div>
+	<div class="s_act">
+	<input type="submit" value class="ico_s">
+	</div>
+</div>
+
+ <div class="clear mb_15"></div>
+        
+ <div id="clsTab9_1box m_box">
+ <div class="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+ <ul class="u_tab2 m_box s_nav" id="nav">
+	<li class="u_tab2_item  <if condition='strlen($_GET[mp_type]) eq 0'>hover</if>"><a href="?mp_type=">全部</a></li>
+	<li class="u_tab2_item <eq name='_GET[mp_type]' value='1'>hover</eq>"><a href="?mp_type=1">说说</a></li>
+	<li class="u_tab2_item <eq name='_GET[mp_type]' value='2'>hover</eq>"><a href="?mp_type=2">问答</a></li>
+	</ul>
+ <php>
+ if(I('request.mp_type') == '1'){
+       $_mps  = M("member_post")
+	->join("LEFT JOIN mb_member ON mb_member.id=member_id")
+	->join("LEFT JOIN circle ON circle_id=circle.id")
+	->page($_GET['page'] ?: 1,10)
+	->order('id DESC')
+	->where(['member_id'=>$re['id'],'member_post.status = 1','reward = 0'])
+	->field("member_post.*,mb_member.nickname,mb_member.avatar,circle.circle_name")
+	->select();
+ }else if(I('request.mp_type') == '2'){
+	  $_mps  = M("member_post")
+	->join("LEFT JOIN mb_member ON mb_member.id=member_id")
+	->join("LEFT JOIN circle ON circle_id=circle.id")
+	->page($_GET['page'] ?: 1,10)
+	->order('id DESC')
+	->where(['member_id'=>$re['id'],'member_post.status = 1','reward > 0'])
+	->field("member_post.*,mb_member.nickname,mb_member.avatar,circle.circle_name")
+	->select();
+ }else{
+    $_mps  = M("member_post")
+	->join("LEFT JOIN mb_member ON mb_member.id=member_id")
+	->join("LEFT JOIN circle ON circle_id=circle.id")
+	->page($_GET['page'] ?: 1,10)
+	->order('id DESC')
+	->where(['member_id'=>$re['id'],'member_post.status = 1'])
+	->field("member_post.*,mb_member.nickname,mb_member.avatar,circle.circle_name")
+	->select();
+ }
+	
+</php>
+<include file="../Application/Member/View/MemberPost/_mps.html"/>
+</div>
+<div id="bg"></div>
+<div id="bottom">
+ <ul>
+     <li class="prev"></li>
+        <li class="img"></li>
+        <li class="next"></li>
+        <li class="close"></li>
+    </ul>
+</div>
+<div id="frame"></div>
+           	

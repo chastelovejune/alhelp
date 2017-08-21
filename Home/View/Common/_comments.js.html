@@ -1,0 +1,34 @@
+<script src="script/layer/layer.js"></script>
+<script type="text/javascript">
+
+  
+   $("a.zan").click(function(){
+        var h = $(this).find("span").html();
+        h = parseInt(h);
+        var img = $(this).find("img");
+        if (img.attr("src").indexOf("unu1")==-1) {
+            layer.msg("点赞成功");
+            img.attr("src","/images/icons/unu1.jpg");
+            $(this).find("span").html(h+1);
+            $.post("{:U('/home/comment/zan')}",{id:$(this).attr("data-id")},function(){
+                
+            })
+        }else{
+            img.attr("src","/images/icons/u1.jpg");
+            layer.msg("取消点赞");
+            $(this).find("span").html(h-1);
+            $.post("{:U('/home/comment/unzan')}",{id:$(this).attr("data-id")},function(){
+                
+            })
+        }
+        
+        return false;
+    })
+    function close_add_comment(t){
+        $("form.add_comment").remove();
+        return false;
+    }
+</script>
+<style type="text/css">
+    form.add_comment button{float:right;margin-right:10px;margin-top:2px;}
+</style>

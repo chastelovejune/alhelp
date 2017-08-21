@@ -1,0 +1,120 @@
+ <li class="stu_item show_yue">
+ <php>
+   $otherCall = $is_stu ? "老师" : "学生";
+ </php>
+  <p class="stu_name" ><if condition="($p['is_read'] eq 0) AND ($p['last_edit_member_id'] neq session('id'))"><img src="images/icons/im_news.png"><else/></if><a href="javascript:void(0)" ><span onClick="show_yue(this)" name="name">{$p.name}</span></a>&nbsp;
+     <if condition="$p['is_open'] eq 1"> <label class="stu_btn" style="float: right;margin-right: 40px;margin-top: 7px;color:#1ecca7;"><!--<input type="button"  value="公开课" class="u_btn_sl" >-->[公开课]</label><else/></if></span>
+
+
+  <p class="stu_time" name="set_time">{$p.set_time|to_minute}</p>
+
+  <eq name="p.member_id" value="$m.id">
+      <!--这里判断是不是发起人-->
+    <switch name="p.status">
+      <case value="0">
+      <p class="stu_state txt_grey">
+      已约课，等待确认
+      </p>
+
+      <p class="stu_btn"><a href="{:U('/member/classPlan/edit',['id'=>$p['id'],'per'=>$per])}">
+
+              <input type="button"  value="编辑" class="u_btn_sl"></a>
+          <input type="button" class="u_btn_sl cancel" onclick="cancel_yue({$p.id},{$per})" value="取消约课" style="background-color:orange"></p>
+
+
+      </case>
+      <case value="1">
+      <p class="stu_state txt_gery">
+          已同意约课
+      </p>
+      </case>
+      <case value="2">
+      <p class="stu_state txt_gery">
+          已取消约课
+          <p class="stu_btn">
+          <input type="button"  value="已取消约课" class="u_btn_sl" style="background-color: #D6D6D6;color:white">
+          </p>
+      </p>
+      </case>
+        <case value="3">
+            <if condition="$p['last_edit_member_id'] eq session('id')">
+                <p class="stu_state txt_gery">你已修改约课,等待对方确认</p>
+
+                <else/>
+                <p class="stu_state txt_green">对方已修改约课计划</p>
+                <p class="stu_btn">
+                    <a href="{:U('/member/classPlan/edit',['id'=>$p['id'],'per'=>$per])}">
+                        <input type="button"  value="查看修改" class="u_btn_sl"></a>
+
+                </p>
+            </if>
+
+        </case>
+    </switch>                  
+  <else/>
+    <!--如果不是发起人-->
+    <switch name="p.status">
+    <case value="0">
+    <p class="stu_state txt_green" style="width:90px">
+    {$otherCall}约课
+    </p>
+    <p class="stu_btn" style="width:220px" >
+        <a href="{:U('/member/classPlan/edit',['id'=>$p['id'],'per'=>$per])}">
+        <input type="button"  value="查看" class="u_btn_sl"></a>
+    <input type="button" class="u_btn_sl ok" onclick="ok_yue({$p.id},{$per})" value="确认约课">
+   <input type="button" class="u_btn_sl cancel" onclick="cancel_yue({$p.id},{$per})" value="取消约课" style="background-color:orange">
+      </p>
+    </case>
+    <case value="1">
+      <p class="stu_state txt_gery">
+         已同意约课
+        <p class="stu_btn">
+          <input type="button" class="u_btn_sl cancel" onclick="cancel_yue({$p.id},{$per})" value="取消约课" style="background-color:orange">
+        </p>
+      </p>
+    </case>
+    <case value="2">
+      <p class="stu_state txt_gery">
+          已取消约课
+        <p class="stu_btn">
+          <input type="button"  value="已取消约课" class="u_btn_sl" style="background-color: #D6D6D6;color:white">
+        </p>
+      </p>
+    </case>
+        <case value="3">
+
+                <if condition="$p['last_edit_member_id'] eq session('id')"><p class="stu_state txt_gery">你已修改约课,等待对方确认</p>
+                <else/>
+                    <p class="stu_state txt_green">对方已修改约课计划<p> <p class="stu_btn">
+                        <a href="{:U('/member/classPlan/edit',['id'=>$p['id'],'per'=>$per])}">
+                            <input type="button"  value="查看修改" class="u_btn_sl"></a>
+
+                    </p>
+
+                </if>
+
+
+
+            </p>
+        </case>
+    </switch>
+  </eq>
+
+  <input type="hidden" name="target" value="{$p.target}">
+  <input type="hidden" name="id" value="{$p.id}">
+  <input type="hidden" name="listen_type" value="{$p.listen_type}">
+  </li>
+<!--
+ <script type="text/javascript">
+     //设置已读
+     function  f1(id){
+         $.post("{:U('member/ServiceOrder/isread')}",{id:id});
+     }
+     </script>
+ -->
+ <style>
+     .u_btn_sl{
+         padding: 0px;
+         margin: 0px;
+     }
+     </style>

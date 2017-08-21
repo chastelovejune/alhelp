@@ -1,0 +1,62 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <a class="btn btn-outline btn-success btn-sm" href="/admin_school_add.html">添加</a>&nbsp;
+  <form method="post" action="/admin_school_index.html">
+ 类型: &nbsp; &nbsp;<select name="type">
+    <option value="1">城市</option>
+    <option value="2">学校</option>
+    <option value="3">学院</option>
+    <option value="4">专业</option>
+    </select>&nbsp; &nbsp;
+    <input type="text" name="key" placeholder="请输入关键字">
+    <input type="submit" />
+  </form>
+  <thead>
+    <tr>
+    <td>ID</td>
+      <td>类型</td>
+     <!-- <td>专业导航路径</td>-->
+      <td>编号</td>
+      <td>名字</td>
+      <td>地址</td>
+      <!--<td>所属父级</td>-->
+      <td>排序</td>
+      <td>增加时间</td>
+      <td>圈主</td>
+      <td>首字母</td>
+      <td>操作</td>
+
+    </tr>
+  </thead>
+    <foreach name="list" item="school">
+    <tr>
+      <td>{$school['id']}</td>
+      <td>{$school['type']}</td>
+    <!--  <td>{$school['path']}</td>-->
+      <td>{$school['code']}</td>
+      <td>{$school['title']}</td>
+      <td><small>地址:{$school['address']}</small></br>
+        <small>电话：{$school['telephone']}</small></br>
+        <small>邮编:{$school['postal_code']}</small></br>
+        <small>网址:{$school['website']}</small></br>
+      </td>
+     <!-- <td>{$school['pid']}</td>-->
+      <td>{$school['sort']}</td>
+      <td>{:substr($school['add_time'],0,10)}</td>
+      <td>{$school['group_member_id']}</td>
+      <td>{$school['first_letter']}</td>
+      <td>
+        <if condition="$school['status'] eq 0">
+        <a class="btn btn-default" href="{:U('admin/school/stop',['id'=>$school['id']])}">禁用</a>
+          <else/>
+          <a class="btn btn-default" href="{:U('admin/school/start',['id'=>$school['id']])}" style="background-color: green">启用</a>
+        </if>
+        <a class="btn btn-info" href="{:U('admin/school/edit',['id'=>$school['id']])}">编辑</a>
+        <a class="btn btn-danger" href="{:U('admin/school/delete',['id'=>$school['id']])}">删除</a>
+      </td>
+
+    </tr>
+    </foreach>
+</table>
+              {$pageHtml}
+<include file="Common:admin_footer" />

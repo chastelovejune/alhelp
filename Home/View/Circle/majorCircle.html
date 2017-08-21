@@ -1,0 +1,277 @@
+<include file="Common/header"/>
+
+<div class="u_bannerbar">
+  <div class="g_container">
+    <h2><a href="{:U('home/circle/index')}" class="bbtit">校友圈</a><b>|</b><a href="{:U('home/circle/majorCircle')}" class="bbtit hover">专业圈</a></h2>
+  </div>
+</div>
+
+<!--以上头部-->
+<!--
+<if condition="!$_SESSION['id']">
+<div class="u_bannerbar">
+  <div class="g_container">
+    <h2>登录以后可以直接进入圈子哦！<a class="u_btn_bl" href="{:U('/home/member/login')}">马上登录</a></h2>
+    <h2 class="f_dn"><a class="bbtit">校友圈</a><b>|</b><a class="bbtit">考研圈</a></h2>
+  </div>
+</div>
+</if>
+-->
+
+<div class="g_container mt_20">
+	<div class="g_row"><!--未登录隐藏辞div，登录状态显示全部-->
+		<if condition="!$_SESSION['id']"><else/>
+	  <div class="g_cell_12 m_box mb_20">
+		  <header class="u_tab2">
+				<ul class="f_clearfix">
+					<li id="idc3_1" onclick="setTab('idc3_','u_tab2_item',1,2)" class="u_tab2_item hover">我所在的圈子</li>
+					<li id="idc3_2" onclick="setTab('idc3_','u_tab2_item',2,2)" class="u_tab2_item">我关注的圈子</li>
+				</ul>
+			</header>
+		  <div class="community_dl">
+		    <p class="f_cl9 pb_20">点击可以锁定圈子。锁定圈子后在登录时可以直接进入圈子啦{$m['default_circle_id']}</p>
+				<ul id="idc3_1box" class="community_list f_clearfix zai">
+				<php>
+					$zaiCs = M()->table("circle")->join("LEFT JOIN school ON object_id=school.id")->join("LEFT JOIN circle_member ON circle_member.circle_id=circle.id")->where(["circle_member.member_id"=>$m["id"]])->limit(10)->field("logo,circle.*,title")->select();
+				</php>
+				<foreach name="zaiCs" item="c">
+					<li class="community_item <if condition="$m['default_circle_id'] eq $c['id']">on</if>" data-id="{$c['id']}">
+					  <div class="m_imgbox">
+					    <i class="u_ico_suo" style="cursor:pointer;<if condition="$m['default_circle_id'] eq $c['id']">display:block;</if>"></i>
+						  <img src="{$c['logo']}" style="width:100%;">
+						</div>
+						<h4>{$c["title"]}</h4>
+						<a class="u_btn_bl" href="{:U('/home/circle/profile',['id'=>$c['id']])}">进入圈子</a>
+					</li>
+				</foreach>
+				</ul>
+				<ul id="idc3_2box" class="community_list f_clearfix follow" style="display:none;">
+				<php>
+					$followCs = M()->table("circle")->join("LEFT JOIN school ON object_id=school.id")->join("LEFT JOIN member_follow_circle ON member_follow_circle.circle_id=circle.id")->where(["member_follow_circle.member_id"=>$m["id"]])->limit(10)->field("logo,circle.*,title")->select();
+				</php>
+				<foreach name="followCs" item="c">
+					<li class="community_item <if condition="$m['default_circle_id'] eq $c['id']">on</if>" data-id="{$c['id']}">
+					  <div class="m_imgbox">
+					    <i class="u_ico_X"></i>
+					    <i class="u_ico_suo" style="cursor:pointer;<if condition="$m['default_circle_id'] eq $c['id']">display:block;</if>"></i>
+						  <img src="{$c['logo']}" style="width:100%;">
+						</div>
+						<h4>{$c["title"]}</h4>
+						<a class="u_btn_bl" href="{:U('/home/circle/profile',['id'=>$c['id']])}">进入圈子</a>
+					</li>
+				</foreach>
+					<li class="commadd m_imgbox"><a href="">+</a></li>
+				</ul>
+		  </div>
+	  </div>
+	</div>
+</if>
+	<div class="g_row">
+		<!--左边栏搜索菜单!-->
+		<section class="g_cell_3 class_seat m_box">
+			<header class="cls_header">
+				<input type="button" onclick="go_circle();">
+				<div class="cls_tit on">
+					<input type="text" readonly="readonly" value="<present name='major1_res'>{$major1_res}<else/>选择分类</present>"  data-id="{$major1_id}" >
+				</div>
+				<div class="cls_tit  " id="major_in">
+					<input type="text" readonly="readonly" value="<present name='major2'>{$major2}<else/>选择专业</present>"  data-id="{$major2_id}">
+				</div>
+			</header>
+			<ul class="u_tab2">
+				<!--<li id="clsTab_1" onclick="setTab('clsTab_','u_tab2_item',1,4)" class="u_tab2_item <eq name='ACTION_NAME' value='index'>hover</eq>">大学</li>-->
+				<li id="clsTab_2" onclick="setTab('clsTab_','u_tab2_item',2,4)" class="u_tab2_item <eq name='ACTION_NAME' value='majorCircle'>hover</eq>">学科</li>
+				<!--<li id="clsTab_3" onclick="setTab('clsTab_','u_tab2_item',3,4)" class="u_tab2_item">统考</li>
+				<li id="clsTab_4" onclick="setTab('clsTab_','u_tab2_item',4,4)" class="u_tab2_item">公共课</li>-->
+			</ul>
+			<div id="clsTab_2box" class="cls_mainct"  style="display:none;">
+				<div class="m_titlist">
+					<foreach name="mjs" item="name" key="id">
+						<button onclick='change_major(this)'  data-id="{$name.id}">{$name['mj_name']}</button>
+					</foreach>
+				</div>
+			</div>
+			<div id="clsTab_3box" class="cls_mainct" style="display:none;">
+				<php>
+					$us = M("unified")->getField("id,cname");
+				</php>
+				<div class="m_titlist">
+					<foreach name="us" item="name" key="id">
+						<button data-id={$id}>{$name}</button>
+					</foreach>
+				</div>
+			</div>
+			<div id="clsTab_4box" class="cls_mainct" style="display:none;">
+				<div class="m_titlist">
+					<php>
+						$ps = M("public_subject")->getField("id,name");
+					</php>
+					<foreach name="ps" item="name" key="id">
+						<button data-id={$id}>{$name}</button>
+					</foreach>
+				</div>
+			</div>
+			<form id="list_filter_form">
+				<foreach name='_GET' item="v" key="k">
+					<input type="hidden" name="{$k}" value="{$v}">
+				</foreach>
+				<if condition="!isset($_GET[school_id])">
+					<input type="hidden" name="school_id">
+				</if>
+				<if condition="!isset($_GET[public_subject_id])">
+					<input type="hidden" name="public_subject_id">
+				</if>
+				<if condition="!isset($_GET[unified_id])">
+					<input type="hidden" name="unified_id">
+				</if>
+			</form>
+		</section>
+		<script type="text/javascript">
+			function change_major(t){
+				var t = $(t);
+				var id = t.attr("data-id");
+				//如果还有分类，去请求函数
+				$("#list_filter_form input[name=unified_id]").val("");
+				$("#list_filter_form input[name=public_subject_id]").val("");
+				$("#list_filter_form input[name=school_id]").val(id);
+				$("#list_filter_form").submit();
+			}
+
+			$("li.letter").click(function(){
+				$("div.school button").hide();
+				var li = $(this);
+				var letters = li.html();
+				for (var i = 0; i < letters.length; i++) {
+					var letter = letters[i].toLocaleLowerCase();
+					$("div.school button[data-letter="+letter+"]").show();
+				}
+			})
+			$(document).ready(function(){
+				var action= "{:ACTION_NAME}";
+				if(action=="majorCircle"){
+					$("#clsTab_2box").show();
+					$(".school").hide();
+					$("#clsTab_1box").hide();
+				}
+			})
+		</script>
+		<!--左边栏搜索菜单-->
+		<section class="g_cell_9 m_box">
+			<ul class="m_commlist">
+			<foreach name="circles" item="circle">
+			  <li class="m_commlist_item">
+			  	<div class="m_cl_userbox"><div class="m_imgbox">
+					<if condition="$circle['logo']"><img src="{$circle['logo']}" href="{:U('/home/blb/zhuanye',['schoolId'=>$circle['object_id']])}"><else/>
+						<img src="/images/test/180.jpg" href="{:U('/home/circle/blb',['schoolId'=>$circle['object_id']])}"></if>
+				</div></div>
+			  
+			  	<div class="m_cl_txtbox">
+						<h3><a href="{:U('/home/circle/profile',['id'=>$circle['id']])}">{$circle['circle_name']}</a> &nbsp;&nbsp;<a href="{:U('/home/circle/ratio',['id'=>$circle['id']])}" class="lblb"><img src="/images/icons/handb.png" style="width:20px; height:20px;"><span style="font-size:14px; color:#1ecca7;float:none;">&nbsp;查看报录比</span></a></h3>
+						<php>
+							$mj=M('mj_major')->field('mj_name')->where('pid='.$circle['object_id'])->select();
+						</php>
+					<p>
+						<foreach name="mj" item="vo">
+							{$vo['mj_name']}&nbsp;&nbsp;
+						</foreach>
+					</p>
+					</br>
+						<div class="m_cl_opt">
+						  <img src="/images/icons/group_mnum.png">&nbsp;&nbsp;{:M('circle_member')->where("circle_id=".$circle['id'])->count()}
+						</div>
+							<div class="m_cl_opt" style="padding-top:5px;">
+
+						</div>
+			  	</div>
+                	<div class="m_cl_btnbox"><a href="{:U('/home/circle/profile',['id'=>$circle['id']])}" class="u_btn_sl">进入圈子</a>
+                	<if condition="$circle['member_follow_circle_id'] gt 0">
+                	<a data-id="{$circle['id']}" class="u_btn_sc">取消关注</a>
+                	<else/>
+                	<a data-id="{$circle['id']}"  class="u_btn_sc">关注圈子</a>
+                	</if>
+                	</div>
+			  </li>
+			  </foreach>
+			</ul>
+			<div class="u_fy">
+				<php>echo pageHtml($count)</php>
+			</div>
+		</section>
+	</div>
+</div>
+
+<div class="hot_qz pt_20 pb_20">
+  <section class="g_container">
+    <header class="u_tab1">
+			<ul class="f_clearfix">
+				<li id="idc2_1" onmouseover="setTab('idc2_','u_btn_sl',1,1)" class="u_btn_sl hover">热门圈子<p class="u_btn_z"></p></li>
+				<li class="u_btn_bl"><a href="{:U('/home/circle')}">more</a></li>
+			</ul>
+		</header>
+		<php>
+            $mps = M("member_post")
+            ->join("LEFT JOIN circle ON circle.id=member_post.circle_id")
+            ->join("LEFT JOIN mb_member ON mb_member.id=member_post.member_id")
+            ->order("member_post.id DESC")->field("member_post.*,circle_name,mb_member.nickname,mb_member.avatar")->limit(3)->select();
+        </php>
+        <ul id="idc2_1box" class="idc2_list f_clearfix">
+        <foreach name="mps" item="mp">
+            <li>
+                <span class="idc2_date">{:substr($mp[add_time],11,5)}</span><i class="ico"></i>
+                <a class="idc2_tit" href="{:U('/home/circle/memberPost',['id'=>$mp[circle_id]])}">{$mp[circle_name]}</a><img class="idc2_img" src="{$mp[avatar]}">
+                <p class="idc2_txt"><a href="{:U('/home/member/memberPost',['id'=>$mp[member_id]])}">{$mp[nickname]}：</a>{$mp[content]}</p>
+            </li>
+           </foreach>
+        </ul>
+  </section>
+</div>
+<script type="text/javascript">
+	$("li.community_item div.m_imgbox").mouseenter(function(){
+		$(this).parent().addClass("on");
+    });
+	$("li.community_item div.m_imgbox").mouseleave(function(){
+		$(this).parent().removeClass("on");
+	});
+	$("li.community_item div.m_imgbox").click(function(){
+		$(this).find(".u_ico_suo").css("display","block");
+		$.post("{:U('/home/member/update')}",{default_circle_id:$(this).parent().attr("data-id")},function(){});
+	})
+	$("ul.follow .u_ico_X").click(function(){
+		var li = $(this).parent().parent();
+		var id = li.attr("data-id");
+		li.remove();
+		$.post("{:U('/home/circle/unfollow')}",{'circle_id':id},function(){
+		});
+	})
+	$(".m_cl_btnbox a.u_btn_sc").click(function(){
+		var mb_id="{:session('id')}";
+		if(mb_id==""){
+			layer.msg("必须登录才能关注");
+			exit;
+		}
+		var circle_id = $(this).attr("data-id");
+		if ($(this).html().indexOf("取消") == -1) {
+		//现在是关注
+			$(this).html("取消关注");
+			$.post("{:U('/home/circle/follow')}",{circle_id:circle_id},function(){
+
+			})	
+		}else{
+			$(this).html("关注圈子");
+			$.post("{:U('/home/circle/unfollow')}",{circle_id:circle_id},function(){
+
+			})
+		}
+	})
+	function go_circle(){
+	var major_id=$('#major_in').find("input").attr("data-id");//这里必须是圈子的ID
+	if(major_id==""){
+		layer.msg("请选择专业再进入圈子");
+		exit;
+	}
+		window.location="{:U('home/circle/memberPost')}?id="+major_id;
+	}
+</script>
+
+
+<include file="Common/footer"/>

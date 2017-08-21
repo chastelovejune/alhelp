@@ -1,0 +1,71 @@
+<include file="Common:admin_header" />
+<center><h2><{$type_name[$type]}></h2></center>
+<a class="btn btn-outline btn-success btn-sm" href="{:U('/admin/Information/add',['type'=>$type])}">添加</a>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+    <td>日期</td>
+      <td>编号</td>
+      <td>栏目</td>
+      <td>分类</td>
+      <td>发布人</td>
+      <td>文章标题</td>
+      <if condition="$type eq 0">
+      <td>需要</td>
+        <else/>
+        </if>
+     <!-- <td>需要金币</td>-->
+      <td>浏览数</td>
+      <if condition="$type eq 0">
+      <td>下载数</td>
+        <else/>
+        </if>
+      <!--<td>排序</td>-->
+      <td>状态</td>
+      <td>操作</td>
+
+    </tr>
+  </thead>
+    <foreach name="list" item="v">
+    <tr>
+      <td>{:substr($v['add_time'],0,10)}</td>
+      <td>{$v['id']}</td>
+      <td>{$type_name[$type]}</td>
+      <td>{$v['name']}</td>
+      <td>{$v['nickname']}</td>
+      <td>{$v['title']}</td>
+      <if condition="$type eq 0">
+      <td>
+        <if condition="$v['attachment_type'] eq 0">免费
+          <elseif condition="$v['attachment_type'] eq 1"/>
+        <span style="color:greenyellow">积分:{$v['attachment_score']}个<span>
+          <elseif condition="$v['attachment_type'] eq 2"/>
+        <span style="color:cornflowerblue">RMB:{$v['attachment_cost']}元<span>
+          <else/>
+          <span style="color:gold">金币:{$v['attachment_coin']}个<span>
+            </if>
+      </td>
+        <else/></if>
+      <td>{$v['views']}</td>
+      <if condition="$type eq 0">
+      <td>{$v['download_num']}</td>
+        <else/></if>
+      <td>{$v['status_name']}</td>
+      <td>
+        <if condition="$v['status'] eq 0">
+        <a class="btn-default btn btn-sm" href="{:U('admin/Information/stop',['id'=>$v['id']])}">禁用</a>
+          <else/>
+          <a class="btn-default btn btn-sm" href="{:U('admin/Information/start',['id'=>$v['id']])}" style="background-color: green;border:0px">启用</a>
+          </if>
+        <a class="btn-info btn btn-sm" href="{:U('admin/Information/edit',['id'=>$v['id'],'type'=>$type])}">编辑</a>
+        <a class="btn-danger btn btn-sm" href="{:U('delete',['id'=>$v['id']])}">删除</a></td>
+
+
+    </tr>
+    </foreach>
+</table>
+<div class="u_fy">
+  <php>echo pageHtml($count);</php>
+</div>
+<include file="Common:admin_footer" />

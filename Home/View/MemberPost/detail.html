@@ -1,0 +1,144 @@
+<include file="Common/header"/>
+<php>
+	$mp = M("")
+</php>
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9">
+			<php>
+				$_mps = M("member_post")
+				->join("LEFT JOIN mb_member ON mb_member.id=member_id")
+				->join("LEFT JOIN circle ON circle_id=circle.id")
+				->page($_GET['page'] ?: 1,10)
+				->where(['member_post.id'=>I("request.id")])
+				->order('id DESC')
+				->field("member_post.*,mb_member.nickname,mb_member.avatar,circle.circle_name")
+				->select();
+				foreach($_mps as $i => $c){
+		          $an = M("answer")->where(['object_id'=>$c['id'],'member_id'=>session("id")])->find();
+		          if($an){
+		          $_mps[$i]['ansed'] = '1';
+		        }else{
+			      $_mps[$i]['ansed'] = '0';
+		        }
+		       if($c['member_id'] == session('id')){
+		          $_mps[$i]['isme'] = '1';
+		       }else{
+		          $_mps[$i]['isme'] = '0';
+		        }
+		       }
+			</php>
+			<include file="_mpd"/>
+
+			<div class="m_box pl_20 pr_20 pb_20">
+
+			         <php>
+						  $ans = M("answer")
+				           ->join("LEFT JOIN mb_member ON mb_member.id=member_id")				         
+				           ->where(['answer.object_id'=>I("request.id")])
+				           ->field("answer.*,mb_member.nickname,mb_member.avatar")
+				           ->select();
+						  $anscount = M("answer")->where(['answer.object_id'=>I("request.id")])->count();
+						  $mpd = M("member_post")->where(['id'=>I("request.id")])->find();
+						</php>
+			
+			<div class="ucl_ssoperationde" style="padding-left:2%; margin-bottom:10px; padding-top:15px;"><span id="shuos1_4" onclick="setTab('shuos1_','',4,4)" class="hover">回答：{$anscount}</span>|<span id="shuos1_1" onclick="setTab('shuos1_','',1,4)">评论：{$mpd.comments_num}</span>|<span id="shuos1_2" onclick="setTab('shuos1_','',2,4)">转：{$mpd.f_number}</span>|<span id="shuos1_3" onclick="setTab('shuos1_','',3,4)">赞：{$mpd.praise_num}</span></div>
+			
+			  <div class="lineh">&nbsp;</div>
+
+			  <div id="shuos1_1box" class="ucl_ssreplybox" style="display:none; margin-top:20px;">
+				  	  <php>
+  				$_objectId=$mp['id'];
+  				$_commentType=3;
+  				$comments = get_comments($_commentType,$_objectId);
+  			</php>
+	  	   <include file="../Application/Home/View/Common/_addComment.html"/>
+		  	<include file="_comments"/>
+					  	</div>
+
+
+						<div id="shuos1_2box" class="ucl_sszfbox" style="display:none;  margin-top:20px;">
+						<php>
+						  $fms = M("member_post")->table("member_post member_post,mb_member mb_member")->where(['member_post.fid' => I("request.id"),'member_post.member_id = mb_member.id'])->field("member_post.*,mb_member.nickname,mb_member.avatar")->select();
+						</php>
+                <ul class="ucl_ssuslist">
+				<foreach name="fms" item="fm">
+                	<li><div class="m_imgbox"><img src="{$fm.avatar}" alt=""></div><a href="">{$fm.nickname}</a>转发了此说说</li>
+                	</foreach>
+                </ul>
+					  	</div>
+
+
+						<div id="shuos1_3box" class="ucl_sszfbox" style="display:none;  margin-top:20px;">
+						<php>
+						   $pms = M("praise")->table("praise praise,mb_member mb_member")->where(['type = 0','object_id'=>I("request.id"),'praise.member_id=mb_member.id'])->field('mb_member.nickname,mb_member.avatar')->select();
+						</php>
+                <ul class="ucl_ssuslist">
+				<foreach name="pms" item="pm">
+                	<li><div class="m_imgbox"><img src="{$pm.avatar}" alt=""></div><a href="">{$pm.nickname}</a>为此说说点了赞</li>
+                 </foreach>
+                </ul>
+					  	</div>						
+
+						<div id="shuos1_4box" class="ansm_box" style="margin-top:20px;">
+						<php>
+						    $ansm = M("answer")->table("answer answer,mb_member mb_member")->where(['object_id'=>I("request.id"),'answer.member_id = mb_member.id'])->field('answer.member_id,mb_member.avatar,mb_member.nickname')->select();
+							
+						</php>
+                        <ul>
+						<foreach name="ansm" item="am">
+
+                        <li class="ansmm">
+                        <div class="ansmface">
+                       <img src="{$am.avatar}">
+                       </div>
+                       <p class="fs_12">{$am.nickname}</p>
+                       <div class="gzimg">
+                       <img src="../images/icons/ico_idxft05.png">
+                       </div>
+                        </li>                      
+                         
+                       </foreach>
+                        </ul>
+                        <div class="clear"></div>
+                        </div>
+                        
+
+			</div>
+
+		</section>
+		<section class="g_cell_3 m_box">
+			<ul class="u_tab2">
+			  <li id="clsTab_1" onclick="setTab('clsTab_','u_tab2_item',1,2)" class="u_tab2_item hover">推荐服务</li>
+			  <li id="clsTab_2" onclick="setTab('clsTab_','u_tab2_item',2,2)" class="u_tab2_item">最新公告</li>
+			</ul>
+			<div id="clsTab_1box" class="cls_mainct">
+				<php>
+					$services = M("service")->order("service_id DESC")->limit(5)->getField("service_id,description");
+				</php>
+				<ul class="m_newsTlist f_clearfix">
+					<foreach name="services" item="v" key="k">
+					<li class="m_item"><a>{$v}</a></li>
+					</foreach>
+				</ul>
+			</div>
+			<div id="clsTab_2box" class="cls_mainct" style="display:none;">
+				<php>
+					$mps = topGongGao();
+				</php>
+				<ul class="m_newsTlist f_clearfix">
+					<foreach name="mps" item="v">
+          <li class="m_item"><a href="{:U('/home/information/show',['id'=>$v[id]])}">{$v[title]}</a></li>
+					</foreach>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+<script type="text/javascript">
+	setlist('shuos{:I('request.id')}_','',1,3);
+</script>
+<include file="Common/footer"/>
+
+
+

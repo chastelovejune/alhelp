@@ -1,0 +1,52 @@
+<include file="Common/header"/>
+
+
+<div class="mt_20">
+  <div class="g_row">
+    
+       <include file="_1"/>
+          
+          <div class="g_container">
+          <div class="g_row">
+          <section class="g_cell_9">
+      <div class="ds_detail_bd m_box">
+                 
+        <div  class="study_sta" id="spgc_1box">
+               
+                <div class="stu_title clear">
+              <!--<h4>约课计划&nbsp;&nbsp;&nbsp;&nbsp;<span onClick="bz('add_yue')">+添加约课</span></h4>-->
+              <h4>约课计划&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('/member/classPlan/yue',['id'=>$o['id']])}">+添加约课</a></h4>
+               </div>
+                
+                <div class="stu_sta clear">
+                     
+                <ul>
+              <foreach name="plans" item="p">
+               <include file="_yue_li"/>
+</foreach>
+                </ul>
+                </div>
+                </div>
+              <div class="clear"></div>               
+      </div>
+    </section>
+        
+        <include file="_2"/>
+     </div>
+        
+    
+    
+    </div>
+   </div>
+</div>
+
+
+
+
+
+<include file="add_yue"/>
+
+<include file="show_yue"/>
+
+
+<include file="Common/footer"/>

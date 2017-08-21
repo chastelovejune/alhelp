@@ -1,0 +1,144 @@
+<include file="Common/header"/>
+<style type="text/css">
+  a.disable{cursor:auto;}
+</style>
+<php>
+ $count = 1;
+</php>
+<div class="g_container mt_20 f_clearfix cart">
+  <div class="g_row">
+  	<div class="g_cell_12 m_box pd_20">
+  	  <header class="u_paytitle"><h3>添加数量</h3><p><span class="on"><b>1</b>添加数量</span><span><b>2</b>确认订单信息</span><span><b>3</b>成功提交订单</span></p></header>
+  	  <div class="paytable_top">
+  	   <!-- <a href="javascript:deleteAll({$m['id']})">清空购物车</a>-->
+		<php> $cnt = M("cart")->where(["member_id" => $m['id']])->sum("count"); </php>
+  	    <eq name="cnt" value="0"><else/>全选<input type="checkbox" class="all" style="margin-left:5px;"></eq>
+  	  </div>
+	    <div class="paytable">
+  	  	<ul class="paytable_title">
+  	  		<li class="paytab_item1"><input class="all2" type="checkbox"></li>
+  	  		<li class="paytab_item2">
+  	  		  <div class="paytab_user"><div class="m_imgbox"><img src="{$service['avatar']}" alt=""></div>{$service["nickname"]}</div>
+  	  		</li>
+  	  		<li class="paytab_item3">单价</li>
+  	  		<li class="paytab_item3">数量</li>
+  	  		<li class="paytab_item3">小计</li>
+  	  		<!--<li class="paytab_item3">操作</li>-->
+  	  	</ul>
+        
+  	  	<ul data-id={$service.service_id}>
+  	  		<li class="paytab_item1"><input class="service" type="checkbox"></li>
+  	  		<li class="paytab_item2">
+  	  		  <div class="paytab_tit">
+            <a target="_blank" href="{:U('/home/service/detail',['id'=>$c['service_id']])}">{$service[description]}</a>
+            </div>
+  	  		</li>
+  	  		<li class="paytab_item3">&yen;{$service[bid_price]}</li>
+  	  		<li class="paytab_item3"><div class="paytab_amount">
+          <a class="ico_lessen" href="javascript:del({$service[bid_price]})">
+          </a> <span id="count">{$count}</span><a class="ico_add" href="javascript:add({$service[bid_price]})"></a></div></li>
+  	  		<li class="paytab_item3 fee" id="tofee">&yen;{$count*$service[bid_price]}</li>
+  	  		<!--<li class="paytab_item3 f_cll"><a class="f_cll" href="javascript:cart_delete({$c['id']})">删除</a></li>-->
+  	  	</ul>
+  	  </div>
+      <div class="paytab_parttotal"></div>
+     <input type="hidden" id="counts" value="1">
+      <input type="hidden" id="bid" value="{$service[bid]}">
+  	  <p class="paytab_test no_service_notice">您还没有选中任何商品，请勾选。</p>
+  	  <div class="paytab_submitbox go">
+      <strong>总计：&yen;<span class="fee"></span></strong>
+      <br><input class="u_btn_sc pd_20" type="button" value="去结算"></div>
+  	</div>
+    <include file="Common/_userGoods"/>
+  </div>
+</div>
+<script type="text/javascript">
+function deleteAll(id)
+{
+	$.post("{:U('/home/cart/clear')}",{id:id},function()
+	{		
+		window.location.reload();
+	});
+}
+
+
+function go_handle(){
+  var checked_services = $('input[type=checkbox].service:checked');
+  if (checked_services.length > 0) {
+    $(".no_service_notice").hide();
+    $("div.go").show();
+  }else{
+    $(".no_service_notice").show();
+    $("div.go").hide();
+  }
+  var fee = 0;
+  checked_services.parent().parent().find("li.fee").each(function(){
+    var t = $(this).html().replace(/[^0-9]/,"");
+    fee += parseInt(t);
+  });
+  $(".go span.fee").html(fee);
+}
+
+function add(cost){
+	var c = document.getElementById("count").innerText;
+	c ++;
+	$count = c;
+   var total = c * cost;
+   $("#counts").val(c);
+    document.getElementById('count').innerHTML = c;
+	document.getElementById('tofee').innerHTML = total;
+}
+
+function del(cost){
+	var c = document.getElementById("count").innerText;
+	if(c > 1){
+	  c --;
+	  $count = c;
+	}else{
+	   alert("数量不能为0");
+	}
+	var total = c * cost;
+	  $("#counts").val(c);
+    document.getElementById('count').innerHTML = c;
+	document.getElementById('tofee').innerHTML = total;
+}
+
+function cart_delete(id){
+  $.post("{:U('/home/cart/delete')}",{id:id},function(){
+    window.location.reload();
+  });
+}
+$("input[value=去结算]").click(function(){
+    var checked_services = $('input[type=checkbox].service:checked');
+    var cart_ids = [];
+    checked_services.parent().parent().each(function(){
+      cart_ids.push($(this).attr("data-id"));
+    })
+    var path = $.param({cart_ids:cart_ids});
+	var id = checked_services.parent().parent().attr("data-id");
+	var count = $("#counts").val();
+	var bid = $("#bid").val();
+	var url = "{:U('/member/bid/confirm')}"+"?id="+id+"&cid="+count+"&bid="+bid;
+    window.location.href = url;
+})
+$(function(){
+  //一大堆box
+  $("input.all").click(function(){
+    $("input[type=checkbox]").prop("checked",$(this).is(":checked"));
+    go_handle();
+  })
+  $("input.all2").click(function(){
+    $(this).parent().parent().parent().find("input[type=checkbox]").prop("checked",$(this).is(":checked"));
+    go_handle();
+  })
+  $("input.service").click(function(){
+    var is_checked = $(this).is(":checked");
+    go_handle();
+  })
+  go_handle();
+});
+
+
+</script>
+<include file="Common/footer"/>
+

@@ -1,0 +1,146 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9 m_box pd_20">
+		  <header class="text_detailhd">
+		  	<h2>{$info['title']}</h2>
+		  	<span>作者：<a href="{:U('/home/member/profile',['id'=>$info[member_id]])}">{$info[nickname]}</a></span><span>发布时间：{:substr($info[add_time],0,10)}</span><span>浏览次数：{$info[views]}次</span><br>
+		  	<if condition="$info[attachment] neq ''">
+		  	<button class="u_btn_sl d_attachmentd_attachment" id="attachment"><i class="u_ico_download"></i>确认下载</button><br>
+				<if condition="$info[attachment_name]"><span>附件：<small>{$info[attachment_name]}</small></span></if>
+				<if condition="$info['attachment_type'] eq 1">
+					<span><strong>{$info[attachment_score]}</strong>积分</span>
+					<elseif condition="$info['attachment_type'] eq 2" />
+					<span><strong>人民币{$info[attachment_cost]}</strong>￥</span>
+					<elseif condition="$info['attachment_type'] eq 0" />
+					<span><strong style="color:green">下载免费</strong></span>
+					<else/></if>
+		  	</if>
+		  	<br>
+		  	<if condition="$info[image] neq ''">
+		  	<img src="{$info[image]}" alt="">
+		  	</if>
+		  </header>
+		  <div class="text_detailbd">{$info[content]}</div>
+			<if condition="$info[url]"><small>链接:<a href="{$info[url]}">{$info[url]}</a></small></if>
+		  <div class="text_detailfd">
+		  <php>
+		  	$pre = M("information")->where("id < $info[id]")->order("id DESC")->find();
+		  	$next = M("information")->where("id > $info[id]")->order("id ASC")->find();
+		  </php>
+		    <div class="text_fy f_clearfix"><span><a href="">分享给朋友</a><a href="">分享到圈子</a>
+		    <a><if condition="$info[collection_id]">已</if>收藏</a>
+		    </span><a class="f_fl" href="{:U('/home/information/show',['id'=>$pre[id]])}">上一篇：{$pre[title]}</a><a class="f_fr" href="{:U('/home/information/show',['id'=>$next[id]])}">下一篇：{$next[title]}</a></div>
+		    <php>
+		    	$_commentType=4;
+		    	$_objectId = $info[id];
+	            $comments = get_comments($_commentType,$_objectId);
+		    </php>
+		  <include file="Common/_addComment"/>
+  		  <include file="Common/_comments"/>
+		  <include file="Common/_comments.js"/>
+		  </div>
+		</section>
+		<section class="g_cell_3 m_box">
+			<ul class="u_tab2">
+			  <li class="u_tab2_item">最新公告</li>
+			</ul>
+			<div id="clsTab_2box" class="cls_mainct">
+			<php>
+				$gaos = topGongGao();
+			</php>
+				<ul class="m_newsTlist f_clearfix">
+					<foreach name="gaos" item="gao">
+					<li class="m_item"><a href="{:U('/home/information/show',['id'=>$gao[id]])}">{$gao[title]}</a></li>
+					</foreach>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+
+
+<div class="pop_bg" >
+<div class="int_box" >
+<div class="int_top">
+亲~积分不够了
+</div>
+<div class="int_con">
+<p>现在就去赚取积分吧！</p>
+	</br>
+	<small>分享资料或者心得可以赚取积分喔！</small>
+<div class="u_btn_gb" onclick="$('.pop_bg').hide()">关闭</div>
+<div class="u_btn_sl" href='{:U("/home/share/add")}'>现在就去</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	var id = {$info['id']};
+	$.post("{:U('/home/information/read')}",{id:id},function(){})
+	$(".text_fy span a").eq(2).click(function(){
+		var t = $(this);
+		if (t.html().indexOf("已") != -1) {
+			t.html("收藏");
+			$.post("{:U('/home/Collection/delete')}",{type:1,object_id:id},function(){
+			})
+		}else{
+			t.html("已收藏");
+			$.post("{:U('/home/Collection/add')}",{type:1,object_id:id},function(){
+			})
+		}
+		return false;
+	})
+	var atta_type="{$info['attachment_type']}";
+	console.log(atta_type);
+	$("#attachment").click(function(){
+
+		if(atta_type == 0){
+				$.post("{:U('/home/information/download')}", {id: id}, function (d) {
+				    layer.msg(d.message);
+					window.location.href = d.url;//打开下载的地址
+				})
+		}else{
+		   
+		layer.confirm('下载需要扣除积分、金币或人民币，确定下载吗？', {
+			btn: ['确定','取消'] //按钮
+		}, function() {
+			$.post("{:U('/home/information/download')}", {id: id}, function (d) {
+				if (atta_type == 1) {
+						if (d.suc) {
+							layer.msg(d.message);
+							window.location.href = d.url;//打开下载的地址
+						} else {
+							$("div.pop_bg").show();
+						}
+				} else if (atta_type == 2) {
+							if (d.suc) {
+								layer.msg(d.message);
+								var url = "{:U('/home/Information/pay')}" + "?id=" + d.url;
+								window.location.href = url;
+							} else {
+								layer.msg(d.message);
+							}
+
+				} else if (atta_type == 0) {
+					layer.msg(d.message);
+					window.location.href = d.url;//打开下载的地址
+
+				}else{
+							if (d.suc) {
+								layer.msg(d.message);
+								window.location.href = d.url;//打开下载的地址
+							} else {
+								layer.msg(d.message);
+							}
+					}
+				})
+			})
+		}
+		})
+</script>
+
+<include file="Common/footer"/>

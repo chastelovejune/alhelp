@@ -1,0 +1,60 @@
+<section class="indx6 m_box mb_20">
+	<h3 class="m_title">课程教师</h3>
+  <div class="teacher_box" >
+    <div class="img_face mb_20" style="position:relative;">
+        <a href="{:U('/home/member/profile',['id'=>$_detailM['id']])}">
+    <img src="{$_detailM['avatar']}"/></a>
+    <php>
+        $cm_count = M("circle_member")->where(['member_id'=>$_detailM['id']])->count();
+    </php>
+    <if condition="$cm_count gt 0">
+    <div class="zhu" style="position: absolute; right: 0px;top: 0px;">
+        <img src="/images/icons/ico_zhu.jpg" style="width:20px;height:20px;">
+    </div>
+    </if>
+    </div>
+    <div class="content_right">
+    <h4>
+    <a href="{:U('/home/member/profile',['id'=>$_detailM['id']])}">
+    {$_detailM["nickname"]}
+    </a>
+    </h4>
+    <p class="clear"><span style="float:left; margin-right:20px;">关注{$_detailM['follow_num']}</span><span>粉丝{$_detailM['fans_num']}</span></p>
+    </div>
+    <div class="clear" style="color:#999; margin-bottom:10px;">
+    {$_detailM['sign']}
+    </div>
+    <div class="bottom">
+    <if condition="$_SESSION['id'] AND ($_detailM['id'] neq $_SESSION['id'])">
+        <php>
+            $isFed = M('follow')->where(['follower'=>$_SESSION['id'],'befollowed'=>$_detailM['id']])->count() > 0;
+        </php>
+        <if condition="$isFed">
+            <a style="width:50%; text-align:center; margin-right:20%;cursor:default;">取消关注</a>
+        <else/>
+            <a class="f" data-id={$_detailM['id']} style="width:50%; text-align:center; margin-right:20%;">+ &nbsp;&nbsp;&nbsp;&nbsp;  关注</a>
+        </if>       
+    </if>
+    <php>
+        if(CONTROLLER_NAME == 'Service'){
+            $imid = $service[service_id];
+            $imtype = 'service';
+        }elseif(CONTROLLER_NAME == 'Demand'){
+            $imid = $demand[demand_id];
+            $imtype = 'demand';
+        }else{
+            $imid = $c[open_class_id];
+            $imtype = 'openClass';
+        }
+    </php>
+   <a href="{:U('/home/im/index',['id'=>$imid,'type'=>$imtype])}" target="_blank"> <img src="/images/icons/ico_mss.png" style=" margin-right:5px; margin-top:-4px;">私聊</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $("section.indx6 div.bottom a.f").click(function(){
+        $.post("{:U('/home/member/follow')}",{"member_id":$(this).attr("data-id")},function(d){
+            window.location.reload();
+        })
+    })
+</script>            
+</section>

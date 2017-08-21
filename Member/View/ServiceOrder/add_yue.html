@@ -1,0 +1,29 @@
+
+<div class="pop_bg" id="add_yue">
+<div class="cls_made" style="width:600px;height: 600px;overflow:auto;postion:fixed;top:10px;">
+<div class="cls_top">制定约课计划</div>
+<div class="cls_con">
+<form method="post" action="{:U('/member/Plan/save')}" class="yue">
+<input type="hidden" name="order_id" value="{$o.id}">
+<input type="hidden" name="member_id" value="{$m.id}">
+<input type="hidden" name="id" value="">
+<eq name='o.num' value='0'>
+<input type="hidden" name="learning_periods_id" value="{$periods.$step.id}">
+</eq>
+<ul>
+<li class="cls_titem"><div class="cls_t">标题：</div><input type="text" name="name" required="true" class="u_inp_t"></li>
+<li class="cls_titem"><div class="cls_t">时间：</div><input type="text" required="true" name="set_time" class="u_inp_t"></li>
+<li class="cls_titem"><div class="cls_t">目标：</div><textarea required="true" name="target" class="u_inp_t" style="width:70%;"></textarea></li>
+<li class="cls_titem"><div class="cls_t">听课方式：</div><input type="text" name="listen_type" class="u_inp_t"></li>
+<li class="cls_titem"><div class="cls_t">课程内容：</div><textarea required="true" type="text" name="content" class="u_inp_t" ></textarea></li>
+	<li class="cls_titem"><div class="cls_t">课程讲义：</div><textarea required="true" type="text" name="content_reference" class="u_inp_t"></textarea></li>
+<li class="cls_titem cls_mbtn">
+	<input type="submit" class="u_btn_sl" value="确认提交"></li>
+</ul>
+</form>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	$("form.yue").resetForm();
+</script>

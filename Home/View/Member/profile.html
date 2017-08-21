@@ -1,0 +1,347 @@
+<include file="Common/header"/>
+<div class="u_userbarh">
+  <div class="g_container">
+   
+   <div class="home_face">
+   <img src="{$re['avatar']}">
+   </div>
+   <div class="userbarh_name">{$re['nickname']}</div>
+    <div class="addfollow">
+
+     <php>
+	 
+      	$f = M("follow")->where(['follower'=>session("id"),"befollowed"=>$m['id']])->find();
+
+      	$f = M("follow")->where(['follower'=>session("id"),"befollowed"=>$re['id']])->find();
+
+         </php>
+
+ 		<input type="button" class="follow fol" value="<if condition="$f['id']"> -<else/>+</if> 关注">
+
+    </div>
+    <div class="user_grah" style="font-size:12px">
+    <if condition="$re['sign'] neq ''">
+    {$re['sign']}
+    <else/>
+    	ta还没有设置个性签名
+    </if>
+    
+    </div>
+     <div class="userbar_datah" style="padding-bottom:20px; font-family:'宋体'">
+     <php>
+       $m = M("mb_member")->field('chat_id')->find($re[id]);
+     //多个circle情况没考虑
+     	$circle = M("circle")->join("LEFT JOIN circle_member ON circle.id = circle_member.circle_id")->where(["member_id"=>$re['id']])->order("circle_level DESC")->find();
+     	$areaName = M("school")->join("LEFT JOIN school as ps on school.pid=ps.id")->where(["school.id"=>$circle['object_id']])->getField("ps.title");
+     </php>
+     <if condition="$circle['circle_type'] eq 0">
+     <p><span>{$areaName}&nbsp;|&nbsp;{$circle['circle_name']}</span></p>
+    <else/>
+    	<p>专业圈还没弄</p>     
+     </if>
+     </div>
+        
+		
+          <ul class="u_home_btn">
+   
+        <li class="home_btn">
+       <input type="button" class="u_btn_sl" value="跟TA微聊"  onclick="<gt name='_SESSION.id' value='0'>talk('{$m.chat_id}')<else/>window.location.href='{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}'</gt>">
+        </li>
+
+ <li class="home_btn">
+    <a class="u_btn_sl" href="{:U('/memberPost/quiz',['id'=>$re['id']])}">有偿提问</a>
+      
+        </li>
+     
+        <li class="home_btn">
+        <div class="sz_ta">
+        <img src="/images/icons/set_ta.png"  style="cursor:pointer; width:25px; height:25px; margin-top:5px;">
+        <ul class="menu">
+        <li class="pointer">在通讯录中删除</li>
+        <li class="pointer" id="btn1">设置备注和标签</li> 
+        <li class="pointer">把Ta推荐给朋友</li>
+        <li class="pointer">不再接收Ta的悄悄话</li>
+        <li class="pointer">不看Ta的说说</li>
+        <li class="pointer">不让对方看我的说说</li>    
+        </ul></div>
+        </li>
+		
+        </ul>
+		
+    <style type="text/css">
+    	.praise{cursor:pointer; position:relative; width:30px; height:30px;background-image:url('/images/icons/heart2.png');background-size:100% 100%;color:white}
+    
+    </style>
+   
+  </div>
+</div>
+
+<div class="user_navbox">
+  <div class="g_container">
+  	<ul class="user_nav home_nav">
+			<li class="user_navitem <if condition='ACTION_NAME eq memberPost'>hover</if>"><a href="{:U('/home/member/memberPost',['id'=>I('request.id')])}?mp_type=0" >提问说说</a></li>
+        <li class="user_navitem <if condition='ACTION_NAME eq share'>hover</if>">
+            <a href="{:U('/home/member/share',['id'=>I('request.id')])}" >分享</a>
+        </li>
+          <li class="user_navitem <if condition='ACTION_NAME eq demand'>hover</if>">
+			  <a href="{:U('/home/member/demand',['id'=>I('request.id')])}?demand_type=0" >需求<i class="u_ico u_ico_cdown"></i></a>
+			  <ul class="menu">
+			  	<li><a href="{:U('/home/member/demand',['id'=>I('request.id')])}?demand_type=0" >Ta的资料</a></li>
+			  	<li><a href="{:U('/home/member/demand',['id'=>I('request.id')])}?demand_type=1" >Ta的答疑</a></li>
+			  	<li><a href="{:U('/home/member/demand',['id'=>I('request.id')])}?demand_type=2" >Ta的授课</a></li>			  	
+			  	
+			  </ul>
+  		</li>
+
+        <li class="user_navitem <if condition='ACTION_NAME eq service'>hover</if>">
+			  <a href="{:U('/home/member/service',['id'=>I('request.id')])}?service_type=0" >服务<i class="u_ico u_ico_cdown"></i></a>
+			  <ul class="menu">
+			  	<li><a href="{:U('/home/member/service',['id'=>I('request.id')])}?service_type=0" >Ta的资料</a></li>
+			  	<li><a href="{:U('/home/member/service',['id'=>I('request.id')])}?service_type=1" >Ta的答疑</a></li>
+			  	<li><a href="{:U('/home/member/service',['id'=>I('request.id')])}?service_type=2" >Ta的授课</a></li>			  	
+			  
+			  </ul>
+  		</li>
+        
+  		<li class="user_navitem <if condition='ACTION_NAME eq openClass'>hover</if>">
+			  <a href="{:U('/home/member/openClass',['id'=>I('request.id')])}" >公开课</a>
+			 
+  		</li>    
+  	</ul>
+  </div>
+</div>
+
+
+
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_9">
+
+<switch name="ACTION_NAME">
+<case value="fans"><include file="Member/_fans"/></case>
+<case value="follows"><include file="Member/_follows"/></case>
+<case value="memberPost"><include file="Member/_memberPost"/></case>
+<case value="demand"><include file="Member/_demand"/></case>
+<case value="service"><include file="Member/_service"/></case>
+<case value="openClass"><include file="Member/_openClass"/></case>
+    <case value="share"><include file="Member/_share"/></case>
+<default /><include file="Member/_memberPost"/>
+</switch>	  
+		</section>
+        
+		       
+		<div class="g_cell_3">
+      
+            <section class="indx6 m_box mb_20">
+				<ul>
+                <li class="bb_item pointer">
+               <div class="num">{$re['follow_num']}</div>
+              <p class="home_bb"> 关注</p>
+                </li>
+                <li class="lineu" >
+                
+                </li>
+                 <li class="bb_item pointer">
+               <div class="num">{$re['fans_num']}</div>
+             <p class="home_bb">粉丝</p>
+                </li>
+                 <li class="lineu">
+                
+                </li>
+                 <li class="bb_item pointer">
+                <div class="num">34</div>
+               <p class="home_bb">群聊</p>
+                </li>
+                 <li class="lineu">
+                 </li>
+                 <li class="bb_item pointer">
+               <div class="num">{$re['friend_num']}</php></div>
+              <p class="home_bb">好友</p>
+                </li>
+                </ul>
+              
+                <ul class="clear" style="margin-left:20px;">
+                   <li class="idstatus">
+                <img src="/images/icons/systemlist4.png" style="width:20px; height:20px;">
+                </li>
+                <li class="idstatus">
+                <img src="/images/icons/ico_cheng.png">
+                </li>
+                 <li class="idstatus">
+                <img src="/images/icons/ico_ming.png">
+                </li>
+                 <li class="idstatus">
+                <img src="/images/icons/ico_v.png">
+                </li>
+                 <li class="idstatus">
+                <img src="/images/icons/ico_id.png">
+                </li>
+                </ul>
+              
+                <div class="clear">
+                <img src="/images/icons/position.png" style="float:left; width:15px; height:20px; margin-left:20px; margin-right:10px; margin-bottom:10px;">
+                <div class="position">
+                <php>
+                  echo M("area")->where(["id"=>$re["city"]])->getField("title");
+                </php>
+                &nbsp;&nbsp;<php>
+                  echo M("area")->where(["id"=>$re["area"]])->getField("title");
+                </php>
+                </div>               
+                </div>
+                <div class="clear">
+                <img src="/images/icons/graduation_cap.png" style="float:left; width:15px; height:20px; margin-left:20px; margin-right:10px; margin-bottom:10px;">
+                <div class="position">
+                <span class="txt_gery">毕业于</span><span>&nbsp;&nbsp;<a href="">北京大学</a></span>
+                </div>
+                </div>
+                <div class="clear">
+                <img src="/images/icons/text.png" style="float:left; width:15px; height:15px; margin-left:20px; margin-right:10px; margin-bottom:10px;">
+                 <div class="position" style="margin-bottom:10px;">
+                 {$re["description"]}
+                </div>
+                </div>                
+                <div class="clear"></div>
+                 <div class="bottom pointer">
+               查看更多>>
+                </div>  
+			</section>
+            
+            
+              <section class="indx6 m_box mb_20">
+				
+                <h3 class="m_title" style="margin-left:0px;">Ta的关注（{$re["follow_num"]}）</h3>
+                <ul class="clear">
+                <php>
+                  $follows = M("mb_member")->join("LEFT JOIN follow ON mb_member.id=follow.befollowed")->where(["follower"=>$re["id"]])->select();
+                </php>
+                <foreach name="follows" item="f">
+               <li class="home_yh">
+               <div class="img_yh_home"><a href=""><img src="{$f['avatar']}"></a></div>
+               <div class="yh_home_txt">{$f["nickname"]}</div>
+               </li>
+             </foreach>
+                </ul>
+                <div class="clear"></div>
+                <div class="bottom">
+                 <a href="{:U('/home/member/follows',['id'=>$re['id']])}">查看更多>></a>
+                </div> 
+			</section>
+            
+             <section class="indx6 m_box mb_20">
+				
+                <h3 class="m_title" style="margin-left:0px;">Ta的粉丝（{$re["fans_num"]}）</h3>
+                <ul class="clear">
+                <php>
+                  $fans = M("mb_member")->join("LEFT JOIN follow ON mb_member.id=follow.follower")->where(["befollowed"=>$re["id"]])->select();
+                </php>
+               <foreach name="fans" item="f">
+               <li class="home_yh">
+               <div class="img_yh_home"><a href=""><img src="{$f['avatar']}"></a></div>
+               <div class="yh_home_txt">{$f["nickname"]}</div>
+               </li>
+             </foreach>
+                </ul>
+                <div class="clear"></div>
+                <div class="bottom">
+               <a href="{:U('/home/member/fans',['id'=>$re['id']])}"> 查看更多>></a>
+                </div> 
+			</section>
+            
+             <section class="indx6 m_box mb_20 hot_ds">
+				<h3 class="m_title">加入的群聊</h3>           
+                  <ul id="idc1_1box" class="m_sublist f_clearfix">
+        <li class="clear  pl_10">
+          <div class="img_face"><a href=""><img src="/images/test/180.jpg"></a></div>
+          <div class="content_right">
+              
+                <h4>名称</h4>
+                <h5>34成员</h5>
+                <p class="clear mb_10"><span>群简介：内容内容内容内容内容内容内容</span></p>
+                </div>
+        </li>
+        <li class="clear pl_10">
+         <div class="img_face"><a href=""><img src="/images/test/180.jpg"></a></div>
+          <div class="content_right">
+              
+                <h4>名称</h4>
+                <h5>34成员</h5>
+                <p class="clear mb_10"><span>群简介：内容内容内容内容内容内容内容</span></p>
+                </div>
+        </li>
+        <li class="clear pl_10">
+          <div class="img_face"><a href=""><img src="/images/test/180.jpg"></a></div>
+          <div class="content_right">
+              
+               <h4>名称</h4>
+                <h5>34成员</h5>
+                <p class="clear mb_10"><span>群简介：内容内容内容内容内容内容内容</span></p>
+                </div>
+        </li>
+      </ul>  
+        <div class="clear"></div>  
+                <div class="bottom">
+               查看更多>>
+                </div>                          
+			</section>
+                                
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<div id="Container"></div>
+<script>
+var text = '<div id = "pop" class="pop_bz"><div class="bz_title" id="title">'+"设置备注及标签"+'</div><div class="content">'+'&nbsp;&nbsp;备注名&nbsp;&nbsp;'+'<input type="text" class="u_inp_t"></div><div class="content">'+'&nbsp;&nbsp;标&nbsp;&nbsp;&nbsp;&nbsp;签&nbsp;&nbsp;'+'<input type="text" class="u_inp_t"></div><div class="btn" id="btn-left" onclick="cancel(this)">'+'确定'+'</div><div class="btn" id="btn-right" onclick="cancel(this)">'+'取消'+'</div></div>';
+$("#btn1").click(function(){
+	openPop("#Container","#pop",300,300,text);
+	});
+
+function cancel(){
+	$("#Container").empty();
+}
+$("div.praise").click(function(){
+		var n =	parseInt($(this).html());
+		$(this).html(n+1);
+		var id = {$re["id"]};
+		$.post("{:U('/home/member/praise')}",{"id":id},function(){
+
+		})
+	})
+	$("input.follow").click(function(){
+		var val = $(this).val();		
+		if (val.indexOf("+")==-1) {
+			val = val.replace("-","+");
+			$(this).val(val);
+			var member_id = {$re['id']};
+			$.post("{:U('/home/member/unfollow')}",{"member_id":member_id},function(){
+
+			})	
+		}else{
+			val = val.replace("+","-");
+
+			$(this).val(val);
+			var member_id = {$re['id']};
+			$.post("{:U('/home/member/follow')}",{"member_id":member_id},function(){
+
+			})
+		}
+	})
+
+function talk(id){     
+	  $.post("{:U('/home/im/getdlgid')}",{mid:id},function(d){
+			var t = d.message;
+			window.location.href="{:U('/home/im/index')}?id=" + id +"&dlgid=" +t;			
+		});		
+   }
+</script>
+
+
+<include file="Common/footer"/>
+
+

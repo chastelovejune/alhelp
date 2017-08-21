@@ -1,0 +1,182 @@
+      
+            <div class="g_cell_3" style="float:right">
+                  
+      <!--  <img src="/images/icons/home_set.png" id="btn2"  style="width:115px; height:58px; float:left; cursor:pointer; "/>-->
+
+
+        
+            <section class="indx6 m_box mb_20" style="position:relative;z-index:1;">   
+			 <ul style="position:absolute; top:-10px;">
+             <li class="idstatus">
+            <img src="/images/icons/systemlist4.png" style="width:25px; height:25px;">
+            </li>
+            <li class="idstatus">
+            <img src="/images/icons/ico_cheng.png"   style="width:20px; height:20px;">
+            </li>
+             <li class="idstatus">
+            <img src="/images/icons/ico_ming.png"  style="width:20px; height:20px;">
+            </li>
+             <li class="idstatus">
+            <img src="/images/icons/ico_v.png"  style="width:20px; height:20px;">
+            </li>
+             <li class="idstatus">
+            <img src="/images/icons/ico_id.png"  style="width:20px; height:20px;">
+            </li>
+        
+            </ul>
+
+                        <ul class="m_newsTlist f_clearfix  clear" style="padding-bottom:0px;">
+                              <li class="b_item">
+                    <p><span class="txt_t">积分：</span><a href="">{$m[score]}</a><span class="txt_gery line_pointer" style="float:right;">积分用途</span></p>
+                    
+                    </li>
+                    <li class="b_item">
+                      <p><span class="txt_t">邮箱：</span>
+                      <span>{$m[email]}</span>
+                      <if condition="$m[email] eq '' ">
+                      <span class="txt_green line_pointer" style="float:right;" href="{:U('/home/member/bindEmail')}">去绑定</span>
+                      <else/>
+                      <span class="txt_gery" style="float:right;">已绑定</span>
+                      </if>
+                      </p>
+                    </li>
+                    <li class="b_item">
+                      <p><span class="txt_t">手机：</span>{$m[phone]}
+                      <if condition="$m[phone] eq  '' ">
+                      <span class="txt_green line_pointer" style="float:right;" href="{:U('/home/member/bindPhone')}">去绑定</span>
+                      <else/>
+                      <span class="txt_gery" style="float:right;">已绑定</span>
+                      </if>
+                      </p>
+                    </li>
+                    <li class="b_item" style="border-bottom:0px;">  <a href="{:U('/home/member/setting')}">编辑个人资料>></a></li>
+                        </ul>
+                
+                  </section>
+                                   
+                  
+           <section class="indx6 m_box mb_20">
+                        <ul>
+                <li class="bb_item">
+                <a href="{:U('/member/memberPost/index')}">
+                  <img src="/images/icons/logo_s.png">
+                  <p> 说说</p>
+                </a>
+                </li>
+                <li class="lineu">
+                
+                </li>
+                 <li class="bb_item pointer">
+                <img src="/images/icons/servicetab2.png">
+              <p>  提问</p>
+                </li>
+                 <li class="lineu">
+                
+                </li>
+                 <li class="bb_item">
+                   <a href="{:U('/member/share/index')}">
+                <img src="/images/icons/share.png" style="border-radius:50%;">
+                <p>分享</p>
+                </a>
+                </li>
+                 <li class="lineu">
+                
+                </li>
+                 <li class="bb_item pointer">
+                <img src="/images/icons/collect.png">
+              <p>  收藏</p>
+                </li>
+                </ul>
+                <div class="clear"></div>
+                  </section>
+            
+            
+            
+              <section class="indx6 m_box mb_20">
+                        
+                <h3 class="m_title" style="margin-left:0px;"><a href="{:U('/member/index/bankcard')}"><img src="/images/icons/zhanghu.png" style="margin-top:-5px; margin-right:10px;">我的账户</a></h3>
+                <ul>
+                <li class="clear item_h">
+                <a href="{:U('/member/index/paypassword')}">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">支付密码</div></a>
+                </li>
+                 <li class="clear item_h">
+                 <a href="{:U('/member/index/bankcard')}">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">我的银行卡</div></a>
+                </li>
+                 <li class="clear item_h">
+                 <a href="{:U('/member/index/balance')}">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">账户充值</div></a>
+                </li>
+                 <li class="clear item_h">
+                 <a href="{:U('/member/index/tixian')}">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">账户提现</div></a>
+                </li>
+                  <li class="clear item_h">
+                  <a href="{:U('/member/index/minxi')}">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">收支明细</div></a>
+                </li>
+                  
+                </ul>
+                  </section>
+
+
+            
+            <section class="indx6 m_box mb_20">
+                                                   
+                <h3 class="m_title" style="margin-left:0px;"><img src="/images/icons/open.png" style="margin-top:-5px; margin-right:10px;">管理我的圈子</h3>
+                <ul>
+                <li class="clear item_h pointer"  id="clsTab9_1" onclick="setTab('clsTab9_','item_h',1,4)">
+                <a href="{:U('/member/circle')}">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">圈子管理</div></a>
+                </li>
+                 <li class="clear item_h pointer"  id="clsTab9_2" onclick="setTab('clsTab9_','item_h',2,4)">
+                 
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">资讯管理</div>
+                </li>
+                 <li class="clear item_h pointer"  id="clsTab9_3" onclick="setTab('clsTab9_','item_h',3,4)">
+                
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">审核圈子活动</div>
+                </li>
+                                  
+                </ul>
+                  </section>
+            
+
+             <section class="indx6 m_box mb_20">
+                        
+                <h3 class="m_title" style="margin-left:0px;"><img src="/images/icons/open.png" style="margin-top:-5px; margin-right:10px;">我的推广</h3>
+                <ul>
+                <li class="clear item_h">
+                <a href="">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">我的人脉</div></a>
+                </li>
+                 <li class="clear item_h">
+                 <a href="">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">推广奖励</div></a>
+                </li>
+                 <li class="clear item_h">
+                 <a href="">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">兑换记录</div></a>
+                </li>
+                 <li class="clear item_h">
+                 <a href="">
+                <div class="ico_img"><img src="/images/icons/zhanghui.png"></div>
+                <div class="txt">推广说明</div></a>
+                </li>
+                 
+                </ul>
+                  </section>
+                   
+            </div>

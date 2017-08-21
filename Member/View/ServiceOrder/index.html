@@ -1,0 +1,84 @@
+<include file="Common/student_edu_header"/>
+<ul class="user_dslist user_dslistuu" style="padding:0;">
+<foreach name="orders" item="o">
+<php>
+$s = M("service")->find($o['service_id']);
+$s=parse_class($s);
+$m = M("mb_member")->find($s['member_id']);
+</php>
+<li class="user_dsitme f_clearfix">
+	  <div class="user_dsuser">
+	  	<div class="m_imgbox" style="height: 101px; line-height: 101px;"><img alt="" src="{$s.image}"></div>
+	  	<h4>{$m.nickname}</h4>
+	  	<p>电话:{$m.phone}<br>QQ:{$m.qq}}</p>
+         <p><span onclick="bz('bz_box2')" id="btn" class="bz pointer">备</span><span class="qq_btn">说悄悄话</span></p>
+        <div style="display:none;" id="bz_box2" class="bz_box">
+        <img src="images/icons/sy_jt1.jpg" class="bz_xl">
+        <img src="images/icons/ico_x.png" onclick="gbBzBox('bz_box2')" class="gb_bz pointer">
+        <div class="bz_content">备注备注备注备注备注备注备注备注备注</div>
+        <input type="button" value="保存" class="btn_color pointer">
+        </div>
+	  </div>
+	    <div class="user_dsl">
+		  <h4 class="user_dstit"><span class="txt_green">[ <if condition="$o['package_id'] == 0">单期<else/> 多期</if>]</span>【{:C('service_types')[$s['service_type']]}】
+      <a href="{:U('/home/service/detail',['id'=>$s[service_id]])}">
+      {$s['description']}
+      </a>
+      </h4>
+		  <div class="user_dsclass" style="margin-top:10px;">
+		  <foreach name="s['types']" item="t">
+		  <span>{$t}</span>
+		  </foreach>
+		  </div>
+		  <span class="user_dstime">{$o.add_time|to_date}</span>
+      <br/>
+          
+      <include file="Common/_package"/> 
+          <ul class="user_tbtn">
+          <eq name="o.num" value="0">
+            <php>
+              $contracts = M("contract")->where(['order_id'=>$o['id']])->order('id DESC')->select();
+            </php>
+            <if condition="count($contracts) eq 0">
+              <li class="u_btn_bln">等待老师拟定合同</li>
+            <else/>
+              <php>
+                $c = $contracts[0];
+              </php>
+              <eq name='c.remark' value=''>
+                <eq name='c.status' value='1'>
+                <li style="float:left; margin-right:10px;">
+                <select class="u_slt show_contracts">
+                    <option value="0">选择查看合同</option>
+                <foreach name="contracts" item='_c'>
+                <option value="{$_c.id}">{$_c.title}</option>
+                </foreach>
+                </select>
+              </li>
+                    <a href="{:U('/member/ServiceOrder/show',['id'=>$o['id']])}"> <li class="u_btn_bln">已同意合同</li></a>
+                <else/>
+				  <li style="float:left; margin-right:10px;">
+                <select class="u_slt show_contracts">
+                <foreach name="contracts" item='_c'>
+                <option value="{$_c.id}">{$_c.title}</option>
+                </foreach>
+                </select>
+              </li>
+          <a target="_blank" href="{:U('/member/contract/confirm',['id'=>$c['id']])}">  <li class="u_btn_bln">查看最新合同</li></a>
+                </eq>
+              <else/>
+                <li class="u_btn_bln">等待老师重新拟定合同</li>
+              </eq>
+              
+            </if>
+
+          <else/>
+          <li class="u_btn_bln">已付款，请到"学习管理"列表</li>   
+</eq>      
+          </ul>
+           
+	  </div>
+	</li>
+</foreach>
+</ul>
+<include file="Common/student_edu_footer"/>

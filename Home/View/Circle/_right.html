@@ -1,0 +1,110 @@
+
+<php>
+   if(M("mb_education_info")->where(['member_id'=>$_SESSION[id]])->find()){
+       $edued = 1;
+   }else{
+       $edued = 0;
+   }
+</php>
+
+<div class="g_cell_3">
+          <div class="ucr_box m_box mb_20">
+          <div class="qz_title">
+				<h3 class="m_title">圈主信息</h3>
+                <p><a href="#" class="u_btn_bl">申请为圈主</a></p>
+                <div class="clear"></div>
+                </div>
+                <php>
+                	$masters = M("circle_member")->join("LEFT JOIN mb_member ON circle_member.member_id = mb_member.id")->where(["member_type"=>0,circle_id=>I("request.id")])->select();
+				</php>
+				<ul class="m_imglist m_imglistx f_clearfix clear">
+				<foreach name="masters" item="master">
+				  <li class="m_item">
+				    <div class="m_imgbox"><a href="{:U('home/member/memberPost',['id'=>$master['mb_memebr.id']])}"><img src="{$master['avatar']}"></a></div>
+				    <h4>{$master['nickname']}</h4>				    
+				    <p><a href="">留言</a></p>
+				  </li>
+				  </foreach>
+				</ul>
+		  </div>
+          
+			<section class="indx6 m_box mb_20">
+				<h3 class="m_title">热门活动</h3>
+				<ul class="m_newsTlist f_clearfix">
+					<php>
+						$as = M("activity")->order("id DESC")->limit(5)->getField("id,title");
+					</php>
+					<foreach name="as" item="a" key="k">
+					<li class="m_item">
+						<a href="{:U('/home/activity/show',['id'=>$k])}">{$a}</a>
+					</li>
+					</foreach>
+				</ul>
+
+			</section>
+		  <div class="ucr_box m_box mb_20 ucr_box3">
+				<ul class="u_tab2">
+				  <li id="ucrTab_1" onclick="setTab('ucrTab_','u_tab2_item',1,2)" class="u_tab2_item hover">研友</li>
+				  <li id="ucrTab_2" onclick="setTab('ucrTab_','u_tab2_item',2,2)" class="u_tab2_item">老师</li>
+				  <li class="f_fr" style="padding:0;"><input type="button" class="u_btn_bl" onClick="morem()" value="更多"></li>
+				</ul>
+				<php>
+					$ts = M("mb_member")->limit(10)->select();
+				</php>
+				<ul id="ucrTab_1box" class="m_imglist f_clearfix">
+				<foreach name="ts" item="t">
+				  <li class="m_item">
+				    <div class="m_imgbox"><a href="{:U('home/member/memberPost',['id'=>$t['id']])}"><img src="{$t['avatar']}"></a></div>
+				    <h4>{$t['nickname']}</h4>
+				  </li>
+				</foreach>
+				</ul>
+				<ul id="ucrTab_2box" class="m_imglist f_clearfix" style="display:none;">
+				  <foreach name="ts" item="t">
+				  <li class="m_item">
+				    <div class="m_imgbox"><a href="{:U('home/member/memberPost',['id'=>$t['id']])}"><img src="{$t['avatar']}"></a></div>
+				    <h4>{$t['nickname']}</h4>
+				  </li>
+				</foreach>
+				</ul>
+		  </div>
+          
+             <section class="indx6 m_box mb_20">
+				<h3 class="m_title">热门聊天<a href="" class="u_btn_bl">more</a></h3>
+				<ul class="hot_s">
+                   <li class="m_item clear">
+                    <div class="m_imgbox pointer left"><img src="/images/test/180.jpg"></div>
+                    <div class="hots_right">
+			  	<h4>代用名</h4>
+                <p><img src="/images/icons/group_mnum.png">&nbsp;36&nbsp;&nbsp;<img src="/images/icons/talk_num.png">&nbsp;210</p>
+                </div>
+                    </li>
+                    <li class="clear"></li>
+				</ul>
+			</section>
+          
+			<section class="indx6 m_box mb_20">
+				<h3 class="m_title">公告<a href="" class="u_btn_bl">more</a></h3>
+				<ul class="m_newsTlist f_clearfix">
+				<php>
+					$mps = M("information")->where("type=3")->limit(5)->select();
+				</php>
+					<foreach name="mps" item="v">
+					<li class="m_item"><a href="{:U('/home/information/show',['id'=>$v[id]])}">{$v[title]}</a></li>
+					</foreach>
+				</ul>
+			</section>
+		</div>
+
+<script type="text/javascript">
+	function morem(){
+		if({$edued} == 0){
+		   var thebox=document.getElementById('mtip');
+		   thebox.style.display = 'block';	
+		}else{
+		   var url = "{:U('/home/Members/index')}";
+        window.location.href = url;
+		}
+	}
+</script>
+

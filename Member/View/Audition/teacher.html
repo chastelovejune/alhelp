@@ -1,0 +1,29 @@
+<include file="Common/teacher_edu_header"/>
+<li> 
+    <ul class="pl_10 pd_20">
+    <php>
+    	$services = M("service")->join("INNER JOIN audition ON audition.service_id=service.service_id")->where(['service.member_id'=>$m['id']])->field("service.*")->group("service.service_id")->select();
+    </php>
+
+    <foreach name="services" item="s">
+    <php>$s = parse_class($s);
+        $ma['service_id']=$s['service_id'];
+        $ma['is_read']=0;
+        $cou=M("audition")->where($ma)->count();
+    </php>
+
+    <li  class="tea_titem" href="{:U('/member/service/audition',['id'=>$s[service_id]])}"><if condition="$cou eq 0"><else/><div style="border-radius:50%;background-color: orange;width: 30px;height:30px;color:white;float: right;text-align: center;line-height:30px">{$cou}</div></if>
+    <h4><a href="{:U('/home/service/detail',['id'=>$s[service_id]])}">{$s.description}</a></h4>
+    <p>
+    	<foreach name="s.types" item="t">
+    		<span>{$t}</span>
+    	</foreach>
+    </p>
+    <h5>&yen;{$s.cost}</h5>
+
+    </li>
+    </foreach>
+</ul>
+</li>
+
+<include file="Common/teacher_edu_footer"/>

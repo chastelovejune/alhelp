@@ -1,0 +1,135 @@
+<form method="post" enctype="multipart/form-data">
+<div class="grxx_div_r sy_grxx_js m_box">
+	<div class="grxx_div_r_txt">
+		基本资料
+	</div>
+	<div class="fn_cb"></div>
+	<ul id="sy_grxx_list1" class="sy_grxx_list on"><!--加on类名开关修改模式-->
+		<li>
+			<div class="sy_grxx_tit">
+				头像：
+			</div>
+			<div class="sy_grxx_ct ">
+				<img src="{$m['avatar']}" width="200px"></img>
+				<input type="hidden" value="{$m.avatar}" name="avatar">
+				<input type="button" class="btn btn-info btn-sm" value="上传新头像">
+			</div>
+		</li>
+		<li>
+			<div class="sy_grxx_tit">
+				新助邦ID：
+			</div>
+			<div class="sy_grxx_ct">
+			  <span class="sy_pl10">xzb{$m['id']}</span>
+			</div>
+		</li>
+		
+		<li>
+			<div class="sy_grxx_tit">
+				注册邮箱：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text" email="true" name="email" value="{$m['email']}" class="sy_gr_t">
+			</div>
+		</li>
+		<li>
+			<div class="sy_grxx_tit">
+				手机号：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text" value="{$m['phone']}" name="phone" class="sy_gr_t">
+			</div>
+		</li>
+		<li>
+			<div class="sy_grxx_tit">
+				QQ：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text" name="qq" value="{$m['qq']}"  class="sy_gr_t">
+			</div>
+		</li>
+        <li>
+			<div class="sy_grxx_tit">
+				微信：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text" name="wx" value="{$m['wx']}"  class="sy_gr_t">
+			</div>
+		</li>
+		      
+    	<li>
+			<div class="sy_grxx_tit">
+				昵称：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text" value="{$m['nickname']}" name="nickname" class="sy_gr_t">
+			</div>
+		</li>
+		<li>
+			<div class="sy_grxx_tit">
+				个性签名：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text"  name="sign" value="{$m['sign']}"  class="sy_gr_t" style="width:50%;">
+			</div>
+		</li>
+	<!--	<li>
+			<div class="sy_grxx_tit">
+				详细介绍：
+			</div>
+			<div class="sy_grxx_ct">
+			  <textarea type="text" name="description" style="width:50%; padding:5px 20px; border-radius:3px; border:1px solid #eee; line-height:24px;" placeholder="个人基本情况介绍,能力特长等
+">{$m.description}</textarea>
+			</div>
+		</li>-->
+        
+		<li>
+           <div class="sy_grxx_tit">
+				性别：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="radio" name="is_male" <eq name='m.is_male' value='1'> checked="checked"</eq> value="1"><label>男</label>
+			  <input type="radio" style="margin-left:20px;" <eq name='m.is_male' value='0'> checked="checked"</eq> name="is_male" value="0"><label>女</label>
+			</div>
+		</li>
+		<li>
+			<div class="sy_grxx_tit">
+				所在地：
+			</div>
+			<div class="sy_grxx_ct">
+			  <div class="selectbox wid">
+				  <select class="sy_gr_s" name="province">
+				  </select>
+				</div>
+			  <div class="selectbox wid">
+				  <select class="sy_gr_s" name="city">
+				  </select>
+				</div>
+			  <div class="selectbox wid">
+				  <select class="sy_gr_s" name="area">
+				  </select>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="sy_grxx_tit">
+				地址：
+			</div>
+			<div class="sy_grxx_ct">
+			  <input type="text" name="address" value="{$m['address']}"  class="sy_gr_t long">
+			</div>
+		</li>
+	</ul>
+</div>
+</form>
+<script type="text/javascript">
+	go_pca("select[name=province]","select[name=city]","select[name=area]",{$m["province"]},{$m["city"]},{$m["area"]});
+	$(function(){
+		$("input[value=上传新头像]").click(function(){
+			go_upload(function(src){
+				$("input[name=avatar]").val(src);
+				$("input[name=avatar]").prev().attr('src',src);
+			});
+		})
+	})
+</script>

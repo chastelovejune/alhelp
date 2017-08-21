@@ -1,0 +1,31 @@
+
+<foreach name="comments" item="pc">
+
+	  <div class="ucl_ssreply mb_20">
+	  	<dl class="f_clearfix">
+	  		<dt><div class="m_imgbox"><img src="{$pc['avatar']}" style="width:30px;height:30px"></div></dt>
+	  		<dd>
+	  		  <div class="ucl_ssrtext" ><span class="ucl_ssrname"><a href="{:U('/home/member/profile',['id'=>$pc[member_id]])}">{$pc['nickname']}</a></span><p>：{:parse_emotion($pc['content'])}</p></div>
+	  		  <div class="ucl_ssrtiem">
+    <a class="zan" data-id="{$pc['id']}"><img src="/images/icons/u1.jpg" style="width:30px;height:30px">
+    <span> {$pc["praise_num"]}</span>
+    </a>
+    <if condition="$pc['member_id'] eq $_SESSION['id']">
+    <a onclick="delete_comment({$pc['id']},this)">删除</a>
+    </if>
+    <a data-id="{$pc['id']}" onclick="gailou(this)">回复</a>{:substr($pc['add_time'],11,5)}<i class="ico_uclssr"></i>
+    </div>
+    <foreach name="pc['subCs']" item="sc">
+	  		 <include file='Common/_sub_comment'/>
+    </foreach>
+	  		</dd>
+	  	</dl>
+	  </div>
+</foreach>
+<style>
+    .ucl_ssrtext{
+        word-break:break-word;
+        word-wrap:break-word;
+        width: 550px;
+    }
+</style>

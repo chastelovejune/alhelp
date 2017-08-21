@@ -1,0 +1,81 @@
+<include file="Common/student_edu_header"/>
+<ul class="user_dslist user_dslistuu" style="padding:0;">
+<!--<php>
+//被投过标的, 我的需求
+	$bids = M("bid")->join("LEFT JOIN demand ON demand.demand_id=bid.demand_id")->where(["demand.member_id"=>session("id")])->field("bid.*")->order("id desc")->select();
+</php>-->
+
+<php>
+  $bid_status = 0;
+   foreach($bid as $i => $c){
+       if($c['status'] == 2){
+	     $bid_status = 1;
+		 break;
+	   }
+   }
+</php>
+
+<if condition="$bid">
+<foreach name="bid" item="b">
+<php>
+$m = M("mb_member")->find($b['member_id']);
+</php>
+	<li class="user_dsitme f_clearfix">
+	  <div class="user_dsuser">
+	  	<div class="m_imgbox"><img src="{$m.avatar}" alt=""></div>
+	  	<h4>{$m.nickname}</h4>
+	  	<p>电话:{$b.phone}<br>QQ:{$b.qq}</p>
+         <p><span class="bz pointer" id="btn" onClick="bz('bz_box{$a.id}')">备</span><span class="qq_btn">说悄悄话</span></p>
+        <div class="bz_box" id="bz_box{$a.id}" style="display:none;">
+        <img class="bz_xl" src="images/icons/sy_jt1.jpg">
+        </div>
+	  </div>
+	    <div class="user_dsl">
+		  <h4 class="user_dstit"><a href="{:U('home/service/detail',['id'=>$b['service_id']])}"><i class="ico_org">供</i>【{:C('service_types')[$b['service_type']]}】{$b.ser_title}</a><strong>&yen;{$b.bid_price}</strong></h4>
+		  <div class="user_dsclass">
+		  <foreach name="b.types" item="t">
+		  <span>{$t}</span>
+		  </foreach>
+		  </div>
+		  <span class="user_dstime">{$b.add_time|to_date}</span>
+		  <p>{$b.description}</p>
+		  
+		  
+
+      <ul class="user_tbtn">
+	  <if condition="$b['status'] eq 2">
+	  <li class="u_btn_bln" style="cursor:default;">已同意投标</li>
+	  <else/>
+	  <li class="u_btn_bln" style="cursor:default;">已投标</li>
+
+	  <php>
+		     $dem = M("demand")->find($b['demand_id']);
+		  </php>
+
+		  
+		   <if condition="$dem['demand_type'] eq 0">
+		  
+		    <li class="u_btn_sl" href="{:U('member/bid/cart',['id'=>$b['service_id'],'bid'=>$b['id']])}">同意投标</li>
+		  
+		    <else/>
+            <li class="u_btn_sl" href="{:U('/home/audition/add',['id'=>$b['service_id']])}"> 
+          申请试听
+          </li>
+          <li class="u_btn_sl" href="{:U('member/bid/buy',['bid'=>$b['id']])}">同意投标</li>
+		  </if>
+
+	  </if>
+          
+			  
+        </ul>
+          
+	  </div>
+	</li>
+</foreach>
+<else/>
+<p style="margin-left:5px;font-family : 微软雅黑,宋体;
+font-size :1em;
+color : black;">此需求未有人投标!<p>
+</if>
+</ul>
+<include file="Common/student_edu_footer"/>	

@@ -1,0 +1,19 @@
+<include file="Common/student_edu_header"/>
+<ul class="user_dslist user_dslistuu" style="padding:0;">
+
+<div style="display: block;"
+    <ul class="pl_10 pd_20">
+<foreach name="result" item="o">
+   <li class="tea_titem <eq name='ACTION_NAME' value='studentCenter'>hover</eq>" href="{:U('/member/bid/bidDesc',['id'=>$o['demand_id']])}" style="width:260px;height:121px" >
+    <h4>{$o.description} </h4>
+    <p><foreach name="o.types" item="t">{$t}&nbsp;</foreach></p>
+    <h5>¥{$o.cost}</h5>
+    </li>
+</foreach>
+    </ul>
+    <div class="u_fy">
+        <php>echo pageHtml($count_bid);</php>
+    </div>
+</div>
+
+<include file="Common/student_edu_footer"/>

@@ -1,0 +1,478 @@
+<include file="Common:header" /> 
+<!--以上头部-->
+<script src="script/layer/layer.js"></script>
+<div class="mt_20">
+    <div class="g_row">
+
+        <div class="bg">
+            <div class="ds_detail_hd m_box f_clearfix" style="border-radius:10px;">
+                <div class="ds_detail_user">
+                    <div class="m_imgbox">
+                        <a href="">
+                            <if condition="$service['image']"><img src="{$service.image}" alt=""><else/><img src="/Ucenter/images/noavatar_big.gif"/></if></a></div>
+
+                </div>
+                <div class="ds_detail_info">
+                    <h2 style="padding-bottom:0px;margin-left:-10px;">【{:C('service_types')[$service['service_type']]}】{$service['description']}</h2>
+                    <div class="ds_detail_op" style="float:right; padding-top:10px;">
+                        <a>
+                            <img class="praise" src="/images/icons/zan.png"/><span id="praise">{$service.praise_num}</span>
+						</a>
+                        <a href="javascript:void(0)" id="collection">
+                            <img src="/images/icons/collect.png"/><span>收藏</span>
+                        </a>
+						<a href="">
+                            <img src="/images/icons/share.png"/>分享
+                        </a>
+                      <include file="Common/baidu_share"/>
+                    </div>
+                    <div class="ds_detail_class clear" id="profes_type">
+                        <foreach name="service[types]" item="t">
+                            <gt name='service.school_id' value="0">
+                            <a href="{:U('/home/circle/show',['id'=>$service['circle_id']])}">{$t}</a>
+                            <else/>
+                            <a>{$t}</a>
+                            </gt>
+                        </foreach>
+                    </div>
+                    <div class="ds_detail_price" style="float:none; padding-bottom:0px; padding-top:0px; margin-bottom:0px;">
+                        &yen;{$service.cost}
+                    </div>
+                </div>
+                <div class="ds_detail_info" style="margin-top:20px;">                      
+                    <div style="padding-top:0px;" class="ds_detail_op">
+        <div class="bft" style="margin-right:10px;">
+        承<br>诺<br>服<br>务
+        </div>
+        <include file="Service/_packageDetail"/>
+        </div>
+<php>
+    $audition['member_id']= session("id");
+    $audition['service_id'] = $service['service_id'];
+    $re=M("audition")->where($audition)->find();
+</php>
+       <div style="height:55px;" id="" class="ds_detail_btn">
+    <if condition="$service[member_id] neq $m['id']">
+        <eq name="service.service_type" value="0">
+        <script src="script/jquery.fly.min.js"></script>
+        <a class="u_btn_sl cart">立即购买</a>
+        <span class="u_btn_sl addcar">加入购物车</span>
+        <img style="display:none; width:30px; height:30px;" src="images/icons/cartadd.png">
+       <else/>
+       <a class="u_btn_sl" href="{:U('buy',['id'=>$service['service_id']])}">立即购买</a><if><if condition="$re"><a class="u_btn_sl" href="javascript:void(0)" style="background-color: grey"><span>已申请试听</span></a><else/><a class="u_btn_sl" href="javascript:void(0)" id="audition"><span>试听</span></a></if>
+       </eq>
+    <else/>
+    <a class="u_btn_sl" id="bc">补充说明</a>
+	<!-- <a class="u_btn_sl xiajia">	<if condition="$service.status eq 2">已下架<else/>下架</if></a> -->
+    </if>
+           </div>	
+        </div>
+    </div>   
+</div>
+        <div class="g_container">
+            <div class="g_row">
+                <section class="g_cell_9">
+                    <div class="ds_detail_bd m_box">
+                        <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+                        <div class="nav_box"  id="nav">
+
+                            <ul class="u_tab2 detial_tab">
+                                <li id="dscTab_1" class="u_tab2_item hover"><a href="#d1">详情</a></li>
+                                <if condition="$service['service_type'] eq 0"><else/>
+								<li id="dscTab_2"  class="u_tab2_item"><a href="#d2">优惠套餐</a></li>
+								<li id="dscTab_3"  class="u_tab2_item"><a href="#d3">直播课</a></li>
+                                    </if>
+                                <li id="dscTab_4"  class="u_tab2_item"><a href="#d4">合作列表</a></li>
+                                <li class="u_tab2_item"><a href="#d6"> 系统推荐</a></li>
+								 <li id="dscTab_5"  class="u_tab2_item"><a href="#d5">讨论区</a></li>
+                            </ul>
+
+                        </div>
+
+                        <div id="d1"></div>
+                        <div id="dscTab_1box" class="ds_detail_ct ds_detail_xq">
+                            <p>{$service.detail}</p><!--需求详细说明-->
+							<p>{$service.add_time}</p>
+                            <ul>
+                                <li class="m_imgbox">
+                                    <img src={$service.image} data-toggle="modal" data-target=".modal_image" class="img">
+									<img src="images/icons/ico_x_hover.png" style="width:25px; height:25px;" class="ico_cancle"/>
+                                </li>
+                                <foreach name='service.Attachment' item='a'>
+                               <li class="detail">
+                               <div class="m_imgbox"><img src="{$a.path}" data-toggle="modal" data-target=".modal_image" class="img">
+                            <eq name='service.Member.id' value="$m.id">
+                                <img src="images/icons/ico_x_hover.png" style="width:25px; height:25px;" 
+                                class="ico_cancle" 
+                                data-id="{$a.id}"/>
+                            </eq>
+                               </div>
+                               </li>
+                               </foreach>
+                           
+                               <eq name='service.Member.id' value="$m.id">
+                                <li class="detail"><div class="add_flie">+</div></li>
+                                </eq>
+                            </ul>
+							 
+                            <div class="clear remarks">
+                                <h5>补充说明：</h5>
+                                <foreach name="service.Remark" item="r">
+                                <p>{$r.content}<br/>{$r.add_time|to_minute}</p>
+                                </foreach>
+                            </div>
+                        </div>
+                        <if condition="$service['service_type'] eq 0"><else/>
+						 <div id="d2"></div>
+                 <div class="divide">
+                <div class="d_left"></div>
+                <div class="d_con">优惠套餐</div>
+                <div class="d_right"></div>
+                </div>
+<neq name='service.service_type' value='0'>
+				<div class="packs">
+				 <ul class="cls_se detal">
+         <foreach name='service.ServicePackage' item='package'>
+		        
+                <!--<li class="cls_se_item" href="{:U('/home/Service/buy',['id'=>$_GET[id],'pid'=>$package[id]])}">-->
+				<if condition="$service[member_id] eq $_SESSION[id]">
+                 <li class="cls_se_item">
+				<else/>
+                   <li class="cls_se_item" href="{:U('/home/Service/buy',['id'=>$_GET[id],'pid'=>$package[id]])}">
+				</if>
+				<!--<li class="cls_se_item">-->
+                  <div class="cls_img">
+                  <img src="images/icons/cls.png">
+                  </div>
+                  <div class="cls_txt">
+                    <p><strong class="cls_n">{$package.num}</strong>次<strong class="cls_dis">（{$package.discount}折）</strong></p>
+                    <include file="Service/_package"/>
+                  </div>
+                </li>
+        </foreach>
+				</ul>
+				<div class="clear"></div>
+				</div>
+</neq>
+                            </if>
+
+   <div id="d3"></div>   <if condition="$service['service_type'] eq 0"><else/>
+                        <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">直播课</div>
+                            <div class="d_right"></div>
+                        </div>
+                        </if>
+                        <!--直播课列表-->
+                           <div class="op_cls">
+                               <if condition="$service['service_type'] eq 0"><else/>
+              <div style="padding:10px 30px;">
+<foreach name="openclass" item="oc">
+                <li class="op_item clear">
+                  <div class="m_imgbox">
+                <img src="{$oc['image']}">
+                </div>
+                <div class="op_txt">
+                <php>
+                	$over = strtotime($oc["open_class_time"]) < time();
+                    $applyNum = M("apply_open_class")->where(['open_class_id'=>$oc[open_class_id]])->count();
+                </php>
+                <h3><a class="opclst" href="{:U('/home/OpenClass/show',["id"=>$oc['open_class_id']])}">{$oc['description']}<if condition="$over">【已结束】</if></a>
+				<strong>&yen;{$oc.price}</strong>
+				</h3>
+                <p class="time_op">{:substr($oc['open_class_time'],0,16)}<br></p>
+                <p>{$oc['classroom']}</p>
+                <div class="op_btn">
+                <div class="ds_detail_op"><a class="ul3_praise" data-id="{$oc['open_class_id']}"><img src="/images/icons/zan.png"/><span>{$oc["praise_num"]}</span></a>
+				<a href="{:U('/home/OpenClass/show',['id'=>$oc[open_class_id]])}#d3"><img src="/images/icons/menber_num.png"/>报名<strong style="color:#ff7101;">{$applyNum}</strong>人</a>
+                <a href=""><img src="/images/icons/share.png"/>分享				               				
+                 </a>
+				   <include file='../Application/Home/View/Common/baidu_share.html'/>
+                </div>
+                <eq name='oc.member_id' value='$m.id'>
+                    <eq name='oc.status' value='0'>
+                        <div class="u_btn_bl">下架</div>
+                    <else/>
+                        <div class="u_btn_bl" >上架</div>
+                    </eq>
+                </eq>
+                
+                <div class="clear"></div>
+                </div>
+                </div>
+				<div class = "clear"></div>
+                </li>
+</foreach>
+
+                </ul>
+
+               <script type="text/javascript">
+                    $(".ul3_praise").click(function(){
+                        var open_class_id = $(this).attr("data-id");
+                        var member_id={:session('id')};
+                        handle_openClass_praise(this,open_class_id,member_id);
+                        return false;
+                    })
+
+                    $(".ul3_collection").click(function(){
+                        var t = $(this);
+                        if (t.find("span").html().indexOf("已") == -1) {
+                            //收藏
+                            t.find("span").html("已收藏");
+                            t.find("img").attr("src","/images/icons/collection.png");
+                            $.post("{:U('/home/collection/add')}",{object_id:t.attr("data-id"),type:0},function(d){
+                            })
+                        }else{
+                            t.find("span").html("收藏");
+                            t.find("img").attr("src","/images/icons/collect.png");
+                            $.post("{:U('/home/collection/delete')}",{object_id:t.attr("data-id"),type:0},function(){
+                            })
+                        }
+                    })
+                </script>
+</if>
+              <div class="clear"></div>
+                </div>
+
+                     <div id="d4"></div>
+                        <div id="d2"></div>
+                        <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">合作方列表</div>
+                            <div class="d_right"></div>
+                        </div>
+                        <!--合作方列表-->
+                        <div id="dscTab_2box" class="ds_detail_ct">
+                            <ul class="m_hz_list f_clearfix">
+                                <foreach name="hzfs" item="_m">
+                                <li class="hz_item">
+                                    <div class="m_imgbox"><a class="jr_rw" href="{:U('/home/member/profile',['id'=>$_m[id]])}">
+                                        <img src="{$_m[avatar]}"></a></div>
+                                    <h4>{$_m[nickname]}</h4>
+                                    </if>
+                                </li>
+                                </foreach>
+                            </ul>		
+                        </div>
+
+                  
+
+                        <div id="d6"></div>
+                        <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">系统推荐</div>
+                            <div class="d_right"></div>
+                        </div>
+                        <div class="sys" style="padding-left:30px; padding-right:30px;">
+                            <ul id="spgc_1box" class="m_datalist">
+                            <php>
+                                if($service['unified_id']){
+                                    $where = ['unified_id'=>$service['unified_id']];
+                                }elseif($service['public_subject_id']){
+                                    $where = ['public_subject_id'=>$service['public_subject_id']];
+                                }else{
+                                    $where = ['school_id'=>$service['school_id']];
+                                }
+                                $tjs = M("demand")->join("LEFT JOIN member ON member.id=member_id")->limit(3)->field("demand.*,member.avatar,sign,follow_num,fans_num,share_num,collection_num")->order("is_payed desc,demand_id desc")->where($where)->select();
+                            </php>
+                            <foreach name="tjs" item="tj">
+                            <php>$tj = parse_class($tj);</php>
+                              <include file="Demand/_li"/>
+                                </foreach>
+                            </ul>
+                        </div>
+
+						   <div id="d5"></div>
+						    <div class="divide">
+                            <div class="d_left"></div>
+                            <div class="d_con">讨论区</div>
+                            <div class="d_right"></div>
+                        </div>
+                        <!--课堂同学-->
+                        <div id="dscTab_3box" class="ds_detail_ct">                            
+
+                            <div class="nav_de">讨论区</div>
+
+                              <php>
+                  $_commentType = 1;
+                  $_objectId = $service["service_id"];
+                </php>    
+
+             <include file="Common/detail/4"/>
+
+                        </div>
+
+                    </div>
+                </section>
+
+                <div class="g_cell_3 mt_20">
+<neq name="_SESSION.id" value="$service.member_id">
+                                     <php>
+          $_detailM = M("mb_member")->find($service["member_id"]);
+        </php>
+                 <include file="Common/detail/1"/>
+                 </neq>
+  <php>
+
+                $_detailLastCs = M("comment")->join("LEFT JOIN mb_member ON member_id=mb_member.id")->limit(3)->
+                where(['comment_type'=>1,'object_id'=>$service['service_id']])->order("id desc")->getField("comment.*,mb_member.nickname,mb_member.avatar");
+              </php>
+           <include file="Common/detail/2"/>
+
+          <php>
+              $_detailNewestMs = $hzfs;
+           </php>
+            <include file="Common/detail/3"/>
+
+                    <section class="indx6 m_box mb_20 hot_ds">
+                        <h3 class="m_title">系统推荐</h3>           
+                        <ul id="idc1_1box" class="m_sublist f_clearfix">
+                            <foreach name="tjs" item="tj">
+                            <li class="clear pl_10">
+                                <div class="img_face mb_20"><img src="{$tj.avatar}"></div>
+                                <div class="content_right">
+
+                                    <h4>{$tj.member_name}</h4>
+                                    <h5>{$tj.service_time|to_date}</h5>
+                                    <p class="clear">
+                                    <span class="pl">
+                                    <a href="{:U('/home/demand/detail',['id'=>$tj['demand_id']])}">
+                                    [{:C('demand_types')[$tj['demand_type']]}]{$tj.description}
+                                    </a>
+                                    </span>
+                                    </p>
+                                    
+                                </div>
+                            </li>
+                            </foreach>
+                        </ul>  
+                        <div class="clear"></div>  
+                        <div class="bottom">
+                            <a href="{:U('/home/demand/lists')}" class="more"> 查看更多>></a>
+                        </div>                          
+                    </section>
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+<div class="cartmsg" id="msg">已成功加入购物车！</div>
+<include file="Common/modal"/>
+<include file="Common/modal_image"/>
+<!--以下底部-->
+<include file="Common:footer" /> 
+<script type="text/javascript">
+    $('#audition').click(function() {
+        var id = {$service.service_id};
+        $.post("{:U('/home/audition/add')}", {service_id: id}, function (d) {
+            if (d.suc) {
+                layer.msg("已申请试听");
+                $('#audition').find('span').html("已申请试听");
+
+            } else {
+                layer.msg(d.message);
+                window.location="{:U('/home/member/login').$url."?url=".$_SERVER['REQUEST_URI']}";
+            }
+        })
+    })
+    $(".addcar").click(function(){
+       var id = {:I('request.id')};
+        $.post("{:U('/home/cart/add')}",{service_id:id},function(){
+        }) 
+    })
+    $("a.cart").click(function(){
+        var id = {:I('request.id')};
+        $.post("{:U('/home/cart/add')}",{service_id:id},function(){
+            window.location.href="{:U('/home/cart/index')}";
+        })
+        return false;
+    })
+    
+    $(".bucong").click(function(){
+        go_textarea_modal('补充说明文字',function(content){
+            var service_id = {$service.service_id};
+            $.post("{:U('/home/Remark/add')}",{is_demand:0,object_id:service_id,content:content},function(d){
+				if(d){
+				layer.msg("提交成功");
+                $(".remarks").append("<p>"+content+"<br/>"+d.message+"</p>");
+				}
+            })
+        });
+    })
+	
+	
+	
+
+    $(function(){
+        $(".img").click(function(){
+			var src=$(this).attr("src");
+			//alert(src);
+		$(".modal_image").on('show.bs.modal',function(e){
+			//var src=$(this).find("img").attr("src");
+			
+            //var src = "{$service.image}";//获取的都是同一张图片.有待修改
+            $(this).find("img").attr("src",src);
+        })
+		})
+        $(".add_flie").click(function(){
+            go_upload(function(src){
+                var member_id = {$m.id};
+                var object_id = {$service.service_id};
+                $.post("{:U('/home/Attachment/curdAdd')}",{member_id:member_id,path:src,type:2,object_id:object_id},function(){
+                    window.location.reload();
+                });
+            });
+        })
+        $("img.ico_cancle").click(function(){
+            $.post("{:U('/home/Attachment/delete')}",{id:$(this).attr("data-id")},function(){
+
+            })
+            $(this).parent().parent().remove();
+        })
+			
+    });
+	
+	$(".praise").click(function()
+	{
+			
+		var member_id = {$m.id}; 
+		var service_id = {$service.service_id};
+		var	praise_num= {$service.praise_num};
+		$.post("{:U('/home/common/newPraise')}",{member_id:member_id,object_id:service_id,type:2},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg(d.message);
+				praise_num++;
+				$("#praise").html(praise_num);
+			}else{
+				layer.msg(d.message);
+				praise_num;
+				$("#praise").html(praise_num);
+			}
+				
+		})
+	})
+	
+	$("#collection").click(function()
+	{
+			
+		var member_id = {$m.id}; 
+		var service_id = {$service.service_id};
+		$.post("{:U('/home/service/collection')}",{m_id:member_id,s_id:service_id},function(d)
+		{
+			if(d.suc)
+			{
+				layer.msg("收藏成功");
+				$("#collection").find('img').attr('src','/images/icons/collection.png');
+				$("#collection").find('span').html('取消收藏');
+				//window.location.reload();
+			}else{
+				$("#collection").find('img').attr('src','/images/icons/collect.png');
+				$("#collection").find('span').html('收藏');
+				layer.msg(d.message);
+			}
+				
+		})
+	})
+</script>

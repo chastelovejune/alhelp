@@ -1,0 +1,66 @@
+ <form method="post" enctype="multipart/form-data">
+    <!--  <ul class="m_form f_clearfix pd_20 m_box gradient">
+      <li><h2>人脉决定一切!</h2></li>
+      <li><h3>找找邮箱通讯录中谁已加入新助邦</h3></li>
+      <li style="display:block; width:80%; height:50px; margin:0px auto;">           
+      <div class="ico_mail">
+      <img src="/images/icons/email.png"/>
+      </div>
+      <div class="input_p">
+<input type="text" class="people">
+</div>                          
+      </li>
+      <li style="display:block; width:80%; height:30px; line-height:30px; margin:0px auto;">
+       <p><span class="f_cll">通讯录导入后将用于向您推荐联系人，并协助您管理人脉。</span></p>
+      </li>
+      </ul>
+      
+      <ul class="m_form f_clearfix pd_20 m_box gradient">
+      <li style="display:block; width:80%; height:100px; line-height:30px; margin:0px auto;">
+      <div class="left">
+      <div class="top_type">
+      国家/地区
+      </div>
+      <div class="content_p">
+      <select class="u_sl">
+    <option>中国</option>
+  </select>
+      </div>
+      </div>
+      <div class="right">
+       <div class="top_type">
+      电话号码
+      </div>
+      <input type="text" class="int_p" name="phone" value="{$m['phone']}">
+      </div>
+      </li>
+      <li style="text-align:center; color:#999;">手机号码不会在您的个人资料中显示，也不会对任何人公开。</li>
+      </ul>-->
+      
+      <ul class="m_form f_clearfix pd_20 m_box gradient">
+      <li><h2>关注新助邦人物</h2></li>
+       <li style=" font-size:20px; text-align:center; color:#999;">您所关注的新助邦老师将定期与您分享他们的知识与见解</li>
+       <li style="display:block; width:80%; margin:0px auto;">
+       <ul>
+       <php>
+       	$ts = M("mb_member")->where(['is_v'=>1])->order('id asc')->limit(8)->select();
+       </php>
+       <foreach name="ts" item="t">
+       <li class="select_person">
+       <input type="checkbox" name="follow[]" id="se_person{$t.id}" value="{$t[id]}" >
+       <label for="se_person{$t.id}">
+       <div class="img_box">
+       <img src="{$t['avatar']}"/>
+       </div>
+       <img src="/images/icons/radio2on.png" class="s_p"/>
+       <h4>{$t['nickname']}</h4>
+       <p>老师介绍：{$t['description']}</p>
+       </label>
+       </li>
+       </foreach>
+
+       </ul>
+       </li>
+       
+      </ul>
+      </form>

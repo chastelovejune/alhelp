@@ -1,0 +1,118 @@
+ <div class="m_box">
+	 <php>
+		 $arr=M('share')->where("member_id=".I('request.id'))->order("add_time desc")->select();
+		 $map['member_id']=I('request.id');
+		 $map['type']=0;
+		 $arr_data=M('share')->where($map)->order("add_time desc")->select();
+		 unset($map);
+		 $map['member_id']=I('request.id');
+		 $map['type']=1;
+		 $arr_video=M('share')->where($map)->order("add_time desc")->select();
+		 unset($map);
+		 $map['member_id']=I('request.id');
+		 $map['type']=2;
+		 $arr_heart=M('share')->where($map)->order("add_time desc")->select();
+	 </php>
+		  <header class="u_tab2">
+				<ul>
+					<li id="spgc_1" onclick="setTab('spgc_','u_tab2_item',1,4)" class="u_tab2_item hover"><i class="ico"></i>全部</li>
+					<li id="spgc_2" onclick="setTab('spgc_','u_tab2_item',2,4)" class="u_tab2_item"><i class="ico"></i>分享资料</li>
+					<li id="spgc_3" onclick="setTab('spgc_','u_tab2_item',3,4)" class="u_tab2_item"><i class="ico"></i>分享视频</li>
+					<li id="spgc_4" onclick="setTab('spgc_','u_tab2_item',4,4)" class="u_tab2_item"><i class="ico"></i>分享心得</li>
+				<li class="f_fr">
+				<!--	<span class="pa_up" id="pa1" onClick="onchan('pa1')"> <a href="{:U('home/circle/dataDownload',['id'=>4,'sort'=>1])}">时间</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<span class="pa_up" id="pa2" onClick="onchan('pa2')"><a href="{:U('home/circle/dataDownload',['id'=>4,'sort'=>2])}">阅读量</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>-->
+                </ul>
+			</header>
+			<!--all-->
+
+			<ul id="spgc_1box" class="m_datalist">
+			<volist name="arr" id="vo">
+			  <li class="m_datalist_item">
+			  	<div class="m_dl_userbox"><div class="m_imgbox"><a href="{:U('home/member_memberPost',['id'=>$vo['member_id']])}"><img class="fx_qz"  style="width:20px; height:20px; margin-top:-4px; margin-left:-2px;" src="images/icons/systemlist4.png"><img   src="{:M('mb_member')->where('id='.$vo['member_id'])->getfield('avatar')}" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></a></div><h4>{$vo.nickname}</h4></div>
+			  	<div class="m_dl_txtbox">
+					<h3><i class="ico_font">
+						<if condition="$vo['type'] eq 0">资
+							<elseif condition="$vo['type'] eq 1 "/>视
+							<else/>
+							心
+						</if></i><i class="ico"></i><a href="{:U('home/share/show',['id'=>$vo['id']])}">{$vo.title}</a>
+						<p style="color: grey;font-size: 12px;">{:substr(strip_tags($vo[content]),0,500)}</p>
+						<if condition="$vo['download_type'] eq 0">
+							<elseif condition="$vo['download_type'] eq 1"/><span class="u_bb">需要积分 {$vo['download_cost']}</span>
+							<elseif condition="$vo['download_type'] eq 2"/><span class="u_bb" style="background-color: gold">需要金币 {$vo['download_cost']}</span>
+							<else/><span class="u_bb" style="background-color: #3e8f3e ">人民币 {$v['download_cost']}</span>
+							</if>
+
+					</h3>
+					<small style="color: grey">{$vo['types'][0]}&nbsp;{$vo['types'][1]}&nbsp;{$vo['types'][2]}&nbsp;{$vo['types'][3]}</small>
+					<div class="m_dl_opt"><span>{$vo['add_time']}</span>
+					</div>
+			  	</div>
+			  </li>
+				</volist>
+
+			</ul>
+
+			<!--all-->
+			<!--资料-->
+			<ul id="spgc_2box" class="m_datalist" style="display:none;">
+				<foreach name="arr_data" item="vo">
+					<li class="m_datalist_item">
+						<div class="m_dl_userbox"><div class="m_imgbox"><a href="{:U('home/member_memberPost',['id'=>$vo['member_id']])}"><img class="fx_qz"  style="width:20px; height:20px; margin-top:-4px; margin-left:-2px;" src="images/icons/systemlist4.png"><img   src="{:M('mb_member')->where('id='.$vo['member_id'])->getfield('avatar')}" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></a></div><h4>{$vo.nickname}</h4></div>
+						<div class="m_dl_txtbox">
+							<h3><i class="ico_font">资</i><i class="ico"></i><a href="{:U('home/share/show',['id'=>$vo['id']])}">{$vo.title}</a>
+								<p style="color: grey;font-size: 12px;">{:substr(strip_tags($vo[content]),0,500)}</p>
+								<if condition="$vo['download_type'] eq 0">
+									<elseif condition="$vo['download_type'] eq 1"/><span class="u_bb">需要积分 {$v['download_cost']}</span>
+									<elseif condition="$vo['download_type'] eq 2"/><span class="u_bb" style="background-color: gold">需要金币 {$vo['download_cost']}</span>
+									<else/><span class="u_bb" style="background-color: #3e8f3e ">人民币 {$v['download_cost']}</span>
+								</if>
+
+							</h3>
+							<small style="color: grey">{$vo['types'][0]}&nbsp;{$vo['types'][1]}&nbsp;{$vo['types'][2]}&nbsp;{$vo['types'][3]}</small>
+							<div class="m_dl_opt"><span>{$vo['add_time']}</span>
+							</div>
+						</div>
+					</li>
+				</foreach>
+			</ul>
+			<!--视频-->
+			<ul id="spgc_3box" class="m_datalist" style="display:none;">
+				<foreach name="arr_video" item="vo">
+             <li class="vedio_item">
+				 <a href="{:U('home/member_memberPost',['id'=>$vo['member_id']])}"><img class="fx_qz"  style="width:20px; height:20px; margin-top:-4px; margin-left:-2px;" src="images/icons/systemlist4.png"><img   src="{:M('mb_member')->where('id='.$vo['member_id'])->getfield('avatar')}" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></a>
+                <div class="vedio_hover"></div>
+                <div class="vedio_con">
+                <h3>{$vo['title']}</h3>
+                <h4>{$vo['content']}</h4>
+                <a href="" class="u_btn_sl">播放</a>
+                </div>                               
+                </li>
+					</foreach>
+			</ul>
+			<!--心得-->
+			<ul id="spgc_4box" class="m_datalist" style="display:none;">
+				<foreach name="arr_heart" item="vo">
+					<li class="m_datalist_item">
+						<div class="m_dl_userbox"><div class="m_imgbox"><a href="{:U('home/member_memberPost',['id'=>$vo['member_id']])}"><img class="fx_qz"  style="width:20px; height:20px; margin-top:-4px; margin-left:-2px;" src="images/icons/systemlist4.png"><img   src="{:M('mb_member')->where('id='.$vo['member_id'])->getfield('avatar')}" onerror="this.src='/Ucenter/images/noavatar_big.gif'"></a></div><h4>{$vo.nickname}</h4></div>
+						<div class="m_dl_txtbox">
+							<h3><i class="ico_font">资</i><i class="ico"></i><a href="{:U('home/share/show',['id'=>$vo['id']])}">{$vo.title}</a>
+								<p style="color: grey;font-size: 12px;">{:substr(strip_tags($vo[content]),0,500)}</p>
+								<if condition="$vo['download_type'] eq 0">
+									<elseif condition="$vo['download_type'] eq 1"/><span class="u_bb">需要积分 {$vo['download_cost']}</span>
+									<elseif condition="$vo['download_type'] eq 2"/><span class="u_bb" style="background-color: gold">需要金币 {$vo['download_cost']}</span>
+									<else/><span class="u_bb" style="background-color: #3e8f3e ">人民币 {$v['download_cost']}</span>
+								</if>
+
+							</h3>
+							<small style="color: grey">{$vo['types'][0]}&nbsp;{$vo['types'][1]}&nbsp;{$vo['types'][2]}&nbsp;{$vo['types'][3]}</small>
+							<div class="m_dl_opt"><span>{$vo['add_time']}</span>
+							</div>
+						</div>
+					</li>
+			 </foreach>
+			</ul>
+
+            </div>
+		</section>
+

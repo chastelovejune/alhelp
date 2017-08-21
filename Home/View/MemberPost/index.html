@@ -1,0 +1,102 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+    <div class="u_fss">
+    	<button class="u_btn_sl" onclick="<gt name='_SESSION.id' value='0'>onoff('mianshuoshuofb','shuoquize','ucl_ssinput m_box pd_20 mb_20')<else/>window.location.href='{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}'</gt>" style="padding-top:8px; padding-bottom:8px;">发说说</button>
+
+		<button class="u_btn_sc" onclick="<gt name='_SESSION.id' value='0'>onoff('shuoquize','mianshuoshuofb','ucl_ssinput m_box pd_20 mb_20')<else/>window.location.href='{:U('/home/member/login')}?url={$_SERVER[REQUEST_URI]}'</gt>" style="padding-top:8px; padding-bottom:8px; background:#fff; border:1px solid #ff7101; color:#ff7101;">有偿问答</button>
+		
+    </div>
+  	<div class="u_ss">
+  	<form>
+  		<select class="u_ss_sel" name="stype">
+  			<option value="nickname">搜昵称</option>
+  			<option value="id">搜ID</option>
+  		</select>
+  		<input type="text" class="u_ss_txt" name="keywords" value="{$_GET['keywords']}">
+  		<button class="u_ss_btn"></button>
+	</form>
+  	</div>
+  </div>
+</div>
+
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<include file="Common/_listFilter"/>
+		<section class="g_cell_9">
+	   
+		<div id="shuoquize" class="ucl_ssinput m_box pd_20 mb_20" >
+	     <include file="_quiz"/>             
+	    </div>
+
+		 <div id="mianshuoshuofb" class="ucl_ssinput m_box pd_20 mb_20">
+        <include file="_add"/>  
+	    </div>
+
+         <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+			<ul class="u_tab2 m_box mp_nav" id="nav">
+			<foreach name="Think.config.member_post_types" item="t" key="k">
+			  <li class="u_tab2_item <if condition='I("request.type") eq $k'>hover</if>" href="{:U('/home/MemberPost/index',['type'=>$k])}">{$t}</li>
+			</foreach>
+			</ul>
+			<php>
+				$_mps = $mps;
+			</php>
+			<include file="MemberPost/_mps"/>
+			<div class="u_fy m_box">
+			<php>
+				echo pageHtml($count);
+			</php>
+			</div>
+		</section>
+    <section class="g_cell_12 hot_ds">
+      <header class="u_tab2" style="border:0;">
+        <ul class="f_clearfix">
+          <li class="u_tab2_item hover" style="background:none;">热门聊天</li>
+        </ul>
+      </header>
+			<ul class="hotg">
+			  <li class="m_item">
+			  	<div class="m_imgbox pointer left"><img src="/images/test/180.jpg"></div>
+			  	<h4>代用名</h4>
+                <p><img src="/images/icons/group_mnum.png">&nbsp;36&nbsp;&nbsp;<img src="/images/icons/talk_num.png">&nbsp;210</p>
+			  </li>
+			  <li class="m_item">
+			  	<div class="m_imgbox pointer left"><img src="/images/test/180.jpg"></div>
+			  	<h4>代用名</h4>
+                <p><img src="/images/icons/group_mnum.png">&nbsp;36&nbsp;&nbsp;<img src="/images/icons/talk_num.png">&nbsp;210</p>
+			  </li>
+			  <li class="m_item">
+			  	<div class="m_imgbox pointer left"><img src="/images/test/180.jpg"></div>
+			  	<h4>代用名</h4>
+               <p><img src="/images/icons/group_mnum.png">&nbsp;36&nbsp;&nbsp;<img src="/images/icons/talk_num.png">&nbsp;210</p>
+			  </li>
+			  <li class="m_item">
+			  	<div class="m_imgbox pointer left"><img src="/images/test/180.jpg"></div>
+			  	<h4>代用名</h4>
+                <p><img src="/images/icons/group_mnum.png">&nbsp;36&nbsp;&nbsp;<img src="/images/icons/talk_num.png">&nbsp;210</p>
+			  </li>
+              <li class="m_item">
+			  	<div class="m_imgbox pointer left"><img src="/images/test/180.jpg"></div>
+			  	<h4>代用名</h4>
+                  <p><img src="/images/icons/group_mnum.png">&nbsp;36&nbsp;&nbsp;<img src="/images/icons/talk_num.png">&nbsp;210</p>
+			  </li>
+			</ul>
+    </section>
+	</div>
+</div>
+<div id="bg"></div>
+<div id="bottom">
+ <ul>
+     <li class="prev"></li>
+        <li class="img"></li>
+        <li class="next"></li>
+        <li class="close"></li>
+    </ul>
+</div>
+<div id="frame"></div>
+<include file="Common/footer"/>
+<style type="text/css">
+
+</style>

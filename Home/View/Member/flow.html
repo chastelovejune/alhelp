@@ -1,0 +1,215 @@
+<include file="Common/header"/>
+
+<style type="text/css">
+	.rz_img img{
+		width:300px;
+	}
+
+	.rz_img a{
+		color:white;
+	}
+</style>
+
+<php>
+	$m = M('mb_member')->find(session('id'));
+</php>
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_12">
+			<div id="clsTab9_1box" class="flow">
+				<if condition="$step eq 0">
+					<include file="Member/flow/0"/>
+				</if>
+
+				<if condition="$step eq 1">
+					
+                   <include file="Member/flow/1"/>
+				</if>
+				<if condition="$step eq 2">
+
+
+					<form method="post" enctype="multipart/form-data">
+						<div class="grxx_div_r sy_grxx_js m_box">
+							<div class="grxx_div_r_txt">
+								个人资料
+							</div>
+							<div class="fn_cb"></div>
+							<ul id="sy_grxx_list3" class="sy_grxx_list on">
+								<li>
+									<div class="sy_grxx_tit">
+										感情状况：
+									</div>
+									<div class="sy_grxx_ct">
+										<div class="selectbox wid">
+											<php>
+												$feeling_status = C("feeling_status");
+											</php>
+											<select class="sy_gr_s" name="feeling_status">
+												<foreach name="feeling_status" item="s" key="k">
+													<option value="{$k}">{$s}</option>
+												</foreach>
+											</select>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="sy_grxx_tit">
+										兴趣：
+									</div>
+									<div class="sy_grxx_ct">
+										<textarea type="text" placeholder="兴趣" name="hobby" style="width:50%;" rows="5" class="sy_gr_t"></textarea>
+									</div>
+								</li>
+								
+								<li>
+									<div class="sy_grxx_tit">
+										个人介绍：
+									</div>
+									<div class="sy_grxx_ct">
+										<textarea type="text" placeholder="个人简介" name="friend_description" style="width:50%;" rows="5" class="sy_gr_t"></textarea>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</form>
+				</if>
+				<if condition="$step eq 3">
+					<form method="post" enctype="multipart/form-data" action="{:U('/home/member/realname')}">
+						<ul class="m_form f_clearfix pd_20 m_box">
+							<div class="grxx_div_r_txt">
+								实名认证
+							</div>
+
+							<li class="m_item">
+								<div class="m_formtit">真实姓名：</div>
+								<input type="text" name="realname" class="u_inp_t">
+							</li>
+							<li class="m_item">
+								<div class="m_formtit">身份证号：</div>
+								<input type="text" name="id_card_no" class="u_inp_t" id="id_card_no">
+							</li>
+							<li class="m_item">
+								<div class="m_formtit">证件照上传：</div>
+								<p style="margin-top:5px;">可以上传 jpg，gif，pbg格式的图片，且文件小于2M</p>
+								<div class="rz_img" style="margin-left:150px;">
+									正面：<span class="sc_file">+<input type="text" name="profile_front"></span>&nbsp;<a class="btn btn-primary" id="0">重传</a></div>
+								<div class="rz_img" style="margin-left:150px;">
+									反面：<span class="sc_file">+<input name="profile_back" type="text"></span>&nbsp;<a class="btn btn-primary" id="1">重传</a>
+								</div>
+							</li>
+						</ul>
+					</form>
+					</if>
+					<if condition="$step eq 4">
+					<form method="post" enctype="multipart/form-data" action="{:U('/home/member/identify')}">
+						<ul class="m_form f_clearfix pd_20 m_box">
+							<div class="grxx_div_r_txt">
+								身份认证
+							</div>
+
+							<li class="m_item">
+								<div class="m_formtit">身份简介：</div>
+								<textarea placeholder="一句话表明你的身份,控制在20字以内 " name="description" class="u_inp_t" type="text"></textarea>
+							</li>
+							<li class="m_item">
+								<div class="m_formtit">证件照上传：</div>
+								<p style="margin-top:5px;"><span class="f_cll">（在校研究生上传学生证、机构需上传营业执照和组织机构代码、职场人士上传工作证）</span>可以上传 jpg，gif，pbg格式的图片，且文件小于2M</p>
+								<div class="rz_img" style="margin-left:150px;">
+									证件1：<span class="sc_file">+<input type="text" name="profile_front"></span> <a class="btn btn-primary" id="2">重传</a></div>
+								<div class="rz_img" style="margin-left:150px;">
+									证件2：<span class="sc_file">+<input type="text" name="profile_back"></span> <a class="btn btn-primary" id="3">重传</a>
+								</div>
+							</li>
+						</ul>
+					</form>
+				</if>
+				<if condition="$step eq 5">
+					<include file="Member/flow/4"/>
+				</if>
+		</section>
+		
+		<div class="flowbtnbox">
+			<input type="button" class="u_btn_sl" value="继续" id="next">
+			<input type="button" class="u_btn_sc" value="跳过">
+		</div>
+				
+				
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	/**
+	 * gxy
+	 * 判断身份证号码位数及组成元素是否正确
+	 */
+	$('#id_card_no').change(function(){
+		var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		if(!pattern.test($(this).val())){
+
+			$('#next').attr('disabled',true);//设置按钮不可用
+			alert('身份证号码格式错误（18位数字或字母组成）');
+		}else {
+			$('#next').attr('disabled',false);
+		}
+	});
+	/**
+	 *
+	 */
+
+	$("input[value=跳过]").click(function(){
+		alert("您以后可以到【个人中心-基本设置】再完善！");
+		window.location.href="/";
+	});
+
+
+	$("input[value=继续]").click(function(){
+
+
+		for (var i = 0; i < $("form").length; i++)
+		{
+			var index = i;
+			var form = $("form").eq(i);
+
+		<if condition="$step eq 1" >
+		window.location.href = "?step="+{$step+1};
+		</if>
+
+			form.ajaxSubmit(function(d){
+				if (index == $("form").length-1)
+				{
+				<if condition="$step eq 5">
+						alert("注册成功");
+					window.location.href = "/";
+				<else/>
+					window.location.href = "?step="+{$step+1};
+				</if>
+
+				}
+			});
+
+		}
+	});
+
+	$(".sc_file").click(function(){
+		var t = $(this);
+		go_upload(function(src){
+			t.find("input").val(src);
+			t.after("<img src='"+src+"'/>");
+
+		});
+	});
+
+	$(".rz_img a").click( function()
+	{
+		var index = $(this).attr("id");
+		$(".rz_img:eq(" + index + ") img").remove();
+	});
+
+
+
+
+</script>
+
+
+<include file="Common/footer"/>

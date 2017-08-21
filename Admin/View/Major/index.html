@@ -1,0 +1,19 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <foreach name="columns" item="c">
+    <td>{$c}</td>
+    </foreach>
+    </tr>
+  </thead>
+    <foreach name="list" item="major">
+    <tr>
+      <foreach name="major" item="v">
+      <td>{$v}</td>
+      </foreach>
+    </tr>
+    </foreach>
+</table>
+              {$pageHtml}
+<include file="Common:admin_footer" />

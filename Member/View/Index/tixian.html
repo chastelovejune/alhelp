@@ -1,0 +1,51 @@
+<!--账户提现-->
+  <form method="post">
+  <div class="tx_box pd_10" id="uclTab_4box">
+  <div style="color:#1ecca7;" class="cz_fs_txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*只能提现到本账号实名认证信息对应卡号</div>
+  <ul>
+  <li class="m_item"><div class="m_formtit">银行：</div>
+  <php>
+    $cards = M("bankcard")->where(['member_id'=>session("id"),'status = 1 OR status = 2'])->select();
+  </php>
+  <select class="u_slt" name="bankcard_id">
+    <foreach name="cards" item="card">
+    <option value="{$card[id]}">{$card[card_name]}--***{:substr($card[card_num],-4)}--{:C('bankcard_types')[$card[card_type]]}</option>
+    </foreach>
+  </select>
+  </li>
+  <li class="m_item"><div class="m_formtit">提现金额：</div>
+  <input type="text" style="float:left; margin-right:10px;" class="u_inp_t" name="balance">当前账户余额：<span style="color:#ff7101">{$m[balance]}</span>元&nbsp;&nbsp;（冻结金额：<span style="color:#ff7101;padding-top:10px;">{$m[balance_frozen]}</span>元）
+  </li>
+  <li>
+  <ul style="display:block;">
+  <li class="m_formtit"></li>
+  <li class="tx_btn"><input type="submit" value="确认" class="u_btn_sl" style="margin-left:10px;margin-top:30px;"></li>
+  <li class="tx_btn"><input type="button" value="查看提现记录" class="u_btn_sl" style="margin-top:30px;" href="{:U('/member/index/minxi',['type'=>4])}"></li>   
+  <li class="clear"></li>
+  </ul>
+   </li>
+  </ul>
+  <div class="alert alert-info" style=" margin-top:20px; display:none;" role="alert">
+   
+   <span class="tip"></span> 
+</div>
+  </div>
+  </form>
+  <script type="text/javascript">
+    $("form").resetForm();
+    $("form").submit(function(){
+      var t = $(this);
+      if (!is_gt0(t.find("input[name=balance]").val())) {
+        alert("请正确的提现金额");
+        return false;
+      }
+	  var total = t.find("input[name=balance]").val();
+      t.ajaxSubmit(function(d){
+       // window.location.reload();
+	   $(".tip").parent().append("<div>您申请体现<span style='color:#ff7101;'>" +total+"</span>元，新助邦将在<span style='color:#ff7101;'>2个工作日</span>内进行审核。审核通过后将发送至您的账户，请注意查收。<br><br>如有问题，请及时拨打客户电话15001276577。</div>");
+		$(".tip").parent().show();
+		$(".tip").html(info);
+      })
+      return false;
+    })
+  </script>

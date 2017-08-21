@@ -1,0 +1,89 @@
+<include file="Common/header"/>
+<!--<php>
+	$order = M("service_order_view")->getById(I('request.id'));
+	$c = M("contract")->where(['order_id'=>I('request.id')])->order('id desc')->find();
+	$ps = M("learning_periods")->where(['contract_id'=>$c['id']])->select();
+</php>-->
+
+<div class="g_container mt_20 m_box pd_20">
+<div class="u_paytitle"><h3>添加约课计划</h3></div>
+
+<!-- 学生-->
+<form  method="post">
+  <ul class="m_form f_clearfix pd_20">
+  <li class="m_item"><div class="m_formtit">课程标题：</div>
+      <input type="text" class="u_inp_t" name="name" required="true">
+    </li>
+    <li class="m_item"><div class="m_formtit">预约时间：</div>
+      <input type="text" class="u_inp_t" required="true" name="set_time">
+    </li>
+      <li class="m_item"><div class="m_formtit ckyb">课程内容：</div>
+          <textarea class="u_inp_t" name="content"></textarea>
+      </li>
+      <li class="m_item"><div class="m_formtit ckyb">课程讲义：</div>
+          <textarea class="u_inp_t" name="content_reference"></textarea>
+      </li>
+     <li class="m_item"><div class="m_formtit">听课方式：</div>
+      <input type="text" class="u_inp_t long"  placeholder="可为QQ号，直播课堂或链接地址等" name="listen_type">
+      
+    </li>
+  
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+      <input type="submit" class="u_btn_sl" value="确认提交">
+    </li>
+  </ul>
+  </form>
+  
+  <!--老师-->
+  <!-- <ul class="m_form f_clearfix pd_20">
+    <li class="m_item"><div class="m_formtit">课程标题：</div>
+      <input type="text" class="u_inp_t long" placeholder="建议修改为醒目的标题">
+    </li>
+    <li class="m_item"><div class="m_formtit ckyb">课程内容：</div>
+      <textarea class="u_inp_t"></textarea>
+    </li>
+     <li class="m_item"><div class="m_formtit ckyb">课程讲义：</div>
+      <textarea class="u_inp_t"></textarea>
+    </li>
+     <li class="m_item"><div class="m_formtit">谁适合听：</div>
+      <input type="text" class="u_inp_t long" >
+    </li>
+     <li class="m_item"><div class="m_formtit">试听方式：</div>
+      <input type="text" class="u_inp_t long"  placeholder="可为QQ号，直播课堂或链接地址等">
+      
+    </li>
+  
+  <li  class="m_item" style="margin-left:18%;">
+  <div class="op_s">
+  <input type="radio" checked style="float:left;">
+  <div class="txt_os">
+  <h4>公开</h4>
+  <p>建议公开，就有更多的同学能够试听！</p>
+  </div>
+  </div>
+   <div class="op_s">
+  <input type="radio" style="float:left;">
+  <div class="txt_os">
+  <h4>不公开</h4>
+  
+  </div>
+  </div>
+  </li>
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+      <input type="button" class="u_btn_sl" value="确认提交">
+    </li>    
+  </ul>-->
+</div>
+
+
+<include file="Common/footer"/>
+
+<script type="text/javascript">
+	/*$("form").submit(function(){
+		$(this).ajaxSubmit(function(d){
+			window.location.href = "{:U('/member/serviceOrder/show',['id'=>$o['id']])}";
+		})
+		return false;
+	})*/
+	$("[name=set_time]").go_datetime();
+	</script>

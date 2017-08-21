@@ -1,0 +1,62 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+    <div class="u_fss">
+    <button class="u_btn_sl" href="{:U('/home/activity/add')}">发活动</button>  	
+    </div>
+  	<div class="u_ss">
+  		<input type="text" class="u_ss_txn">
+  		<button class="u_ss_btn"></button>
+  	</div>
+  </div>
+</div>
+<div class="g_container mt_20">
+	<div class="g_row">
+
+	<include file="_hot"/>
+<include file="Common/_listFilter"/>
+<php>
+	$all = M("activity")->select();
+	foreach($all as $a){
+		$as[$a[type]+1][] = $a;
+	}
+	$as[0] = $all;
+	$all = $as;
+
+	$types = C("activity_types");
+	$types = array_merge(["全部"],$types);
+</php>	
+		<section class="g_cell_9 m_box itembor">
+          <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+		  <include file="Activity/_s"/>
+		</section>
+    <section class="g_cell_12 hot_ds">
+      <header class="u_tab2">
+        <ul class="f_clearfix">
+          <li id="idc1_1" onmouseover="setTab('idc1_','u_tab2_item',1,1)" class="u_tab2_item hover" style="background:none;">名师推荐</li>
+        </ul>
+      </header>
+      <php>
+      	$ts = M("mb_member")->where(["recommend_as_teacher"=>1])->getField("id,avatar,nickname,recommend_as_teacher");
+      </php>
+			<ul id="idc1_1box" class="m_imglist">
+			<foreach name="ts" item="t">
+			  <li class="m_item">
+			  	<div class="m_imgbox"><img src="{$t[avatar]}"></div>
+			  	<h4><a href="{:U('/home/member/profile',['id'=>$t[id]])}">{$t[nickname]}</a></h4>
+			  </li>
+			  </foreach>
+			</ul>
+    </section>
+	</div>
+</div>
+
+<script type="text/javascript">
+	TouchSlide({ 
+		slideCell:"#picScroll",
+		pnLoop:"false", // 前后按钮不循环
+		effect:"left"
+	});
+	setTab('spgc_','u_tab2_item',1,8);
+</script>
+<include file="Common/footer"/>

@@ -1,0 +1,136 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<!--引入文本编辑器-->
+<div class="g_container mt_20 m_box pd_20">
+	<div class="m_datalist">
+    <!--学生申请试听 -->
+	  <div class="m_datalist_item">
+	  	<div class="m_dl_picbox">&yen;{$service.cost}</div>
+	  	<div class="m_dl_txtbox">
+				<h3><i class="ico_font">公</i><i class="ico"></i><a href="{:U('/home/service/detail',['id'=>$service['service_id']])}">【{:C('service_types')[$service['service_type']]}】{$service.description}</a></h3>
+				<small>
+				<foreach name="service.types" item="t">
+				<a>{$t}</a>
+				</foreach>
+				</small>
+	  	</div>
+	  </div>
+	</div>
+    
+    <!--老师同意试听 -->
+     <div class="m_datalist_item">
+     <strong><i class="u_ico_OK"></i>同意试听</strong>
+     </div>
+     
+	</div>
+</div>
+<form method="post" action="{:U('/member/audition/update',['id'=>$audition[id]])}">
+<input type="hidden" name="status" value="1">
+<input type="hidden" name="accept_time" value="{:add_time();}">
+<div class="g_container mt_20 m_box pd_20">
+<!-- 学生-->
+  <ul class="m_form f_clearfix pd_20">
+    <li class="m_item"><div class="m_formtit">标题：</div>
+      <input type="text" name="title" placeholder="建议修改为醒目的标题" class="u_inp_t long" maxlength="16">
+    </li>
+	<li class="m_item"><div class="m_formtit">试听时间：</div>
+      <input type="text" datetime=true class="u_inp_t" name="accept_time">
+    </li>
+    <li class="m_item"><div class="m_formtit ckyb">课程内容：</div>
+        <div style="margin-left: 200px;">
+                    <textarea id='edit' name="content" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                    </textarea>
+        </div>
+        <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+        <script type="text/javascript">
+            $('#edit').froalaEditor({
+                //heightMin:200,
+                height: 200,
+                language: "zh_cn",
+                theme: "gray",
+                imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                imageUploadParam:'file', //文件名称 <input type=file name=file>
+                //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+                imageInsertButtons: ['imageUpload'],
+                imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+            }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                $('.fr-image-progress-bar-layer').addClass('fr-active');
+            }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                if( $('.fr-message').text()=='Loading image' ){
+                    $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                    $img.froalaEditor('events.focus');
+                }
+            });
+        </script>
+    </li>
+     <li class="m_item"><div class="m_formtit ckyb">课程讲义：</div>
+         <div style="margin-left: 200px;">
+                    <textarea id='edit1' name="content_reference" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                    </textarea>
+         </div>
+         <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+         <script type="text/javascript">
+             $('#edit1').froalaEditor({
+                 //heightMin:200,
+                 height: 200,
+                 language: "zh_cn",
+                 theme: "gray",
+                 imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                 imageUploadParam:'file', //文件名称 <input type=file name=file>
+                 //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                 toolbarButtonsXS: ['bold','align','insertImage','undo','redo'], //,'undo','redo'
+                 imageInsertButtons: ['imageUpload'],
+                 imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+             }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                 $('.fr-image-progress-bar-layer').addClass('fr-active');
+             }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                 if( $('.fr-message').text()=='Loading image' ){
+                     $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                     $img.froalaEditor('events.focus');
+                 }
+             });
+         </script>
+
+
+    </li>
+    <!-- <li class="m_item"><div class="m_formtit">谁适合听：</div>
+      <input type="text" name="fit" class="u_inp_t long">
+    </li>-->
+     <li class="m_item"><div class="m_formtit">试听方式：</div>
+      <input type="text" name="method" placeholder="可为QQ号，直播课堂或链接地址等" class="u_inp_t long">
+    </li>
+  
+  <li style="margin-left:18%;" class="m_item">
+  <div class="op_s">
+  <input type="radio" value="1" name="is_open" style="float:left;" checked="checked">
+  <div class="txt_os">
+  <h4>公开</h4>
+  <p>建议公开，就有更多的同学能够试听！</p>
+  </div>
+  </div>
+   <div class="op_s">
+  <input type="radio" value="0" name="is_open" style="float:left;">
+  <div class="txt_os">
+  <h4>不公开</h4>
+  
+  </div>
+  </div>
+  </li>
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+      <input type="submit" value="确认提交" class="u_btn_sl">
+    </li>    
+  </ul>
+
+</div>
+</form>
+<script type="text/javascript">
+	$("form").submit(function(){
+		$(this).ajaxSubmit(function(d){
+			window.location.href = "{:U('/member/service/audition',['id'=>$service[service_id]])}";
+		})
+		return false;
+	})
+</script>
+<include file="../Application/Home/View/Common/footer.html"/>

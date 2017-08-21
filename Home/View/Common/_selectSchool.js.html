@@ -1,0 +1,26 @@
+<script type="text/javascript">
+	$(".school0").change(function(){
+		$.get("{:U('/home/school/index1')}",{pid:$(this).val()},function(d){
+			var html = build_options(d.message[0]);
+			$(".school1").html(html);
+			html = build_options(d.message[1]);
+			$(".school2").html(html);
+			html = build_options(d.message[2]);
+			$(".school3").html(html);
+		})	
+	})
+	$(".school1").change(function(){
+		$.get("{:U('/home/school/index1')}",{pid:$(this).val()},function(d){
+			var html = build_options(d.message[0]);
+			$(".school2").html(html);
+			html = build_options(d.message[1]);
+			$(".school3").html(html);
+		})	
+	})
+	$(".school2").change(function(){
+		$.get("{:U('/home/school/index')}",{pid:$(this).val()},function(d){
+			var html = build_options(d.message);
+			$(".school3").html(html);
+		})	
+	})
+</script>

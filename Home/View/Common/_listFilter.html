@@ -1,0 +1,279 @@
+<php>
+	$school_id = I("request.school_id",0);
+	if($school_id > 0){
+		$f_s = M("school")->find($school_id);
+		if($f_s['type'] == 3){
+			$zys = M("zysc_view")->getByYuanId($school_id);
+			$f_area = ['id'=>$zys[area_id],'title'=>$zys[area_title]];
+			$f_school = ['id'=>$zys[school_id],'title'=>$zys[school_title]];
+			$f_yuan = ['id'=>$zys[yuan_id],'title'=>$zys[yuan_title]];
+
+			$f_ss = M("school")->where(['pid'=>$f_s[pid]])->getField('id,title,first_letter');
+		}elseif($f_s['type'] == 2){
+			$zys = M("zysc_view")->getBySchoolId($school_id);
+			$f_area = ['id'=>$zys[area_id],'title'=>$zys[area_title]];
+			$f_school = ['id'=>$zys[school_id],'title'=>$zys[school_title]];
+			$f_ss = M("school")->where(['pid'=>$school_id])->getField('id,title,first_letter');
+		}else{
+			$zys = M("zysc_view")->getByAreaId($school_id);
+			$f_area = ['id'=>$zys[area_id],'title'=>$zys[area_title]];
+			$f_ss = M("school")->where(['pid'=>$school_id])->getField('id,title,first_letter');
+		}
+	}else{
+		$f_ss = M("school")->where(['pid'=>0])->getField('id,title,first_letter');
+	}
+
+        $major_id = I("request.major_id",0);
+		if($major_id > 0){
+			$mj = M("mj_major")->find($major_id);
+			if($mj['mj_type'] == 0){
+			   $mjs = M("mj_major")->where(['pid'=>$major_id])->select();
+			   $f_area = ['id'=>$mj[id],'title'=>$mj[mj_name]];
+			}else{
+			   $mjs = M("mj_major")->where(['pid'=>$mj['pid']])->select();
+			   $f_school = ['id'=>$mj[id],'title'=>$mj[mj_name]];
+			   $fmj = M("mj_major")->where(['id'=>$mj['pid']])->find();
+			    $f_area = ['id'=>$fmj[id],'title'=>$fmj[mj_name]];
+			}
+		}else{
+			$mjs = M("mj_major")->where(['pid'=>0])->select();
+		}
+
+		$unified_id = I("request.unified_id",0);		
+		$utype = I("request.utype",0);	
+		if($unified_id > 0){
+		  if($utype == 0){
+		     $u =  M("unified_classify")->find($unified_id);
+             $us = M("unified")->where(['cid'=>$unified_id])->getField("id,cname as name,type");
+			  $f_area = ['id'=>$u[id],'title'=>$u[title]];
+		  }else{
+		     $u =  M("unified")->find($unified_id);
+		    $us = M("unified")->where(['cid'=>$u['cid']])->getField("id,cname as name,type");		    		    
+		    $fu = M("unified_classify")->where(['id'=>$u['cid']])->find();
+            $f_area = ['id'=>$fu[id],'title'=>$fu[title]];
+		    $f_school = ['id'=>$u[id],'title'=>$u[cname]];
+		  }
+		}else{
+		   $us = M("unified_classify")->getField("id,title as name,type");
+		}			
+</php>
+<section class="g_cell_3 class_seat m_box">
+	<header class="cls_header">
+	  <present name='f_school'><input type="button" class="active" onclick="list_filter_go_circle();"><else/></present>
+	  <div class="cls_tit on">
+	  <a href="javascript:;" class="xq-nav" onclick="list_filter_changeArea(this)"><present name='f_area'>{$f_area.title}<else/>下方选择地区</present></a>
+	  </div>
+	  <div class="cls_tit ">
+	  <a href="javascript:;" class="xq-nav" onclick="list_filter_changeSchool(this)" data-id="{$f_area.id}"><present name='f_school'>{$f_school.title}<else/>选择学校</present></a>
+	  </div>
+	  <div class="cls_tit ">
+	  <a href="javascript:;" class="xq-nav" onclick="list_filter_changeYuan(this)" data-id="{$f_school.id}"><present name='f_yuan'>{$f_yuan.title}<else/>选择院系</present></a>
+	  </div>
+	</header>
+	<ul class="u_tab2"> 
+	  <li id="clsTab_1" onclick="change_type('0','0')" class="u_tab2_item <eq name='_GET[stype]' value='0'>hover</eq>">大学</li>
+	  <li id="clsTab_2" onclick="change_type('0','2')" class="u_tab2_item <eq name='_GET[stype]' value='2'>hover</eq>">学科</li>
+	  <li id="clsTab_3" onclick="change_type('0','3')" class="u_tab2_item <eq name='_GET[stype]' value='3'>hover</eq>">统考</li>
+	  <li id="clsTab_4" onclick="change_type('0','4')" class="u_tab2_item <eq name='_GET[stype]' value='4'>hover</eq>">公共课</li>
+	</ul>
+	<if condition="strlen($_GET[stype]) eq 0 OR $_GET[stype] eq 0">
+	<div id="clsTab_1box" class="cls_mainct">
+	  <ul class="u_tab1">
+	  <php>
+	  	$letters = ['ABCD','EFGH','IJKL','MNOP','QRST','UVW','XYZ'];
+	  </php>
+	  	<foreach name="letters" item="letter">
+	  	<li class="u_btn_sl letter">{$letter}</li>
+	  	</foreach>
+	  </ul>
+	  <div class="m_titlist">
+			<div class="cls_slt cls_slt1 school">
+			<foreach name='f_ss' item='s'>
+				<button onclick='change_school(this)' data-letter='{$s.first_letter}'  data-id="{$s.id}">{$s.title}</button>
+			</foreach>
+			</div>
+		</div>
+	</div>
+	</if>
+
+	<if condition="$_GET[stype] eq 2">
+	<div id="clsTab_2box" class="cls_mainct">
+		<php>
+		   
+		</php>
+		<div class="m_titlist">
+		<foreach name="mjs" item="name" key="id">
+			<button  data-id="{$name.id}">{$name['mj_name']}</button>
+		</foreach>
+		</div>
+	</div>
+	</if>
+
+	<if condition="$_GET[stype] eq 3">
+	<div id="clsTab_3box" class="cls_mainct">
+	 	<php>
+			
+		</php>
+		<div class="m_titlist">
+		<foreach name="us" item="name" key="id">
+		<button onclick="change_unified('{$name['id']}','{$name['type']}')">{$name.name}</button>
+		</foreach>
+		</div>
+	</div>
+	</if>
+
+	<if condition="$_GET[stype] eq 4">
+	<div id="clsTab_4box" class="cls_mainct">
+		<div class="m_titlist">
+		<php>
+			$ps = M("public_subject")->getField("id,name");
+		</php>
+		<foreach name="ps" item="name" key="id">
+		<button data-id={$id}>{$name}</button>
+		</foreach>
+		</div>
+	</div>
+	</if>
+
+	<form id="list_filter_form">
+		<foreach name='_GET' item="v" key="k">
+		<input type="hidden" name="{$k}" value="{$v}">
+		</foreach>
+		<if condition="!isset($_GET[school_id])">
+			<input type="hidden" name="school_id">
+		</if>
+		<if condition="!isset($_GET[major_id])">
+			<input type="hidden" name="major_id">
+		</if>
+		<if condition="!isset($_GET[public_subject_id])">
+			<input type="hidden" name="public_subject_id">
+		</if>
+		<if condition="!isset($_GET[unified_id])">
+			<input type="hidden" name="unified_id">
+		</if>
+		<if condition="!isset($_GET[stype])">
+			<input type="hidden" name="stype">
+		</if>
+		<if condition="!isset($_GET[utype])">
+			<input type="hidden" name="utype">
+		</if>
+		
+	</form>
+	<form id="list_major_form">
+	<foreach name='_GET' item="v" key="k">
+		<input type="hidden" name="{$k}" value="{$v}">
+		</foreach>
+		<if condition="!isset($_GET[major_id])">
+			<input type="hidden" name="major_id">
+		</if>
+	</form>
+</section>
+<script type="text/javascript">
+
+
+	function change_school(t){
+		var t = $(t);
+		var id = t.attr("data-id");
+		$("#list_filter_form input[name=unified_id]").val("");
+		$("#list_filter_form input[name=public_subject_id]").val("");
+		$("#list_filter_form input[name=major_id]").val("");
+		$("#list_filter_form input[name=school_id]").val(id);
+        $("#list_filter_form input[name=stype]").val("0");
+		$("#list_filter_form").submit();
+	}
+
+	$("li.letter").click(function(){
+		$("div.school button").hide();
+		var li = $(this);
+		var letters = li.html();
+		for (var i = 0; i < letters.length; i++) {
+			var letter = letters[i].toLocaleLowerCase();
+			$("div.school button[data-letter="+letter+"]").show();
+		}
+	})
+
+	function change_type(id,type){
+	   if(type == 0){
+	     $("#list_filter_form input[name=unified_id]").val("");
+		 $("#list_filter_form input[name=public_subject_id]").val("");
+		 $("#list_filter_form input[name=major_id]").val("");
+		 $("#list_filter_form input[name=school_id]").val(id);
+		 $("#list_filter_form input[name=stype]").val(type);
+		 $("#list_filter_form").submit();
+	   }
+	    if(type == 2){
+	     $("#list_filter_form input[name=unified_id]").val("");
+		 $("#list_filter_form input[name=public_subject_id]").val("");
+		 $("#list_filter_form input[name=major_id]").val(id);
+		 $("#list_filter_form input[name=school_id]").val("");
+		 $("#list_filter_form input[name=stype]").val(type);
+		 $("#list_filter_form").submit();
+	   }
+	    if(type == 3){
+	     $("#list_filter_form input[name=unified_id]").val(id);
+		 $("#list_filter_form input[name=public_subject_id]").val("");
+		 $("#list_filter_form input[name=major_id]").val("");
+		 $("#list_filter_form input[name=school_id]").val("");
+		 $("#list_filter_form input[name=stype]").val(type);
+		  $("#list_filter_form input[name=utype]").val(0);
+		 $("#list_filter_form").submit();
+	   }
+	    if(type == 4){
+	     $("#list_filter_form input[name=unified_id]").val("");
+		 $("#list_filter_form input[name=public_subject_id]").val(id);
+		 $("#list_filter_form input[name=major_id]").val("");
+		 $("#list_filter_form input[name=school_id]").val("");
+		 $("#list_filter_form input[name=stype]").val(type);
+		 $("#list_filter_form").submit();
+	   }
+	}
+
+	//学科
+	$("#clsTab_2box button").click(function(){
+		$("#list_filter_form input[name=unified_id]").val("");
+		$("#list_filter_form input[name=school_id]").val("");
+		$("#list_filter_form input[name=public_subject_id]").val("");
+		var id = $(this).attr("data-id");
+		$("#list_filter_form input[name=major_id]").val(id);
+		$("#list_filter_form").submit();
+	})
+
+	//公共课
+	$("#clsTab_4box button").click(function(){
+		$("#list_filter_form input[name=unified_id]").val("");
+		$("#list_filter_form input[name=school_id]").val("");
+		$("#list_filter_form input[name=major_id]").val("");
+		var id = $(this).attr("data-id");
+		$("#list_filter_form input[name=public_subject_id]").val(id);
+		$("#list_filter_form").submit();
+	})
+
+	//统考
+	/*$("#clsTab_3box button").click(function(){
+		$("#list_filter_form input[name=public_subject_id]").val("");
+		$("#list_filter_form input[name=school_id]").val("");
+		$("#list_filter_form input[name=major_id]").val("");
+		var id = $(this).attr("data-id");
+		$("#list_filter_form input[name=unified_id]").val(id);
+		 $("#list_filter_form input[name=utype]").val(1);
+		$("#list_filter_form").submit();
+	})*/
+
+	function change_unified(t,type){
+		$("#list_filter_form input[name=public_subject_id]").val("");
+		$("#list_filter_form input[name=school_id]").val("");
+		$("#list_filter_form input[name=major_id]").val("");
+		$("#list_filter_form input[name=unified_id]").val(t);
+		 $("#list_filter_form input[name=utype]").val(type);
+		$("#list_filter_form").submit();
+	}
+
+	$(document).ready(function(){
+		var action= "{:ACTION_NAME}";
+		if(action=="majorCircle"){
+			$("#clsTab_2box").show();
+			$(".school").hide();
+			$("#clsTab_1box").hide();
+		}
+	})
+</script>

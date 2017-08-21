@@ -1,0 +1,75 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<include file="Common/top_user_info"/>
+<include file="Common/nav"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<section class="g_cell_9">
+
+
+   <div class="f_ss_gr">
+
+<div class="input_ss">
+<input type="text" class="s_ss_content">
+</div>
+<div class="s_act">
+<input type="submit" value class="ico_s">
+</div>
+<div class="fss_btn">
+<input type="button" class="u_btn_sl" onclick="onoff('mianshuoshuofb','shuoquize','ucl_ssinput m_box pd_20 mb_20')" value="发说说" style="width:49%;">
+<button class="u_btn_sc" onclick="onoff('shuoquize','mianshuoshuofb','ucl_ssinput m_box pd_20 mb_20')" style="padding-top:6px; padding-bottom:6px; background:#fff; border:1px solid #ff7101; color:#ff7101; width:49%;">有偿问答</button>
+</div>
+</div>
+
+   <div class="clear mb_15"></div>
+
+  <div id="mianshuoshuofb" class="ucl_ssinput m_box pd_20 mb_20">
+	      
+        <include file="../Application/Home/View/MemberPost/_add.html"/>
+	    </div>
+
+		
+		<div id="shuoquize" class="ucl_ssinput m_box pd_20 mb_20" >
+	     <include file="../Application/Home/View/MemberPost/_quiz.html"/>             
+	    </div>
+                
+<div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+<ul class="u_tab2 m_box ms_nav" id="nav">
+<li class="u_tab2_item" id="uclTab_1" onClick="setTab('uclTab_','u_tab2_item',1,6)"><a href="{:U('/member/memberPost/index')}">我的说说</a></li>
+<li class="u_tab2_item" id="uclTab_2" onClick="setTab('uclTab_','u_tab2_item',2,6)"><a href="{:U('/member/memberPost/comments')}">我的评论</a></li>
+<li class="u_tab2_item" id="uclTab_3" onClick="setTab('uclTab_','u_tab2_item',3,6)"><a href="{:U('/member/memberPost/clicked')}">@我的</a></li>
+<li class="u_tab2_item" id="uclTab_4" onClick="setTab('uclTab_','u_tab2_item',4,6)"><a href="{:U('/member/memberPost/commentd')}">收到评论<if condition="$commentcount"><i class="u_tsd">{$commentcount}</i></if></a></li>
+<li class="u_tab2_item hover" id="uclTab_5" onClick="setTab('uclTab_','u_tab2_item',5,6)"><a href="{:U('/member/memberPost/relayed')}">我被转发</a></li>
+<li class="u_tab2_item" id="uclTab_6" onClick="setTab('uclTab_','u_tab2_item',6,6)"><a href="{:U('/member/memberPost/praised')}">我被点赞<if condition="$praisecount"><i class="u_tsd">{$praisecount}</i></if></a></li>
+
+</ul>
+  
+  <ul>
+  <foreach name="relays" item="mp">
+<li class="ucl_ssitem m_box">
+				    <div class="ucl_ssusbox">
+					  	<div class="m_imgbox"><img src="{$mp.avatar}" alt=""></div>
+				    </div>
+				  	<div class="ucl_ssrbox">
+				  	  <dl class="ucl_ssmenu">
+				  	  	<dt><span class="u_ico_cdown"></span></dt>
+				  	  	<dd>删除</dd>
+				  	  </dl>
+				  		<div class="ucl_ssname txt_green">{$mp.member_nickname}<span>转发了你的说说</span></div>
+                      
+                          <div class="pl_sstext">
+                        <p>{$mp.fcontent}</p>
+                        </div>		                      
+				  	  <div class="ucl_ssoperation"  style="float:none;width:100%;"><span class="f_fl">{$mp.add_time}</span></div>              
+				  	</div>
+				  </li>
+                  
+                 </foreach>
+</ul>
+
+	</section>
+
+	<include file="Common/right"/>
+	</div>
+</div>
+<include file="../Application/Home/View/Common/footer.html"/>

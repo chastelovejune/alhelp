@@ -1,0 +1,30 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+  	<div class="g_cell_12 m_box pd_20 ret_g">
+  	  <header class="u_paytitle"><h3>退货流程</h3><p><span class="on"><b>1</b>提交退货申请</span><span><b>2</b>等待退货申请审核</span><span><b>3</b>寄回退货商品</span><span><b>4</b>确认收货，退款完成</span></p></header>
+      <div class="thxz pd_20">
+        <h4>退货须知：</h4>
+        <h5>第一个15天内（协商退货期）：</h5>
+        <p>１、可以与老师协商退货退款。<br>２、退货需取得老师的同意，如果老师不同意退货，则您只能提交仲裁。<br>３、超过老师发货后15天的，或者没有提供充分证据的情况下，新助邦原则上会支付资料费给老师。<br>  （所以请学生务必在15天内提交充分的证据，以便新助邦暂时冻结款项）</p>
+        <h5>第二个15天内：仲裁期</h5>
+        <p>1、新助邦在实施前将裁决结果通知双方（开始计时）：如不同意新助邦的裁定，须在1５天内提交法律程序文件，如１５日内不走法律程序的，视为尊重新助邦的裁定，款项将自动给到学生或老师的新助邦账户上。<br>2、如果15天内，对新助邦的裁决没有执行的，且没有提出法律仲裁的。则无论何种原因，都视为违约：如果是学生违约，则款项全部付给老师；如果是老师违约，则款项全部退给学生。</p>
+        <div class="tsbox">温馨提醒：<br>1、一旦仲裁，程序就会非常复杂而且耗时，所以请在第一个15天内，协商解决。<br>2、一旦提交仲裁，双方不能相互评价。</div>
+      </div>
+    </div>
+    <div class="g_cell_12 m_box mt_20 pd_20 ret_g">
+    <form  method="post">
+    <input type="hidden" name="id" value="{:I('request.id')}">
+      <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit">退货理由:</div><div class="pt_5">
+          <input type="radio" name="refund_reason" checked="checked" value="0">&nbsp;与情况不符&nbsp;&nbsp;&nbsp;<input type="radio" value="1" name="refund_reason">&nbsp;买重了&nbsp;&nbsp;&nbsp;<input type="radio" name="refund_reason" value="2">&nbsp;其它&nbsp;&nbsp;&nbsp;<span class="f_cll">注：电子资料一概不能退货</span></div>
+        </li>
+        <li class="m_item"><div class="m_formtit">简要描述:</div><textarea class="u_inp_t" name="refund_description"></textarea></li>
+        <li class="m_item"><div class="m_formtit"></div><input type="submit" class="u_btn_sl" style="margin-left:0;" value="提交"></li>
+      </ul>
+      </form>
+  	</div>
+  	<div class="g_cell_12 m_box mt_20"></div>
+  </div>
+</div>
+<include file="../Application/Home/View/Common/footer.html"/>

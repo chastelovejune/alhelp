@@ -1,0 +1,162 @@
+<include file="Common:header" /> 
+<include file="Common:editor" />
+
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+    <div class="toptitle">
+      <h2 class="pd_20">分享</h2>
+      <p>跟大家分享有意思的资讯吧！
+</p>
+    </div>
+      <div class="u_paytitle"><h3>分享类别</h3><p></p></div>
+      <ul class="reladdress type f_clearfix">
+        <li class="m_item" type=0>
+          <i class="u_ico_ds2"></i>
+          <h5>资料</h5>
+          <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+        </li>
+        <li class="m_item" type=1>
+          <i class="u_ico_ds1"></i>
+          <h5>视频</h5>
+          <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+        </li>
+        <li class="m_item" type=2>
+          <i class="u_ico_ds3"></i>
+          <h5>心得</h5>
+          <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+        </li>
+      </ul>
+      
+      <div class="u_paytitle"><h3>确认专业</h3><p></p></div>
+       <form method="post">
+      <input type="hidden" name="type" value="{$type}">
+      <ul class="m_form f_clearfix pd_20">
+        <include file="Common/_add3type"/>
+
+        <li class="m_item"><div class="m_formtit">标题：</div>
+          <input type="text" name="title" class="u_inp_t g_width_5">
+        </li>
+<if condition="$type eq 1">
+        <li class="m_item"><div class="m_formtit">视频链接：</div>
+          <input type="text" name="url" class="u_inp_t g_width_5">
+        </li>
+        <li class="m_item"><div class="m_formtit"></div>
+          <span>支持优酷、酷6、新浪视频、搜狐视频、56网视频播放地址</span>
+        </li>
+        <li class="m_item"><div class="m_formtit ckyb">视频介绍：</div>
+          <textarea name="content" class="u_inp_t"></textarea>
+        </li>
+<else/>
+    <if condition="$type eq 2"><else/>
+    <li class="m_item rel_inpr">
+        <div class="m_formtit">上传文件名称：</div>
+        <input type="text" name="attachment_name" class="u_inp_t g_width_2">
+    </li>
+        <li class="m_item rel_inpr">
+          <div class="m_formtit">上传文件：</div>
+          <input type="file" name="attachment">
+        </li>
+        <li class="m_item">
+          <ul class="tf_ts">
+            <li class="t_item">文档上传须知：</li>
+            <li class="t_item">1、上传资料流程：注册登录 -> 上传资料 -> 审核发布。</li>
+            <li class="t_item">2、支持格式：压缩包,TXT, DOC, PPT, PDF, xls, 每份文档不超过50MB。</li>
+			 <li class="t_item">3、请不要上传包含其他教育机构链接、logo、水印等广告，或带有色情、危害社会、无分享价值等类型的资料，否则将不能通过审核。</li>
+			  <li class="t_item">4、资料名称、资料简介必须与资料内容一致，否则将不能通过审核。</li>
+			   <li class="t_item">5、技巧：选择正确的分类、设置合适的标签、尽量填写详细的介绍可以提高资料的下载量。</li>
+          </ul>
+        </li>
+        </if>
+        <li class="m_item">
+          <div class="m_formtit ckyb">内容摘要：</div>
+            <div style="margin-left: 200px;">
+                    <textarea id='edit' name="content" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                    </textarea>
+            </div>
+            <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+            <script type="text/javascript">
+                $('#edit').froalaEditor({
+					height: 300,
+					language: "zh_cn",
+					toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+                    imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                    imageUploadParam:'file', //文件名称 <input type=file name=file>
+                    //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                    imageInsertButtons: ['imageUpload'],
+                    imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                    $('.fr-image-progress-bar-layer').addClass('fr-active');
+                }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                    if( $('.fr-message').text()=='Loading image' ){
+                        $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                        $img.froalaEditor('events.focus');
+                    }
+                });
+            </script>
+        </li>
+    <if condition="$type eq 2"><else/>
+    <li class="m_item rel_inpr">
+        <div class="m_formtit">链接地址：</div>
+        <input type="text" name="url" class="u_inp_t g_width_2" placeholder="例:www.alhelp.net" url="ture">
+    </li>
+        </if>
+</if>
+         
+		 <li class="m_item rel_inpr"><div class="m_formtit">需要：</div>
+         <div class="down_reward"> <input type="radio" name="download_type" checked="checked" value="0" id="free"><span>免费</span></div>
+		   <div class="down_reward"> <input type="radio" value="1" name="download_type" class="download_cost"><span>积分</span></div>
+		     <div class="down_reward"> <input type="radio" value="2"  name="download_type" class="download_cost"><span>金币</span></div>
+             <div class="down_reward"> <input type="radio" value="3"  name="download_type" class="download_cost"><span>人民币</span></div>
+        </li>
+       <li class="m_item rel_inpr" id="cost" style="display: none"><div class="m_formtit"></div>
+          <input type="text" class="u_inp_t"  name="download_cost" placeholder="请填写整数" >
+        </li>
+         
+         <li class="m_item rel_inpr"><div class="m_formtit"></div>
+          <input type="submit" class="u_btn_sl pd_20" id="btn1" value="确认提交">
+        </li>
+
+		 
+      </ul>
+        </form>
+        
+    </div>
+  </div>
+</div>
+
+
+
+<div id="Container"></div>
+<script>
+var text = '<div id = "pop" class="pop_t"><div class="title_t" id="title"><img src="/images/icons/笑脸.png" style="width:30px; height:30px;"/>'+"恭喜您已分享成功！"+'</div><div class="t_content">' + "" + '</div><div class="u_btn_sl" id="btn-left" >'+'<a href="{:U("/home/information/index2")}">现在就去！</a>'+'</div><div class="u_btn_bl" onclick="window.location.reload()">' + "再发一条" + '</div>';
+$("form").submit(function(){
+  $(this).ajaxSubmit(function(d){
+    openPop("#Container","#pop",300,300,text);
+  })
+  return false;
+})
+$("input[name=attachment]").change(function(e){
+   layer.load(0, {shade: false,time:2000});
+})
+</script>
+
+
+<include file="Common/add_js"/>
+<script type="text/javascript">
+  $("ul.type li[type={$type}]").addClass("on");
+  $("ul.type li").click(function(){
+    var t = $(this).attr("type");
+    window.location.href = "{:U('/home/share/add')}"+"?type="+t;
+  })
+  //如果是有id,那么要默认选择
+    $(".download_cost").click(function(){
+        $('#cost').show(1000);
+    })
+    $('#free').click(function(){
+        $('#cost').hide(1000);
+    })
+  </script>
+<include file="Common:footer" /> 

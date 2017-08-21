@@ -1,0 +1,82 @@
+<include file="Common/header"/>
+<form method="post" class="add_bid" >
+<div class="g_container mt_20 m_box pd_20">
+  <div class="u_paytitle mb_30"><h3>投标</h3><p><a href="{:U('/home/service/add')}" class="u_btn_sl">发新服务</a></p></div>
+  <if condition="$service_empty eq 1">
+  <div class="u_paytitle mb_30"><h3>
+你还没发过服务，暂时不能参与投标，请去发送一条服务信息</h3></div>
+  <else/>
+  <div class="paytable">
+  	<ul class="paytable_title">
+  		<li class="paytab_item1"></li>
+  		<li class="paytab_item2">我发布的服务</li>
+  		<li class="paytab_item4">学校</li>
+  		<li class="paytab_item3">费用</li>
+  	</ul>
+	
+      <foreach name="ss" item="s" key="k">
+<php>
+  $s = parse_class($s);
+ 
+</php>
+
+       <ul>
+               <li class="paytab_item1">
+			   <input type="radio" name="service_id" <eq name="k" value="0">checked='checked'</eq> value="{$s.service_id}"></li>
+			 
+               <li class="paytab_item2">
+                 <div class="paytab_tit">{$s.description}</div>
+               </li>
+               <li class="paytab_item4"><foreach name="s.types" item="t">{$t}</foreach></li>
+               <li class="paytab_item3">&yen;{$s.cost}</li>
+
+       </ul>
+	 
+</foreach>
+  </div>
+ <div class="u_fy">
+               <php>echo pageHtml($count);</php>
+            </div>
+</div>
+<div class="g_container mt_20 m_box pd_20">
+	<div class="m_datalist">
+	  <div class="m_datalist_item">
+	  	<div class="m_dl_picbox">&yen;{$d.cost}</div>
+	  	<div class="m_dl_txtbox">
+				<h3><i class="ico_font">需</i><i class="ico"></i><a href="">{$d.description}</a></h3>
+				<small>
+        <foreach name="d.types" item="t">
+        <a>{$t}</a>
+        </foreach>
+        </small>
+	  	</div>
+	  </div>
+	</div>
+	
+  <ul class="m_form f_clearfix pd_20">
+    <li class="m_item"><div class="m_formtit">投标价：</div>
+      <input id="cost" type="text" class="u_inp_t" number="true" required="true" name="bid_price" placeholder="填写数字">
+     
+    </li>
+    <li class="m_item"><div class="m_formtit">Q Q：</div>
+      <input type="text" value="{$m.qq}" class="u_inp_t" name="qq">
+    </li>
+    <li class="m_item"><div class="m_formtit">联系电话：</div>
+      <input type="text" required="true" isPhone='true' value="{$m.phone}" class="u_inp_t" name="phone">
+    </li>
+    <li class="m_item"><div class="m_formtit ckyb">对Ta说：</div>
+      <textarea class="u_inp_t" name="description"></textarea>
+    </li>
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+      <input type="submit" class="u_btn_sl" value="确认提交">
+    </li>
+  </ul></if>
+</div>
+</form>
+<script type="text/javascript">
+
+ 
+
+
+</script>
+<include file="Common/footer"/>

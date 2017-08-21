@@ -1,0 +1,22 @@
+<include file="Common:admin_header" />
+<form  method="POST">
+<div class="form-group">
+    <label >内部</label>
+    <select class="form-control" name="type">
+    <foreach name='Think.config.essay_types' item='e' key='k'>
+    	<option value="{$k}">{$e}</option>
+    </foreach>
+    </select>
+  </div>
+    <div class="form-group">
+    <label >标题</label>
+    <input type="text" name="title" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label >内容</label>
+    <textarea class="form-control" name="content" rows="10"></textarea>
+  </div>
+  <input type="submit" class="btn btn-info" value="保存">
+  </form>
+<include file="Common:admin_footer" />

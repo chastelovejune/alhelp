@@ -1,0 +1,26 @@
+<include file="Common:header"/>
+<!--以上头部-->
+
+<div class="g_container mt_20 m_box pd_20">
+<div class="emailbox">
+<div class="elogo">
+<img src="/jiao/images/test/e1.png">
+</div>
+<div class="erbox">
+
+<h4>{$re.nickname}，欢迎你来到新助邦！</h4>
+<p class="tips">注册确认信已经发到你的邮箱，请登录邮箱激活账号已完成验证</p>
+<p><a href="{$url}" class="u_btn_sl">查看邮件</a><a href="{:U('/home/member/flow')}" class="u_btn_sc">先去逛逛</a></p>
+</div>
+</div>
+<div class="etbox">
+<p style="font-size:18px; color:#333; margin-bottom:10px;"><img src="images/icons/cls.png" style="width:25px; height:25px;">&nbsp;&nbsp;没有收到确认信怎么办？</p>
+<p>检查一下上面Email地址是否正确，错了就重新<a href="{:U('home/member/register')}" class="txt_green">注册</a>一次吧:)</p>
+<p>看看是否在邮箱的垃圾箱里？</p>
+<p>稍等几分钟，若仍旧没收到确认信，那就<a class="txt_green">重发</a>一封吧</p>
+</div>
+</div>
+
+
+<!--以下底部-->
+<include file="Common:footer"/>

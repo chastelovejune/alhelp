@@ -1,0 +1,31 @@
+<include file="Common:admin_header" />
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>申请日期</td>
+    <td>用户id</td>
+    <td>用户名</td>
+    <td>充值金额</td>
+    <td>账户余额</td>
+    <td>账户冻结金额</td>
+    <td>状态</td>
+    <td>操作</td>
+    </tr>
+  </thead>
+    <foreach name="list" item="cash">
+    <tr>
+      <td>{$cash[id]}</td>
+      <td>{$cash[add_time]}</td>
+      <td>{$cash[member_id]}</td>
+      <td>{$cash[nickname]}</td>
+      <td>{$cash[balance]}</td>
+      <td>{$cash[balance_now]}</td>
+      <td>{$cash[balance_frozen]}</td>
+      <td>{$cash['success']?"成功":"失败"}</td>
+      <td>
+      </td>
+    </tr>
+    </foreach>
+</table>
+<include file="Common:admin_footer" />

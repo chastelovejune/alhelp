@@ -1,0 +1,44 @@
+<include file="Common/header"/>
+
+<div class="u_bannerbar">
+  <div class="g_container">
+  	<div class="u_ss">
+  	<form>
+  		<input type="text" name="keywords" value="{$_GET.keywords}" class="u_ss_txn">
+  		<button class="u_ss_btn"></button>
+	</form>
+  	</div>
+  </div>
+</div>
+
+
+<div class="g_container mt_20">
+	<div class="g_row">
+		<include file="Common/_listFilter"/>
+		<section class="g_cell_9 m_box userlist">
+           <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+		  <header class="u_tab2" id="nav">
+				<ul class="f_clearfix">
+					<li  class="u_tab2_item <eq name='Think.ACTION_NAME' value='teacher'>hover</eq> " href="{:U('/home/Recommend/teacher')}">推荐老师</li>
+					<li  class="u_tab2_item <eq name='Think.ACTION_NAME' value='student'>hover</eq>" href="{:U('/home/Recommend/student')}">报考学生</li>
+				</ul>
+			</header>
+			<ul  class="m_imglist f_clearfix">
+			<foreach name='ss' item="s">
+			  <li class="m_item">
+			    <div class="m_imgbox">
+			    <a class="jr_rw" href="{:U('/home/member/profile',['id'=>$s['id']])}"><img src="{$s.avatar}"></a></div>
+			    <h4>{$s.nickname}</h4>
+			  </li>
+			 </foreach>
+			</ul>
+			<div class="u_fy">
+			<php>echo pageHtml($count);</php>
+			</div>
+		</section>
+  
+	</div>
+</div>
+
+
+<include file="Common/footer"/>

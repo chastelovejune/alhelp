@@ -1,0 +1,60 @@
+<include file="Common:admin_header" />
+<center><h2><分享></h2></center>
+<table class="table table-striped">
+  <a href="{:U('home/share/add')}" target="_blank">添加</a>
+  <thead>
+    <tr>
+    <td>ID</td>
+      <td>用户</td>
+      <td>浏览数</td>
+      <td>专业</td>
+      <td>标题</td>
+      <td>下载需要</td>
+      <td>添加时间</td>
+      <td>类型</td>
+    <td>操作</td>
+
+    </tr>
+  </thead>
+    <foreach name="list" item="s">
+    <tr>
+      <td>{$s['id']}</td>
+      <td>{$s['nickname']}</td>
+      <td>{$s['views']}</td>
+      <td>
+        <small>{$s['types'][0]}</small>
+        <small>{$s['types'][1]}</small></br>
+        <small>{$s['types'][2]}</small>
+        <small>{$s['types'][3]}</small>
+      </td>
+
+      <td>{:substr($s['title'],0,15)}</td>
+      <td>
+
+        <if condition="$s['download_type'] eq 0">
+        <span style="color:green">免费</span>
+        <elseif condition="$s['download_type'] eq 1"/>
+          <span style="color:magenta">积分:{$s['download_cost']}</span>
+          <elseif condition="$s['download_type'] eq 2"/>
+        <span style="color:gold">金币:{$s['download_cost']}</span>
+          <else/>
+          <span style="color:blue">RMB:{$s['download_cost']}</span>
+        </if>
+      </td>
+      <td>{$s['add_time']}</td>
+      <td><if condition="$s['type'] eq 0">[资料
+        ]<elseif condition="$s['type'] eq 1"/>[视频]
+        <else/>[心得]
+      </if></td>
+
+
+
+      <td>
+        <a class="btn btn-info" href="{:U("admin/share/edit",['id'=>$s["id"]])}">编辑</a>
+        <a class="btn btn-danger" href="{:U("delete")}?id={$s["id"]}">删除</a>
+      </td>
+    </tr>
+    </foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer" />

@@ -1,0 +1,387 @@
+<include file="Common:header" />
+<include file="Common:editor" />
+<script src="script/layer/layer.js"></script>
+<form method="post">
+<input type="hidden" name="service_type" value="0">
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+    <div class="toptitle">
+      <h2 class="pd_20">发布服务</h2>
+      <p>发布服务后，系统会自动推荐给匹配专业的学生！更容易成功！
+</p>
+    </div>
+      <div class="u_paytitle"><h3>服务类别</h3><p></p></div>
+      <ul class="reladdress f_clearfix service_type">
+        <li class="m_item on">
+                    <a value="1"> 
+                        <i class="u_ico_ds2"></i>
+                        <h5 >资料</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+                <li class="m_item">
+                    <a value="2">
+                        <i class="u_ico_ds1"></i>
+                        <h5>答疑</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+                <li class="m_item">
+                    <a value="3">
+                        <i class="u_ico_ds3"></i>
+                        <h5 >授课</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+                <li class="m_item">
+                    <a value="4" href="{:U('/home/openClass/add')}">
+                        <i class="u_ico_ds4"></i>
+                        <h5 >直播课</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+            </ul>
+           <!-- <div class="u_paytitle"><h3>你对他/她有什么要求</h3><p></p></div>
+            <ul class="reladdress f_clearfix">
+                <li class="m_item">
+                    <h5>身份</h5>
+                    <p>
+                        <foreach name="Think.config.service_require_identity" item="t" key="k">
+                        <input type="radio" <if condition="$k eq 0">checked="checked"</if> name="require_identity" value="{$k}">{$t}&nbsp;&nbsp;&nbsp;
+                        </foreach>
+                    </p>
+                </li>
+                <li class="m_item">
+                    <h5>实名认证</h5>
+                    <p>
+                         <foreach name="Think.config.service_require_authenticate" item="t" key="k">
+                        <input type="radio" <if condition="$k eq 0">checked="checked"</if> name="require_authenticate" value="{$k}">{$t}&nbsp;&nbsp;&nbsp;
+                        </foreach>
+                    </p>
+                </li>
+                <li class="m_item">
+                    <h5>信誉保证</h5>
+                    <p>
+                     <foreach name="Think.config.service_require_security" item="t" key="k">
+                        <input type="radio" <if condition="$k eq 0">checked="checked"</if> name="require_security" value="{$k}">{$t}&nbsp;&nbsp;&nbsp;
+                        </foreach>
+                    </p>
+                </li>
+            </ul>-->
+            <div class="u_paytitle"><h3>确认专业</h3><p></p></div>
+            <ul class="m_form f_clearfix pd_20">
+                <include file="Common/_add3type"/>
+                <li class="m_item">
+                    <div class="m_formtit" >标题：</div>
+                    <input name="description" maxlength='16' placeholder="温馨提示：简单清晰的描述会更容易被找到" type="text" class="u_inp_t g_width_5" required="true">
+                    &nbsp;&nbsp;&nbsp;
+                    <span>(限定16字)</span>
+                </li>
+                <li class="m_item"><div class="m_formtit">考研年份：</div>
+                    <select class="u_slt" id="year">
+                        <for start="2015" end="2019">
+                            <option value="{$i}">{$i}</option>
+                        </for>
+                    </select>
+                </li>
+                <li class="m_item"><div class="m_formtit ckyb">详细描述：<br>
+                    <input type="button" value="查看样本" class="u_btn_sl"  data-toggle="modal" data-target=".modal_add_service_example"></div>
+				<!--引入文本编辑器-->
+                    <div class="edit_txt">
+                    <textarea id='edit' name="detail" style="margin-top: 30px;margin-left:150px;width:600px;height:300px" >
+                    </textarea>
+                    </div>
+                    <!-- <textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea>-->
+                    <script type="text/javascript">
+                        $('#edit').froalaEditor({
+                            height: 300,
+                            language: "zh_cn",
+							toolbarButtons: ["bold","italic","underline","strikeThrough","subscript","superscript","|","paragraphFormat","align","formatOL","formatUL","outdent","indent","quote","insertHR","|","insertLink","insertImage","insertTable","undo","redo","clearFormatting"],
+
+                            imageUploadURL: "{:U('home/common/editorImage')}",//上传到本地服务器
+                            imageUploadParam:'file', //文件名称 <input type=file name=file>
+                            //imageUploadParams: {control: "headline",action:"uploads",key:$('input[name="key"]').val()},  //修改图片的参数
+
+                            imageInsertButtons: ['imageUpload'],
+                            imageEditButtons: ['imageReplace', 'imageRemove'], //, 'imageAlign'
+                        }).on('froalaEditor.image.beforeUpload', function (e, editor, images) {
+                            $('.fr-image-progress-bar-layer').addClass('fr-active');
+                        }).on('froalaEditor.image.inserted', function (e, editor, $img, response) {
+                            if( $('.fr-message').text()=='Loading image' ){
+                                $('.fr-image-progress-bar-layer').removeClass('fr-active');
+                                $img.froalaEditor('events.focus');
+                            }
+                        });
+                    </script>
+                    <div id="editor" style="margin-top: 30px;"> </div>
+                </li>
+                <li class="m_item"><div class="m_formtit">上传图片：</div>
+                    <input name="image" type="file" required="true" id="image">
+                </li>
+        <li class="m_item"><div class="m_formtit">所需费用：</div>
+          <input type="text" name="cost" number='true' class="u_inp_t" maxlength='4'>
+         <span style="color:#ff7101;font-size:14px;"> &nbsp;&nbsp;元（该价格应包括管理费和运费）</span>
+        </li>
+        
+          <li class="m_item"><div class="m_formtit">平台管理费：</div>
+          <input type="text" disabled="disabled"  value="" name="commission" class="u_inp_t" id="cost_style">
+           <span style="color:#ff7101;font-size:16px;"> &nbsp;&nbsp;元</span>
+        </li>
+        <li class="m_item"><div class="m_formtit">Q Q：</div>
+            <input name="qq" type="text" class="u_inp_t" number="true" value="{$qq}">
+        </li>
+        <li class="m_item"><div class="m_formtit">微信号：</div>
+            <input name="wechat" type="text" class="u_inp_t" value="{$wx}">
+        </li>
+        <li class="m_item"><div class="m_formtit">联系电话：</div>
+	<!--2016.11.3新加start-->
+				
+				
+				
+					&nbsp;<if condition="$phone_verified eq 0">
+					<input name="mobile" required="true" isPhone='true' type="text" class="u_inp_t" id="phone" pattern="^[1][358][0-9]{9}$">
+					<input type="button" id="get_verified" value="发送验证码" style="height:34px;background-color:#13BC98;color:white;width:80px"/>&nbsp;<input required="true" type="text" name="phone_verified" class="u_inp_t" style="width:125px;" placeholder="请输入验证码"/>
+					<else/>
+					<input name="phone_verified" required="true" isPhone='true' type="text" class="u_inp_t"  value="{$phone}" disabled="disabled">
+					<span style="color:#1ecca7;">*已完成手机验证</span>
+				</if>
+				
+			
+                    
+                <!--end-->
+         
+        </li>
+         <li class="m_item pan" id = "p"><div class="m_formtit" style="font-size:16px;">制定套餐</div>
+            <div class="pa_add" id = "paad" onClick="bz('pabox')">+添加</div>			
+        </li>
+
+
+<li style="display: none; " id="pabox" class="m_item">
+
+<div class="m_formtit"></div>
+        <div class="pa_add_box">
+		<div class="celpa" onClick="gbBzBox('pabox')">关闭</div>
+          <input type="text" class="u_inp_t">
+          次
+            <input type="text" class="u_inp_t">
+          折扣 
+           <div class="u_paytitle"><h3 style="padding-left:0px; margin-top:10px;">承诺的服务，直接打钩</h3><p></p></div>
+        <ul class="m_form f_clearfix pd_20">
+        <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox" disabled="" checked="">
+        </div>
+        <div class="ser_con">拟定阶段学习规划</div>
+        <div class="ser_cds">（默认选项，新助邦提供各学科学习规划范本根据学生的实际情况进行修改即可）</div>
+        </li>
+        <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox" disabled="" checked="">
+        </div>
+        <div class="ser_con">拟定授课计划和课后练习</div>
+        <div class="ser_cds">（默认选项，简单填写授课时间，地点，上课内容和需要讲义）
+</div>
+        </li>
+        <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox">
+        </div>
+        <div class="ser_con">提问必答 </div>
+        <div class="ser_cds">（24小时内，解答学生的问题，帮学生及时扫清学习上的疑问，紧急情况下除外。）
+</div>
+        </li>
+        <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox">
+        </div>
+        <div class="ser_con">测试 </div>
+        <div class="ser_cds">（每个阶段结束后，对学生的学习情况进行测评，有针对性调整学习计划。
+）</div>
+        </li>
+        <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox">
+        </div>
+        <div class="ser_con">指导论文</div>
+     
+        </li>
+           <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox">
+        </div>
+        <div class="ser_con">协助联系导师</div>
+     
+        </li>
+        <li class="m_item check_ser">
+        <div class="check">
+        <input type="checkbox">
+        </div>
+        <div class="ser_con">其他</div>
+      <textarea style="width:80%; margin-left:5%; margin-right:10%; margin-top:20px;" class="u_inp_t"></textarea>
+        </li>
+       <li class="m_item rel_inpr"><div class="m_formtit"></div>
+          <input type="button" value="确认" class="u_btn_sl pd_20">
+		  
+        </li>
+        </ul> 
+        </div>     
+        </li>
+      </ul>
+        <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit"></div>
+          <label><input id="agree_contract" type="checkbox" required="true" name="box"> 我已阅读
+          <a data-toggle="modal" data-target=".modal_add_service_protocol" target="_blank">《新助邦服务发布协议（试行）》 </a></label>
+        </li>
+        <li class="m_item rel_inpr"><div class="m_formtit"></div>
+          <input type="submit" class="u_btn_sl pd_20" id="publish_submit" value="确认提交">
+        </li>
+        </ul>
+    </div>
+  </div>
+</div>
+</form>
+
+
+<include file="Common/modal/add_service_example"/>
+<include file="Common/modal/add_service_protocol"/>
+<include file="Common:footer" /> 
+<include file="Common/add_js"/>
+<script>
+/*2016.11.3 start*/
+$("#get_verified").click(function()
+	{	
+		settime(this);
+		var phone = $("#phone").val();
+		//alert(phone);
+		$.post("{:U('/home/common/sendPhoneCode')}",{phone:phone},function(d)
+		
+		{	
+			if (d.suc)
+			{
+				
+				layer.msg("已发送");
+
+			}
+			else
+			{
+				layer.msg("发送短信失败,"+d.message);
+			}
+		});		
+	});
+//短信验证码倒计时
+	var countdown=90;
+	function settime(obj) {
+		if (countdown == 0) {
+			obj.removeAttribute("disabled");
+			obj.value="免费获取验证码";
+			countdown = 90;
+			return;
+		} else {
+			obj.setAttribute("disabled",true);
+			obj.value="重新发送(" + countdown + "s)";
+			countdown--;
+		}
+		setTimeout(function() { settime(obj) },1000)
+	}
+	/*end*/
+    $("input[name=cost]").keyup(function(){
+        var cost = $(this).val();
+        $("input[name=commission]").val(cost/10);
+    })
+   $("ul.service_type a").click(function () {	  
+        $("ul.service_type li").removeClass("on");
+        $(this).parent().addClass("on");
+        $("input[name=service_type]").val($("ul.service_type li").index($(this).parent()));
+		var box = document.getElementById("p");
+		if($("input[name=service_type]").val() == "0")
+	   {		  
+	   box.style.display = "none";
+	   }else{
+	   box.style.display = "block";
+	   }
+    });
+    $("form").go_validate(function(form){
+        var school3=$('.school3 option:selected').val();
+        var unified1=$('.unified1 option:selected').val();
+        var public_subject0=$('.public_subject0 option:selected').val();
+        if(!(school3>0||unified1>0||public_subject0>0)){
+            layer.msg("你必须选择专业");
+            return false;
+        }
+        remove_hide_types();
+        $(form).ajaxSubmit(function(d){
+			if (d.suc){
+            var url = "{:U('/home/service/detail')}"+"?id="+d.message;
+            window.location.href = url;
+			}else{
+				layer.msg(d.message);
+			}
+        })
+    });
+    $("#pabox input[value=确认]").click(function(){
+        var t = $("#pabox");
+        var num = t.find("input[type=text]").eq(0).val();
+        var discount = t.find("input[type=text]").eq(1).val();
+        if (!is_gt0(num)) {
+            layer.msg("请输入次数");
+            return false;
+        }
+        if (!is_gt0(discount)) {
+            layer.msg("请输入折扣数");
+            return false;
+        }
+        var li = $("li.packages");
+        var types =  t.find('input[type=checkbox]').not("[disabled]");
+        var types_html = "";
+        if (types.eq(0).is(":checked")) {
+            types_html += "提问必答&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type1]>";
+        }
+        if (types.eq(1).is(":checked")) {
+            types_html += "测试&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type2]>";
+        }
+        if (types.eq(2).is(":checked")) {
+            types_html += "知道论文&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type3]>";
+        }
+        if (types.eq(3).is(":checked")) {
+            types_html += "提问协助联系导师&nbsp;&nbsp;<input type=hidden value=1 name=packages["+li.length+"][type4]>";
+        }
+        if (types.eq(4).is(":checked")) {
+            var other = types.eq(4).parent().next().next().val();
+            types_html += "其他"+other+"&nbsp;&nbsp;<input type=hidden value="+other+" name=packages["+li.length+"][type5]>";
+        }
+        var html = '<li class="m_item packages"><div class="m_formtit"></div>';
+        html += ("<input type=hidden name=packages["+li.length+"][num] value="+num+">");
+        html += ("<input type=hidden name=packages["+li.length+"][discount] value="+discount+">");
+        html += '<p class="ser_item">套餐'+(li.length+1)+':'+num+'次，'+discount+'折&nbsp;&nbsp;&nbsp;承诺服务：'+types_html+'</p><input type="button" style="padding:0; width:40px; margin-left:20px; font-size:12px;" value="删除" onclick="delete_package('+(li.length)+')" class="u_btn_sl"></li>';
+       // t.after(html);
+	   t.before(html);
+	   var box = document.getElementById("pabox");
+	   box.style.display = "none";
+    })
+    function delete_package(i){
+        $("li.packages").eq($("li.packages").length-i-1).remove();
+    }
+	
+	$("input[name=image]").change(function(e){
+        var This = $(this);
+        var f = e.target.files[0] || e.dataTransfer.files[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            This.parent().find('img').remove();
+            This.parent().append('<img src="'+fileReader.result+'" height="60"/>');
+        }
+        fileReader.readAsDataURL(f);
+
+
+		var filepath = This.val();
+	    var tmp = filepath.split(".");
+		var ext = (tmp[ tmp.length - 1 ]).toUpperCase() ;
+
+       if (ext != "BMP" && ext != "PNG" && ext != "GIF" && ext != "JPG" && ext != "JPEG"){
+          layer.msg("图片限于bmp,png,gif,jpeg,jpg格式");
+		   $(this).val(null);
+		};
+	});
+
+</script>

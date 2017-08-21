@@ -1,0 +1,75 @@
+<include file="Common/header"/>
+<php>
+	$type = I('request.type',0);
+</php>
+<div class="g_container mt_20">
+	<div class="g_row">
+		<section class="g_cell_3 class_seat m_box">
+			<h3 class="m_title">个人设置</h3>
+			<ul class="newspt_list">
+			  <li href="?type=0" class="newspt_item <eq name='type' value='0'>hover</eq>">
+			    <h4><img src="/images/icons/user_set.png">基本资料</h4>
+			  </li>
+               <li href="?type=1" class="newspt_item <eq name='type' value='1'>hover</eq>">
+			    <h4><img src="/images/icons/id_card.png">实名认证</h4>
+			  </li>
+			  <li href="?type=2" class="newspt_item <eq name='type' value='2'>hover</eq>">
+			    <h4><img src="/images/icons/rz.png">身份认证</h4>
+			  </li>
+			 
+                <li href="?type=3" class="newspt_item <eq name='type' value='3'>hover</eq>">
+			    <h4><img src="/images/icons/security.png">安全设置</h4>
+			  </li>
+                <li href="?type=4" class="newspt_item <eq name='type' value='4'>hover</eq>">
+			    <h4><img src="/images/icons/set_other.png">第三方登录</h4>
+			  </li>
+			</ul>
+		</section>
+		<section class="g_cell_9 m_box">
+		  <switch name='type'>
+		  <case value='0'><include file='Member/setting/0'/></case>
+		  <case value='1'><include file='Member/setting/1'/></case>
+		  <case value='2'><include file='Member/setting/2'/></case>
+		  <case value='3'><include file='Member/setting/3'/></case>
+		  <case value='4'><include file='Member/setting/4'/></case>
+		  </switch>
+			
+        </section>
+	</div>
+</div>
+<include file="Common/footer"/>
+<script type="text/javascript">
+	$("#sy_grxx_open3").click(function(){
+		if ($(this).val() == "修改") {
+			return;
+		}
+		$("#sy_grxx_list3").find("form").ajaxSubmit(function(d){
+			if (d.suc) {
+				window.location.reload();
+			}else{
+				alert(d.message);
+			}
+		})
+	});
+		
+	$("form.form3 input[type=button]").click(function(){
+		var f = $("form.form3");
+		if (f.find('textarea[name=description]').val().length == 0) {
+			alert("请填写身份简介");
+			return false;
+		}
+		if (f.find('input[name=profile_front]').val().length == 0) {
+			alert("请上传证件正面照片");
+			return false;
+		}
+		if (f.find('input[name=profile_back]').val().length == 0) {
+			alert("请上传证件背面照片");
+			return false;
+		}
+		f.ajaxSubmit(function(d){
+			window.location.reload();
+		})
+	})
+	
+	
+</script>

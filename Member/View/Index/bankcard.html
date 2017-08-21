@@ -1,0 +1,74 @@
+<form method="post">
+            <ul class="f_clearfix" id="uclTab_2box">
+
+              <li class="clear">
+              <ul>
+<php>$cards = M("bankcard")->where(['member_id'=>session("id")])->select()</php>
+<foreach name="cards" item="c">
+     <switch name="c[status]" >
+        <case value="-1"> <li class="m_bank disabled disablecolor" data-id={$c[id]} data-type={$c[card_type]} data-name={$c[card_name]} data-num={$c[card_num]}>
+              <p>{:C("bankcard_types")[$c[card_type]]}&nbsp;&nbsp;审核不通过</p>
+              <p>{$c[card_num]}</p>
+              </li></case>
+         <case value="0"> <li class="m_bank disabled disablecolor" data-id={$c[id]} data-type={$c[card_type]} data-name={$c[card_name]} data-num={$c[card_num]}>
+              <p>{:C("bankcard_types")[$c[card_type]]}&nbsp;&nbsp;审核中</p>
+              <p>{$c[card_num]}</p>
+              </li></case>
+		  <case value="1"> <li class="m_bank" data-id={$c[id]} data-type={$c[card_type]} data-name={$c[card_name]} data-num={$c[card_num]}>
+              <p>{:C("bankcard_types")[$c[card_type]]}</p>
+              <p>{$c[card_num]}</p>
+              </li></case>
+		   <case value="2"> <li class="m_bank" data-id={$c[id]} data-type={$c[card_type]} data-name={$c[card_name]} data-num={$c[card_num]}>
+              <p>{:C("bankcard_types")[$c[card_type]]}</p>
+              <p>{$c[card_num]}</p>
+              </li></case>
+		    <case value="3"> <li class="m_bank disabled disablecolor" data-id={$c[id]} data-type={$c[card_type]} data-name={$c[card_name]} data-num={$c[card_num]}>
+              <p>{:C("bankcard_types")[$c[card_type]]}&nbsp;&nbsp;被禁用</p>
+              <p>{$c[card_num]}</p>
+              </li></case>
+        <default />默认情况
+      </switch>
+             
+</foreach>
+              </ul>
+              </li>
+
+              <li class="m_item"><div class="m_formtit">银行：</div>
+            <select class="u_slt" name="card_type">
+            <foreach name="Think.config.bankcard_types" item="name" key="id">
+              <option value="{$id}">{$name}</option>
+            </foreach>
+            </select>
+          </li>
+<input type="hidden" value="0" name="id">
+          <li class="m_item"><div class="m_formtit">账号：</div>
+            <input type="text" class="u_inp_t" name="card_num">
+          </li>
+          <li class="m_item"><div class="m_formtit">用户名：</div>
+            <input type="text" class="u_inp_t" name="card_name">
+          </li>
+          <li class="m_item rel_inpr"><div class="m_formtit"></div>
+            <input type="submit" value="确认提交" class="u_btn_sl">
+          </li>
+            </ul>
+</form>
+<script type="text/javascript">
+$("form").resetForm();
+$("form").find("input[name=id]").val(0);
+  $("li[data-name]").click(function(){
+    $("form").find("select[name=card_type]").val($(this).attr("data-type"));
+    $("form").find("input[name=id]").val($(this).attr("data-id"));
+    $("form").find("input[name=card_num]").val($(this).attr("data-num"));
+    $("form").find("input[name=card_name]").val($(this).attr("data-name"));
+  });
+  $("form").submit(function(){
+    var id = $(this).find("input[name=id]").val();
+    if (id == 0) {
+      $(this).find("input[name=id]").remove();
+    }
+    $(this).ajaxSubmit(function(){
+      window.location.reload();
+    })
+    return false;
+  })
+</script>

@@ -1,0 +1,80 @@
+﻿<include file="Common/header"/>
+<!--以上头部-->
+
+
+<div class="g_container mt_20">
+	
+	 
+	<div class="g_row">
+		<section class="g_cell_3 class_seat">
+        <p>
+		 设有
+<br>
+</br>
+
+        <span style="font-size:24px;">{$title}</span>
+		<br>
+		<br>的大学
+        </p>
+        <br><br>
+	
+			<div class="appcodeimg">
+			<img src="images/main/app_dow.png" style="width:150px; height:150px;">
+			</div>
+            		 <div class="appcode">下载助邦考研app<br>
+
+立即找校友圈和专业圈朋友
+</div>
+		</section>
+		<section class="g_cell_9 m_box">
+			<ul class="m_commlist">
+				<foreach name="arr" item="vo">
+			  <li class="m_commlist_item">
+			  	<div class="m_cl_userbox"><div class="m_imgbox"><img src="{$vo.logo}"></div></div>
+			  	<div class="m_cl_txtbox">
+						<h3><a href="">{$vo.school_title}</a>&nbsp;&nbsp;
+							</h3>
+						<p>{$vo.address}<br>电话：{$vo.telephone}</p>
+						<div class="m_cl_opt">
+						  圈子人数：{$vo.circle_sum}
+						</div>
+                        <div class="m_cl_opt" style="padding-top:5px;">
+						 <a href="{$vo.website}">查看官网>></a>
+						</div>
+			  	</div>
+                	<div class="m_cl_btnbox"><a href="{:U('home/circle/memberPost',['id'=>$vo['circle_id']])}" class="u_btn_sl">进入圈子</a>
+						<if condition="$vo['is_follow']">
+							<a data-id="{$circle['id']}" class="u_btn_sc">取消关注</a>
+							<else/>
+							<a data-id="{$circle['id']}"  class="u_btn_sc">关注圈子</a>
+						</if></div>
+			  </li>
+</foreach>
+			</ul>
+			<div class="u_fy">
+				<php>echo pageHtml($count)</php>
+			</div>
+		</section>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(".m_cl_btnbox a.u_btn_sc").click(function(){
+		var circle_id = $(this).attr("data-id");
+		if ($(this).html().indexOf("取消") == -1) {
+			//现在是关注
+			$(this).html("取消关注");
+			$.post("{:U('/home/circle/follow')}",{circle_id:circle_id},function(){
+
+			})
+		}else{
+			$(this).html("关注圈子");
+			$.post("{:U('/home/circle/unfollow')}",{circle_id:circle_id},function(){
+
+			})
+		}
+	})
+</script>
+<!--以下底部-->
+<include file="Common/footer"/>

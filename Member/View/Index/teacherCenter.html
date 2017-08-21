@@ -1,0 +1,25 @@
+<include file="Common/teacher_edu_header"/>
+<li> 
+    <ul class="pl_10 pd_20">
+    <foreach name="services" item="s">
+    <php>$s = parse_class($s);</php>
+    <li class="tea_titem" href="{:U('/member/serviceOrder/show',['id'=>$s[order_id]])}">
+        <php>
+            $count= M("service_order")
+            ->where(['service_id'=>$s['service_id'],['is_read'=>0]])->count();
+        </php><if condition="$count eq 0"><else/><div style="border-radius:50%;background-color: orange;width: 30px;height:30px;color:white;float: right;text-align: center;line-height:30px">{$count}</div></if>
+    <h4><a href="{:U('/home/service/detail',['id'=>$s[service_id]])}">{$s.description}</a></h4>
+    <p>
+    	<foreach name="s.types" item="t">
+    		<span>{$t}</span>
+    	</foreach>
+    </p>
+    <h5>&yen;{$s.cost}</h5>
+    </li>
+    </foreach>
+</ul>
+    <div class="u_fy">
+        <php>echo pageHtml($cou);</php>
+    </div>
+</li>
+<include file="Common/teacher_edu_footer"/>

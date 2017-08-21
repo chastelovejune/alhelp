@@ -1,0 +1,46 @@
+  <div class="g_cell_12 mb_20 m_box act_hot">
+	<h3 class="m_title">热门活动</h3>
+	<div class="f_clearfix pd_30">
+		<div class="act_imgbox"></div>
+		<div class="act_txtbox">
+		  <h3>{$hot[title]}</h3>
+		  <ul class="clear">
+		  	<li><span>时间：</span>{$hot[begin_time]}</li>
+		  	<li><span>地点：</span>{$hot[address]}</li>
+		  	<li><span>主办：</span>{$hot[master_name]}</li>
+		  </ul>
+		  <div class="act_btnbox">
+		  <if condition="ACTION_NAME neq 'show' ">
+		  <a href="{:U('/home/activity/show',['id'=>$hot[id]])}" class="u_btn_sl">查看详情</a>
+		  </if>
+		  <a class="u_btn_sc ml_20 join">参加有惊喜</a></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function joined(t){
+		t.css({"background-color":"gray","cursor":"default"});
+		t.html("已参加");
+	}
+	$(".act_btnbox a.join").click(function(){
+		joined($(this));
+		$.post("{:U('/home/activity/join',['id'=>$hot[id]])}",function(){
+			var text = '<div id = "pop" class="pop"><div class="title" id="title">'+"主办方会尽快跟你联系！"+'</div><div class="btn" id="btn-left" onclick="cancel(this)">'+'确定'+'</div></div>';
+			openPop("#Container","#pop",300,300,text);
+
+		})
+		return false;
+	});
+	$(function(){
+		$("footer").before("<div id=\"Container\"></div>");
+	});
+
+	function cancel(){
+		$("#Container").empty();
+	}
+	$(function(){
+		<if condition="$hot[activity_member_id]">
+		joined($(".act_btnbox a.join"));
+		</if>
+	});
+</script>

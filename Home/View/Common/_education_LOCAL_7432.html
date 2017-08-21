@@ -1,0 +1,172 @@
+<form method="post" enctype="multipart/form-data" class="edit_education">
+
+				<div class="grxx_div_r sy_grxx_js m_box">
+						
+					<div class="grxx_div_r_txt">
+  					教育信息
+  					</div>
+					
+			
+					<div class="fn_cb"></div>
+<style>
+	.education li{float: left;width: 16%}
+</style>
+<php>
+	$infos = M("zysc_view")->join("LEFT JOIN mb_education_info ON mb_education_info.school_id=zysc_view.zhuanye_id")->where(['member_id'=>session('id')])->field("zysc_view.*,mb_education_info.id as education_id,year")->select();
+</php>
+					<div class = "sy_grxx_tit">&nbsp;</div>
+					
+						
+					<ul id="sy_grxx_list2"  class="sy_grxx_list on">
+						<li>
+							
+						<table class="edutable">
+<foreach name="infos" item='info'>
+						
+	<tr data-id='{$info[education_id]}'>
+		<td data-id='{$info[area_id]}'>{$info[area_title]}</td>
+		<td data-id='{$info[school_id]}'>{$info[school_title]}</td>
+		<td data-id='{$info[yuan_id]}'>{$info[yuan_title]}</td>
+		<td data-id='{$info[zhuanye_id]}'>{$info[zhuanye_title]}</td>
+		<td data-id='{$info[year]}'>{$info[year]}</td>
+		<td>
+			<a class="edit">修改</a><a class="delete">删除</a>
+		</td>
+	</tr>
+</foreach>
+						</table>
+							
+							
+							<div class="sy_grxx_tit">
+								&nbsp;
+							</div>
+							
+							<!-- 点击添加学校 -->
+							
+							<a id="add_schools">+点击添加学校</a>
+							
+						
+							<div id="sy_grxx_schoollist" hidden >
+
+							  <ul class="sy_school_item on">
+							  <input type="hidden" name="id" value="">
+							  <li>
+
+								  <div class="sy_grxx_tit">学校城市：</div>
+								  <div class="sy_grxx_ct">
+									  <div class="selectbox">
+
+									  <select class="sy_gr_s school0">
+									  </select>
+									  </div>
+								  </div>
+							  </li>
+							  <li>
+							  	<div class="sy_grxx_tit">学校名称：</div>
+							  	<div class="sy_grxx_ct">
+							  		<div class="selectbox"><select class="sy_gr_s school1"></select>
+							  		</div>
+							  	</div>
+							  </li>
+							  <li>
+							  	<div class="sy_grxx_tit">院系：</div>
+							  	<div class="sy_grxx_ct">
+							  		<div class="selectbox"><select class="sy_gr_s school2"></select></div>
+							  	</div>
+							  </li>
+							  <li>
+							  	<div class="sy_grxx_tit">专业：</div>
+							  	<div class="sy_grxx_ct">
+							  		<div class="selectbox"><select name="school_id" class="sy_gr_s school3"></select></div>
+							  	</div>
+							  </li>
+							  <li>
+							  	<div class="sy_grxx_tit">入学时间：</div>
+						  		<div class="sy_grxx_ct">
+						  			<div class="selectbox">
+						  			<select name="year" class="sy_gr_s">
+						  				<php>
+						  					for($i = 2016;$i > 1980;$i--){
+						  					</php>
+						  						<option value="{$i}">{$i}</option>
+						  					<php>
+						  					}
+						  				</php>
+						  			</select>
+						  			</div>
+						  		</div>
+						  	</li>
+						  	<li class="sy_grxx_submitbox">
+						  		<input type="submit" value="提交" class="sy_grxx_sub" style="width:60%">
+						  	</li>
+						  	</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+<include file="Common/_selectSchool.js"/>
+				<script type="text/javascript">
+				
+				
+					$.get("{:U('/home/school/index')}",function(d){
+						var html = build_options(d.message);
+						$(".school0").html(html);
+						$(".school0").change();
+					})	
+					$("form.edit_education").submit(function(){
+						var school_id = $(this).find("select[name=school_id]").val();
+						if (!school_id) {
+							alert("请选择专业");
+							return false;
+						}
+						var d = $("form.edit_education").serialize();
+						$.post("{:U('/home/educationInfo/edit')}",d,function(){
+							window.location.reload();
+						})
+						return false;
+					})
+					$("a.edit").click(function(){
+						var tr = $(this).parent().parent();
+						$("input[name=id]").val(tr.attr("data-id"));
+						school0_id = tr.find("td").eq(0).attr("data-id");
+						school1_id = tr.find("td").eq(1).attr("data-id");
+						school2_id = tr.find("td").eq(2).attr("data-id");
+						school3_id = tr.find("td").eq(3).attr("data-id");
+						$(".school0").val(school0_id);
+						$.get("{:U('/home/school/index')}",{pid:school0_id},function(d){
+							var html = build_options(d.message);
+							$(".school1").html(html);
+							$(".school1").val(school1_id);
+						});
+						$.get("{:U('/home/school/index')}",{pid:school1_id},function(d){
+							var html = build_options(d.message);
+							$(".school2").html(html);
+							$(".school2").val(school2_id);
+						});
+						$.get("{:U('/home/school/index')}",{pid:school2_id},function(d){
+							var html = build_options(d.message);
+							$(".school3").html(html);
+							$(".school3").val(school3_id);
+						});
+						$("select[name=year]").val(tr.find("td").eq(4).attr("data-id"));
+					})
+					$("a.delete").click(function(){
+						var tr = $(this).parent().parent();
+						$.post("{:U('/home/educationInfo/delete')}",{id:tr.attr("data-id")},function(){
+							window.location.reload();
+						})
+					});
+					
+					$("input[name=id]").val(0);
+					
+					$("#add_schools").click(function()
+					{
+						$schoollist = $("#sy_grxx_schoollist");
+						$schoollist.attr("class","sy_grxx_ct");
+						$schoollist.removeAttr("hidden");
+						
+					});
+					
+					
+				</script>
+				</form>

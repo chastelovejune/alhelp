@@ -1,0 +1,129 @@
+<include file="Common:header" /> 
+
+
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+    <div class="toptitle">
+      <h2 class="pd_20">发布资讯</h2>
+      <p>亲，资讯指学校官方发布的信息喔！</p>
+    </div>
+    <form method="post">
+      <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit">标题：</div>
+          <input  type="text" name="title" class="u_inp_t g_width_5">
+        </li>
+        <if condition="$_GET[circle_id]">
+          <input type="hidden" name="type" value="0">
+          <input type="hidden" name="circle_id" value="{$_GET[circle_id]}">
+        <else/>
+        <li class="m_item">
+        <div class="m_formtit">分类：</div>
+          <select name="type" class="u_slt">
+              <foreach name="Think.config.information_types" item="v" key="k">
+                <option value="{$k}">{$v}</option>
+              </foreach>
+          </select>
+          <select name="type2" class="u_slt">
+          </select>
+        </li>
+        </if>
+        <li class="m_item"><div class="m_formtit">地区：</div>
+          <select class="u_slt school0">
+          </select>&nbsp;&nbsp;&nbsp;
+          大学：
+          <select class="u_slt school1">
+          </select>&nbsp;&nbsp;&nbsp;
+          学院
+          <select class="u_slt yuan school2">
+          </select>
+        </li>
+        <li class="m_item">
+        <div class="m_formtit">专业类型：</div>
+          <select class="u_slt school3" name="school_id">
+          </select>
+        </li>     
+        <li class="m_item"><div class="m_formtit">上传图片：</div>
+          <input type="file" name="image">
+        </li>
+        <li class="m_item">
+        <div class="m_formtit">编辑内容：</div>
+        <textarea name="content" class="up_school_news" ></textarea>
+        </li>
+        <li class="m_item">
+          <div class="m_formtit">附件信息: </div>
+          <input type="file" name="attachment">
+          名字
+          <input type="text" class="u_inp_t" name="attachment_name">
+          所需积分
+          <input type="text" class="u_inp_t" name="attachment_score">
+        </li>
+        <li class="m_item" style="text-align:center;">
+          <label><input type="checkbox" checked="checked"> 我已阅读<a href="">《新助邦资讯发布协议（试行）》 </a></label>
+        </li>
+        <li class="m_item rel_inpr" style="text-align:center;">
+          <input type="submit" class="u_btn_sl pd_20" id="btn1" value="上传">
+        </li>
+         </ul>    
+     </form>
+    </div>
+  </div>
+</div>
+
+
+<div id="Container"></div>
+<script>
+var text = '<div id = "pop" class="pop_t"><div class="title_t" id="title"><img src="/images/icons/笑脸.png" style="width:30px; height:30px;"/>'+"恭喜您已成功发布！"+'</div><div class="t_content">' + "现在就去看看系统推荐吧！" + '</div><div class="u_btn_sl" id="btn-left" onclick="window.history.back()">'+'现在就去！'+'</div><div class="u_btn_bl" onclick="window.location.reload()">' + "再发一条" + '</div>';
+$("form").submit(function(){
+  $(this).ajaxSubmit(function(d){
+    openPop("#Container","#pop",300,300,text);
+  })
+  return false;
+})
+$("form input[name=attachment]").change(function(){
+  $("form input[name=attachment_name]").val($(this).val());
+});
+$.get("{:U('/home/school/index')}",function(d){
+    var html = build_options(d.message);
+    $(".school0").html(html);
+    $(".school0").change();
+});
+$("select[name=type]").change(function(){
+  var t = $(this).val();
+  var key =  "";
+  if (t == 1) {
+    key = "information0_types";
+  }else if(t == 2){
+    key = "information_gonggao_types";
+  }else if(t==3){
+    //下载 
+    $.get("{:U('/home/InformationType/index')}",function(d){
+      var html = "";
+        console.log(d.message.length);
+      for (var i = 0; i < d.message.length; i++) {
+        var t = d.message[i];
+        html += "<optgroup label='---"+t.name+"---'>";
+        var subs = {};
+        for (var j = 0; j < t.types.length; j++) {
+          var sub = t.types[j];
+          subs[sub.id] = sub.name;
+        }
+        html += build_options(subs);
+        html += "</optgroup>";
+      }
+      $("select[name=type2]").html(html);
+    })
+    return;
+  }else{
+    $("select[name=type2]").empty();
+    return;
+  }
+
+  $.get("{:U('/home/common/config')}",{key:key},function(d){
+      var html = build_options(d.message);
+      $("select[name=type2]").html(html);
+  })
+})
+</script>
+<include file="Common/_selectSchool.js"/>
+<include file="Common:footer" /> 

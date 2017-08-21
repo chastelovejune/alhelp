@@ -1,0 +1,206 @@
+<include file="Common:header" />
+<!--引入文本编辑器-->
+ <script type="text/javascript" charset="utf-8" src="script/UEditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="script/UEditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="script/UEditor/lang/zh-cn/zh-cn.js"></script>
+<form method="post">
+<input type="hidden" name="demand_type" value="0">
+<div class="g_container mt_20 f_clearfix">
+    <div class="g_row">
+        <div class="g_cell_12 m_box pd_20">
+            <div class="toptitle">
+                <h2 class="pd_20">发布需求</h2> 
+                <p>新助邦承诺，不会收取您的任何佣金，请放心发布！</p>
+            </div>
+            <div class="u_paytitle "><h3>需求类别</h3><p></p></div>
+            <ul class="reladdress f_clearfix demand_type">
+                <li class="m_item on">
+                    <a> 
+                        <i class="u_ico_ds2"></i>
+                        <h5 >资料</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+                <li class="m_item">
+                    <a>
+                        <i class="u_ico_ds1"></i>
+                        <h5>答疑</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+                <li class="m_item">
+                    <a>
+                        <i class="u_ico_ds3"></i>
+                        <h5 >授课</h5>
+                        <p>详细地址信息详细地址信息详细地址信息详细地址</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="u_paytitle"><h3>你对他/她有什么要求</h3><p></p></div>
+     
+
+            <ul class="reladdress f_clearfix">
+                <li class="m_item">
+                    <h5>身份</h5>
+                    <p>
+                        <foreach name="Think.config.demand_require_identity" item="t" key="k">
+                        <input type="radio" <if condition="$k eq 0">checked="checked"</if> name="require_identity" value="{$k}">{$t}&nbsp;&nbsp;&nbsp;
+                        </foreach>
+                    </p>
+                </li>
+                <li class="m_item">
+                    <h5>实名认证</h5>
+                    <p>
+                         <foreach name="Think.config.demand_require_authenticate" item="t" key="k">
+                        <input type="radio" <if condition="$k eq 0">checked="checked"</if> name="require_authenticate" value="{$k}">{$t}&nbsp;&nbsp;&nbsp;
+                        </foreach>
+                    </p>
+                </li>
+                <li class="m_item">
+                    <h5>信誉保证</h5>
+                    <p>
+                        <foreach name="Think.config.demand_require_security" item="t" key="k">
+                        <input type="radio" <if condition="$k eq 0">checked="checked"</if> name="require_security" value="{$k}">{$t}&nbsp;&nbsp;&nbsp;
+                        </foreach>
+                    </p>
+                </li>
+            </ul>
+            <div class="u_paytitle"><h3>确认专业</h3><p></p></div>
+            <ul class="m_form f_clearfix pd_20">
+                <include file="Common/_add3type"/>
+                <li class="m_item">
+                    <div class="m_formtit" >简要描述：</div>
+                    <input name="description" maxlength="16" required="true" placeholder="温馨提示：简单清晰的描述会更容易被找到" type="text" class="u_inp_t g_width_5">
+                    &nbsp;&nbsp;&nbsp;
+                    <span>(限定20字)</span>
+                </li>
+                <li class="m_item"><div class="m_formtit">考研年份：</div>
+                    <select class="u_slt" id="year">
+                        <for start="2015" end="2019">
+                            <option value="{$i}">{$i}</option>
+                        </for>
+                    </select>
+                </li>
+                <li class="m_item"><div class="m_formtit ckyb">详细描述：<br>
+                    <input type="button" value="查看样本" class="u_btn_sl"  data-toggle="modal" data-target=".modal_add_demand_example">
+
+					</div>
+ 
+					<script type="text/javascript">
+					var ue = UE.getEditor('editor');
+					var detail = editor.getContent();//获得编辑器的内容
+					$('#detail').val()=detail;//把内容附给表单
+					</script>
+				<script id="editor" type="text/plain" style="width:800px;height:150px;float:left"></script>
+
+					<input type="hidden" name="detail" id="detail" value=""/>
+                    <!--textarea name="detail" class="u_inp_t" placeholder="输入你想说的话"></textarea-->
+                </li>
+
+                <li class="m_item"><div class="m_formtit">愿意支付费用：</div>
+                    <input  name="cost" type="text" number="true" class="u_inp_t"><span style="color:#ff7101;font-size:16px;">&nbsp;&nbsp;元</span>
+                </li>
+
+                <li class="m_item" style="margin-bottom:0;">
+                    <div class="m_formtit">&nbsp;</div>
+                  <!--  <input name="advance_payment" number="true" type="text" class="u_inp_t" style="float:left; margin-right:10px;">-->
+                 <!--  <div style="line-height:24px; color:#1ecca7;"><span style="color:#ff7101;font-size:16px;">元</span>可为0元，但建议托付费用，更易成功！</div>-->
+				  <div class="tuose"> <input type="radio"><span>现在托付更易成功</span></div> 
+				    <div class="tuose"><input type="radio"><span>现在不托付</span></div> 
+				   
+                </li>
+										
+
+                <li class="m_item" style="margin-left:200px;">
+                    <ul>
+                        <li class="t_item"><img src="images/icons/tf.png" style="float:left; width:15px; height:15px;margin-right:5px;"/>有醒目图标，让学长学姐更信任；</li>
+                        <li class="t_item"><img src="images/icons/tf.png" style="float:left; width:15px; height:15px;margin-right:5px;"/>重点推荐、排序靠前；</li>
+                        <li class="t_item"><img src="images/icons/tf.png" style="float:left; width:15px; height:15px; margin-right:5px;"/>托付的费用在您的新助邦账户中，支付更方便；</li>
+                    </ul>
+                </li>
+
+                <li class="m_item"><div class="m_formtit">Q Q：</div>
+                    <input name="qq" type="text" class="u_inp_t" number="true">
+                </li>
+                <li class="m_item"><div class="m_formtit">微信号：</div>
+                    <input name="wechat" type="text" class="u_inp_t">
+                </li>
+                <li class="m_item"><div class="m_formtit">电话：</div>
+				<!--2016.11.3新加start-->
+				
+				
+				<input name="mobile" required="true" isPhone='true' type="text" class="u_inp_t" id="phone">
+
+					&nbsp;<if condition="$phone_verified eq 0"><input type="button" id="get_verified" value="发送验证码" style="height:34px;background-color:#13BC98;color:white;width:80px"/>&nbsp;<input required="true" type="text" name="phone_verified" class="u_inp_t" style="width:125px;" placeholder="请输入验证码"/>
+					<else/>
+					已完成手机验证
+				</if>
+				
+			
+                    
+                <!--end-->
+                </li>
+			
+                <li class="m_item"><div class="m_formtit"></div>
+                    <label><input type="checkbox" checked="checked" name="box" required="true"> 我已阅读<a  data-toggle="modal" data-target=".modal_add_demand_protocol">《新助邦需求发布协议（试行）》</a></label>
+                </li>
+                <li class="m_item rel_inpr"><div class="m_formtit"></div>
+                    <input type="submit" class="u_btn_sl pd_20" value="确认提交">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</form>
+
+<include file="Common/modal/add_demand_example"/>
+<include file="Common/modal/add_demand_protocol"/>
+<include file="Common:footer" /> 
+<include file="Common/add_js"/>
+<script>
+/*2016.11.3 start*/
+$("#get_verified").click(function()
+	{
+		var phone = $("#phone").val();
+		$.post("{:U('/home/common/sendPhoneCode')}",{phone:phone},function(d)
+		
+		{
+			if (d.suc)
+			{
+				$("#get_verified").value("已发送");
+				//alert("已发送");
+
+			}
+			else
+			{
+				alert("发送短信失败");
+			}
+		});		
+	});
+	/*end*/
+    $("ul.demand_type a").click(function () {
+        $("ul.demand_type li").removeClass("on");
+        $(this).parent().addClass("on");
+        $("input[name=demand_type]").val($("ul.demand_type li").index($(this).parent()));
+    });
+    $("form").go_validate(function(form){
+		//2016.11.3新增 start
+		
+			//var detail = editor.getContent();//获得编辑器的内容
+			//$('#detail').val()=detail;//把内容附给表单
+			//end
+			remove_hide_types();
+		//alert(detail);
+        $(form).ajaxSubmit(function(d){
+            var advance_payment = $("form").find("[name=advance_payment]").val();
+            advance_payment = parseInt(advance_payment);
+            if (advance_payment > 0) {
+                var url = "{:U('/home/demand/buy')}"+"?id="+d.message;
+                window.location.href = url;
+            }else{
+                var url = "{:U('/home/demand/detail')}"+"?id="+d.message;
+                window.location.href = url;
+            }            
+        })
+    });
+</script>

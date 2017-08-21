@@ -1,0 +1,89 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	   	<section class="g_cell_9">
+		  <div class="cir_ss m_box f_clearfix">
+		    <div class="u_fss">
+		    	<a class="u_btn_sl" href="{:U('/home/share/add',['id'=>I('request.id')])}">分享资料心得</a>
+		    	<a class="u_btn_sc ml_20" href="{:U('/home/information/add')}?circle_id={:I('request.id')}">上传院校资讯</a>
+		    </div>
+		  	<div class="u_ss">
+		  		<input type="text" class="u_ss_txn">
+		  		<button class="u_ss_btn"></button>
+		  	</div>
+		  </div>
+		  <div class="m_box">
+			  <header class="u_tab2">
+					<ul>
+						<li id="idc5_1" onmouseover="setTab('idc5_','u_tab2_item',1,4)" class="u_tab2_item hover">院校资讯</li>
+						<li id="idc5_2" onmouseover="setTab('idc5_','u_tab2_item',2,4)" class="u_tab2_item">分享资料</li>
+						<li id="idc5_3" onmouseover="setTab('idc5_','u_tab2_item',3,4)" class="u_tab2_item">分享视频</li>
+						<li id="idc5_4" onmouseover="setTab('idc5_','u_tab2_item',4,4)" class="u_tab2_item">分享心得</li>
+					</ul>
+				</header>
+				<ul id="idc5_1box" class="m_newslist">
+				<php>
+					$infos = M("information")->join("LEFT JOIN mb_member ON information.member_id=mb_member.id")->where(["circle_id"=>I("request.id")])->field("information.*,mb_member.avatar")->select();
+				</php>
+				<foreach name="infos" item="i">
+				  <li class="m_newslist_item">
+					  <div class="m_imgbox"><img src="{$i[avatar]}"></div>
+					  <div class="m_txtbox">
+							<h3><a href="{:U('/home/information/show',['id'=>$i[id]])}">{$i[title]}</a><span>发布时间：{:substr($i[add_time],0,16)}</span></h3>
+							<p>{$i[content]}</p>
+						</div>
+					</li>
+				</foreach>
+				</ul>
+				<ul id="idc5_2box" class="m_newslist" style="display:none;">
+				<php>
+					$tmp = M("share")->join('LEFT JOIN zysc_view ON share.school_id=zysc_view.zhuanye_id')->join("LEFT JOIN mb_member ON mb_member.id=share.member_id")->where(['circle_id'=>I("request.id")])->field("share.*,mb_member.avatar")->select();
+					foreach($tmp as $share){
+						$shares[$share['type']][] = $share;
+					}
+				</php>
+				<foreach name="shares[0]" item="s">
+				  <li class="m_newslist_item">
+					  <div class="m_imgbox"><img src="{$s[avatar]}"></div>
+					  <div class="m_txtbox">
+							<h3><a href="{:U('/home/share/show',['id'=>$s[id]])}"> {$s['title']}</a><span>发布时间：{:substr($s[add_time],0,16)}</span></h3>
+							<p>{$s[content]}</p>
+						</div>
+					</li>
+				</foreach>
+				</ul>
+				<ul id="idc5_3box" class="m_newslist" style="display:none;">
+				<foreach name="shares[1]" item="s">
+				 <li class="vedio_item">               
+                <img src="/images/test/180.jpg"> 
+                <div class="vedio_hover"></div>
+                <div class="vedio_con">
+                <h3>{$s[title]}</h3>
+                <h4>{$s[content]}</h4>
+                <a href="" class="u_btn_sl">播放</a>
+                </div>                               
+                </li>
+                </foreach>
+                   <li class="clear"></li>            
+				</ul>
+				<ul id="idc5_4box" class="m_newslist" style="display:none;">
+				<foreach name="shares[2]" item="s">
+				  <li class="m_newslist_item">
+					  <div class="m_imgbox"><img src="{$s[avatar]}"></div>
+					  <div class="m_txtbox">
+							<h3><a href="{:U('/home/share/show',['id'=>$s[id]])}"> {$s['title']}</a><span>发布时间：{:substr($s[add_time],0,16)}</span></h3>
+							<p>{$s[content]}</p>
+						</div>
+					</li>
+					</foreach>
+				</ul>
+			</div>
+		</section>
+		<include file="_right"/>
+ 	</div>
+</div>
+
+<include file="Common/footer"/>

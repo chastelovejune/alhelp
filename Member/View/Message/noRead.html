@@ -1,0 +1,125 @@
+<include file="../Application/Home/View/Common/header.html"/>
+
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<section class="g_cell_9 m_box">
+		<ul class="u_tab2 ">
+			<a href="/member_message_noRead.html?role=0">
+				  <li class="u_tab2_item snew <eq name='role' value='0'>hover</eq>" style=" font-size:18px;margin-left: 15px ">
+					 学生身份
+					  <if condition="$no_read">
+						  <span class="u_tsds" style="text-align: center">{$no_read}</span>
+					  </if>
+              </li>
+			</a>
+			<a href="/member_message_noRead.html?role=1">
+           <li class="u_tab2_item snew <eq name='role' value='1'>hover</eq> " style="margin-left: 15px; font-size:18px; ">
+			   老师身份
+			   <if condition="$no_read_te">
+				   <span class="u_tsds" style="text-align: center;width:20px">{$no_read_te}</span>
+			   </if>
+            </li>
+			</a>
+			<a href="/member_message_noRead.html?role=3">
+				<li class="u_tab2_item snew <eq name='role' value='3'>hover</eq> " style="margin-left: 15px; font-size:18px; ">
+					系统通知
+					<if condition="$no_read_sys">
+						<span class="u_tsds" style="text-align: center;width:20px">{$no_read_sys}</span>
+					</if>
+				</li>
+			</a>
+<!--
+				<a href="#">
+           <li class="u_tab2_item snew  " style="margin-left: 15px; font-size:18px; ">
+			   新助邦广播
+
+            </li>
+			</a>
+
+				<a href="#">
+           <li class="u_tab2_item snew  " style="margin-left: 15px; font-size:18px; ">
+			   爱慕者消息
+
+            </li>
+			</a>
+-->
+        </ul>
+		</br>
+		<eq name="msm" value="">&nbsp;&nbsp;&nbsp;&nbsp;暂无消息</eq>
+            <foreach name='msm' item="m" key="k">
+				<div class="list clear">
+				<span class="newstips" ><img src="/images/icons/news.png"></span>
+
+              <a href="javascript:void(0)" onclick="f1(this,'{$m['url']}',{$m['id']})"><li style="margin-left:10px;list-style-type:none;width:75%;">&nbsp;&nbsp;{$m.content}</li>
+
+			   <p class="sysnewstime"><span style="color:grey">【{$m['type_name']}】</span><span class="txt_green" onclick="delete_msg('{$m.id}',this)"></span></p>
+			  </a>
+			 
+			  <p style="font-size:12px; color:darkgrey; margin-left:32px; line-height:30px;margin-bottom:10px;">{$m.add_time}</p>
+               </div>
+                </foreach>
+          
+          <div class="u_fy">
+				<php>echo pageHtml($cou_m);</php>
+			</div>
+                                    
+		</section>
+
+		  <section class="g_cell_3" style="float:right;  text-align:center;">
+		    <div class="appcode">下载助邦考研app<br>
+
+立即找校友圈和专业圈朋友
+</div>
+			<div class="appcodeimg">
+			<img src="/images/main/app_dow.png" style="width:150px; height:150px;">
+			</div>
+		  </section>
+	
+	</div>
+</div>
+<include file="../Application/Home/View/Common/footer.html"/>
+<script type="text/javascript">
+	function delete_msg(id,t){
+		if(confirm('你确定要删除此条信息么？'))
+		{
+			var url = "{:U('/Member/Message/delete')}"+"?id="+id;
+			$.post(url,function(d){
+				$(t).parent().parent().remove();
+			})
+		}
+	}
+	function f1(obj,url,id){
+		$(obj).parent().find('span').hide();
+		var url_read = "{:U('/Member/Message/read')}"+"?id="+id;//设置为已读
+		$.post(url_read,function(d){
+			if(d.suc) {
+				//window.open(url);
+				window.location.href = url;
+			}
+		})
+		//window.open(url);
+	}
+	/*$(".u_tab2_item").mouseover(function(){
+		$(this).css("background-color","#13bc98");
+		$(this).css("color","white");
+	})
+	$(".u_tab2_item").mouseout(function(){
+		$(this).css("background-color","white");
+		$(this).css("color","black")
+	})
+	*/
+/*	$(".list").mouseover(function(){
+		$(this).css("background-color","#13bc98");
+		$(this).children().css("color","white");
+		$(this).children().children().css("color","white");
+		$(this).css("color","white");
+	})
+	$(".list").mouseout(function(){
+		$(this).css("background-color","white");
+		$(this).children().css("color","black");
+		$(this).children().children().css("color","black");
+		$(this).css("color","black");
+	})*/
+
+</script>

@@ -1,0 +1,21 @@
+<include file="Common/header"/>
+<include file="_bar"/>
+<include file="_nav"/>
+<php>
+	if(session("id")){
+		$cs = M("open_class")->field("open_class.*,mb_member.nickname,(SELECT apply_open_class.id FROM apply_open_class WHERE apply_open_class.open_class_id=open_class.open_class_id AND apply_open_class.member_id=".session("id").") as apply_id")->join("LEFT JOIN mb_member ON member_id=mb_member.id")->join("LEFT JOIN zysc_view ON open_class.school_id = zhuanye_id");
+		$cs = $cs->where(['zysc_view.circle_id'=>I('request.id')])->order('open_class_time desc')->select();
+	}else{
+		$cs = M("open_class")->order('open_class_time desc')->select();
+	}	
+	$_cs = $cs;
+</php>
+<div class="g_container mt_20">
+	<div class="g_row">
+	   	<!--<include file="Common/openClass1"/>-->
+		<include file="Common/openClass2"/>
+		<include file="_right"/>
+ 	</div>
+</div>
+
+<include file="Common/footer"/>

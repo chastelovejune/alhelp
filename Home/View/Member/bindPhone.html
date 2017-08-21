@@ -1,0 +1,54 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+   <!-- <h2 class="logintop">绑定手机</h2>-->
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+   <div class="pos_ct">  <h2 class="logintop" style="padding-bottom:0;">绑定手机</h2></div>
+  <form method="post">
+	<ul class="login_ct">
+		<li class="lc_inp">手机号：<input name="phone" isPhone="true" remote='{:U("/home/member/isNo")}' required="true" type="text" class="u_inp_t" value="{$_GET[oldPhone]}"></li>
+		<li class="lc_yzm">验证码：<input required="true" type="text" name="phone_verified" class="u_inp_t"><a >获取验证码</a></li>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="提交"></li>
+	</ul>
+	</form>
+	<script type="text/javascript">
+		$("form a").click(function(){
+			var phone = $("form input[name=phone]").val();
+			$.get('{:U("/home/member/validate")}',{phone:phone},function(is_no){
+				var is_you = !is_no;
+				if (is_you) {
+					alert("该手机号已被绑定了");
+				}else{
+					$.post("{:U('/home/common/sendPhoneCode')}",{phone:phone},function(d){
+						if (d.suc) {
+							$("form a").html("已发送");
+						}else{
+							alert("发送短信失败");
+						}
+					})
+				}
+			})
+			return false;
+		})
+		$("form").go_validate(function(form){
+			$(form).ajaxSubmit(function(d){
+				if (d.suc) {
+					window.location.href = "{:U('/home/member/setting',['type'=>3])}";
+				}else{
+					alert(d.message);
+				}
+			})
+		},{
+			messages:{
+				phone:{
+					remote:"该手机号已被绑定了"
+				}
+			}
+		});
+	</script>
+</div>
+<include file="Common/footer"/>

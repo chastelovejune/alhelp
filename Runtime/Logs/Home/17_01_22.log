@@ -1,0 +1,20 @@
+[ 2017-01-22T14:40:45+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.128150s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.036293s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.036389s ]
+ERR: SQLSTATE[HY000] [2002] 由于目标计算机积极拒绝，无法连接。
+
+
+[ 2017-01-22T14:40:48+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000542s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000844s ]
+ERR: SQLSTATE[HY000] [2002] 由于目标计算机积极拒绝，无法连接。
+
+

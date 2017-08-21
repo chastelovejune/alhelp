@@ -1,0 +1,38 @@
+<header class="u_tab2">
+<ul>
+<php>
+$types = C("activity_types");
+$types = array_merge(["全部"],$types);
+</php>					
+	<foreach name="types" item="t" key="k">
+	<li class="u_tab2_item" onclick="setTab('spgc_','u_tab2_item',{$k+1},{:count($types)})" id="spgc_{$k+1}"><i class="ico"></i>{$t}</li>
+	</foreach>
+</ul>
+</header>
+<foreach name="types" item="t" key="k">
+<php>$as = $all[$k];</php>
+<ul class="m_actlist" id="spgc_{$k+1}box">
+<foreach name="as" item="a">
+<li class="m_actlist_item">
+	<div class="imgbox"><img src="{$a[image]}"></div>
+  <h4><a href="{:U('/home/activity/show',['id'=>$a[id]])}">{$a[title]}</a></h4>
+  <p>活动时间：{$a[begin_time]}</p>
+</li>
+</foreach>
+</ul>
+</foreach>
+<div class="u_fy">
+<!-- <a class="u_fy_info"> 1314 条记录 1/132 页</a>
+<a class="current">1</a>
+<a href="/Home/Demand/demands/role/1/p/2.html">2</a>
+<a href="/Home/Demand/demands/role/1/p/3.html">3</a>
+<a href="/Home/Demand/demands/role/1/p/4.html">4</a>
+<a href="/Home/Demand/demands/role/1/p/5.html">5</a>
+<a href="/Home/Demand/demands/role/1/p/6.html">6</a>
+<a href="/Home/Demand/demands/role/1/p/7.html">7</a>
+<a href="/Home/Demand/demands/role/1/p/8.html">8</a>
+<a href="/Home/Demand/demands/role/1/p/9.html">9</a>
+<a href="/Home/Demand/demands/role/1/p/10.html">10</a>
+<a href="/Home/Demand/demands/role/1/p/2.html">下一页</a>
+<a href="/Home/Demand/demands/role/1/p/132.html">最后一页</a> -->
+</div>

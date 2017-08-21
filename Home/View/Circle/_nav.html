@@ -1,0 +1,29 @@
+<div class="user_navbox">
+  <div class="g_container">
+  <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none">
+  </div>
+  	<ul class="user_nav" id="">
+			<li class="user_navitem <if condition="ACTION_NAME eq 'demand'">hover</if>"><a href="{:U('/home/circle/demand',['id'=>I('request.id')])}" >需求</a></li>
+  		<li class="user_navitem <if condition="ACTION_NAME eq 'service'">hover</if>">
+			  <a href="{:U('/home/circle/service',['id'=>I('request.id')])}" >服务</i></a>
+  		</li>
+  		<li class="user_navitem <if condition="ACTION_NAME eq 'openClass'">hover</if>">
+			  <a href="{:U('/home/circle/openClass',['id'=>I('request.id')])}" >直播课</i></a>
+  		</li>
+      <li class="user_navitem <if condition="ACTION_NAME eq 'memberPost'">hover</if>">
+        <a href="{:U('/home/circle/memberPost',['id'=>I('request.id')])}" >说说</i></a>
+      </li>
+	    <li class="user_navitem <if condition="ACTION_NAME eq 'quiz'">hover</if>">
+        <a href="{:U('/home/circle/quiz',['id'=>I('request.id')])}" >有偿问答</i></a>
+      </li>
+  		<li class="user_navitem <if condition="ACTION_NAME eq 'information'">hover</if>">
+			  <a href="{:U('/home/circle/information',['id'=>I('request.id')])}" >院校动态</i></a>
+  		</li>
+  		<li class="user_navitem <if condition="ACTION_NAME eq 'members'">hover</if>">
+			  <a href="{:U('/home/circle/members',['id'=>I('request.id')])}" >找人</i></a>
+  		</li>
+		<li class="user_navitem  <if condition="ACTION_NAME eq 'ratio'">hover</if>">
+		<a href="{:U('/home/circle/ratio',['id'=>I('request.id')])}">报录比</i></a></li>
+  	</ul>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+<eq name='im.obj' value='$crm.chat_id'>
+
+  <li class="me clear" data-id={$im.id}>
+    <div class="me_face">
+    <img src="{$im.avatar}">
+    </div>
+    <div class="me_content">
+    <h5>{$im.nickname}</h5>
+    <div class="me_talk_con">
+<p>{:parse_emotion($im[content])}</p>
+      <i class="ta_me"></i>
+       <i class="ta_me_bl"></i>
+    </div>
+    </div>
+  </li>
+<else/>
+  <li class="other clear" data-id={$im.id}>
+<div class="other_face">
+<img src="{$im.avatar}">
+</div>
+<div class="other_content">
+<h5>{$im.nickname}</h5>
+<div class="other_talk_con">
+<p>{:parse_emotion($im[content])}</p>
+<i class="ta_ot"></i>
+<i class="ta_ot_bl"></i>
+</div>
+</div>
+</li>
+</eq>

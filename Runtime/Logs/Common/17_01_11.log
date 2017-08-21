@@ -1,0 +1,24 @@
+[ 2017-01-11T21:56:33+08:00 ] ::1 /xzb/public/__CSS__/index.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001055s ]
+ERR: 无法加载模块:__CSS__
+
+[ 2017-01-11T21:56:33+08:00 ] ::1 /xzb/public/__SCRIPT__/index.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001087s ]
+ERR: 无法加载模块:__SCRIPT__
+
+[ 2017-01-11T22:03:32+08:00 ] ::1 /xzb/public/__SCRIPT__/index.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000906s ]
+ERR: 无法加载模块:__SCRIPT__
+
+[ 2017-01-11T22:03:32+08:00 ] ::1 /xzb/public/__CSS__/index.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001174s ]
+ERR: 无法加载模块:__CSS__
+

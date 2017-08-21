@@ -1,0 +1,191 @@
+<include file="../Application/Home/View/Common/header.html"/>
+<include file="Common/top_user_info"/>
+<include file="Common/nav"/>
+<script src="script/layer/layer.js"></script>
+<div class="g_container mt_20">
+    <div class="g_row">
+        <div class="role_1_section" style="display: block">
+            <section class="g_cell_9 pt_10" >
+                <div class="f_ss_gr">
+                    <form>
+                    <input type="hidden" name="service_type" value="{$_GET['service_type']}">
+                    <div class="input_ss">
+                        <input type="text" class="s_ss_content" name="keywords" value="{$_GET['keywords']}">
+                    </div>
+                    <div class="s_act">
+                        <input type="submit" value class="ico_s">
+                    </div>
+                    </form>
+                    <div class="fss_btn">
+                        <input type="button" class="u_btn_sl" onclick="window.location.href='{:U('/home/service/add')}'" value="发服务" style="width:100%;">
+                    </div>
+                </div>
+                <div class="clear mb_15">                
+                </div>
+                <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none">
+                </div>
+                <div class="m_box serm_nav">
+                    <ul class="u_tab2">
+                        <foreach name="Think.config.service_types" item="t" key="k">
+                        <li class="u_tab2_item <eq name="_GET['service_type']" value="$k">hover</eq>">
+                        <a href="?service_type={$k}">{$t}</a>
+                        </li>
+                        </foreach>
+                    </ul>
+
+                    <ul class="user_dslist mt_15" style="display: block">
+                        <volist name="services" id="vo" empty="您还未发布过服务">
+                        <php>$vo = parse_class($vo);</php>
+                            <li class="user_dsitme f_clearfix">
+                                <div class="user_dsl">
+                                    <div class="m_dl_txtbox msd_item">
+                                        <h3 class="le_line">
+                                            <i class="ico"></i>
+									<if condition="($vo.status eq 0) OR ($vo.status eq 3)">
+                                            <a href="{:U('home/service/detail')}?id={$vo.service_id}">
+                                                【{:C('service_types')[$vo['service_type']]}】
+                                                {$vo.description}
+                                            </a>
+                                        </h3>
+                                        <small>
+                                            <foreach name="vo.types" item="type">
+                                                <a href="">{$type}</a>
+                                            </foreach>
+                                        </small>
+										</br>
+						
+                                        <div class="m_dl_opt mb_15" style="padding-top:5px;">
+                                            <span><if condition="substr($vo['add_time'],0,10) eq date('Y-m-d',time())">{:substr($vo['add_time'],11,5)}<else/>{$vo.add_time|to_date}</if></span>
+                                        </div>
+                                    </div>
+                                    <div class="user_dsoperation clear">
+                                        <a href="{:U('member/bid/teacher')}">
+                                            投标
+                                        </a>
+                                           <if condition="$service_type eq 0"> <else/>
+                                        <a href="{:U('member/service/audition')}?id={$vo.service_id}">
+                                            试听
+                                            </if>
+
+                                        </a>
+                                           <if condition="$service_type eq 0"> <else/>
+                                        <a href="{:U('member/service/orders')}?id={$vo.service_id}">
+                                            协议
+                                        </a>
+                                               </if>
+
+                                           <a href="{:U('member/order/index')}">
+                                               支付
+                                           </a>
+
+                                        <!--待完善-->
+                                           <!--
+                                        <a href="{:U('member/message/index/type/4')}">评价
+
+                                        </a>|
+                                        <a href="{:U('member/message/index/type/7')}">仲裁
+                                        </a>-->
+										<else/>
+										 <a href="javascript:void(0)">
+                                                【{:C('service_types')[$vo['service_type']]}】
+                                                {$vo.description}
+                                            </a>
+										<span class="u_tsds">禁<span>
+                                        </h3>
+                                        <small>
+                                            <foreach name="vo.types" item="type">
+                                                <a href="">{$type}</a>
+                                            </foreach>
+                                        </small>
+                                        <div class="m_dl_opt mb_15" style="padding-top:5px;">
+                                            <span><if condition="substr($vo['add_time'],0,10) eq date('Y-m-d',time())">{:substr($vo['add_time'],11,5)}<else/>{$vo.add_time|to_date}</if></span>
+                                        </div>
+                                    </div>
+                                    <div class="user_dsoperation clear">
+                                       
+                                        <a href="javascript:void(0)">
+
+                                            投标
+
+                                        </a>|  <a href="javascript:void(0)">
+
+                                       试听
+
+                                    </a>|
+                                        <a href="javascript:void(0)">
+                                        
+                                            协议和支付
+                                          
+                                        </a>|
+                                        <a href="javascript:void(0)">评价
+                                           
+                                        </a>|
+                                        <a href="javascript:void(0)">仲裁
+                                            
+                                        </a>
+										</if>
+                                    </div>
+                                </div>
+                                <div class="user_dsr">
+                                    <strong>&yen;{$vo.cost}</strong>
+								 <if condition="$vo.status eq 0">
+									<span class="u_btn_bc xiajia" data-id="{$vo.service_id}" title="点击即将下架">
+                                       下架
+                                    </span>
+									<elseif condition="$vo.status eq 3" />
+										<span class="u_btn_bc shangjia" data-id="{$vo.service_id}" title="点击即可上架" style="background-color:#1cbc98;color:white;border:0px">
+                                        上架
+                                    </span>
+									<else/>
+										<span class="u_btn_bc " title="被管理员禁用" style="background-color:gray;color:white;border:0px">
+                                        禁用
+                                    </span>
+									</if>
+
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+					
+                </div>                                        
+            </section>
+        </div>
+        <include file="Common/right"/>
+    </div>
+	<div class="u_fy">
+               <php>echo pageHtml($count);</php>
+            </div>
+</div>
+
+<script type="text/javascript">
+
+	$(".xiajia").one("click",function(){
+		
+		if(confirm("是否确定下架"))
+		{
+			var id = $(this).attr("data-id");
+			
+			$.post("{:U('member/service/down')}",{id:id},function()
+			{
+				layer.msg("下架成功");
+				window.location.reload();
+			});
+		}
+	});
+
+	$(".shangjia").one("click",function(){
+		
+		if(confirm("确定上架?"))
+		{
+			var id = $(this).attr("data-id");
+			
+			$.post("{:U('member/service/up')}",{id:id},function()
+			{	layer.msg("上架成功");
+				window.location.reload();
+			});
+		}
+	});
+
+</script>
+
+<include file="../Application/Home/View/Common/footer.html"/>

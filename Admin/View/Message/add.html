@@ -1,0 +1,35 @@
+<include file="Common:admin_header" />
+<form  class="form-horizontal" method="POST">
+ 发送用户:
+  </br>
+  <select name="to_member_id">
+    <foreach name="members" item="m">
+    <option value="{$m["id"]}">{$m["nickname"]}</option>
+    </foreach>
+  </select>
+  </br>
+  <!--
+  类型:
+  </br>
+  <php>
+    dump(C('message_types'));
+  </php>
+  <select name="type">
+    <foreach name="members" item="m">
+      <option value="{$m["id"]}">{$m["nickname"]}</option>
+    </foreach>
+  </select>
+  </br>-->
+ 内容:
+  </br><input type="text" name="content" value="{$message['content']}" style="width:300px;150px"/>
+ </br>
+  用户身份:
+  </br><select name="role">
+  <option value="0" <eq name="message['role']" value="0">selected</eq>>学生 </option>
+  <option value="1" <eq name="message['role']" value="1">selected</eq>>老师 </option>
+</select>
+  </br>
+  </br>
+  <input type="submit" value="发送"/>
+</form>
+<include file="Common:admin_footer" />

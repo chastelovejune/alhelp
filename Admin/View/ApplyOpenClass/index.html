@@ -1,0 +1,33 @@
+<include file='Common/header'/>
+<table class="table table-striped">
+	<thead>
+    <tr>
+    <td>id</td>
+        <td>图片</td>
+    <td>公开课</td>
+    <td>申请时间</td>
+    <td>申请人</td>
+    <td>老师</td>
+        <td>内容</td>
+        <td>操作(物理删除)</td>
+    </tr>
+    </thead>
+    <foreach name='as' item='a'>
+    <tr>
+    <td>{$a.id}</td>
+        <td><img src="{$a.OpenClass.image}" style="widht:30px;height: 60px;"></td>
+    <td>{$a.OpenClass.description}</td>
+    <td>{:substr($a['apply_time'],0,10)}</td>
+    <td>{$a.MbMember.nickname}</td>
+    <td>{$a.OpenClass.teacher}</td>
+        <td><input type="button" value="查看" onclick="layer.open({
+  type: 1,
+  skin: 'layui-layer-rim', //加上边框
+  area: ['600px', '300px'], //宽高
+  content: '课程内容:{$a.OpenClass.content_course}</br>课程讲义:{$a.OpenClass.content_reference}</br>备注:{$a.OpenClass.remarks}</br>教室:{$a.OpenClass.classroom}'
+});"></td>
+        <td><a class="btn-danger  btn-sm" href="{:U('admin/ApplyOpenClass/delete',['id'=>$a['id']])}">删除</a></td>
+    </tr>
+    </foreach>
+</table>
+<include file='Common/footer'/>

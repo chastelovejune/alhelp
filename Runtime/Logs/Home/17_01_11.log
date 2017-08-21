@@ -1,0 +1,1108 @@
+[ 2017-01-11T10:44:49+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.012022s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.010095s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010191s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+
+[ 2017-01-11T10:44:49+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000617s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000838s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000896s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+
+[ 2017-01-11T10:45:09+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001154s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003069s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003267s ]
+ERR: SQLSTATE[HY000] [1049] Unknown database 'alhelp'
+
+[ 2017-01-11T21:28:41+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.011702s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008390s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0386s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.4735s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.4666s ]
+ERR: 1146:Table 'alhelp.demand' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `demand`
+ERR: 1146:Table 'alhelp.demand' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `demand`
+
+[ 2017-01-11T21:33:14+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001638s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001907s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002083s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0099s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.4579s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.4191s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0101s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.0136s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0083s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0246s ]
+ERR: 1146:Table 'alhelp.zysc_view' doesn't exist
+ [ SQL语句 ] : call sup(4,0,0)
+ERR: 1146:Table 'alhelp.zysc_view' doesn't exist
+ [ SQL语句 ] : call sup(4,0,0)
+
+[ 2017-01-11T21:41:46+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.007204s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.007796s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008039s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0098s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.5945s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.4770s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0095s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.1750s ]
+ERR: 1146:Table 'alhelp.zysc_view' doesn't exist
+ [ SQL语句 ] : call sup(1450001,0,0)
+ERR: 1146:Table 'alhelp.zysc_view' doesn't exist
+ [ SQL语句 ] : call sup(1450001,0,0)
+
+[ 2017-01-11T21:49:53+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000067s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001187s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001376s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001498s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.4533s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.3030s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0101s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.2655s ]
+SQL: call sup(1450001,0,0) [ RunTime:0.0275s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SHOW COLUMNS FROM `zysc_view` [ RunTime:0.0066s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1450001 LIMIT 1   [ RunTime:0.0008s ]
+SQL: call sup(708000,0,0) [ RunTime:0.0087s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 708000 LIMIT 1   [ RunTime:0.0011s ]
+SQL: call sup(1313000,0,0) [ RunTime:0.0122s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1313000 LIMIT 1   [ RunTime:0.0013s ]
+SQL: call sup(1205000,0,0) [ RunTime:0.0015s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1205000 LIMIT 1   [ RunTime:0.0014s ]
+SQL: call sup(719000,0,0) [ RunTime:0.0015s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 719000 LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0094s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0373s ]
+SQL: call sup(4,0,0) [ RunTime:0.0117s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0011s ]
+SQL: call sup(200003,0,0) [ RunTime:0.0117s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 200003 LIMIT 1   [ RunTime:0.0008s ]
+SQL: call sup(0,0,1) [ RunTime:0.0292s ]
+SQL: call sup(4,0,0) [ RunTime:0.0010s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0016s ]
+SQL: call sup(402002,0,0) [ RunTime:0.0146s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 402002 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0083s ]
+SQL: SELECT * FROM `open_class` LIMIT 5   [ RunTime:0.0172s ]
+SQL: call sup(4,0,0) [ RunTime:0.0007s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0007s ]
+ERR: 1146:Table 'alhelp.unified' doesn't exist
+ [ SQL语句 ] : call sup(0,7,0)
+ERR: 1146:Table 'alhelp.unified' doesn't exist
+ [ SQL语句 ] : call sup(0,7,0)
+
+[ 2017-01-11T21:50:51+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005547s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001248s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001405s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0076s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.4073s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.3445s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0099s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.1572s ]
+SQL: call sup(1450001,0,0) [ RunTime:0.0281s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SHOW COLUMNS FROM `zysc_view` [ RunTime:0.0092s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1450001 LIMIT 1   [ RunTime:0.0013s ]
+SQL: call sup(708000,0,0) [ RunTime:0.0055s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 708000 LIMIT 1   [ RunTime:0.0016s ]
+SQL: call sup(1313000,0,0) [ RunTime:0.0113s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1313000 LIMIT 1   [ RunTime:0.0015s ]
+SQL: call sup(1205000,0,0) [ RunTime:0.0018s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1205000 LIMIT 1   [ RunTime:0.0010s ]
+SQL: call sup(719000,0,0) [ RunTime:0.0015s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 719000 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0084s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0370s ]
+SQL: call sup(4,0,0) [ RunTime:0.0118s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0009s ]
+SQL: call sup(200003,0,0) [ RunTime:0.0116s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 200003 LIMIT 1   [ RunTime:0.0010s ]
+SQL: call sup(0,0,1) [ RunTime:0.0292s ]
+SQL: call sup(4,0,0) [ RunTime:0.0008s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0009s ]
+SQL: call sup(402002,0,0) [ RunTime:0.0157s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 402002 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0088s ]
+SQL: SELECT * FROM `open_class` LIMIT 5   [ RunTime:0.0177s ]
+SQL: call sup(4,0,0) [ RunTime:0.0014s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0015s ]
+ERR: 1146:Table 'alhelp.unified' doesn't exist
+ [ SQL语句 ] : call sup(0,7,0)
+ERR: 1146:Table 'alhelp.unified' doesn't exist
+ [ SQL语句 ] : call sup(0,7,0)
+
+[ 2017-01-11T21:56:33+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002404s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001472s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001623s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0554s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.5366s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.3786s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0081s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.1489s ]
+SQL: call sup(1450001,0,0) [ RunTime:0.0311s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SHOW COLUMNS FROM `zysc_view` [ RunTime:0.0073s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1450001 LIMIT 1   [ RunTime:0.0008s ]
+SQL: call sup(708000,0,0) [ RunTime:0.0071s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 708000 LIMIT 1   [ RunTime:0.0011s ]
+SQL: call sup(1313000,0,0) [ RunTime:0.0127s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1313000 LIMIT 1   [ RunTime:0.0009s ]
+SQL: call sup(1205000,0,0) [ RunTime:0.0013s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1205000 LIMIT 1   [ RunTime:0.0009s ]
+SQL: call sup(719000,0,0) [ RunTime:0.0011s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 719000 LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0087s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0417s ]
+SQL: call sup(4,0,0) [ RunTime:0.0655s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(200003,0,0) [ RunTime:0.0126s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 200003 LIMIT 1   [ RunTime:0.0020s ]
+SQL: call sup(0,0,1) [ RunTime:0.0064s ]
+SQL: call sup(4,0,0) [ RunTime:0.0019s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0010s ]
+SQL: call sup(402002,0,0) [ RunTime:0.0031s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 402002 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0172s ]
+SQL: SELECT * FROM `open_class` LIMIT 5   [ RunTime:0.0109s ]
+SQL: call sup(4,0,0) [ RunTime:0.0016s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0011s ]
+SQL: call sup(0,7,0) [ RunTime:0.0345s ]
+SQL: call sup(6,0,0) [ RunTime:0.0020s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 6 LIMIT 1   [ RunTime:0.0015s ]
+SQL: call sup(919124,0,0) [ RunTime:0.0611s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 919124 LIMIT 1   [ RunTime:0.0014s ]
+SQL: call sup(223110,0,0) [ RunTime:0.0257s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 223110 LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `information_type` [ RunTime:0.0079s ]
+SQL: SELECT * FROM `information_type` WHERE ( type=6 ) LIMIT 6   [ RunTime:0.0186s ]
+SQL: SHOW COLUMNS FROM `information` [ RunTime:0.0071s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 16 LIMIT 3   [ RunTime:0.0122s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 17 LIMIT 3   [ RunTime:0.0039s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 18 LIMIT 3   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 19 LIMIT 3   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 20 LIMIT 3   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `lunbotu` [ RunTime:0.0059s ]
+SQL: SELECT * FROM `lunbotu` WHERE ( status=0 ) ORDER BY sort asc  [ RunTime:0.0143s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.012778s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.012951s ]
+NOTIC: [8] Undefined variable: m D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 36 行.
+NOTIC: [8] Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 40 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37731 ) LIMIT 1   [ RunTime:0.0175s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37727 ) LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37726 ) LIMIT 1   [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37725 ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=26429 ) LIMIT 1   [ RunTime:0.0126s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+SQL: SHOW COLUMNS FROM `member_post` [ RunTime:0.0386s ]
+SQL: SELECT member_post.*,`circle_name`,mb_member.nickname,mb_member.avatar FROM `member_post` LEFT JOIN circle ON circle.id=member_post.circle_id LEFT JOIN mb_member ON mb_member.id=member_post.member_id  ORDER BY member_post.id DESC LIMIT 3   [ RunTime:0.0236s ]
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+SQL: SELECT * FROM `information` WHERE `type` = 0 ORDER BY add_time desc LIMIT 3   [ RunTime:0.0196s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+SQL: SHOW COLUMNS FROM `share` [ RunTime:0.0071s ]
+SQL: SELECT share.*,`avatar` FROM `share` LEFT JOIN mb_member ON mb_member.id=share.member_id  ORDER BY add_time desc LIMIT 3   [ RunTime:0.0312s ]
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 430 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 434 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 435 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 441 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 444 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 445 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 446 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 452 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 456 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 457 行.
+SQL: SELECT * FROM `information` WHERE ( type=3 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0009s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+SQL: SELECT `id`,`title` FROM `information` WHERE ( type=1 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `mb_member` LIMIT 1   [ RunTime:0.0009s ]
+NOTIC: [8] Constant DATA_PATH already defined D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 53 行.
+NOTIC: [8] Undefined index: dialog D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 723 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_id - assumed 'object_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant from_member_id - assumed 'from_member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_type - assumed 'object_type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant obj - assumed 'obj' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+NOTIC: [8] Use of undefined constant dlgid - assumed 'dlgid' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward = 0 ) AND (  status = 1 )  [ RunTime:0.0172s ]
+NOTIC: [8] Undefined variable: mpids D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward > 0 ) AND (  status = 1 )  [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: mpids1 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: quizcount D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 624 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 626 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.467745s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.467887s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.013504s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.013685s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005717s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005854s ]
+
+[ 2017-01-11T21:56:33+08:00 ] ::1 /xzb/public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001025s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001636s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001778s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-11T21:56:34+08:00 ] ::1 /xzb/public/index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000927s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001491s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0212s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0147s ]
+
+[ 2017-01-11T21:56:35+08:00 ] ::1 /xzb/public/index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.013182s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001907s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002054s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0063s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.2801s ]
+
+[ 2017-01-11T21:56:35+08:00 ] ::1 /xzb/public/index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000066s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001613s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001766s ]
+
+[ 2017-01-11T21:56:46+08:00 ] ::1 /xzb/public/index.php/home/service/lists.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001246s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001865s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002016s ]
+NOTIC: [2] require(../lib/curd.trail.php): failed to open stream: No such file or directory D:\xampp\htdocs\xzb\Application\Home\Controller\ServiceController.class.php 第 4 行.
+
+[ 2017-01-11T21:56:54+08:00 ] ::1 /xzb/public/index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.009948s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001797s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0274s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0271s ]
+
+[ 2017-01-11T21:56:55+08:00 ] ::1 /xzb/public/index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002200s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001742s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001882s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0067s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.1658s ]
+
+[ 2017-01-11T21:56:55+08:00 ] ::1 /xzb/public/index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.015102s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003283s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003480s ]
+
+[ 2017-01-11T21:56:55+08:00 ] ::1 /xzb/public/index.php/home/demand/lists.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001099s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001668s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001792s ]
+NOTIC: [2] require(../lib/curd.trail.php): failed to open stream: No such file or directory D:\xampp\htdocs\xzb\Application\Home\Controller\DemandController.class.php 第 5 行.
+
+[ 2017-01-11T21:56:57+08:00 ] ::1 /xzb/public/index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001566s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001682s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0076s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.2217s ]
+
+[ 2017-01-11T21:56:57+08:00 ] ::1 /xzb/public/index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001039s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001605s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0059s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0112s ]
+
+[ 2017-01-11T21:56:57+08:00 ] ::1 /xzb/public/index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001085s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001144s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001270s ]
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000935s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001254s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001379s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0074s ]
+NOTIC: [8] Undefined index: school_id D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 13 行.
+NOTIC: [8] Undefined index: public_subject_id D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 17 行.
+NOTIC: [8] Undefined index: unified_id D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 20 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `open_class` WHERE ( open_class.status=0 ) LIMIT 1   [ RunTime:0.0126s ]
+NOTIC: [8] Undefined index: page D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 32 行.
+SQL: SELECT * FROM `open_class` WHERE ( open_class.status=0 ) ORDER BY open_class_time desc LIMIT 0,20   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000559s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000690s ]
+NOTIC: [8] Undefined variable: m D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\ca7d4c8d48390fe5ff6ffddf18855e1f.php 第 36 行.
+NOTIC: [8] Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\ca7d4c8d48390fe5ff6ffddf18855e1f.php 第 40 行.
+NOTIC: [8] Undefined index: keywords D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\ca7d4c8d48390fe5ff6ffddf18855e1f.php 第 157 行.
+SQL: SELECT open_class.* FROM `open_class` LEFT JOIN mb_member ON member_id=mb_member.id LEFT JOIN zysc_view ON open_class.school_id = zhuanye_id  WHERE `is_v` = 1 AND open_class.status = 0 ORDER BY open_class_id desc  [ RunTime:0.0179s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0080s ]
+SQL: SELECT `id`,`title`,`first_letter` FROM `school` WHERE `pid` = 0  [ RunTime:0.1296s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0186s ]
+SQL: SELECT * FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `unified_classify` [ RunTime:0.0524s ]
+ERR: 1054:Unknown column 'type' in 'field list'
+ [ SQL语句 ] : SELECT `id`,title as name,`type` FROM `unified_classify` 
+ERR: 1054:Unknown column 'type' in 'field list'
+ [ SQL语句 ] : SELECT `id`,title as name,`type` FROM `unified_classify` 
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/css/base.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001483s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001098s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001210s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:css
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/css/subpage.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003507s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002881s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003002s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:css
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/css/alhelp.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001156s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001427s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001551s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:css
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/jquery.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001274s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001526s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001656s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/TouchSlide.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001142s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001566s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001688s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/js/datepicker/bootstrap-datetimepicker.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000858s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001510s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:js
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/js/datepicker/locales/bootstrap-datetimepicker.zh-CN.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000951s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001899s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002025s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:js
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/common.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.022242s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001619s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/jquery.form.min.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.069057s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001361s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001471s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/jquery.qqFace.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000803s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001329s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/css/common.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001065s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002816s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002948s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:css
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/layer/layer.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000916s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002015s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002211s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/script/jquery.cookie.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000889s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003761s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:script
+
+[ 2017-01-11T21:56:58+08:00 ] ::1 /xzb/public/index.php/home/OpenClass/css/bootstrap-datetimepicker.min.css
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000138s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005685s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.017080s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017258s ]
+NOTIC: [2048] Declaration of Home\Controller\OpenClassController::show() should be compatible with Think\Controller::show($content, $charset = '', $contentType = '', $prefix = '') D:\xampp\htdocs\xzb\Application\Home\Controller\OpenClassController.class.php 第 4 行.
+ERR: 非法操作:css
+
+[ 2017-01-11T21:57:02+08:00 ] ::1 /xzb/public/index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001021s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001172s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001272s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0075s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0008s ]
+
+[ 2017-01-11T21:57:03+08:00 ] ::1 /xzb/public/index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001018s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001935s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002044s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0076s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.1766s ]
+
+[ 2017-01-11T21:57:03+08:00 ] ::1 /xzb/public/index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000868s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001112s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001240s ]
+
+[ 2017-01-11T21:57:03+08:00 ] ::1 /xzb/public/index.php/home/MemberPost.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001399s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001108s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001237s ]
+NOTIC: [2] require(../lib/curd.trail.php): failed to open stream: No such file or directory D:\xampp\htdocs\xzb\Application\Home\Controller\MemberPostController.class.php 第 4 行.
+
+[ 2017-01-11T21:57:05+08:00 ] ::1 /xzb/public/index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000924s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000984s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001079s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0060s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0136s ]
+
+[ 2017-01-11T21:57:05+08:00 ] ::1 /xzb/public/index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000997s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001375s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001490s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0063s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.1763s ]
+
+[ 2017-01-11T21:57:05+08:00 ] ::1 /xzb/public/index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001287s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001402s ]
+
+[ 2017-01-11T21:58:01+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001249s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.026062s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026220s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0115s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0427s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-11T21:58:02+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000982s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001591s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0026s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-11T21:58:18+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000958s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001653s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001793s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0087s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0013s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-11T21:58:19+08:00 ] ::1 /xzb/Public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000832s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001141s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `mb_member` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0012s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-11T22:03:32+08:00 ] ::1 /xzb/public/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002278s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001561s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001690s ]
+SQL: SHOW COLUMNS FROM `mb_member` [ RunTime:0.0068s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_student` = 1  [ RunTime:0.3637s ]
+SQL: SELECT * FROM `mb_member` WHERE `recommend_as_teacher` = 1  [ RunTime:0.2187s ]
+SQL: SHOW COLUMNS FROM `demand` [ RunTime:0.0058s ]
+SQL: SELECT demand.*,`avatar` FROM `demand` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE demand.status = '0' ORDER BY demand.add_time desc LIMIT 5   [ RunTime:0.4502s ]
+SQL: call sup(1450001,0,0) [ RunTime:0.0385s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SHOW COLUMNS FROM `zysc_view` [ RunTime:0.0061s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1450001 LIMIT 1   [ RunTime:0.0008s ]
+SQL: call sup(708000,0,0) [ RunTime:0.0088s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 708000 LIMIT 1   [ RunTime:0.0005s ]
+SQL: call sup(1313000,0,0) [ RunTime:0.0138s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1313000 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(1205000,0,0) [ RunTime:0.0009s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 1205000 LIMIT 1   [ RunTime:0.0005s ]
+SQL: call sup(719000,0,0) [ RunTime:0.0007s ]
+NOTIC: [8] Undefined offset: 0 D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+NOTIC: [2] array_values() expects parameter 1 to be array, null given D:\xampp\htdocs\xzb\Application\Common\Common\function.php 第 89 行.
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 719000 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `service` [ RunTime:0.0063s ]
+SQL: SELECT service.*,`avatar` FROM `service` LEFT JOIN mb_member ON mb_member.id=member_id  WHERE service.status = '0' ORDER BY service.add_time desc LIMIT 5   [ RunTime:0.0246s ]
+SQL: call sup(4,0,0) [ RunTime:0.0551s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(200003,0,0) [ RunTime:0.0117s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 200003 LIMIT 1   [ RunTime:0.0007s ]
+SQL: call sup(0,0,1) [ RunTime:0.0081s ]
+SQL: call sup(4,0,0) [ RunTime:0.0015s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(402002,0,0) [ RunTime:0.0145s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 402002 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `open_class` [ RunTime:0.0058s ]
+SQL: SELECT * FROM `open_class` LIMIT 5   [ RunTime:0.0144s ]
+SQL: call sup(4,0,0) [ RunTime:0.0017s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 4 LIMIT 1   [ RunTime:0.0009s ]
+SQL: call sup(0,7,0) [ RunTime:0.0346s ]
+SQL: call sup(6,0,0) [ RunTime:0.0015s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 6 LIMIT 1   [ RunTime:0.0006s ]
+SQL: call sup(919124,0,0) [ RunTime:0.0184s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 919124 LIMIT 1   [ RunTime:0.0013s ]
+SQL: call sup(223110,0,0) [ RunTime:0.0144s ]
+SQL: SELECT `circle_id` FROM `zysc_view` WHERE `zhuanye_id` = 223110 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `information_type` [ RunTime:0.0063s ]
+SQL: SELECT * FROM `information_type` WHERE ( type=6 ) LIMIT 6   [ RunTime:0.0209s ]
+SQL: SHOW COLUMNS FROM `information` [ RunTime:0.0096s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 16 LIMIT 3   [ RunTime:0.0093s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 17 LIMIT 3   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 18 LIMIT 3   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 19 LIMIT 3   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `information` WHERE `type` = 6 AND `type2` = 20 LIMIT 3   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `lunbotu` [ RunTime:0.0067s ]
+SQL: SELECT * FROM `lunbotu` WHERE ( status=0 ) ORDER BY sort asc  [ RunTime:0.0059s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001852s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.002017s ]
+NOTIC: [8] Undefined variable: m D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 36 行.
+NOTIC: [8] Use of undefined constant REQUEST_URI - assumed 'REQUEST_URI' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 40 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37731 ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37727 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37726 ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=37725 ) LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 230 行.
+SQL: SELECT `is_v`,`is_realname`,`is_identify` FROM `mb_member` WHERE ( id=26429 ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: is_realname D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 234 行.
+NOTIC: [8] Undefined index: is_v D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 235 行.
+NOTIC: [8] Undefined index: is_identify D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 236 行.
+NOTIC: [8] Use of undefined constant types - assumed 'types' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 247 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 262 行.
+SQL: SHOW COLUMNS FROM `member_post` [ RunTime:0.0072s ]
+SQL: SELECT member_post.*,`circle_name`,mb_member.nickname,mb_member.avatar FROM `member_post` LEFT JOIN circle ON circle.id=member_post.circle_id LEFT JOIN mb_member ON mb_member.id=member_post.member_id  ORDER BY member_post.id DESC LIMIT 3   [ RunTime:0.0176s ]
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 315 行.
+NOTIC: [8] Use of undefined constant circle_id - assumed 'circle_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant circle_name - assumed 'circle_name' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 316 行.
+NOTIC: [8] Use of undefined constant member_id - assumed 'member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant nickname - assumed 'nickname' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 317 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 354 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 355 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 359 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+NOTIC: [8] Undefined index: isfed D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 376 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 381 行.
+SQL: SELECT * FROM `information` WHERE `type` = 0 ORDER BY add_time desc LIMIT 3   [ RunTime:0.0007s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 402 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 403 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 404 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 408 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 409 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Undefined variable: info2 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 410 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 413 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 414 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+NOTIC: [8] Undefined variable: info3 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 415 行.
+SQL: SHOW COLUMNS FROM `share` [ RunTime:0.0062s ]
+SQL: SELECT share.*,`avatar` FROM `share` LEFT JOIN mb_member ON mb_member.id=share.member_id  ORDER BY add_time desc LIMIT 3   [ RunTime:0.0358s ]
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant type - assumed 'type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 427 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 430 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 433 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 434 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 435 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 441 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 444 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 445 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 446 行.
+NOTIC: [8] Use of undefined constant avatar - assumed 'avatar' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 452 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 455 行.
+NOTIC: [8] Use of undefined constant add_time - assumed 'add_time' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 456 行.
+NOTIC: [8] Use of undefined constant content - assumed 'content' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 457 行.
+SQL: SELECT * FROM `information` WHERE ( type=3 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0007s ]
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+NOTIC: [8] Use of undefined constant title - assumed 'title' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 468 行.
+SQL: SELECT `id`,`title` FROM `information` WHERE ( type=1 ) ORDER BY add_time desc LIMIT 7   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `mb_member` LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Constant DATA_PATH already defined D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 53 行.
+NOTIC: [8] Undefined index: dialog D:\xampp\htdocs\xzb\ThinkPHP\Library\Org\Util\Im.class.php 第 723 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_id - assumed 'object_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant from_member_id - assumed 'from_member_id' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant object_type - assumed 'object_type' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Undefined variable: im D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 618 行.
+NOTIC: [8] Use of undefined constant obj - assumed 'obj' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+NOTIC: [8] Use of undefined constant dlgid - assumed 'dlgid' D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 619 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward = 0 ) AND (  status = 1 )  [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: mpids D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+SQL: SELECT `id` FROM `member_post` WHERE `member_id` = null AND (  reward > 0 ) AND (  status = 1 )  [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: mpids1 D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: quizcount D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 623 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 624 行.
+NOTIC: [8] Undefined variable: mpcounts D:\xampp\htdocs\xzb\Application\Runtime\Cache\Home\9b1c26b1cee56f532f15c56b96a07c74.php 第 626 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.189238s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.189352s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000956s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001038s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001749s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001859s ]
+
+[ 2017-01-11T22:03:32+08:00 ] ::1 /xzb/public/index.php/home/common/js.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000814s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000991s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001096s ]
+ERR: 非法操作:js.js
+
+[ 2017-01-11T22:03:33+08:00 ] ::1 /xzb/public/index.php/home/school/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000892s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005129s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005236s ]
+SQL: SHOW COLUMNS FROM `school` [ RunTime:0.0061s ]
+SQL: SELECT `id`,`title` FROM `school` WHERE `pid` = 0  [ RunTime:0.2042s ]
+
+[ 2017-01-11T22:03:33+08:00 ] ::1 /xzb/public/index.php/home/major/tree.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002545s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001679s ]
+SQL: SHOW COLUMNS FROM `mj_major` [ RunTime:0.0061s ]
+SQL: SELECT `id`,`mj_name` FROM `mj_major` WHERE `pid` = 0  [ RunTime:0.0123s ]
+
+[ 2017-01-11T22:03:33+08:00 ] ::1 /xzb/public/index.php/home/im/checkme.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000808s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000966s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001058s ]
+

@@ -1,0 +1,5 @@
+<php>
+	$url1 = merge_url("sort",!$sort);
+	$url2 = merge_url("sort",$sort == 2 ? 3 : 2);
+</php>
+<span class="<if condition="$sort eq 0">pa_down<else/>pa_up</if>" href="{:$url1}"> 时间&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<span class="<if condition="$sort eq 2">pa_up<else/>pa_down</if>" href="{:$url2}">阅读量&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

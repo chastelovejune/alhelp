@@ -1,0 +1,122 @@
+<div class="g_cell_12 mb_20 m_box act_hot">
+			<h3 class="m_title">名师课堂</h3>
+			<php>
+				$vcs = M("open_class")->join("LEFT JOIN mb_member ON member_id=mb_member.id")->join("LEFT JOIN zysc_view ON open_class.school_id = zhuanye_id");
+				if(CONTROLLER_NAME == 'Circle'){
+					$vcs =$vcs->where(['circle_id'=>I('request.id')]);
+				}
+				if(session("id")){
+					$vcs = $vcs->field("open_class.*,(SELECT apply_open_class.id FROM apply_open_class WHERE apply_open_class.open_class_id=open_class.open_class_id AND apply_open_class.member_id=".session("id").") as apply_id");
+				}else{
+					$vcs = $vcs->field("open_class.*");
+				}
+				$vcs = $vcs->where(['is_v'=>1,'open_class.status'=>0])->order('open_class_id desc')->select();
+			</php>
+			<div class="f_clearfix pd_30" id="fa_teacher">
+	            <div class="slideBox">
+		            <div class="bd">
+			            <ul>
+				            <volist name="vcs" id="c" offset="0" length='4'>
+					            <li>
+				            		<a href="{:U('/home/openClass/show',['id'=>$c[open_class_id]])}" target="_blank">
+						            	<div class="act_imgbox">
+						            		<if condition="$c[image] neq ''">
+						            			<img src="{$c[image]}">
+						            		</if>
+						            	</div>
+			            			</a>
+									<div class="act_txtbox">
+									  <h3><a href="{:U('/home/openClass/show',['id'=>$c[open_class_id]])}">{$c["description"]}</a></h3>
+					                  <div class="act_price"><if condition="$c['price'] eq 0">免费<else/>&yen;{$c["price"]}</if></div>
+									  <ul class="clear">
+									  	<li><span>时间：</span>{$c.open_class_time|to_date}</li>
+									  	<li><span>地点：</span>{$c["classroom"]}</li>
+									  	<li><span>主办：</span>{$c['teacher']}</li>
+									  </ul>
+									  <div class="act_btnbox"><a href="{:U('/home/OpenClass/show',["id"=>$c['open_class_id']])}" class="u_btn_sl">查看详情</a>
+									  <present name='_SESSION.id'>
+									  <neq name='c.member_id' value="$m.id">
+									  <if condition="$c[apply_id]">
+  									  <a class="u_btn_sc ml_20" style="background-color: lightgray; cursor: default;">已报名</a>
+									  <else/>
+									  <a data-href="{:U('/home/OpenClass/apply')}" data-id={$c['open_class_id']} class="u_btn_sc ml_20 apply2">报名课程</a>
+									  </if>
+									  </neq>
+									  </present>
+									  </div>
+									</div>
+					            </li>
+					        </volist>
+			            </ul>
+			        </div>
+		            <div class="hd">
+						<ul>
+			            
+						</ul>
+					</div>
+	            </div>
+			</div>
+			<div id="picScroll" class="curpicScroll">
+				<div class="hd">
+						<span class="next"><</span>
+						<span class="prev">></span>
+				</div>
+				<div class="bd">
+				<php>
+        			$_chunked_cs = array_chunk($vcs, 4);
+				</php>
+				<foreach name="_chunked_cs" item="cs1">
+		  		<ul class="m_curlist">
+		  			<foreach name="cs1" item="c">
+					  <li class="m_cur_item">
+                      <img src="{$c[image]}">
+                      <div class="txt_cur">
+				  	  <h4><a style="color:white;" href="{:U('/home/openClass/show',['id'=>$c[open_class_id]])}">{$c["description"]}</a></h4>
+				  	  <p>地点: {$c['classroom']}<br>课程时间：{:substr($c['open_class_time'],0,10)}</p>
+				  	  <span>
+				  	  	<present name='_SESSION.id'>
+					  <neq name='c.member_id' value="$m.id">
+						<if condition="$c['apply_id'] gt 0">
+							<span class="applyed">已报名</span>
+						<else/>
+					  	  <a class="u_btn_bk apply" data-href="{:U('/home/OpenClass/apply')}" data-id={$c['open_class_id']}>报&nbsp;名</a>
+					  	</if>
+					  	</neq>
+					  	</present>
+				  	  </span>
+                      </div>
+					  </li>
+					  </foreach>
+				</ul>
+				</foreach>
+				</div>
+			</div>
+	  </div>
+<script type="text/javascript">
+	TouchSlide({ 
+		slideCell:"#picScroll",
+		pnLoop:"false", // 前后按钮不循环
+		effect:"left"
+	});
+	$(function(){
+		$("a.apply2").click(function(){
+			var t = $(this);
+	     $.post($(this).attr("data-href"),{"open_class_id":$(this).attr("data-id")},function(d){
+	     	alert("已报名成功");
+	     	t.css({'background-color': 'lightgray', 'cursor': 'default'});
+	     	t.html("已报名");
+	     })
+	     return false;
+	   });
+	});
+</script>
+<style type="text/css">
+	.applyed{
+		 font-size: 16px;
+    height: 35px;
+    margin-left: 10%;
+    padding-top: 5px;
+    width: 80%;
+	background-color: lightgray;display: inline-block;color: white;line-height: 26px;text-align: center;
+	}
+</style>

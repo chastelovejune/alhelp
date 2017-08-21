@@ -1,0 +1,18 @@
+<include file="Common/header"/>
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20 paystep2">
+      <header class="u_paytitle"><h3>充值成功</h3></header>
+      <div class="pay_ok">
+        <strong><i class="u_ico_OK"></i>恭喜你!充值成功</strong>
+        <p><span>充值订单编号：{$r.id}</span><span>支付方式：{:C("cash_pay_types")[$r[Cash][pay_type]]}</span><span>金额：{$r.balance}元</span></p>
+       
+        <div class="payok_btnbox mt_50">
+          <input class="u_btn_sl" href="{:U('/member/index/balance')}" type="button" value="查看账户余额">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<include file="Common/footer"/>

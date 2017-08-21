@@ -1,0 +1,81 @@
+<include file="Common/header"/>
+<script src="script/layer/layer.js"></script>
+<div class="u_bannerbar">
+  <div class="g_container">
+    <div class="u_fss">
+    <a class="u_btn_sl" id="fullbtn" href="{:U('/home/OpenClass/add')}" style="padding-top:8px; padding-bottom:8px;">发直播课</a>   	
+    </div>
+  	<div class="u_ss">
+  		<form>
+  		<input type="text" class="u_ss_txn" name="keywords" value="{$_GET.keywords}">
+  		<input type="submit" value="" class="u_ss_btn" name="">
+  		</form>
+  	</div>
+  </div>
+</div>
+
+<div class="g_container mt_20">
+	<div class="g_row">
+	<php>$_cs = $cs;</php>
+	 <!--<include file="Common/openClass1"/>-->
+		<include file="Common/_listFilter"/>
+		<include file="Common/openClass2"/>
+	</div>
+</div>
+
+
+<div class="hots">
+<div class="g_container">
+<div class="g_row">
+ <section class="g_cell_12 hot_ds mb_20">
+      <header class="u_tab2">
+        <ul class="f_clearfix">
+          <li id="dshot1" onmouseover="setTab('dshot','u_tab2_item',1,2)" class="u_tab2_item hover" style="background:none;">名师推荐</li>
+        </ul>
+      </header>
+      <ul id="dshot1box" class="m_hotliao m_imglistx">
+      <php>
+      if(session("id")){
+	    $ts = M()->query("SELECT id,nickname,sign,avatar,(SELECT count(*) FROM follow WHERE follow.befollowed = mb_member.id AND follower=".session("id").") as is_followd FROM mb_member WHERE recommend_as_teacher = 1");
+      }else{
+      	$ts = M("mb_member")->where(["recommend_as_teacher"=>1])->field("id,nickname,sign,avatar")->select();
+      }
+      </php>
+      	<volist name="ts" id="t">
+         	<li class="m_item">
+			  	<div class="m_imgbox pointer"><img src="{$t['avatar']}"></div>
+			  	<h4>{$t['nickname']}<span>{$t['sign']}</span>
+			  	<if condition="$t['is_followd'] eq 0">
+			  	<a href="javascript:follow({$t['id']})" class="u_btn_sl f{$t['id']}">+关注</a>
+			  	<else/>
+			  	<a href="javascript:unfollow({$t['id']})" class="u_btn_sl f{$t['id']}">-取消关注</a>
+			  	</if>
+			  	</h4>
+			</li>
+		 </volist>
+      </ul>
+    </section>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	function follow(id){
+		var a = $('a.f'+id);
+		a.html('-取消关注');
+		a.attr("href","javascript:unfollow("+id+")");
+		$.post("{:U('/home/member/follow')}",{member_id:id},function(d){
+
+		})
+	}
+	function unfollow(id){
+		var a = $('a.f'+id);
+		a.html('+关注');
+		a.attr("href","javascript:follow("+id+")");
+		$.post("{:U('/home/member/unfollow')}",{member_id:id},function(d){
+		})
+	}
+</script>
+
+
+<include file="Common/footer"/>

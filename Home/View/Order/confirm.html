@@ -1,0 +1,163 @@
+<include file='Common/header'/>
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20">
+      <header class="u_paytitle"><h3>收货信息</h3><p><span><b>1</b>查看购物车</span><span class="on"><b>2</b>确认订单信息</span><span><b>3</b>成功提交订单</span></p></header>
+      <ul class="payaddress f_clearfix">
+      <foreach name="adds" item="add">
+        <li class="m_item <if condition="$add['is_default']">on</if>" data-id="{$add[id]}">
+          <h5> <a href="javascript:to_default({$add['id']})">设置为默认地址</a> <i class="u_ico_pay1"></i><span>{$add["name"]}</span></h5>
+          <p><i class="u_ico_pay2"></i>
+          <em>{$add["province_name"]}{$add["city_name"]}{$add["area_name"]}{$add["address"]}</em>
+          </p>
+          <div class="payar_operation"><span><a href="javascript:edit({$add['id']},'{$add['name']}',{$add['province']},{$add['city']},{$add['area']},'{$add['phone']}','{$add['address']}',{$add['is_default']})">修改</a><a href="{:U('/home/address/delete')}?id={$add['id']}">删除</a></span><i class="u_ico_pay3"></i></div>
+        </li>
+        </foreach>
+      </ul>
+      <div class="paytable_top">
+        <span class="u_btn_bl address_add">+添加新地址</span>
+      </div>
+      <form class="address_form f_dn" method="post">
+      <ul class="m_form f_clearfix pd_20">
+        <li class="m_item"><div class="m_formtit">收货人姓名：</div><input type="text" class="u_inp_t" name="name"></li>
+        <li class="m_item">
+          <div class="m_formtit">收货人地址：</div>
+          <select class="u_slt province" name="province">
+            <option>省份</option>
+          </select><span>省</span>
+          <select class="u_slt city" name="city">
+            <option>市</option>
+          </select><span>市</span>
+          <select class="u_slt area" name="area">
+            <option>县</option>
+          </select><span>县</span>
+        </li>
+        <li class="m_item"><div class="m_formtit">联系电话：</div><input type="text" class="u_inp_t long1" name="phone"></li>
+        <li class="m_item"><div class="m_formtit">收货地址：</div><input type="text" class="u_inp_t long1" name="address"></li>
+        <li class="m_item">
+        <div class="m_formtit">
+        设置为默认地址: 
+        </div>
+        <input type="checkbox">
+        <input type="hidden" name="is_default" value="0">
+        </li>
+        <li class="m_item">
+          <input type="submit" class="u_btn_sl" value="保存">
+        </li>
+      </ul>
+    </form>
+    </div>
+    <div class="g_cell_12 m_box pd_20 paystep2">
+      <header class="u_paytitle"><h3>购物清单</h3><p><a href="{:U('/home/cart')}">返回购物车</a></p></header>
+      <foreach name="members" item="m">
+      <div class="paytable">
+        <ul class="paytable_title">
+          <li class="paytab_item2">
+            <div class="paytab_user"><div class="m_imgbox"><img src="{$m[avatar]}" alt=""></div>{$m['nickname']}</div>
+<!--             <div class="paytab_NO">订单编号：32154165496847984894198</div>
+ -->          </li>
+          <li class="paytab_item3">单价</li>
+          <li class="paytab_item3">数量</li>
+          <li class="paytab_item3">小计</li>
+        </ul>
+        <foreach name="m[carts]" item="c">
+        <ul>
+          <li class="paytab_item2">
+            <div class="paytab_tit">{$c['description']}</div>
+          </li>
+          <li class="paytab_item3">&yen;{$c['cost']}</li>
+          <li class="paytab_item3"><div class="paytab_amount"><a class="ico_lessen" href=""></a>{$c['count']}<a class="ico_add" href=""></a></div></li>
+          <li class="paytab_item3">&yen;{$c['count']*$c['cost']}</li>
+        </ul>
+        </foreach>
+      </div>
+      <div class="paytab_parttotal"></div>
+      </foreach>
+      <p class="paytab_test"></p>
+    </div>
+    <div class="g_cell_12 m_box pd_20">
+    <form method="post" action="{:U("/home/order/pay")}" class="pay">
+      <header class="u_paytitle"><h3>选择支付方式</h3></header>
+      <ul class="pay_ment pd_20 f_clearfix">
+        <li class="m_item"><input type="radio" name="pay_type" value="0">
+        微信
+        </li>
+        <li class="m_item"><input type="radio" name="pay_type" checked="checked" value="1">支付宝支付</li>
+        <li class="m_item"><input type="radio" name="pay_type" value="2">新助邦账户支付</li>
+      </ul>
+      <div class="paytab_submitbox"><strong>总计：&yen;{$fee}</strong><br><input class="u_btn_sc pd_20" type="button" value="去付款"></div>
+      </form>
+    </div>
+    <include file="Common/_userGoods"/>
+  </div>
+</div>
+<script type="text/javascript">
+  $(".address_add").click(function(){
+    var f = $("form.address_form");
+    f.resetForm();
+    f.show();
+    f.attr("action","{:U('/home/address/add')}");
+    go_pca("select.province","select.city","select.area");
+  });
+  function edit(id,name,province,city,area,phone,address,is_default){
+    var f = $("form.address_form");
+    f.attr("action","{:U('/home/address/update')}"+"?id="+id);
+    f.show();
+    go_pca("select.province","select.city","select.area",province,city,area);
+    f.find("input[name=name]").val(name);
+    f.find("input[name=phone]").val(phone);
+    f.find("input[name=address]").val(address);
+    f.find("input[name=is_default]").val(is_default);
+    f.find('input[type=checkbox]').attr("checked",is_default==1);
+  }
+  function to_default(id){
+    $.post("{:U('/home/address/update')}"+"?id="+id,{"is_default":1},function(){
+      window.location.reload();
+    });
+  }
+  $("input[value=去付款]").click(function(){
+    var f = $("form.pay");
+    var pay_type = f.find('[name=pay_type]:checked').val();
+    if (pay_type == 1 && "{$_SERVER.HTTP_HOST}" != 'www.alhelp.net') {
+      alert('支付宝必须在www.alhelp.net使用');
+      return false;
+    }
+    var address_id = $("li.on").attr("data-id");
+    if (!address_id) {
+      alert('没有地址');
+      return false;
+    }
+    var go_pay = function(){
+      $.post("{:U('/home/order/add')}"+window.location.search,{address_id:address_id},function(d){
+        var ids = d.message;
+        for (var i = 0; i <= d.message.length - 1; i++) {
+          var id = d.message[i];    
+          f.prepend("<input type='hidden' name='ids[]' value='"+id+"'/>");  
+        }
+        f.ajaxSubmit(function(d){
+          if (pay_type == 0) {
+            go_wxPay(d.message.code,ids,d.message.type);
+          }else if(pay_type == 1){
+            go_alipay(d);
+          }else{
+            if (!d.suc) {
+              alert('余额不足');
+            }else{
+              alert('支付成功');
+              window.location.href="{:U('/member/order')}";
+            }
+          }
+        });   
+      })
+    }
+    
+    if (pay_type == 2) {
+      handle_paypwd(function(){
+        go_pay();
+      })
+    }else{
+      go_pay();
+    }
+  })
+</script>
+<include file="Common/footer"/>

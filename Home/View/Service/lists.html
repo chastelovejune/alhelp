@@ -1,0 +1,58 @@
+<include file="Common:header" /> 
+<!--以上头部-->
+<div class="u_bannerbar">
+    <div class="g_container">
+        <div class="u_fss">
+            <a class="u_btn_sl" href="{:U('demand/add')}" style="padding-top:8px; padding-bottom:7px;">发需求</a>
+            <a class="u_btn_sc" href="{:U('service/add')}" style="padding-top:8px; padding-bottom:7px;">发服务</a>
+        </div>
+        <div class="u_ss">
+            <div class="u_ss_sel" style="background:#fff; text-align:center; border-right:1px #ccc solid;">找服务</div>
+            <form>
+            <input type="text" class="u_ss_txt" name="keywords" value="{$_GET['keywords']}">
+            <button class="u_ss_btn"></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="g_container mt_20">
+    <div class="g_row">
+        <include file="Common/_listFilter"/>
+        <section class="g_cell_9 m_box">
+            <div class="sc_top" id="sc_top" style="width:100%; height:60px; background:#fff; position:fixed; top:0; left:0; display:none"></div>
+            <header class="u_tab2" id = "nav">
+                <ul>
+                    <li class="u_tab2_item dnav <if condition='strlen($_GET[service_type]) eq 0'>hover</if>"><i class="ico"></i><a href="?service_type=">全部</a></li>
+                    <li class="u_tab2_item dnav <if condition='strlen($_GET[service_type]) gt 0 AND ($_GET[service_type] eq 0)'>hover</if>"><i class="ico"></i><a href="?service_type=0">资料</a></li>
+                    <li  class="u_tab2_item dnav <if condition='$_GET[service_type] eq 1'>hover</if>"><i class="ico"></i><a href="?service_type=1">答疑</a></li>
+                    <li class="u_tab2_item dnav <if condition='$_GET[service_type] eq 2'>hover</if>"><i class="ico"></i><a href="?service_type=2">授课</a></li>
+                   <!-- <li class="f_fr"><include file="Information/_index_order"/> </li>-->
+                </ul>
+            </header>
+            <ul class="m_datalist">
+                <volist name="services" id="vo">
+                    <php>$tj = parse_class($vo)</php>
+                  <include file="_li"/>
+                </volist>
+            </ul>
+
+            <div class="u_fy">
+               <php>
+               echo pageHtml($count);</php>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+
+
+
+
+
+<!--以下底部-->
+
+<include file="Common:footer" /> 
+

@@ -1,0 +1,58 @@
+<include file="Common/header"/>
+<div class="u_bannerbar">
+  <div class="g_container">
+  <!--  <h2 class="logintop">绑定邮箱</h2>-->
+  </div>
+</div>
+
+<div class="g_container mt_20 m_box f_clearfix">
+  <div class="rightimg" style="height:90px; background-color:#999;"></div>
+   <div class="pos_ct">  <h2 class="logintop" style="padding-bottom:0;">绑定邮箱</h2></div>
+  	<form method="post">
+	<ul class="login_ct">
+		<li class="lc_inp">电子邮箱：<input type="text" name="email" class="u_inp_t" value="{$_GET[oldEmail]}"></li>
+		<li class="lc_yzm">验证码：<input type="text" name="email_verified" class="u_inp_t"><a>发送验证码</a></li>
+		<li class="lc_inp"><input type="submit" class="u_btn_sl" value="提交"></li>
+	</ul>
+	</form>
+	<script type="text/javascript">
+		$("form a").click(function(){
+			var a = $(this);
+			var email = $("form input[name=email]").val();
+			if (!is_email(email)) {
+				alert("请输入正确的邮箱地址");
+				return false;
+			}
+			$.post("{:U('/home/Common/sendEmailCode')}",{email:email},function(d){
+				if (d.suc) {
+					a.html("已发送");
+				}else{
+					alert(d.message);
+					a.html("发送验证码");
+				}
+			})
+			a.html("发送中.....");
+			return false;
+		})
+		$("form").submit(function(){
+			var email = $("form input[name=email]").val();
+			if (!is_email(email)) {
+				alert("请输入正确的邮箱地址");
+				return false;
+			}
+			if ($(this).find("input[name=email_verified]").val().length == 0) {
+				alert("请输入验证码");
+				return false;
+			}
+			$(this).ajaxSubmit(function(d){
+				if (d.suc) {
+					window.location.href = "{:U('/home/member/setting')}"+"?#4";
+				}else{
+					alert(d.message);
+				}
+			})
+			return false;
+		})
+	</script>
+</div>
+<include file="Common/footer"/>

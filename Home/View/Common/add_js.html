@@ -1,0 +1,56 @@
+<script type="text/javascript">
+	$("select.add_type").change(function(){
+		var t = $(this).val();
+		if (t == 0) {
+			$(".school").show();
+			$(".unified").hide();
+			$(".public_subject").hide();
+			$.get("{:U('/home/school/index')}",function(d){
+				var html = build_options(d.message);
+				$(".school0").html(html);
+				$(".school0").change();
+			})	
+		}else if (t == 1) {
+			//统考
+			$(".school").hide();
+			$(".public_subject").hide();
+			$(".unified").show();
+			$.get("{:U('/home/unifiedClassify/index')}",function(d){
+				var html = build_options(d.message);
+				$(".unified0").html(html);
+				$(".unified0").change();
+			})
+		}else{
+			$(".school").hide();
+			$(".public_subject").show();
+			$(".unified").hide();
+			$.get("{:U('/home/publicSubject/index')}",function(d){
+				var html = build_options(d.message);
+				$(".public_subject0").html(html);
+			})
+		}
+		
+	})
+	$("select.add_type").change();
+	$(".unified0").change(function(){
+		$.get("{:U('/home/unified/index')}",{cid:$(this).val()},function(d){
+			var html = build_options(d.message);
+			$(".unified1").html(html);
+		})	
+	})
+	function remove_hide_types(){
+		var val = $("select.add_type").val();
+	    if (val == 0) {
+	      $(".unified").remove();
+	      $(".public_subject").remove();
+	    }else if (val == 1) {
+	      //统考
+	      $(".school").remove();
+	      $(".public_subject").remove();
+	    }else{
+	      $(".school").remove();
+	      $(".unified").remove();
+	    }
+	}
+</script>
+<include file="Common/_selectSchool.js"/>

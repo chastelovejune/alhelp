@@ -1,0 +1,25 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20 f_clearfix">
+<div class="g_row">
+
+ <div class="g_cell_12 m_box pd_20">
+   
+      <header class="u_paytitle"><h3>看答案</h3></header>
+      <p style="margin-top:20px;margin-left:20px;">{$ans.content}</p>
+     <div class="ansm_box">
+	  <ul class="ansimg">
+		 <php>
+			 $ansimg = M("attachment")->where(['object_id'=>$ans[id],'type = 3'])->field("path")->select();
+		  </php>
+		  <foreach name="ansimg" item="ani"> 
+			<li class="m_imgbox"><img src="{$ani.path}"></li>
+		  </foreach>
+        </ul>
+     </div>
+    </div>
+	</div>
+	</div>
+
+<include file="Common/footer"/>
+

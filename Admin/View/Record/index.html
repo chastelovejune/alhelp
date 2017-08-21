@@ -1,0 +1,71 @@
+<include file="Common:admin_header" />
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <td>id</td>
+    <td>日期</td>
+    <td>类别</td>
+    <td>资金流向(从)</td>
+    <td>资金流向(到)</td>
+    <td>金额</td>
+    <td>商品名</td>
+    <td>订单号</td>
+    </tr>
+  </thead>
+  <foreach name="rs" item="r">
+    <tr>
+    <td>{$r.id}</td>
+    <td>{$r.add_time}</td>
+    <td>{:C('payment_record_income_types')[$r['income_type']]}</td>
+    <td>
+
+		<if condition="$r[from_member_name] eq ''">
+		新助邦微银
+		<else/>
+		<if condition="$r[income_type] eq 1 AND $r[type] neq 1">
+		 {$r['from_member_name']}
+		<else/>
+		  {$r['from_member_name']}微银
+		</if>
+		</if>
+        
+    </td>
+
+	<td>
+	<if condition="$r[to_member_name] eq ''">
+		新助邦微银
+		<else/>
+		<if condition="$r[income_type] eq 1 AND $r[type] eq 1">
+		 {$r['to_member_name']}
+		<else/>
+		  {$r['to_member_name']}微银
+		</if>
+		</if>
+	</td>
+	
+    <td>{$r.balance}</td>
+    <td>
+	<switch name="r.type">
+	   <case value="1">提现</case>
+	   <case value="2">充值</case>
+		  <case value="3">托付费用</case>
+		    <case value="4">直播课</case>
+			  <case value="5">{:M('order')->join('LEFT JOIN service ON service.service_id=`order`.service_id')->where(['order.id'=>$r['object_id']])->getField("description")}</case>
+			    <case value="6">{:M('service_order')->join('LEFT JOIN service ON service.service_id=`service_order`.service_id')->where(['service_order.id'=>$r['object_id']])->getField("description")}</case>
+				  <case value="7">有偿问答</case>
+				    <case value="8">偷听答案</case>
+					  <case value="9">退款</case>
+					    <case value="10">管理费</case>
+						<case value="11">解冻托付费用</case>
+						<case value="12">资讯下载</case>
+						<case value="13">分享下载</case>
+	   <default />{$r.type}
+	</switch>
+    </td>
+    <td>{$r.object_id}</td>
+    </tr>
+</foreach>
+</table>
+{$pageHtml}
+<include file="Common:admin_footer" />

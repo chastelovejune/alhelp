@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" id="body">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="renderer" content="webkit">
+<title>新助邦考研平台</title>
+<link rel="stylesheet" type="text/css" href="css/bootcss/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/subpage.css" />
+<script src="script/jquery.min.js"></script>
+<script src="script/common.js"></script>
+<script src="script/TouchSlide.js"></script>
+<script src="/script/jquery.qqFace.js"></script>
+<script src="{:U('/home/Im/js',[],'js')}"></script>
+<script src="script/jquery.form.min.js"></script>
+</head>
+<body>
+<div class="im_container g_container">
+
+
+<!--通讯录 -->
+	<div class="im_user_list im_recent" id="im_user">
+    <php>//dump($cgroup);</php>
+    <div class="im_ulist_top">
+   
+    <div class="close_list" onclick="closetalk()"><img src="/images/icons/im_close.png"></div>
+    <div class="im_me">
+    <div class="im_user_face">
+    <div class="m_imgbox">
+    <img src="{$m.avatar}">
+    
+    </div>
+  
+    </div>
+    <div class="im_me_txt">
+     <div class="set_me"><img src="images/icons/set.png" style="height:25px; width:25px;"></div>
+	   <h4>{$m.nickname}</h4>
+    <p onClick="bz('user_ds')">{$m.sign}</p>
+    
+    <div class="talk_btn">
+    <ul>
+    <li class="talk_btn_item"><img src="images/icons/set.png" style="height:25px; width:25px;"></li>
+	 <li class="f_fr"><img src="images/icons/im_set.png" style="width:28px;height:23px;"></li>
+    </ul>
+    </div>
+    
+    </div>
+    <div class="clear"></div>
+    </div>
+    <div class="im_search_user">
+    <input type="text" class="u_ss_txn">
+    <input type="button" class="u_ss_btn">
+    </div>   
+    </div>
+    
+    <div class="im_user_listbox">
+    <ul class="u_tab2">
+			  <li id="uclTab_1" onclick="setTab('uclTab_','user_listbtn',1,5)" class="user_listbtn hover">悄悄话</li>
+			  <li id="uclTab_2" onclick="setTab('uclTab_','user_listbtn',2,5)" class="user_listbtn">我的关注</li>
+			  <li id="uclTab_3" onclick="setTab('uclTab_','user_listbtn',3,5)" class="user_listbtn">我的粉丝</li>
+			  <li id="uclTab_4" onclick="setTab('uclTab_','user_listbtn',4,5)" class="user_listbtn">好友</li>
+               <li id="uclTab_5" onclick="setTab('uclTab_','user_listbtn',5,5)" class="user_listbtn">圈子</li>
+			</ul>
+            
+            <ul id="uclTab_1box" class="im_news">
+			<foreach name='remgs' item='remg'>
+            <li class="user_item clear" onclick="addtalk('{$remg[obj]}','{$remg[dlgid]}')">
+            <div class="user_face">
+            <div class="m_imgbox"><img src="{$remg.avatar}"><img src="images/icons/ico_cheng.png" style="width:10px; height:10px;" class="id_t3"><img src="images/icons/ico_v.png" style="width:10px; height:10px;"  class="id_t4"></div>
+           <!-- <h5>{$remg.nickname}</h5>-->
+            </div>
+            <div class="user_con">
+             <h5>{$remg.nickname}</h5>
+            <p class="news_con">{$remg.content}</p>
+            </div>
+            </li>
+            </foreach>
+            </ul>
+
+            <ul id="uclTab_2box"  class="im_news" style="display:none;">
+            <foreach name='follows' item='f'>
+            <li class="fans_item clear" onclick="friendtalk('{$f.chat_id}')">
+            <div class="user_face roundimg">
+          <img src="{$f.avatar}">
+            </div>
+            <div class="user_name">
+            {$f.nickname}
+            </div>
+            <div class="user_btn" id='f1_{$f[id]}'>
+            <if condition='$friends[$f[id]]'>
+            <img src="images/icons/ico_idxft05.png" style="width:25px; height:25px;">
+            <else/>
+            </if>
+            </div>
+            </li>
+            </foreach>
+            
+            </ul>
+                <ul id="uclTab_3box"  class="im_news" style="display:none;">
+            <foreach name='fans' item='f'>
+            <li class="fans_item clear" onclick="friendtalk('{$f.chat_id}')">
+            <div class="user_face roundimg">
+          <img src="{$f.avatar}">
+            </div>
+            <div class="user_name">
+            {$f.nickname}
+            </div>
+            <div class="user_btn" id='f_{$f[id]}'>
+           <if condition='$friends[$f[id]]'>
+            <img src="images/icons/ico_idxft05.png" style="width:25px; height:25px;">
+            <else/>
+            <img src="images/icons/friendstag.png" onclick="follow('f_{$f[id]}','{$f[id]}')">
+            </if>
+            
+            </div>
+            </li>
+            </foreach>
+            
+            </ul>
+            
+              
+                <ul id="uclTab_4box"  class="im_news" style="display:none;">
+<foreach name='friends' item='f'>
+            <li class="fans_item clear"  onclick="friendtalk('{$f.chat_id}')">
+            <div class="user_face roundimg">
+          <img src="{$f.avatar}">
+            </div>
+            <div class="group_name">
+            {$f.nickname}
+            </div>
+         
+            </li>
+
+    </foreach>        
+            </ul>
+            
+              <div id="uclTab_5box"  class="im_news" style="display:none;">
+              
+               <ul class="u_tab_group">
+			  <li id="uclTab5_1" onclick="setTab('uclTab5_','user_group_sel',1,2)" class="user_group_sel hover">校友圈</li>
+			<!--  <li id="uclTab5_2" onclick="setTab('uclTab5_','user_group_sel',2,2)" class="user_group_sel">专业圈</li>-->		
+           <!--   <li class="f_fr txt_green" style="line-height:40px; cursor:pointer;">新增&nbsp;&nbsp;<i class="u_ico u_ico_cdown"></i>&nbsp;&nbsp;&nbsp;&nbsp;</li>	 -->
+              <li class="clear"></li>
+			</ul>
+                          
+            <ul id="uclTab5_1box">  
+			<foreach name="cgroup" item='cg'>
+            <li class="fans_item clear" onclick="addtalk('{$cg.id}','{$cg.id}')">
+            <div class="user_face roundimg">
+          <img src="{$cg.logo}">
+            </div>
+            <div class="group_name">
+            {$cg.name}
+            </div>
+         
+            </li>
+           </foreach>
+              </ul>  
+              
+               <ul id="uclTab5_2box" style="display:none;">  
+            <li class="fans_item clear">
+            <div class="user_face roundimg">
+          <img src="images/test/50.jpg">
+            </div>
+            <div class="group_name">
+            官方圈子
+            </div>
+         
+            </li>
+            <li class="fans_item clear">
+            <div class="user_face roundimg">
+          <img src="images/test/41.jpg">
+            </div>
+            <div class="group_name">
+            私密圈子
+            </div>
+          
+            </li>
+                <li class="fans_item clear">
+            <div class="user_face roundimg">
+          <img src="images/test/41.jpg">
+            </div>
+            <div class="group_name">
+            公开的圈子（曾近加入过）
+            </div>
+          
+            </li>
+            
+              <li class="fans_item clear">
+            <div class="user_face roundimg">
+          <img src="images/test/50.jpg">
+            </div>
+            <div class="group_name">
+            官方圈子
+            </div>
+         
+            </li>
+            
+              </ul>          
+            </div>
+    </div>
+        
+    </div>
+    
+    
+      <!-- 产品列表-->
+   <!-- <div class="im_pro_list">
+    <div class="pro_top">
+    <div class="m_imgbox">   
+    <img src="{$m.avatar}">
+    <img src="images/icons/ico_cheng.png" style="width:10px; height:10px;" class="id_t3"><img src="images/icons/ico_v.png" style="width:10px; height:10px;"  class="id_t4">
+    </div>   
+    <h4>{$m.nickname}</h4> 
+    
+    </div>
+    <div class="pro_list">
+    <ul>
+    <foreach name='pros' item='pro' key='index'>
+    <li class="pro_item clear <eq name='index' value='0'>cur</eq>" onclick="window.location.href='<eq name='c.from_member_id' value='$_SESSION[id]'>{:U('/home/im/index',['id'=>$c[object_id],'type'=>$c[object_type]])}<else/>{:U('/home/im/tome',['id'=>$c[object_id],'type'=>$c[object_type],'mid'=>$c[from_member_id]])}</eq>'" >
+    <div class="m_imgbox">
+    <img src="{$pro.image}">
+    </div>
+    <div class="pro_txt">
+    <p>{$pro.description}</p>
+    <p><span>
+	 <foreach name="pro[types]" item="t">
+	 
+        <a>&nbsp;{$t}</a>
+        </foreach>
+    </span></p>
+    </div>
+    </li>
+    </foreach>
+    </ul>
+    </div>
+    </div>-->
+    
+    <div class="group_list" style="display:none;">
+    <div class="group_top">
+    <ul>
+    <li class="group_btn">
+    <input type="button" value="+" class="gmenber_btn">
+   <h5> 添加成员</h5>
+    </li>
+      <li class="group_btn">
+    <input type="button" value="-" class="gmenber_btn" style="padding-left:16px; padding-right:16px;" onClick="onDelMen('del')">
+   <h5> 删除成员</h5>
+    </li>
+    </ul>
+    </div>
+   
+     <div class="group_men_list">
+     <div class="im_search_user">
+    <input type="text" class="u_ss_txn">
+    <input type="button" class="u_ss_btn">
+    </div>
+      
+    <ul class="im_men clear">
+    <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—" class="del_men" id="del">
+    </div>
+    </li>
+      <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—"  class="del_men">
+    </div>
+    </li>
+     <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—" class="del_men">
+    </div>
+    </li>
+      <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—"  class="del_men">
+    </div>
+    </li>
+     <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—" class="del_men">
+    </div>
+    </li>
+      <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—"  class="del_men">
+    </div>
+    </li>
+     <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—" class="del_men">
+    </div>
+    </li>
+      <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—"  class="del_men">
+    </div>
+    </li>
+     <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—" class="del_men">
+    </div>
+    </li>
+      <li class="gmen_item clear">
+    <div class="m_imgbox">
+    <img src="images/test/50.jpg">
+    </div>
+    <div class="men_name">用户昵称</div>
+    <div class="men_btn">
+    <input type="button" value="—"  class="del_men">
+    </div>
+    </li>
+    </ul>
+ 
+    </div>
+    </div>
+
+     <!--对话框 -->
+    <div class="im_talk_box" id="im_talk_box">
+    <div class="list_open">
+    <div class="pro_or_group">&nbsp;</div>
+    <div class="to_username">{$you.nickname}</div>
+    <div class="takl_btn_phone">&nbsp;
+    <ul class="menu">
+    <li class="tal_btn_item">语音</li>
+     <li class="tal_btn_item">好感</li>
+    </ul>
+    </div>
+    <div class="user_phone" onclick="openbook()">联系人</div>
+    </div>
+    <div class="im_talk_top">
+      <div class="close_list" onclick="closetalkbox()"><img src="/images/icons/im_close.png"></div>
+  <div class="talk_user_face">
+   <div class="m_imgbox">
+    <img src="{$you.avatar}">
+    <img src="images/icons/systemlist4.png" style="width:20px; height:20px;" class="id_t0"><img src="images/icons/ico_cheng.png" style="width:10px; height:10px;" class="id_t1"><img src="images/icons/ico_v.png" style="width:10px; height:10px;"  class="id_t2"><img src="images/icons/ico_ming.png" class="id_t3" style="width:10px; height:10px;" ><img src="images/icons/ico_id.png" class="id_t4" style="width:10px; height:10px;" >
+    </div>
+   
+    </div>
+    <div class="user_top_txt">
+		 <h4>{$you.nickname}</h4>
+    <p>
+	<if condition="$you['sign'] neq '' ">
+	{$you.sign}
+	<else/>
+	暂无签名
+	</if>
+    </p>
+     <div class="talk_btn_talk" >
+    <ul>
+   <li class="talk_btn_item"><img src="images/icons/set.png"  style="height:25px; width:25px;"></li>
+	 <li class="f_fr"><img src="images/icons/im_set.png" style="width:28px;height:24px;"></li>
+    </ul>
+    </div>
+    </div>
+    </div>

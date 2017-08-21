@@ -1,0 +1,44 @@
+<include file="Common/header"/>
+
+<div class="g_container mt_20 m_box pd_20">
+	<div class="m_datalist">
+    <!--学生申请试听 -->
+	  <div class="m_datalist_item">
+	  	<div class="m_dl_picbox">&yen;{$o.cost}</div>
+	  	<div class="m_dl_txtbox">
+				<h3><i class="ico_font">公</i><i class="ico"></i><a href="">【资料】{$o.description}</a></h3>
+				<small>
+				<foreach name='o.types' item='t'>
+				<a>{$t}</a>
+				</foreach>
+				</small>
+	  	</div>
+	  </div>
+	</div>
+         
+	</div>
+</div>
+
+<div class="g_container mt_20 m_box pd_20">
+<form method="post" class="add_rating">
+  <ul class="m_form f_clearfix pd_20">
+    <li class="m_item"><div class="m_formtit">打个分吧：</div>
+      <ul style="margin-top:5px;">
+           <li class="pj_dj"><input type="radio" name="rating" value="0" checked>好评</li>
+           <li class="pj_dj"><input type="radio" name="rating" value="1" >中评</li>
+           <li class="pj_dj"><input type="radio" name="rating" value="2" >差评</li>
+       </ul>
+    </li>
+    <li class="m_item"><div class="m_formtit ckyb">你的评价：</div>
+      <textarea class="u_inp_t" name="content" required=""></textarea>
+    </li>
+    
+  
+    <li class="m_item rel_inpr"><div class="m_formtit"></div>
+      <input type="submit" class="u_btn_sl" value="确认提交">
+    </li>
+  </ul>
+</form>
+ 
+</div>
+<include file="Common/footer"/>

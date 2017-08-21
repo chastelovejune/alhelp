@@ -1,0 +1,35 @@
+    <!--账户充值-->
+ <div class="f_clearfix" id="uclTab_3box">
+      <div style="color:#1ecca7;" class="cz_fs_txt">*目前支持微信或支付宝付款</div>
+      <div class="cz_fs_txt"><div class="m_formtit">当前账户余额：</div><span style="color:#ff7101;padding-top:10px;">{$m[balance]}</span>元&nbsp;&nbsp;（冻结金额：<span style="color:#ff7101;padding-top:10px;">{$m[balance_frozen]}</span>元）</div>
+      <form class="balance" method="post">
+      <div class="m_formtit">&nbsp;&nbsp;&nbsp;&nbsp;充值金额：</div>
+      <input type="text" class="u_inp_t" name="balance">&nbsp;&nbsp;元
+      <div class="cz_fs_txt"><div class="m_formtit" style="padding-top:15px;">选择充值方式：</div><ul>
+	  <li class="zf_fs_bank" style="margin-top:10px;"> 
+      <input type="radio" value="0" class="pay_fs" name="pay_type"> <img src="images/main/wx_pay.jpg"></li>
+      <li class="zf_fs_bank"><input type="radio" value="1" checked="checked" class="pay_fs" name="pay_type"> <img src="images/main/ccb.jpg"></li>
+      
+	  </ul></div>
+    
+	  <div style="clear:both; display:block; margin-top:30px;" class="qr_cz"> <div class="m_formtit">&nbsp;&nbsp;&nbsp;&nbsp;</div><input type="submit" value="确认" class="u_btn_sl" style="margin-left:0;"></div>
+      </form>                         
+      </div>
+      <script type="text/javascript">
+        $("form.balance").submit(function(){
+          var f = $(this);
+          var balance = $(this).find("input[name=balance]").val();
+          if (!is_gt0(balance)) {
+            alert("请输入充值金额");
+            return false;
+          }
+          $(this).ajaxSubmit(function(d){
+            if (f.find('[name=pay_type]:checked').val() == 1) {
+              go_alipay(d);
+            }else{
+              go_wxPay(d.message.code,d.message.id,d.message.type);
+            }
+          })
+          return false;
+        });
+      </script>

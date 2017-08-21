@@ -1,0 +1,26 @@
+<include file="Common/header"/>
+<div class="g_container mt_20 f_clearfix">
+  <div class="g_row">
+    <div class="g_cell_12 m_box pd_20 paystep2">
+      <header class="u_paytitle">
+      <h3>购买成功</h3>
+      	<p><span><b>1</b>查看购物车</span><span><b>2</b>确认订单信息</span><span class="on"><b>3</b>成功提交订单</span></p>
+      </header>
+      <div class="pay_ok">
+        <strong><i class="u_ico_OK"></i>恭喜你!订单提交成功</strong>
+        <p><span>订单编号：{$o.id}</span><span>支付方式：
+        <eq name='o.cash_id' value='0'>
+        余额支付
+        <else/>
+        {:C('cash_pay_types')[$o[is_alipay]]}
+        </eq>
+                </span><span>金额：{$o.total}元</span></p>
+        <div class="pt_10 pd_10 f_cll">您已成功支付，卖家会尽快发货~</div>
+        <div class="payok_btnbox mt_50">
+          <input type="button" value="查看订单" href="{:U('/home/order/detail')}?{:http_build_query($_GET)}" class="u_btn_sl"><input type="button" href="{:U('/home/service/lists')}" value="继续订购&gt;&gt;" class="u_btn_sc">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Common/footver"/>
